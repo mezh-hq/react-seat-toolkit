@@ -47,7 +47,7 @@ jobs:
           storybooks: true
 
       - name: Create .nojekyll file 🚧
-        run: touch ./dist/.nojekyll
+        run: touch ./storybook-static/.nojekyll
 
       - name: Fix 404 on page reload 🚧
         run: cp storybook-static/index.html storybook-static/404.html
