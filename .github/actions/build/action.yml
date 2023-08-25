@@ -25,7 +25,7 @@ runs:
     - name: Build changes
       run: |
         if [ ${{ inputs.storybooks }} = "true" ]; then
-          pnpm build-storybooks
+          pnpm build-storybook
         else
           pnpm build
         fi
