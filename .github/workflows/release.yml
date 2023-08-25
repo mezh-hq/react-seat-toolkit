@@ -15,10 +15,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build 🏗️
-        uses: ./.github/actions/build
-
-      - name: Fix 404 on page reload 🚧
-        uses: sliit-foss/actions/preview-deployments/404@main
+        uses: ./.github/actions/build 
 
       - name: Create .npmrc 📝
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
@@ -49,7 +46,7 @@ jobs:
           storybook: true
 
       - name: Fix 404 on page reload 🚧
-        uses: sliit-foss/actions/preview-deployments/404@main
+        run: cp storybook-static/index.html storybook-static/404.html
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
