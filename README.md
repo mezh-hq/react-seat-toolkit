@@ -48,7 +48,7 @@ import { Bashaway } from  "@sliit-foss/bashaway-ui/icons"
 ## Getting started
 
 - Run `pnpm install` to install all dependencies
-- Run `pnpm storybooks` to start the storybooks dev server
+- Run `pnpm storybook` to start the storybooks dev server
 - Run `pnpm build-storybook` to build the project for a web release
 - Run `pnpm build` to build the project for a package release
 
