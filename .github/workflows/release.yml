@@ -37,7 +37,6 @@ jobs:
   site-release:
     name: Site Release
     runs-on: ubuntu-latest
-    needs: package-release
     steps:
       - name: Checkout repository 🛎️
         uses: actions/checkout@v3
