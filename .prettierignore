@@ -1,0 +1,6 @@
+.cache/**
+.storybook/**
+dist/**
+node_modules/**
+patches/**
+storybook-static/**

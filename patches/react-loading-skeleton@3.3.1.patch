@@ -1,0 +1,79 @@
+diff --git a/dist/Skeleton.d.ts b/dist/Skeleton.d.ts
+index 805e999257d6c8117d8c362958db36d508c7dc81..1fd1acef0dafcae910b0a6479e7d2ce8bba37afa 100644
+--- a/dist/Skeleton.d.ts
++++ b/dist/Skeleton.d.ts
+@@ -8,5 +8,7 @@ export interface SkeletonProps extends SkeletonStyleProps {
+     containerTestId?: string;
+     circle?: boolean;
+     style?: CSSProperties;
++    children?: React.ReactNode;
++    single?: boolean;
+ }
+-export declare function Skeleton({ count, wrapper: Wrapper, className: customClassName, containerClassName, containerTestId, circle, style: styleProp, ...originalPropsStyleOptions }: SkeletonProps): ReactElement;
++export declare function Skeleton({ count, wrapper: Wrapper, className: customClassName, containerClassName, containerTestId, circle, style: styleProp, children, single, ...originalPropsStyleOptions }: SkeletonProps): ReactElement;
+diff --git a/dist/index.cjs b/dist/index.cjs
+index 965f9f1b087a9a1b5c376bae39275f470ea7545f..20ff8a76ce664afd3bcbc2d4072f1fa6d8534146 100644
+--- a/dist/index.cjs
++++ b/dist/index.cjs
+@@ -35,7 +35,7 @@ function styleOptionsToCssProperties({ baseColor, highlightColor, width, height,
+         style['--highlight-color'] = highlightColor;
+     return style;
+ }
+-function Skeleton({ count = 1, wrapper: Wrapper, className: customClassName, containerClassName, containerTestId, circle = false, style: styleProp, ...originalPropsStyleOptions }) {
++function Skeleton({ count = 1, wrapper: Wrapper, className: customClassName, containerClassName, containerTestId, circle = false, style: styleProp, children, single = false, ...originalPropsStyleOptions }) {
+     var _a, _b, _c;
+     const contextStyleOptions = React.useContext(SkeletonThemeContext);
+     const propsStyleOptions = { ...originalPropsStyleOptions };
+@@ -79,15 +79,15 @@ function Skeleton({ count = 1, wrapper: Wrapper, className: customClassName, con
+                 : `calc(${width} * ${fractionalPart})`;
+             thisStyle = { ...thisStyle, width: fractionalWidth };
+         }
+-        const skeletonSpan = (React.createElement("span", { className: className, style: thisStyle, key: i }, "\u200C"));
+-        if (inline) {
+-            elements.push(skeletonSpan);
++        const SkeletonSpan = ({ children }) => (React.createElement("div", { role: "skeleton", className: className, style: thisStyle, key: i }, children));
++        if (inline || single) {
++            elements.push(React.createElement(SkeletonSpan, { children: children }));
+         }
+         else {
+             // Without the <br />, the skeleton lines will all run together if
+             // `width` is specified
+             elements.push(React.createElement(React.Fragment, { key: i },
+-                skeletonSpan,
++                React.createElement(SkeletonSpan, { children: children }),
+                 React.createElement("br", null)));
+         }
+     }
+diff --git a/dist/index.js b/dist/index.js
+index f5ff41f8307c90ec3055b3182ad101ce5b54fc41..54796a81576bb270afbc54ed3e3454bb4278cbd3 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -31,7 +31,7 @@ function styleOptionsToCssProperties({ baseColor, highlightColor, width, height,
+         style['--highlight-color'] = highlightColor;
+     return style;
+ }
+-function Skeleton({ count = 1, wrapper: Wrapper, className: customClassName, containerClassName, containerTestId, circle = false, style: styleProp, ...originalPropsStyleOptions }) {
++function Skeleton({ count = 1, wrapper: Wrapper, className: customClassName, containerClassName, containerTestId, circle = false, style: styleProp, children, single = false, ...originalPropsStyleOptions }) {
+     var _a, _b, _c;
+     const contextStyleOptions = React.useContext(SkeletonThemeContext);
+     const propsStyleOptions = { ...originalPropsStyleOptions };
+@@ -75,15 +75,15 @@ function Skeleton({ count = 1, wrapper: Wrapper, className: customClassName, con
+                 : `calc(${width} * ${fractionalPart})`;
+             thisStyle = { ...thisStyle, width: fractionalWidth };
+         }
+-        const skeletonSpan = (React.createElement("span", { className: className, style: thisStyle, key: i }, "\u200C"));
+-        if (inline) {
+-            elements.push(skeletonSpan);
++        const SkeletonSpan = ({ children }) => (React.createElement("div", { role: "skeleton", className: className, style: thisStyle, key: i }, children));
++        if (inline || single) {
++            elements.push(React.createElement(SkeletonSpan, { children: children }));
+         }
+         else {
+             // Without the <br />, the skeleton lines will all run together if
+             // `width` is specified
+             elements.push(React.createElement(React.Fragment, { key: i },
+-                skeletonSpan,
++                React.createElement(SkeletonSpan, { children: children }),
+                 React.createElement("br", null)));
+         }
+     }

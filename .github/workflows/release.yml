@@ -1,0 +1,59 @@
+name: CI Release
+run-name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  package-release:
+    name: Site Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository 🛎️
+        uses: actions/checkout@v3
+
+      - name: Build 🏗️
+        uses: ./.github/actions/build
+
+      - name: Fix 404 on page reload 🚧
+        uses: sliit-foss/actions/preview-deployments/404@main
+
+      - name: Create .npmrc 📝
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+
+      - name: Bump version 📝
+        run: pnpm bump-version
+
+      - name: Publish 🚀
+        run: pnpm release
+
+      - name: Update release info 📝
+        run: |
+          git config pull.ff true
+          git add . && git commit -m "CI: @sliit-foss/automatic-versioning - sync release" || true
+          git pull --rebase && git push origin
+
+  site-release:
+    name: Site Release
+    runs-on: ubuntu-latest
+    needs: package-release
+    steps:
+      - name: Checkout repository 🛎️
+        uses: actions/checkout@v3
+
+      - name: Build 🏗️
+        uses: ./.github/actions/build
+        with:
+          storybook: true
+
+      - name: Fix 404 on page reload 🚧
+        uses: sliit-foss/actions/preview-deployments/404@main
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./storybook-static/
+          branch: gh-pages
+          clean-exclude: preview

@@ -1,0 +1,5 @@
+@layer components {
+  .divider {
+    @apply w-full h-[0.75px] !bg-black/5 relative z-10;
+  }
+}

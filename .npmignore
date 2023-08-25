@@ -1,0 +1,17 @@
+.cache/
+.storybook/
+.prettier*
+.eslint*
+src/
+test/
+coverage/
+injections
+node_modules/
+patches/
+storybook-static/
+esbuild.config.js
+jsconfig.json
+commitlint.config.js
+postcss.config.js
+tailwind.config.js
+lefthook.yml

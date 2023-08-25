@@ -1,0 +1,60 @@
+@import 'components.css';
+@import 'utilities.css';
+@import 'animations/index.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    margin-right: 0px !important;
+  }
+  body:not(.anything) {
+    margin-right: 0px !important;
+  }
+  .markdown * {
+    all: revert;
+  }
+}
+
+svg,
+svg *:focus {
+  outline: none !important;
+}
+
+html::-webkit-scrollbar {
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: black;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+html {
+  scrollbar-color: black var(--background);
+  scrollbar-width: thin;
+  overflow-x: hidden !important;
+}
+
+input,
+textarea,
+button,
+select,
+div,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hide-blink {
+  caret-color: transparent;
+}

@@ -1,0 +1,22 @@
+import { Meta } from "@storybook/blocks";
+import { Button, Toaster, toast } from "../components";
+import { Bashaway } from "../icons";
+import "./index.css";
+
+export const copy = () => {
+  navigator.clipboard.writeText("pnpm i @sliit-foss/bashaway-ui");
+  toast({
+    title: "Copied to clipboard",
+    description: "Run the command in your terminal to install the UI toolkit"
+  });
+};
+
+<Meta title="Configure your project" />
+
+<div class="h-full w-full flex flex-col justify-center items-center gap-12 text-center p-6 md:p-12">
+  <Bashaway className="w-[236px] h-[38px] xs:w-[301px] xs:h-[49px] md:w-[400px] md:h-[64px]" />
+  <span className="text-[30px] lg:text-[54px] text-center font-bold tracking-[-2px]"> UI Toolkit for Bashaway 2023 </span>
+  <span class="text-[18px] lg:text-[22px] text-start font-semibold">Just one command away...</span>
+  <Button onClick={copy} className="text-[20px] md:text-[25px] lg:text-[28px] font-medium rounded-full p-4 px-12 border bg-black text-white" > pnpm i @sliit-foss/bashaway-ui </Button>
+</div>
+<Toaster/>

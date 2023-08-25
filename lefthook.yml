@@ -1,0 +1,14 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.{js,ts,jsx}"
+      run: npm run format && git add .
+    lint:
+      glob: "*.{js,ts,jsx}"
+      run: npm run lint && git add .
+
+commit-msg:
+  commands:
+    commitlint:
+      run: npx commitlint --edit --color

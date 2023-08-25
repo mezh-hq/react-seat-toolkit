@@ -1,0 +1,30 @@
+@import "keyframes.css";
+
+@layer utilities {
+  .splash {
+    @apply relative overflow-hidden;
+    &:after {
+      @apply content-[''] absolute block bg-white w-0 h-0 hover:w-[100%] hover:h-[100%] top-1/2 left-1/2 opacity-[0.15] rounded-full -translate-x-1/2 -translate-y-1/2 transition-all duration-medium;
+    }
+  }
+  .animated-chevron {
+    @apply relative;
+    &:before {
+      @apply content-[''] absolute w-0 h-[0.18rem] top-[41%] right-[-0.05rem] mr-[0.5rem] bg-current rounded group-hover:w-[0.55rem] group-hover:md:w-[0.7rem] transition-all duration-medium;
+    }
+  }
+  .animated-border {
+    @apply relative;
+    &:before,
+    &:after {
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      @apply content-[''] absolute inset-0 rounded-3xl border border-transparent filter contrast-[2] bg-current pointer-events-none transition-all duration-1000;
+    }
+    &:after {
+      background: linear-gradient(var(--angle, 225deg), var(--tw-gradient-stops)) border-box;
+      @apply animate-[rotate_2s_linear_infinite] opacity-0 hover:opacity-100;
+    }
+  }
+}
