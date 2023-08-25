@@ -1,26 +1,23 @@
-import { BreadCrumbs } from '@/components';
+import { BreadCrumbs } from "@/components";
 
 const argTypes = {
   breadcrumbs: {
-    description: 'An array of strings / objects containing the label and path for each breadcrumb',
-  },
+    description: "An array of strings / objects containing the label and path for each breadcrumb"
+  }
 };
 export default {
-  title: 'Components/Breadcrumbs',
+  title: "Components/Breadcrumbs",
   component: BreadCrumbs,
   parameters: {
-    layout: 'centered',
+    layout: "centered"
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"]
 };
 
 export const Default = {
   argTypes,
   args: {
-    breadcrumbs: [
-      "Home",
-      "Challenges",
-    ]
+    breadcrumbs: ["Home", "Challenges"]
   }
 };
 
@@ -39,4 +36,4 @@ export const WithLinks = {
       "Challenge 1"
     ]
   }
-}
+};

@@ -1,30 +1,31 @@
-import { FOSS } from '@/icons';
+import { FOSS } from "@/icons";
 
 const argTypes = {
   className: {
-    description: 'Any additional CSS classes to the root svg element. Existing classes will be overwritten in case of conflict',
-    type: 'string',
+    description:
+      "Any additional CSS classes to the root svg element. Existing classes will be overwritten in case of conflict",
+    type: "string",
     table: {
-      defaultValue: { summary: 'w-[74px] h-[42px]' },
-    },
+      defaultValue: { summary: "w-[74px] h-[42px]" }
+    }
   },
   dark: {
-    description: 'If true, the icon will be rendered in dark mode',
+    description: "If true, the icon will be rendered in dark mode",
     table: {
-      defaultValue: { summary: false },
+      defaultValue: { summary: false }
     },
-    type: 'boolean'
-  },
+    type: "boolean"
+  }
 };
 
 export default {
-  title: 'Icons/Foss',
+  title: "Icons/Foss",
   component: FOSS,
   parameters: {
-    layout: 'centered',
+    layout: "centered"
   },
-  tags: ['autodocs'],
-  argTypes,
+  tags: ["autodocs"],
+  argTypes
 };
 
 export const Light = {

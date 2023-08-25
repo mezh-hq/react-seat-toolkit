@@ -1,30 +1,31 @@
-import { Bashaway } from '@/icons';
+import { Bashaway } from "@/icons";
 
 const argTypes = {
   className: {
-    description: 'Any additional CSS classes to the root svg element. Existing classes will be overwritten in case of conflict',
-    type: 'string',
+    description:
+      "Any additional CSS classes to the root svg element. Existing classes will be overwritten in case of conflict",
+    type: "string",
     table: {
-      defaultValue: { summary: 'w-[124px] h-[20px]' },
-    },
+      defaultValue: { summary: "w-[124px] h-[20px]" }
+    }
   },
   dark: {
-    description: 'If true, the icon will be rendered in dark mode',
+    description: "If true, the icon will be rendered in dark mode",
     table: {
-      defaultValue: { summary: false },
+      defaultValue: { summary: false }
     },
-    type: 'boolean'
-  },
+    type: "boolean"
+  }
 };
 
 export default {
-  title: 'Icons/Bashaway',
+  title: "Icons/Bashaway",
   component: Bashaway,
   parameters: {
-    layout: 'centered',
+    layout: "centered"
   },
-  tags: ['autodocs'],
-  argTypes,
+  tags: ["autodocs"],
+  argTypes
 };
 
 export const Light = {

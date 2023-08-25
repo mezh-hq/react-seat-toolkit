@@ -1,54 +1,56 @@
-import Button from '@/components/button';
+import Button from "@/components/button";
 
 const argTypes = {
   variant: {
-    options: ['primary', 'secondary'],
-    control: { type: 'radio' },
-    description: 'Changes the look of the button',
+    options: ["primary", "secondary"],
+    control: { type: "radio" },
+    description: "Changes the look of the button",
     table: {
-      defaultValue: { summary: 'primary' },
+      defaultValue: { summary: "primary" }
     }
   },
   children: {
-    description: 'Any JSX child to be passed into the button',
+    description: "Any JSX child to be passed into the button"
   },
   className: {
-    description: 'Any additional CSS classes to be passed into the button. Existing classes will be overwritten in case of conflict',
-    type: 'string'
+    description:
+      "Any additional CSS classes to be passed into the button. Existing classes will be overwritten in case of conflict",
+    type: "string"
   },
   loading: {
-    description: 'If true, the button will be in a loading state',
+    description: "If true, the button will be in a loading state",
     table: {
-      defaultValue: { summary: false },
+      defaultValue: { summary: false }
     },
-    type: 'boolean'
+    type: "boolean"
   },
   to: {
-    description: 'The URL to link to when the button is clicked. Should be used within a React Router',
-    type: 'string'
+    description: "The URL to link to when the button is clicked. Should be used within a React Router",
+    type: "string"
   },
   target: {
-    description: 'Specifies where to open the linked document. Should be used within a React Router',
-    control: { type: 'radio' },
-    options: ['_blank', '_self'],
+    description: "Specifies where to open the linked document. Should be used within a React Router",
+    control: { type: "radio" },
+    options: ["_blank", "_self"],
     table: {
-      defaultValue: { summary: '_self' },
-    },
+      defaultValue: { summary: "_self" }
+    }
   },
   wrapperClassName: {
-    description: 'Any additional CSS classes to be passed into the button wrapper. Should be used in conjunction with the `to` prop',
-    type: 'string'
-  },
+    description:
+      "Any additional CSS classes to be passed into the button wrapper. Should be used in conjunction with the `to` prop",
+    type: "string"
+  }
 };
 
 export default {
-  title: 'Components/Button',
+  title: "Components/Button",
   component: Button,
   parameters: {
-    layout: 'centered',
+    layout: "centered"
   },
-  tags: ['autodocs'],
-  argTypes,
+  tags: ["autodocs"],
+  argTypes
 };
 
 export const Primary = {

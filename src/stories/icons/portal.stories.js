@@ -1,23 +1,24 @@
-import { BashawayPortal } from '@/icons';
+import { BashawayPortal } from "@/icons";
 
 const argTypes = {
   className: {
-    description: 'Any additional CSS classes to the root svg element. Existing classes will be overwritten in case of conflict',
-    type: 'string',
+    description:
+      "Any additional CSS classes to the root svg element. Existing classes will be overwritten in case of conflict",
+    type: "string",
     table: {
-      defaultValue: { summary: 'w-[74px] h-[30px]' },
-    },
-  },
+      defaultValue: { summary: "w-[74px] h-[30px]" }
+    }
+  }
 };
 
 export default {
-  title: 'Icons/Portal',
+  title: "Icons/Portal",
   component: BashawayPortal,
   parameters: {
-    layout: 'centered',
+    layout: "centered"
   },
-  tags: ['autodocs'],
-  argTypes,
+  tags: ["autodocs"],
+  argTypes
 };
 
 export const Default = {

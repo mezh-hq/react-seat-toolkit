@@ -17,10 +17,10 @@ module.exports = {
         "CI",
         "Test",
         "Docs",
-        "WIP",
-      ],
+        "WIP"
+      ]
     ],
     "type-case": [0],
-    "subject-case": [0],
-  },
+    "subject-case": [0]
+  }
 };

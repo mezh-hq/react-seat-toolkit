@@ -3,8 +3,8 @@ import { ArrowDown01, ArrowDown10, ArrowUpDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { startCase } from "lodash";
 import { twMerge } from "tailwind-merge";
-import { computeSortQuery } from "@/utils";
 import { useBreakpoint } from "@/hooks";
+import { computeSortQuery } from "@/utils";
 
 const Sorts = ({ sorts, setSortQuery, styles = {} }) => {
   const [sortLocalState, setSortLocalState] = useState(sorts);

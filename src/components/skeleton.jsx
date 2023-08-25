@@ -1,7 +1,6 @@
 import { default as SkeletonLoader } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { twMerge } from "tailwind-merge";
-
-import 'react-loading-skeleton/dist/skeleton.css'
 
 const shadeMap = {
   dark: {

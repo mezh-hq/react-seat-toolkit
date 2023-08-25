@@ -1,23 +1,24 @@
-import { ArrowPair } from '@/icons';
+import { ArrowPair } from "@/icons";
 
 const argTypes = {
   className: {
-    description: 'Any additional CSS classes to the root svg element. Existing classes will be overwritten in case of conflict',
-    type: 'string',
+    description:
+      "Any additional CSS classes to the root svg element. Existing classes will be overwritten in case of conflict",
+    type: "string",
     table: {
-      defaultValue: { summary: 'h-[19px] w-[18px] text-black/50' },
-    },
-  },
+      defaultValue: { summary: "h-[19px] w-[18px] text-black/50" }
+    }
+  }
 };
 
 export default {
-  title: 'Icons/Arrow Pair',
+  title: "Icons/Arrow Pair",
   component: ArrowPair,
   parameters: {
-    layout: 'centered',
+    layout: "centered"
   },
-  tags: ['autodocs'],
-  argTypes,
+  tags: ["autodocs"],
+  argTypes
 };
 
 export const Default = {

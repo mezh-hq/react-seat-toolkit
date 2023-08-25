@@ -53,7 +53,7 @@ const Core = ({ variant = "primary", children, loading, className, ...props }) =
 const Button = ({ to, wrapperClassName, target, ariaLabel, ...props }) => {
   if (to) {
     return (
-      <Link to={to} target={target ??  "_self"} className={wrapperClassName} aria-label={ariaLabel}>
+      <Link to={to} target={target ?? "_self"} className={wrapperClassName} aria-label={ariaLabel}>
         <Button {...props} />
       </Link>
     );

@@ -5,7 +5,7 @@ execSync("npx rimraf ./dist && mkdir dist");
 
 require("esbuild")
   .build({
-    entryPoints: ["./src/**/*.js", "./src/**/*.jsx", "./src/**/*.png",  "./src/**/*.css", "!./src/stories/**"],
+    entryPoints: ["./src/**/*.js", "./src/**/*.jsx", "./src/**/*.png", "./src/**/*.css", "!./src/stories/**"],
     bundle: false,
     outdir: "./dist",
     platform: "browser",
@@ -14,11 +14,10 @@ require("esbuild")
     sourcemap: true,
     keepNames: true,
     plugins: [globPlugin()],
-    inject: ['./injections/react-shim.js'],
+    inject: ["./injections/react-shim.js"],
     loader: {
-      '.png': 'copy',
-      '.css': 'copy',
-    },
-
+      ".png": "copy",
+      ".css": "copy"
+    }
   })
   .catch(() => process.exit(1));

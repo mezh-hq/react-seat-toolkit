@@ -1,23 +1,24 @@
-import { Link } from '@/icons';
+import { Link } from "@/icons";
 
 const argTypes = {
   className: {
-    description: 'Any additional CSS classes to the root svg element. Existing classes will be overwritten in case of conflict',
-    type: 'string',
+    description:
+      "Any additional CSS classes to the root svg element. Existing classes will be overwritten in case of conflict",
+    type: "string",
     table: {
-      defaultValue: { summary: 'text-black md:mt-0.5 pl-1.5 animated-chevron' },
-    },
-  },
+      defaultValue: { summary: "text-black md:mt-0.5 pl-1.5 animated-chevron" }
+    }
+  }
 };
 
 export default {
-  title: 'Icons/Link',
+  title: "Icons/Link",
   component: Link,
   parameters: {
-    layout: 'centered',
+    layout: "centered"
   },
-  tags: ['autodocs'],
-  argTypes,
+  tags: ["autodocs"],
+  argTypes
 };
 
 export const Default = {

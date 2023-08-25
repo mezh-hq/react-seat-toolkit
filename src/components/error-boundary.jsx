@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "@/components";
 import { twMerge } from "tailwind-merge";
+import { Button } from "@/components";
 
 export class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -15,7 +15,12 @@ export class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className={twMerge("w-full min-h-screen flex flex-col justify-center items-center font-inter", this.props.className)}>
+        <div
+          className={twMerge(
+            "w-full min-h-screen flex flex-col justify-center items-center font-inter",
+            this.props.className
+          )}
+        >
           <div className="w-10/12 sm:w-auto flex flex-col justify-center items-center gap-7 p-20 text-center border rounded-3xl">
             <span className="text-4xl font-bold">Something&apos;s Off</span>
             <span className="text-lg font-medium"> Please contact support if the problem persists.</span>

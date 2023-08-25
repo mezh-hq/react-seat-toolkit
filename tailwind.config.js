@@ -10,10 +10,10 @@ export default {
       colors: {
         background: "0 0% 100%",
         foreground: "240 10% 3.9%",
-        border: "rgba(0, 0, 0, 0.1)",
+        border: "rgba(0, 0, 0, 0.1)"
       },
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
+        inter: ["Inter", "sans-serif"]
       },
       screens: {
         xs: "400px",
