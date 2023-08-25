@@ -28,6 +28,8 @@ jobs:
 
       - name: Update release info 📝
         run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
           git config pull.ff true
           git add . && git commit -m "CI: @sliit-foss/automatic-versioning - sync release" || true
           git pull --rebase && git push origin

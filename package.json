@@ -18,7 +18,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "lefthook install",
-    "release": "pnpm publish --access=public --no-git-checks",
+    "release": "pnpm publish --access=public --no-git-checks || true",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
