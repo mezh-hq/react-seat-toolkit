@@ -45,7 +45,7 @@ jobs:
       - name: Build 🏗️
         uses: ./.github/actions/build
         with:
-          storybook: true
+          storybooks: true
 
       - name: Fix 404 on page reload 🚧
         run: cp storybook-static/index.html storybook-static/404.html
