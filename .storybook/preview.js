@@ -13,12 +13,7 @@ const preview = {
       },
     },
     reactRouter: {},
-    options: {
-      storySort: {
-        method: 'alphabetical',
-        order: [],
-    }
-    }
+    options: {}
   },
   decorators: [withRouter()],
 };

@@ -2,7 +2,6 @@ import animate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  important: true,
   darkMode: ["class"],
   content: ["./src/**/*.{js,ts,jsx,mdx,stories.js}"],
   theme: {
