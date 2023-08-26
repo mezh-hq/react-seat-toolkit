@@ -54,7 +54,7 @@
   "devDependencies": {
     "@commitlint/cli": "17.4.2",
     "@commitlint/config-conventional": "17.4.2",
-    "@sliit-foss/automatic-versioning": "^1.4.4",
+    "@sliit-foss/automatic-versioning": "1.4.6",
     "@storybook/addon-essentials": "7.3.2",
     "@storybook/addon-interactions": "7.3.2",
     "@storybook/addon-links": "7.3.2",

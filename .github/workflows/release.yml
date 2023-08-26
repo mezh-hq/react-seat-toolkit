@@ -8,7 +8,7 @@ on:
 
 jobs:
   package-release:
-    name: Site Release
+    name: Package Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository 🛎️
@@ -18,7 +18,9 @@ jobs:
         uses: ./.github/actions/build 
 
       - name: Create .npmrc 📝
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+          echo "git-checks=false" >> .npmrc
 
       - name: Bump version 📝
         run: pnpm bump-version
