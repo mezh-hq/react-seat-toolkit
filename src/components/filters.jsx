@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { SearchIcon } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-import { computeFilterQuery } from "@/utils";
+import { computeFilterQuery } from "../utils";
 import { default as Dropdown } from "./dropdown";
 import { default as Input } from "./input";
 
