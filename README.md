@@ -26,7 +26,7 @@ The official design system for Bashaway 2023
 
 ## Using components
 
-Run `pnpm install @sliit-foss/bashaway-ui` to install all dependencies <br/> <br/>
+Run `pnpm install @sliit-foss/bashaway-ui` to incorporate into your project <br/> <br/>
 Example usage
 
 ```js
