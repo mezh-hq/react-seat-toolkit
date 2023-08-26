@@ -1,7 +1,7 @@
 import Primary from "./primary";
 
-const Badge = ({ variant = "primary", children, ...props }) => {
-  switch (variant) {
+const Badge = ({ variant, children, ...props }) => {
+  switch (variant ?? "primary") {
     default:
       return <Primary {...props}>{children}</Primary>;
   }

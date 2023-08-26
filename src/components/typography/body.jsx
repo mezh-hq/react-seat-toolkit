@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-const BodyText = ({ children, className, ...props }) => {
+const Body = ({ children, className, ...props }) => {
   return (
     <span
       className={twMerge("text-[25px] sm:text-[28px] text-center lg:text-start font-consolas", className)}
@@ -11,4 +11,4 @@ const BodyText = ({ children, className, ...props }) => {
   );
 };
 
-export default BodyText;
+export default Body;

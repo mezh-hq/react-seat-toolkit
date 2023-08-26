@@ -19,13 +19,13 @@ const inputVariants = cva(inputStyles, {
   }
 });
 
-const Input = ({ variant = "primary", className, prefixIcon, ...props }) => {
+const Input = ({ variant, className, prefixIcon, ...props }) => {
   const [localType, setLocalType] = useState(props.type ?? "text");
   return (
     <div className={twMerge("w-full relative", props.wrapperclasses)}>
       <input
         {...props}
-        className={twMerge(inputVariants({ variant }), className, prefixIcon ? "pl-12" : "")}
+        className={twMerge(inputVariants({ variant: variant ?? "primary" }), className, prefixIcon ? "pl-12" : "")}
         type={localType}
       />
       {prefixIcon && (

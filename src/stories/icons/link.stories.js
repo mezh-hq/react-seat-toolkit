@@ -1,4 +1,4 @@
-import { Link } from "@/icons";
+import { Link as LinkIcon } from "@/icons";
 
 const argTypes = {
   className: {
@@ -13,7 +13,7 @@ const argTypes = {
 
 export default {
   title: "Icons/Link",
-  component: Link,
+  component: LinkIcon,
   parameters: {
     layout: "centered"
   },
@@ -21,6 +21,6 @@ export default {
   argTypes
 };
 
-export const Default = {
+export const Link = {
   argTypes
 };

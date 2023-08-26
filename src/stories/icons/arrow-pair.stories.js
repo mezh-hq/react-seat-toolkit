@@ -1,4 +1,4 @@
-import { ArrowPair } from "@/icons";
+import { ArrowPair as ArrowPairIcon } from "@/icons";
 
 const argTypes = {
   className: {
@@ -13,7 +13,7 @@ const argTypes = {
 
 export default {
   title: "Icons/Arrow Pair",
-  component: ArrowPair,
+  component: ArrowPairIcon,
   parameters: {
     layout: "centered"
   },
@@ -21,6 +21,6 @@ export default {
   argTypes
 };
 
-export const Default = {
+export const ArrowPair = {
   argTypes
 };

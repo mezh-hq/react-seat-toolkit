@@ -1,4 +1,4 @@
-import { Times } from "@/icons";
+import { Times as TimesIcon } from "@/icons";
 
 const argTypes = {
   className: {
@@ -13,7 +13,7 @@ const argTypes = {
 
 export default {
   title: "Icons/Times",
-  component: Times,
+  component: TimesIcon,
   parameters: {
     layout: "centered"
   },
@@ -21,6 +21,6 @@ export default {
   argTypes
 };
 
-export const Default = {
+export const Times = {
   argTypes
 };

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
-const AnimatedSwitcher = ({ component, alternateComponent, show = false, className }) => {
+const AnimatedSwitcher = ({ component, alternateComponent, show, className }) => {
   return (
     <motion.div
       key={show ? "component" : "alternateComponent"}

@@ -1,4 +1,4 @@
-import { BashawayPortal } from "@/icons";
+import { BashawayPortal as BashawayPortalIcon } from "@/icons";
 
 const argTypes = {
   className: {
@@ -13,7 +13,7 @@ const argTypes = {
 
 export default {
   title: "Icons/Portal",
-  component: BashawayPortal,
+  component: BashawayPortalIcon,
   parameters: {
     layout: "centered"
   },
@@ -21,6 +21,6 @@ export default {
   argTypes
 };
 
-export const Default = {
+export const BashawayPortal = {
   argTypes
 };

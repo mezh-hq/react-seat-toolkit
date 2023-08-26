@@ -1,4 +1,4 @@
-import { BreadCrumbs } from "@/components";
+import { BreadCrumbs as BreadCrumbsComponent } from "@/components";
 
 const argTypes = {
   breadcrumbs: {
@@ -7,14 +7,14 @@ const argTypes = {
 };
 export default {
   title: "Components/Breadcrumbs",
-  component: BreadCrumbs,
+  component: BreadCrumbsComponent,
   parameters: {
     layout: "centered"
   },
   tags: ["autodocs"]
 };
 
-export const Default = {
+export const BreadCrumbs = {
   argTypes,
   args: {
     breadcrumbs: ["Home", "Challenges"]

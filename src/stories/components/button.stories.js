@@ -1,4 +1,4 @@
-import Button from "@/components/button";
+import { Button } from "@/components";
 
 const argTypes = {
   variant: {
@@ -10,7 +10,7 @@ const argTypes = {
     }
   },
   children: {
-    description: "Any JSX child to be passed into the button"
+    description: "Any JSX child / children to be passed into the button"
   },
   className: {
     description:

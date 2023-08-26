@@ -19,7 +19,7 @@ export default {
   tags: ["autodocs"]
 };
 
-export const Default = {
+export const ErrorBoundary = {
   argTypes,
   args: {
     className: "min-h-0"

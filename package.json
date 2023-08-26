@@ -8,7 +8,9 @@
     ".": "./dist/index.js",
     "./components": "./dist/components",
     "./icons": "./dist/icons",
-    "./styles": "./dist/styles"
+    "./styles": "./dist/styles",
+    "./typography": "./dist/components/typography",
+    "./utils": "./dist/utils"
   },
   "scripts": {
     "build": "node ./esbuild.config.js",
@@ -60,9 +62,11 @@
     "@storybook/addon-links": "7.3.2",
     "@storybook/addon-onboarding": "1.0.8",
     "@storybook/blocks": "7.3.2",
+    "@storybook/manager-api": "7.3.2",
     "@storybook/react": "7.3.2",
     "@storybook/react-vite": "7.3.2",
     "@storybook/testing-library": "0.2.0",
+    "@storybook/theming": "7.3.2",
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
     "autoprefixer": "10.4.14",
     "esbuild": "0.19.2",

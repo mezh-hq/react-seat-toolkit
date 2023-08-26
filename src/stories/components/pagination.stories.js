@@ -1,4 +1,4 @@
-import { Pagination } from "@/components";
+import { Pagination as PaginationComponent } from "@/components";
 
 const argTypes = {
   totalPages: {
@@ -13,14 +13,14 @@ const argTypes = {
 };
 export default {
   title: "Components/Pagination",
-  component: Pagination,
+  component: PaginationComponent,
   parameters: {
     layout: "centered"
   },
   tags: ["autodocs"]
 };
 
-export const Default = {
+export const Pagination = {
   argTypes,
   args: {
     totalPages: 3,

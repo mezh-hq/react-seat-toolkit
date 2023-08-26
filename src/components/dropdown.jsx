@@ -23,7 +23,7 @@ const dropdownVariants = cva(inputStyles, {
 
 const prefixIconStyles = "text-black/50 cursor-pointer transition-all duration-150 absolute right-0";
 
-const Dropdown = ({ variant = "primary", className, label, options, onChange, ...props }) => {
+const Dropdown = ({ variant, className, label, options, onChange, ...props }) => {
   const [selectedOption, setSelectedOption] = useState(props.default || null);
 
   const [showItems, setShowItems] = useState(false);
@@ -57,7 +57,7 @@ const Dropdown = ({ variant = "primary", className, label, options, onChange, ..
     <div id={wrapperId} className={twMerge(`w-full relative`, props.wrapperclasses)}>
       <input
         id={id}
-        className={twMerge(dropdownVariants({ variant }), "cursor-pointer hide-blink", className)}
+        className={twMerge(dropdownVariants({ variant: variant ?? "primary" }), "cursor-pointer hide-blink", className)}
         value={options.find((opt) => opt.key === selectedOption)?.label || label || "Select"}
         onClick={() => setShowItems(!showItems)}
         onChange={() => {}}

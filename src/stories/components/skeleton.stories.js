@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components";
+import { Skeleton as SkeletonComponent } from "@/components";
 
 const argTypes = {
   containerClassName: {
@@ -29,14 +29,14 @@ const argTypes = {
 };
 export default {
   title: "Components/Skeleton",
-  component: Skeleton,
+  component: SkeletonComponent,
   parameters: {
     layout: "centered"
   },
   tags: ["autodocs"]
 };
 
-export const Default = {
+export const SingleSkeleton = {
   argTypes,
   args: {
     className: "w-[300px] h-[30px]"
@@ -56,9 +56,9 @@ export const NestedSkeletons = {
   args: {
     className: "p-12 flex flex-col gap-4",
     children: [
-      Skeleton({ className: "w-[300px] h-[30px]", shade: "dark" }),
-      Skeleton({ className: "w-[300px] h-[30px]", shade: "dark" }),
-      Skeleton({ className: "w-[300px] h-[30px]", shade: "dark" })
+      SkeletonComponent({ className: "w-[300px] h-[30px]", shade: "dark" }),
+      SkeletonComponent({ className: "w-[300px] h-[30px]", shade: "dark" }),
+      SkeletonComponent({ className: "w-[300px] h-[30px]", shade: "dark" })
     ]
   }
 };

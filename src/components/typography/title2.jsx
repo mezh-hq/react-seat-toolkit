@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-const Headline = ({ children, className, ...props }) => {
+const Title2 = ({ children, className, ...props }) => {
   return (
     <h1 className={twMerge("text-[25px] lg:text-[30px] text-start", className)} {...props}>
       {children}
@@ -8,4 +8,4 @@ const Headline = ({ children, className, ...props }) => {
   );
 };
 
-export default Headline;
+export default Title2;
