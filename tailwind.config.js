@@ -8,9 +8,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "0 0% 100%",
-        foreground: "240 10% 3.9%",
-        border: "rgba(0, 0, 0, 0.1)"
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        border: "var(--border)"
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"]
