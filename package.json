@@ -6,11 +6,11 @@
   "private": false,
   "exports": {
     ".": "./dist/index.js",
-    "./components": "./dist/components",
-    "./icons": "./dist/icons",
-    "./styles": "./dist/styles",
-    "./typography": "./dist/components/typography",
-    "./utils": "./dist/utils"
+    "./components": "./dist/components/index.js",
+    "./icons": "./dist/icons/index.js",
+    "./styles": "./dist/styles/index.css",
+    "./typography": "./dist/components/typography/index.js",
+    "./utils": "./dist/utils/index.js"
   },
   "scripts": {
     "build": "node ./esbuild.config.js",
