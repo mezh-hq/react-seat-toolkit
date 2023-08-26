@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { SearchIcon } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-import { Dropdown, Input } from "@/components";
 import { computeFilterQuery } from "@/utils";
+import { default as Dropdown } from "./dropdown";
+import { default as Input } from "./input";
 
 const Filters = ({ filters, setFilterQuery, styles = {} }) => {
   const [filtersLocalState, setFiltersLocalState] = useState(filters);

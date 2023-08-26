@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Badge } from "@/components";
+import { default as Badge } from "./badges";
 
 const Breadcrumbs = ({ breadcrumbs }) => {
   return (

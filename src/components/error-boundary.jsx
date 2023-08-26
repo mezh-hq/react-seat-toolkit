@@ -1,6 +1,6 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import { Button } from "@/components";
+import { default as Button } from "./button";
 
 export class ErrorBoundary extends React.Component {
   constructor(props) {
