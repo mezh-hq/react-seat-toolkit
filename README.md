@@ -26,20 +26,22 @@ The official design system for Bashaway 2023
 
 ## Using components
 
-Run `pnpm install @sliit-foss/bashaway-ui` to incorporate into your project <br/> <br/>
-Example usage
+Run `pnpm i @sliit-foss/bashaway-ui` to incorporate into your project <br/> <br/>
+Example
 
 ```js
-import { Button, Bashaway } from "@sliit-foss/bashaway-ui"
+import { Button, Bashaway, Title } from "@sliit-foss/bashaway-ui"
 
 ---or---
 
 import { Button } from  "@sliit-foss/bashaway-ui/components"
+import { Title } from  "@sliit-foss/bashaway-ui/typography"
 import { Bashaway } from  "@sliit-foss/bashaway-ui/icons"
 
 ....
   <>
     <Bashaway/>
+    <Title>Hello there</Title>
     <Button>Click Me!</Button/>
   </>
 ...
