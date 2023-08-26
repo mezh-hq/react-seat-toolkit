@@ -21,18 +21,18 @@
     @apply !text-[#C00];
   }
   .card-red-badge {
-    @apply card-red-bg !card-red-badge-text !card-red-border filter hover:brightness-150;
+    @apply card-red-bg !card-red-badge-text !card-red-border filter hover:brightness-150 transition-all duration-medium;
   }
   .card-red {
-    @apply card-red-bg [&>h2]:card-red-title group-hover:filter hover:brightness-150;
+    @apply card-red-bg [&>h2]:card-red-title filter group-hover:[&>h2]:brightness-150 transition-all duration-medium;
     > .badge {
-      @apply card-red-bg !card-red-badge-text !card-red-border;
+      @apply card-red-bg !card-red-badge-text !card-red-border group-hover:brightness-150;
     }
     > div > span {
-      @apply card-red-badge-text card-red-border;
+      @apply card-red-badge-text card-red-border group-hover:brightness-150;
     }
     > .markdown {
-      @apply card-red-body;
+      @apply card-red-body group-hover:brightness-150;
       > p {
         all: unset;
       }
@@ -48,15 +48,15 @@
     @apply !text-[#3500CC];
   }
   .card-blue {
-    @apply card-blue-bg group-hover:filter hover:brightness-150 [&>h2]:text-[#3500CC];
+    @apply card-blue-bg [&>h2]:text-[#3500CC] filter group-hover:[&>h2]:brightness-150 transition-all duration-medium;
     > .badge {
-      @apply card-blue-bg !card-blue-badge-text !card-blue-border;
+      @apply card-blue-bg !card-blue-badge-text !card-blue-border group-hover:brightness-150;
     }
     > div > span {
-      @apply card-blue-badge-text !card-blue-border;
+      @apply card-blue-badge-text !card-blue-border group-hover:brightness-150;
     }
     > .markdown {
-      @apply text-[#1B006699];
+      @apply text-[#1B006699] group-hover:brightness-150;
       > p {
         all: unset;
       }
@@ -72,15 +72,15 @@
     @apply !text-[#00CC83];
   }
   .card-green {
-    @apply card-green-bg [&>h2]:text-[#006842] filter group-hover:[&>h2]:brightness-150;
+    @apply card-green-bg [&>h2]:text-[#006842] filter group-hover:[&>h2]:brightness-[1.3] transition-all duration-medium;
     > .badge {
-      @apply card-green-bg card-green-badge-text !card-green-border;
+      @apply card-green-bg card-green-badge-text !card-green-border group-hover:brightness-105;
     }
     > div > span {
-      @apply card-green-badge-text card-green-border group-hover:brightness-110;
+      @apply card-green-badge-text card-green-border group-hover:brightness-105; 
     }
     > .markdown {
-      @apply text-[#00664199];
+      @apply text-[#00664199] group-hover:brightness-125;
       > p {
         all: unset;
       }
