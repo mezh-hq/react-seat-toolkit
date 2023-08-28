@@ -4,8 +4,12 @@ import { twMerge } from "tailwind-merge";
 
 const shadeMap = {
   dark: {
-    baseColor: "#cccccc",
-    highlightColor: "#e3e3e3"
+    baseColor: "#ececec",
+    highlightColor: "#f0f0f0"
+  },
+  normal: {
+    baseColor: "#f8f8f8",
+    highlightColor: "#f2f2f2"
   }
 };
 
