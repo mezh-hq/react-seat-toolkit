@@ -57,7 +57,12 @@ const Dropdown = ({ variant, className, label, options, onChange, ...props }) =>
     <div id={wrapperId} className={twMerge(`w-full relative`, props.wrapperclasses)}>
       <input
         id={id}
-        className={twMerge(dropdownVariants({ variant: variant ?? "primary" }), "cursor-pointer hide-blink", className)}
+        className={twMerge(
+          dropdownVariants({ variant: variant ?? "primary" }),
+          "cursor-pointer hide-blink",
+          !selectedOption ? "text-black/50" : "",
+          className
+        )}
         value={options.find((opt) => opt.key === selectedOption)?.label || label || "Select"}
         onClick={() => setShowItems(!showItems)}
         onChange={() => {}}
