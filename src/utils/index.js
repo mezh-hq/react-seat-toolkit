@@ -1,7 +1,7 @@
 export const computeFilterQuery = (filters) =>
   filters.reduce((acc, curr) => {
     if (curr.value) {
-      acc += `filter[${curr.key}]=${curr.options ? curr.value : `/${curr.value}/`}&`;
+      acc += `filter[${curr.key}]=${curr.options || curr.directSearch ? curr.value : `/${curr.value}/`}&`;
     }
     return acc;
   }, "");
