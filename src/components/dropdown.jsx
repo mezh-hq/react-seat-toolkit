@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { XIcon } from "lucide-react";
 import { cva } from "class-variance-authority";
-import { default as isEmpty } from "lodash/isEmpty";
 import { twMerge } from "tailwind-merge";
 import { v4 as uuidv4 } from "uuid";
 import { ArrowPair } from "../icons";
@@ -60,7 +59,7 @@ const Dropdown = ({ variant, className, label, options, onChange, ...props }) =>
         id={id}
         className={twMerge(
           dropdownVariants({ variant: variant ?? "primary" }),
-          isEmpty(selectedOption) ? "text-black/50" : "",
+          selectedOption === null || selectedOption === undefined ? "text-black/50" : "",
           className
         )}
         value={options.find((opt) => opt.key === selectedOption)?.label || label || "Select"}
