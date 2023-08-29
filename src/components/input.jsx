@@ -19,7 +19,7 @@ const inputVariants = cva(inputStyles, {
   }
 });
 
-const Input = ({ variant, className, prefixIcon, ...props }) => {
+const Input = ({ variant, className, prefixIcon, suffixIcon, ...props }) => {
   const [localType, setLocalType] = useState(props.type ?? "text");
   return (
     <div className={twMerge("w-full relative", props.wrapperclasses)}>
@@ -43,6 +43,9 @@ const Input = ({ variant, className, prefixIcon, ...props }) => {
             <EyeOff className={eyeIconClasses} onClick={() => setLocalType("password")} strokeWidth="1.5" />
           )}
         </div>
+      )}
+      {suffixIcon && (
+        <div className="w-fit h-full absolute right-5 top-0 flex justify-center items-center">{suffixIcon}</div>
       )}
     </div>
   );

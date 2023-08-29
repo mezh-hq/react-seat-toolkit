@@ -18,6 +18,10 @@ const argTypes = {
     description: "An icon to be displayed in the input before the text",
     type: "object"
   },
+  suffixIcon: {
+    description: "An icon to be displayed in the input after the text",
+    type: "object"
+  },
   className: {
     description:
       "Any additional CSS classes to be passed into the input. Existing classes will be overwritten in case of conflict",
@@ -56,4 +60,11 @@ export const WithPrefixIcon = {
     prefixIcon: BsSearch({ size: 20, className: "text-gray-400" })
   },
   argTypes
+};
+
+export const WithSuffixIcon = {
+  args: {
+    placeholder: "Search",
+    suffixIcon: BsSearch({ size: 20, className: "text-gray-400" })
+  }
 };
