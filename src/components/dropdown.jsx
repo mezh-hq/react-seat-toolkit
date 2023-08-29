@@ -9,11 +9,11 @@ import { inputStyles } from "./input";
 const wrapperId = uuidv4();
 const inputId = uuidv4();
 
-const dropdownVariants = cva(inputStyles, {
+const dropdownVariants = cva(`${inputStyles} cursor-pointer hide-blink`, {
   variants: {
     variant: {
-      primary: "rounded-md",
-      secondary: "rounded-full"
+      primary: "rounded-md text-black",
+      secondary: "rounded-full text-black/80"
     }
   },
   defaultVariants: {
@@ -59,7 +59,6 @@ const Dropdown = ({ variant, className, label, options, onChange, ...props }) =>
         id={id}
         className={twMerge(
           dropdownVariants({ variant: variant ?? "primary" }),
-          "cursor-pointer hide-blink",
           !selectedOption ? "text-black/50" : "",
           className
         )}
