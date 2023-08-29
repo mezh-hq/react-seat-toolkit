@@ -35,7 +35,7 @@ const Filters = ({ filters, setFilterQuery, styles = {} }) => {
                 label={filter.label}
                 filterkey={filter.key}
                 options={filter.options}
-                className={twMerge("h-12 sm:h-14 font-medium text-black/70", styles.input)}
+                className={twMerge("h-12 sm:h-14 font-medium", styles.input)}
                 onChange={onFilterChange}
               />
             ) : (
