@@ -17,6 +17,17 @@ const argTypes = {
     description: "The label to be displayed as a tooltip over the button on hover",
     type: "string"
   },
+  loading: {
+    description: "If true, the button will be in a loading state",
+    table: {
+      defaultValue: { summary: false }
+    },
+    type: "boolean"
+  },
+  loaderProps: {
+    description: "Any additional props to be passed into the loader component",
+    type: "object"
+  },
   className: {
     description:
       "Any additional CSS classes to be passed into the button. Existing classes will be overwritten in case of conflict",
@@ -51,6 +62,20 @@ export const Secondary = {
     variant: "secondary",
     icon: AiOutlineEye(),
     label: "I'm a secondary icon button"
+  },
+  argTypes
+};
+
+export const Loading = {
+  args: {
+    variant: "primary",
+    icon: AiOutlineEye(),
+    label: "I'm loading",
+    loading: true,
+    loaderProps: {
+      height: 16,
+      width: 16
+    }
   },
   argTypes
 };
