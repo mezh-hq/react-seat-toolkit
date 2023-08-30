@@ -25,7 +25,12 @@ const Input = ({ variant, className, prefixIcon, suffixIcon, ...props }) => {
     <div className={twMerge("w-full relative", props.wrapperclasses)}>
       <input
         {...props}
-        className={twMerge(inputVariants({ variant: variant ?? "primary" }), className, prefixIcon ? "pl-12" : "")}
+        className={twMerge(
+          inputVariants({ variant: variant ?? "primary" }),
+          className,
+          prefixIcon ? "pl-12" : "",
+          suffixIcon || props.type === "password" ? "pr-12" : ""
+        )}
         type={localType}
       />
       {prefixIcon && (
