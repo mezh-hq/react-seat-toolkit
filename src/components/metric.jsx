@@ -16,7 +16,7 @@ const Metric = ({ styles, metric, value, ...props }) => {
         component={
           <div
             className={twMerge(
-              "p-2 min-w-[40px] min-h-[40px] flex justify-center bg-white font-semibold rounded-r",
+              "p-2 min-w-[40px] min-h-[40px] flex justify-center items-center bg-white font-semibold rounded-r",
               styles?.value
             )}
           >
