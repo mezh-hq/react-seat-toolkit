@@ -21,6 +21,10 @@ const argTypes = {
     description:
       "Any additional CSS classes to be passed into the input. Existing classes will be overwritten in case of conflict",
     type: "string"
+  },
+  value: {
+    description: "A value to be bound to the input",
+    type: "string"
   }
 };
 
