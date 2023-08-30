@@ -24,7 +24,7 @@ const dropdownVariants = cva(`${inputStyles} cursor-pointer hide-blink`, {
 const prefixIconStyles = "text-black/50 cursor-pointer transition-all duration-150 absolute right-0";
 
 const Dropdown = ({ variant, className, label, options, value, onChange, ...props }) => {
-  const [selectedOption, setSelectedOption] = useState(value || props.default || null);
+  const [selectedOption, setSelectedOption] = useState(props.default || null);
 
   const [showItems, setShowItems] = useState(false);
 
@@ -42,6 +42,10 @@ const Dropdown = ({ variant, className, label, options, value, onChange, ...prop
       document.removeEventListener("click", clickListener);
     };
   });
+
+  useEffect(() => {
+    if (value && selectedOption !== value) setSelectedOption(value);
+  }, [value]);
 
   const onSelect = (option) => {
     onChange({
