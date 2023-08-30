@@ -29,9 +29,17 @@ export const Metric = {
     metric: "Max Score",
     value: 100,
     styles: {
-      root: "p-5 bg-gray-100/80 rounded-md",
-      metric: "",
-      value: ""
+      root: "p-5 bg-gray-100/80 rounded-md"
+    }
+  }
+};
+
+export const LoadingMetric = {
+  argTypes,
+  args: {
+    metric: "Max Score",
+    styles: {
+      root: "p-5 bg-gray-100/80 rounded-md"
     }
   }
 };
