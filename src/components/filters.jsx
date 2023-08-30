@@ -5,7 +5,7 @@ import { computeFilterQuery } from "../utils";
 import { default as Dropdown } from "./dropdown";
 import { default as Input } from "./input";
 
-const Filters = ({ filters, setFilterQuery, styles = {} }) => {
+const Filters = ({ filters, setFilterQuery, action, styles = {} }) => {
   const [filtersLocalState, setFiltersLocalState] = useState(filters);
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const Filters = ({ filters, setFilterQuery, styles = {} }) => {
 
   return (
     <div className={twMerge("w-full flex flex-col md:flex-row justify-start items-center gap-6", styles.root)}>
+      {action}
       {filtersLocalState.map((filter, index) => {
         return (
           <div
