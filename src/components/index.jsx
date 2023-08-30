@@ -10,6 +10,7 @@ export { default as Button } from "./button";
 export { default as ErrorBoundary } from "./error-boundary";
 export { default as Input } from "./input";
 export { default as Loader } from "./loader";
+export { default as Metric } from "./metric";
 export { default as Filters } from "./filters";
 export { default as IconButton } from "./icon-button";
 export { default as Sorts } from "./sorts";
