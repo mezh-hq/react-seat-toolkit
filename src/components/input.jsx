@@ -29,7 +29,8 @@ const Input = ({ variant, className, prefixIcon, suffixIcon, ...props }) => {
           inputVariants({ variant: variant ?? "primary" }),
           className,
           prefixIcon ? "pl-12" : "",
-          suffixIcon || props.type === "password" ? "pr-12" : ""
+          suffixIcon || props.type === "password" ? "pr-12" : "",
+          props.type === "password" ? "sentry-mask" : ""
         )}
         type={localType}
       />
