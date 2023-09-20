@@ -24,7 +24,7 @@
     @apply card-red-bg !card-red-badge-text !card-red-border filter hover:brightness-150 transition-all duration-medium;
   }
   .card-red {
-    @apply card-red-bg [&>.title>*]:card-red-title [&>h2]:card-red-title filter group-hover:[&>h2]:brightness-150 transition-all duration-medium;
+    @apply card-red-bg [&>.title>*]:card-red-title [&>h2]:card-red-title filter group-hover:[&>.title>*]:brightness-[1.3] group-hover:[&>h2]:brightness-150 transition-all duration-medium;
     > .badge {
       @apply card-red-bg !card-red-badge-text !card-red-border group-hover:brightness-150;
     }
@@ -48,7 +48,7 @@
     @apply !text-[#3500CC];
   }
   .card-blue {
-    @apply card-blue-bg [&>.title>*]:text-[#3500CC] [&>h2]:text-[#3500CC] filter group-hover:[&>h2]:brightness-150 transition-all duration-medium;
+    @apply card-blue-bg [&>.title>*]:text-[#3500CC] [&>h2]:text-[#3500CC] filter group-hover:[&>.title>*]:brightness-[1.3] group-hover:[&>h2]:brightness-150 transition-all duration-medium;
     > .badge {
       @apply card-blue-bg !card-blue-badge-text !card-blue-border group-hover:brightness-150;
     }
@@ -72,7 +72,7 @@
     @apply !text-[#00CC83];
   }
   .card-green {
-    @apply card-green-bg [&>.title>*]:text-[#006842] [&>h2]:text-[#006842] filter group-hover:[&>h2]:brightness-[1.3] transition-all duration-medium;
+    @apply card-green-bg [&>.title>*]:text-[#006842] [&>h2]:text-[#006842] filter group-hover:[&>.title>*]:brightness-[1.3] group-hover:[&>h2]:brightness-[1.3] transition-all duration-medium;
     > .badge {
       @apply card-green-bg card-green-badge-text !card-green-border group-hover:brightness-105;
     }
