@@ -1,4 +1,4 @@
-export const genders = {
+export const gender = {
   key: "gender",
   label: "Gender",
   options: [
@@ -21,7 +21,7 @@ export const genders = {
   ]
 };
 
-export const mealPreferences = {
+export const mealPreference = {
   key: "meal_preference",
   label: "Meal Preference",
   options: [
