@@ -16,7 +16,7 @@ const AccordionTrigger = React.forwardRef(({ className, children, ...props }, re
     <AccordionPrimitive.Trigger
       ref={ref}
       className={twMerge(
-        "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
+        "flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180",
         className
       )}
       {...props}
@@ -29,7 +29,7 @@ const AccordionTrigger = React.forwardRef(({ className, children, ...props }, re
 
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
-const AccordionContent = React.forwardRef(({ className, children, ...props }, ref) => (
+const AccordionContent = React.forwardRef(({ className, containerClassName, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
     className={twMerge(
@@ -38,7 +38,7 @@ const AccordionContent = React.forwardRef(({ className, children, ...props }, re
     )}
     {...props}
   >
-    <div className="pb-4 pt-0">{children}</div>
+    <div className={twMerge("pb-4 pt-0", containerClassName)}>{children}</div>
   </AccordionPrimitive.Content>
 ));
 
