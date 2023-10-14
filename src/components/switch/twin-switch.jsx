@@ -25,7 +25,10 @@ const TwinSwitch = ({ values = [], onChange, handleClassName, ...props }) => {
 
   return (
     <div
-      className="relative flex border border-red-100 rounded-full font-semibold p-1.5 cursor-pointer"
+      className={twMerge(
+        "relative flex border border-red-100 rounded-full font-semibold p-1.5 cursor-pointer",
+        props.className
+      )}
       onClick={toggle}
       {...props}
     >
