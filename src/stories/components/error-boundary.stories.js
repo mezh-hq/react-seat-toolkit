@@ -11,7 +11,7 @@ const argTypes = {
   }
 };
 export default {
-  title: "Components/Error Boundary",
+  title: "Components/ErrorBoundary",
   component: ErroredComponent,
   parameters: {
     layout: "centered"

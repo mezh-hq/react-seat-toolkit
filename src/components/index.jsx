@@ -1,5 +1,6 @@
 export * from "./accordion";
 export * from "./alert-dialog";
+export * from "./switch";
 export * from "./typography";
 export * from "./toast";
 export * from "./tooltip";
