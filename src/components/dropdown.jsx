@@ -23,7 +23,7 @@ const dropdownVariants = cva(`${inputStyles} cursor-pointer hide-blink`, {
 
 const prefixIconStyles = "text-black/50 cursor-pointer transition-all duration-150 absolute right-0";
 
-const Dropdown = ({ variant, className, label, options, value, onChange, ...props }) => {
+const Dropdown = ({ variant, className, contentClassName, label, options, value, onChange, ...props }) => {
   const [selectedOption, setSelectedOption] = useState(props.default || null);
 
   const [showItems, setShowItems] = useState(false);
@@ -73,7 +73,10 @@ const Dropdown = ({ variant, className, label, options, value, onChange, ...prop
       />
       {showItems && (
         <div
-          className="absolute w-full left-0 z-10 mt-2 origin-top-right rounded-2xl bg-white/50 backdrop-blur-lg border border-black/20 focus:outline-none"
+          className={twMerge(
+            "absolute w-full left-0 z-10 mt-2 origin-top-right rounded-2xl bg-white/50 backdrop-blur-lg border border-black/20 focus:outline-none",
+            contentClassName
+          )}
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
