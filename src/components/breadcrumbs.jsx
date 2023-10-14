@@ -1,11 +1,12 @@
 import { Fragment } from "react";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 import { default as Badge } from "./badges";
 
-const Breadcrumbs = ({ breadcrumbs }) => {
+const Breadcrumbs = ({ breadcrumbs, className, ...props }) => {
   return (
-    <div className="w-full flex flex-wrap items-center gap-2.5 gap-y-4 cursor-default">
+    <div {...props} className={twMerge("w-full flex flex-wrap items-center gap-2.5 gap-y-4 cursor-default", className)}>
       {breadcrumbs.map((breadcrumb, index) => (
         <Fragment key={index}>
           <Link to={breadcrumb.path ?? "/"} className={index === breadcrumbs.length - 1 ? "pointer-events-none" : ""}>

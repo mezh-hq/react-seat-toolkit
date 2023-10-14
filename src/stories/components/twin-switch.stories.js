@@ -21,7 +21,7 @@ const argTypes = {
   },
   className: {
     description:
-      "Any additional CSS classes to be passed into the badge. Existing classes will be overwritten in case of conflict",
+      "Any additional CSS classes to be passed into the switch. Existing classes will be overwritten in case of conflict",
     type: "string"
   },
   handleClassName: {

@@ -3,6 +3,11 @@ import { BreadCrumbs as BreadCrumbsComponent } from "@/components";
 const argTypes = {
   breadcrumbs: {
     description: "An array of strings / objects containing the label and path for each breadcrumb"
+  },
+  className: {
+    description:
+      "Any additional CSS classes to be passed into the component. Existing classes will be overwritten in case of conflict",
+    type: "string"
   }
 };
 export default {
