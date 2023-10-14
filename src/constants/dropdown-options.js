@@ -11,10 +11,6 @@ export const gender = {
       label: "Female"
     },
     {
-      key: "O",
-      label: "Other"
-    },
-    {
       key: "-",
       label: "Rather not say"
     }
