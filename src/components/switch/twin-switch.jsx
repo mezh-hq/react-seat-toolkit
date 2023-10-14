@@ -45,13 +45,12 @@ const TwinSwitch = ({ values = [], selectedValue, onChange, handleClassName, ...
       <div
         className={twMerge(
           padding,
-          "group absolute flex justify-center items-center bg-[#f00] rounded-full transition-all duration-medium",
+          "absolute flex justify-center items-center bg-[#f00] splash after:opacity-[0.2] rounded-full transition-all duration-medium",
           handleClassName
         )}
         style={handleStyles}
       >
         <span className="opacity-0">{selected}</span>
-        <div className="absolute w-full h-full opacity-0 group-hover:opacity-100 bg-gradient-to-tr from-[#f90000] to-[#FF881A]/[.95] rounded-full transition-all duration-medium" />
       </div>
     </div>
   );
