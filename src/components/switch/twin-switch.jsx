@@ -1,7 +1,9 @@
 import { useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-const valueStyles = "p-3 z-50 pointer-events-none transition-all duration-medium";
+const padding = "px-4 py-2";
+
+const valueStyles = "z-50 pointer-events-none transition-all duration-medium";
 
 const TwinSwitch = ({ values = [], onChange, handleClassName, ...props }) => {
   const [selected, setSelected] = useState(values[0]);
@@ -23,24 +25,26 @@ const TwinSwitch = ({ values = [], onChange, handleClassName, ...props }) => {
 
   return (
     <div
-      className="relative flex border border-red-100 rounded-full font-semibold p-2 cursor-pointer"
+      className="relative flex border border-red-100 rounded-full font-semibold p-1.5 cursor-pointer"
       onClick={toggle}
       {...props}
     >
-      <span ref={value1Ref} className={twMerge(valueStyles, selected === values[0] ? "text-white" : "")}>
+      <span ref={value1Ref} className={twMerge(padding, valueStyles, selected === values[0] ? "text-white" : "")}>
         {values[0]}
       </span>
-      <span ref={value2Ref} className={twMerge(valueStyles, selected === values[1] ? "text-white" : "")}>
+      <span ref={value2Ref} className={twMerge(padding, valueStyles, selected === values[1] ? "text-white" : "")}>
         {values[1]}
       </span>
       <div
         className={twMerge(
-          "absolute flex justify-center items-center p-3 bg-[#f00] hover:bg-red-600 rounded-full transition-all duration-medium",
+          padding,
+          "group absolute flex justify-center items-center bg-[#f00] rounded-full transition-all duration-medium",
           handleClassName
         )}
         style={handleStyles}
       >
         <span className="opacity-0">{selected}</span>
+        <div className="absolute w-full h-full opacity-0 group-hover:opacity-100 bg-gradient-to-tr from-[#f90000] to-[#FF881A]/[.95] rounded-full transition-all duration-medium" />
       </div>
     </div>
   );
