@@ -5,6 +5,13 @@ const argTypes = {
     description: "An array of 2 values to be toggled between",
     type: "array"
   },
+  selectedValue: {
+    description: "The currently selected value",
+    type: "string",
+    table: {
+      defaultValue: { summary: "values[0]" }
+    }
+  },
   onChange: {
     description: "A callback function that will be called with the selected value when the value changes",
     type: "function",
