@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 const padding = "px-4 py-2";
@@ -6,11 +6,15 @@ const padding = "px-4 py-2";
 const valueStyles = "z-50 pointer-events-none transition-all duration-medium";
 
 const TwinSwitch = ({ values = [], selectedValue, onChange, handleClassName, ...props }) => {
-  const [selected, setSelected] = useState(selectedValue ?? values[0]);
+  const [selected, setSelected] = useState(values[0]);
   const [handleStyles, setHandleStyles] = useState({});
 
   const value1Ref = useRef();
   const value2Ref = useRef();
+
+  useEffect(() => {
+    if (selectedValue && selectedValue !== selected) toggle();
+  }, [selectedValue]);
 
   const toggle = () => {
     const newValue = values.find((value) => value !== selected);
