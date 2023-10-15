@@ -6,7 +6,7 @@ const useGhostLegion = () => {
   const [ghostLegion, setGhostLegion] = useState(Boolean(searchParams.get("ghost_legion")));
   const toggleGhostLegion = () => {
     setGhostLegion(!ghostLegion);
-    setSearchParams({ ghost_legion: !ghostLegion });
+    setSearchParams({ ...searchParams, ghost_legion: !ghostLegion });
   };
   return { ghostLegion, toggleGhostLegion };
 };
