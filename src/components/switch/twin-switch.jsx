@@ -32,7 +32,7 @@ const TwinSwitch = ({ values = [], selectedValue, onChange, handleClassName, ...
       {...props}
       onClick={toggle}
       className={twMerge(
-        "relative flex border border-red-100 rounded-full font-semibold p-1.5 cursor-pointer",
+        "relative flex border border-red-100 rounded-full font-semibold p-1.5 cursor-pointer tracking-wider",
         props.className
       )}
     >
