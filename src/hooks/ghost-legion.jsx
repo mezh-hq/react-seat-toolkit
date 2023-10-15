@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 
 const useGhostLegion = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [ghostLegion, setGhostLegion] = useState(Boolean(searchParams.get("ghost_legion")));
+  const [ghostLegion, setGhostLegion] = useState(searchParams.get("ghost_legion") === "true");
   const toggleGhostLegion = () => {
     setGhostLegion(!ghostLegion);
     searchParams.set("ghost_legion", !ghostLegion);
