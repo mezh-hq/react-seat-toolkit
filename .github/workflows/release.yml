@@ -12,9 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          fetch-tags: true
 
       - name: Build 🏗️
         uses: ./.github/actions/build 
@@ -27,23 +28,32 @@ jobs:
       - name: Bump version 📝
         run: pnpm bump-version
 
-      - name: Publish 🚀
+      - name: Publish to registry 🚀
         run: pnpm release
 
-      - name: Update release info 📝
+      - name: Sync release info 📝
+        id: sync_release
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           git config pull.ff true
           git add . && git commit -m "CI: @sliit-foss/automatic-versioning - sync release" || true
-          git pull --rebase && git push origin
+          git tag "v$(node -e "console.log(require('./package.json').version)")" || true
+          git pull --rebase && git push origin --tags
+          echo "version=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+
+      - name: Create release on GitHub 📝
+        uses: ncipollo/release-action@v1
+        with:
+          generateReleaseNotes: true
+          tag: ${{steps.sync_release.outputs.version}}
 
   site-release:
     name: Site Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build 🏗️
         uses: ./.github/actions/build
