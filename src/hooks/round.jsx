@@ -13,7 +13,8 @@ const useRound = () => {
   const [round, setRound] = useState(searchParams.get("round") || 1);
   const onRoundChange = (value) => {
     setRound(rounds[value]);
-    setSearchParams({ ...searchParams, round: rounds[value] });
+    searchParams.set("round", rounds[value]);
+    setSearchParams(searchParams);
   };
   return { rounds: roundKeys, round, roundKey: roundKeys[round - 1], onRoundChange };
 };
