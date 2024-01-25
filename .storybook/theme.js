@@ -5,6 +5,6 @@ export default create({
   base: 'light',
   brandTitle: 'Seat Designer',
   brandUrl: 'https://seats.sliitfoss.org',
-  brandImage: './favicon.svg',
+  brandImage: '',
   brandTarget: '_self',
 });

@@ -1,9 +1,10 @@
 import { Meta } from "@storybook/blocks";
 import { Button, Toaster, toast } from "../components";
-import { Bashaway } from "../icons";
+
+export const command = "bun install react-seat-designer"
 
 export const copy = () => {
-  navigator.clipboard.writeText("pnpm i @sliit-foss/bashaway-ui");
+  navigator.clipboard.writeText(command);
   toast({
     title: "Copied to clipboard",
     description: "Run this in your terminal and make sure that the necessary peer dependencies are installed.",
@@ -13,9 +14,8 @@ export const copy = () => {
 <Meta title="Configure your project" />
 
 <div className="h-full w-full flex flex-col justify-center items-center gap-12 text-center p-3 md:p-12">
-  <Bashaway className="w-[236px] h-[38px] xs:w-[301px] xs:h-[49px] md:w-[400px] md:h-[64px]" />
-  <span className="w-3/4 text-[30px] lg:text-[54px] text-center font-bold tracking-[-2px]"> Official UI Toolkit for 2023</span>
+  <span className="w-10/12 text-[30px] lg:text-[54px] text-center font-bold tracking-[-2px]"> Complete toolkit for seat design</span>
   <span className="text-[18px] lg:text-[22px] text-start font-semibold">Just one command away...</span>
-  <Button onClick={copy} className="text-[18px] xs:text-[20px] md:text-[25px] lg:text-[28px] font-medium rounded-full p-4 px-8 sm:px-12 border bg-black text-white" > pnpm i @sliit-foss/bashaway-ui </Button>
+  <Button onClick={copy} className="text-[18px] xs:text-[20px] md:text-[25px] lg:text-[28px] font-medium rounded-full p-4 px-8 sm:px-12 border bg-black text-white" >{command}</Button>
 </div>
 <Toaster/>
