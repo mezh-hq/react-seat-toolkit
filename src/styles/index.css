@@ -1,5 +1,6 @@
-@import 'components.css';
-@import 'animations/index.css';
+@import "compiled.css";
+@import "components.css";
+@import "animations/index.css";
 
 @tailwind base;
 @tailwind components;
@@ -75,13 +76,16 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     margin-right: 0px !important;
   }
+
   body:not(.anything) {
     margin-right: 0px !important;
   }
+
   .markdown * {
     all: revert;
   }

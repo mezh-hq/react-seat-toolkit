@@ -1,6 +1,6 @@
 import { withRouter } from 'storybook-addon-react-router-v6'
 import type { Preview } from '@storybook/react';
-import '../src/styles/storybooks.css';
+import '../src/styles/index.css';
 
 const preview: Preview = {
   parameters: {
