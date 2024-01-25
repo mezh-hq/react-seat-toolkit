@@ -4,26 +4,18 @@
     "node": true,
     "es2022": true
   },
-  "extends": ["plugin:storybook/recommended","plugin:react/recommended", "plugin:@typescript-eslint/recommended", "plugin:mdx/recommended"],
-  "ignorePatterns": ["vite.config.ts"],
+  "extends": ["eslint:recommended", "plugin:storybook/recommended","plugin:react/recommended", "plugin:mdx/recommended"],
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "parser": "@typescript-eslint/parser",
     "ecmaVersion": "latest",
-    "sourceType": "module",
-    "project": "./tsconfig.json"
+    "sourceType": "module"
   },
   "settings": {
     "react": {
       "version": "18.0"
     }
   },
-  "plugins": ["@typescript-eslint", "react", "react-hooks"],
+  "plugins": ["react", "react-hooks"],
   "rules": {
-    "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/no-explicit-any": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off"
   }

@@ -4,8 +4,5 @@
     "paths": {
       "@/*": ["*"]
     },
-    "jsx": "react-jsx",
-    "esModuleInterop": true,
-    "declaration": true
   },
 }

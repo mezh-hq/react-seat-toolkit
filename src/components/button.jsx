@@ -2,7 +2,6 @@ import { RotatingLines } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
-import { IButtonCoreProps, IButtonProps } from "./types";
 
 const buttonVariants = cva(
   "group flex justify-center items-center cursor-pointer rounded-full px-[1.15rem] py-[0.4rem] font-semibold outline-none transition-all duration-medium gap-2 splash",
@@ -19,11 +18,11 @@ const buttonVariants = cva(
   }
 );
 
-const Core = ({ variant = "primary", children, loading, className, ...props }: IButtonCoreProps) => {
+const Core = ({ variant = "primary", children, loading, className, ...props }) => {
   return (
     <button
       className={twMerge(
-        buttonVariants({ variant: variant as any }),
+        buttonVariants({ variant }),
         className,
         loading || props.disabled ? "opacity-80 pointer-events-none" : ""
       )}
@@ -44,7 +43,7 @@ const Core = ({ variant = "primary", children, loading, className, ...props }: I
   );
 };
 
-const Button = ({ to, wrapperClassName, target, ariaLabel, ...props }: IButtonProps) => {
+const Button = ({ to, wrapperClassName, target, ariaLabel, ...props }) => {
   if (to) {
     return (
       <Link to={to} target={target ?? "_self"} className={wrapperClassName} aria-label={ariaLabel}>

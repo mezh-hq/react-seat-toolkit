@@ -13,10 +13,9 @@
     "./styles": "./dist/styles/index.css"
   },
   "scripts": {
-    "build": "bun run ./esbuild.config.js && bun build:css & bun build:types",
-    "build:css": "bunx tailwindcss -o ./dist/styles/compiled.css --minify",
-    "build:types": "tsc --emitDeclarationOnly --declaration --outDir ./dist",
-    "bump-version": "bun run --bun automatic-versioning --no-commit --recursive --prerelease-tag=blizzard --prerelease-branch=development -name=@sliit-foss/bashaway-ui",
+    "build": "bun run ./esbuild.config.js && bun build:css",
+    "build:css": "bunx tailwindcss -o ./dist/index.css --minify",
+    "bump-version": "bun run --bun automatic-versioning --no-commit --recursive --prerelease-tag=blizzard --prerelease-branch=development -name=react-seat-designer",
     "format": "bunx prettier --write --cache \"**/*.{js,jsx,ts,tsx,md,css,yml}\"",
     "lint": "bun run --bun eslint . --ext js,jsx,ts,tsx,mdx --ignore-path .gitignore --fix --cache --report-unused-disable-directives",
     "storybook": "storybook dev -p 6006",
@@ -68,8 +67,6 @@
     "@storybook/testing-library": "0.2.0",
     "@storybook/theming": "7.3.2",
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
-    "@typescript-eslint/eslint-plugin": "6.19.1",
-    "@typescript-eslint/parser": "6.19.1",
     "autoprefixer": "10.4.14",
     "bun-types": "1.0.21",
     "esbuild": "0.19.12",

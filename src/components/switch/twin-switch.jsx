@@ -5,19 +5,12 @@ const padding = "px-4 py-2";
 
 const valueStyles = "z-50 pointer-events-none transition-all duration-medium";
 
-interface ITwinSwitchProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
-  values?: string[];
-  selectedValue?: string;
-  onChange?: (value: string) => void;
-  handleClassName?: string;
-}
-
-const TwinSwitch = ({ values = [], selectedValue, onChange, handleClassName, ...props }: ITwinSwitchProps) => {
+const TwinSwitch = ({ values = [], selectedValue, onChange, handleClassName, ...props }) => {
   const [selected, setSelected] = useState(values[0]);
   const [handleStyles, setHandleStyles] = useState({});
 
-  const value1Ref = useRef<HTMLSpanElement>();
-  const value2Ref = useRef<HTMLSpanElement>();
+  const value1Ref = useRef();
+  const value2Ref = useRef();
 
   useEffect(() => {
     if (selectedValue && selectedValue !== selected) toggle();

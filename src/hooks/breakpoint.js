@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { default as path } from "path";
-import type { Config } from "tailwindcss";
 import { default as resolveConfig } from "tailwindcss/resolveConfig";
 
-let tailwindConfig: Config;
+let tailwindConfig;
 
 let iterations = 0;
 
-while (true) {
+while (iterations <= 5) {
   iterations++;
-  if (iterations > 10) {
+  if (iterations > 5) {
     tailwindConfig = {
       theme: {
         screens: {
@@ -17,13 +16,15 @@ while (true) {
           xsm: "450px"
         }
       }
-    } as any;
+    };
     break;
   }
   try {
     tailwindConfig = require(`${path.join(process.cwd(), "../".repeat(iterations), "tailwind.config.js")}`);
     break;
-  } catch (e) {}
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 const config = resolveConfig(tailwindConfig);
