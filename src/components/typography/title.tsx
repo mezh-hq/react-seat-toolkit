@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-const Title = ({ children, className, ...props }) => {
+const Title = ({ children, className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => {
   return (
     <span
       className={twMerge("text-[30px] lg:text-[32px] text-center font-bold lg:text-start tracking-[-2px]", className)}

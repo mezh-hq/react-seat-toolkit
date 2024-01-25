@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import path from "path";
-import resolveConfig from "tailwindcss/resolveConfig";
+import { default as path } from "path";
+import type { Config } from "tailwindcss";
+import { default as resolveConfig } from "tailwindcss/resolveConfig";
 
-let tailwindConfig;
+let tailwindConfig: Config;
 
 let iterations = 0;
 
@@ -17,7 +18,7 @@ while (true) {
           xsm: "450px"
         }
       }
-    };
+    } as any;
     break;
   }
   try {
@@ -35,6 +36,13 @@ const calculateBreakpoints = () =>
     return acc;
   }, {});
 
+/**
+ * @description Extracts and returns an object of breakpoint booleans from Tailwind's theme.screens object.
+ * @example
+ * const { xs, sm, md, lg, xl, xxl } = useBreakpoint();
+ *
+ * console.log(md); // true if the screen is at least 768px wide
+ */
 const useBreakpoint = () => {
   const [breakpoints, setBreakpoints] = useState(calculateBreakpoints());
   useEffect(() => {

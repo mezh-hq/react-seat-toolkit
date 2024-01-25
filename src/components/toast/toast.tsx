@@ -1,12 +1,26 @@
 import * as React from "react";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { X } from "lucide-react";
-import { cva } from "class-variance-authority";
+import { VariantProps, cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
+import {
+  IToastActionProps,
+  IToastCloseProps,
+  IToastDescriptionProps,
+  IToastProps,
+  IToastTitleProps,
+  IToastViewportProps,
+  ToastActionElement,
+  ToastCloseElement,
+  ToastDescriptionElement,
+  ToastElement,
+  ToastTitleElement,
+  ToastViewportElement
+} from "./types";
 
 const ToastProvider = ToastPrimitives.Provider;
 
-const ToastViewport = React.forwardRef(({ className, ...props }, ref) => (
+const ToastViewport = React.forwardRef<ToastViewportElement, IToastViewportProps>(({ className, ...props }, ref) => (
   <ToastPrimitives.Viewport
     ref={ref}
     className={twMerge(
@@ -33,12 +47,14 @@ const toastVariants = cva(
   }
 );
 
-const Toast = React.forwardRef(({ className, variant, ...props }, ref) => {
-  return <ToastPrimitives.Root ref={ref} className={twMerge(toastVariants({ variant }), className)} {...props} />;
-});
+const Toast = React.forwardRef<ToastElement, IToastProps & VariantProps<typeof toastVariants>>(
+  ({ className, variant, ...props }, ref) => {
+    return <ToastPrimitives.Root ref={ref} className={twMerge(toastVariants({ variant }), className)} {...props} />;
+  }
+);
 Toast.displayName = ToastPrimitives.Root.displayName;
 
-const ToastAction = React.forwardRef(({ className, ...props }, ref) => (
+const ToastAction = React.forwardRef<ToastActionElement, IToastActionProps>(({ className, ...props }, ref) => (
   <ToastPrimitives.Action
     ref={ref}
     className={twMerge(
@@ -50,7 +66,7 @@ const ToastAction = React.forwardRef(({ className, ...props }, ref) => (
 ));
 ToastAction.displayName = ToastPrimitives.Action.displayName;
 
-const ToastClose = React.forwardRef(({ className, ...props }, ref) => (
+const ToastClose = React.forwardRef<ToastCloseElement, IToastCloseProps>(({ className, ...props }, ref) => (
   <ToastPrimitives.Close
     ref={ref}
     className={twMerge(
@@ -65,14 +81,16 @@ const ToastClose = React.forwardRef(({ className, ...props }, ref) => (
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;
 
-const ToastTitle = React.forwardRef(({ className, ...props }, ref) => (
+const ToastTitle = React.forwardRef<ToastTitleElement, IToastTitleProps>(({ className, ...props }, ref) => (
   <ToastPrimitives.Title ref={ref} className={twMerge("text-sm font-semibold", className)} {...props} />
 ));
 ToastTitle.displayName = ToastPrimitives.Title.displayName;
 
-const ToastDescription = React.forwardRef(({ className, ...props }, ref) => (
-  <ToastPrimitives.Description ref={ref} className={twMerge("text-sm opacity-90", className)} {...props} />
-));
+const ToastDescription = React.forwardRef<ToastDescriptionElement, IToastDescriptionProps>(
+  ({ className, ...props }, ref) => (
+    <ToastPrimitives.Description ref={ref} className={twMerge("text-sm opacity-90", className)} {...props} />
+  )
+);
 ToastDescription.displayName = ToastPrimitives.Description.displayName;
 
 export { ToastProvider, ToastViewport, Toast, ToastTitle, ToastDescription, ToastClose, ToastAction };

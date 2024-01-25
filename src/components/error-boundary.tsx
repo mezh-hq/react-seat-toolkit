@@ -2,8 +2,12 @@ import React from "react";
 import { twMerge } from "tailwind-merge";
 import { default as Button } from "./button";
 
-export class ErrorBoundary extends React.Component {
-  constructor(props) {
+interface IErrorBoundaryState {
+  hasError: boolean;
+}
+
+export class ErrorBoundary extends React.Component<React.HTMLAttributes<HTMLDivElement>, IErrorBoundaryState> {
+  constructor(props: React.HTMLAttributes<HTMLDivElement>) {
     super(props);
     this.state = { hasError: false };
   }

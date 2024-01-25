@@ -1,8 +1,8 @@
 import { mergeConfig } from 'vite';
 import { default as path } from 'path';
+import type { StorybookConfig } from '@storybook/react-vite';
 
-/** @type { import('@storybook/react-vite').StorybookConfig } */
-const config = {
+const config: StorybookConfig = {
   stories: [
     "../src/stories/**/*.mdx",
     "../src/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
