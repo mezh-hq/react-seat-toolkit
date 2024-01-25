@@ -1,76 +1,76 @@
-name: CI Release
-run-name: Release
+# name: CI Release
+# run-name: Release
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  package-release:
-    name: Package Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository 🛎️
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+# jobs:
+#   package-release:
+#     name: Package Release
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repository 🛎️
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0
 
-      - name: Build 🏗️
-        uses: ./.github/actions/build 
+#       - name: Build 🏗️
+#         uses: ./.github/actions/build 
 
-      - name: Create .npmrc 📝
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-          echo "git-checks=false" >> .npmrc
+#       - name: Create .npmrc 📝
+#         run: |
+#           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+#           echo "git-checks=false" >> .npmrc
 
-      - name: Bump version 📝
-        run: pnpm bump-version
+#       - name: Bump version 📝
+#         run: pnpm bump-version
 
-      - name: Publish to registry 🚀
-        run: pnpm release
+#       - name: Publish to registry 🚀
+#         run: pnpm release
 
-      - name: Sync release info 📝
-        id: sync_release
-        run: |
-          tag=v$(node -e "console.log(require('./package.json').version)")
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          git config pull.ff true
-          git add . && git commit -m "CI: @sliit-foss/automatic-versioning - sync release" || true
-          git tag $tag || true
-          git pull --rebase && git push origin
-          echo "tag=$tag" >> $GITHUB_OUTPUT
+#       - name: Sync release info 📝
+#         id: sync_release
+#         run: |
+#           tag=v$(node -e "console.log(require('./package.json').version)")
+#           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+#           git config --global user.name "github-actions[bot]"
+#           git config pull.ff true
+#           git add . && git commit -m "CI: @sliit-foss/automatic-versioning - sync release" || true
+#           git tag $tag || true
+#           git pull --rebase && git push origin
+#           echo "tag=$tag" >> $GITHUB_OUTPUT
 
-      - name: Create release on GitHub 📝
-        uses: ncipollo/release-action@v1
-        with:
-          generateReleaseNotes: true
-          skipIfReleaseExists: true
-          makeLatest: true
-          tag: ${{steps.sync_release.outputs.tag}}
+#       - name: Create release on GitHub 📝
+#         uses: ncipollo/release-action@v1
+#         with:
+#           generateReleaseNotes: true
+#           skipIfReleaseExists: true
+#           makeLatest: true
+#           tag: ${{steps.sync_release.outputs.tag}}
 
-  site-release:
-    name: Site Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository 🛎️
-        uses: actions/checkout@v4
+#   site-release:
+#     name: Site Release
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repository 🛎️
+#         uses: actions/checkout@v4
 
-      - name: Build 🏗️
-        uses: ./.github/actions/build
-        with:
-          storybooks: true
+#       - name: Build 🏗️
+#         uses: ./.github/actions/build
+#         with:
+#           storybooks: true
 
-      - name: Create .nojekyll file 🚧
-        run: touch ./storybook-static/.nojekyll
+#       - name: Create .nojekyll file 🚧
+#         run: touch ./storybook-static/.nojekyll
 
-      - name: Fix 404 on page reload 🚧
-        run: cp storybook-static/index.html storybook-static/404.html
+#       - name: Fix 404 on page reload 🚧
+#         run: cp storybook-static/index.html storybook-static/404.html
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: ./storybook-static/
-          branch: gh-pages
-          clean-exclude: preview
+#       - name: Deploy 🚀
+#         uses: JamesIves/github-pages-deploy-action@v4
+#         with:
+#           folder: ./storybook-static/
+#           branch: gh-pages
+#           clean-exclude: preview

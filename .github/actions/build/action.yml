@@ -1,7 +1,7 @@
 name: build
 description: Base build action for the project
 inputs:
- storybooks:
+  storybooks:
     description: "Whether to build storybooks or not"
     default: "false"
 runs:
@@ -16,7 +16,7 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: 18.x
-        cache: 'pnpm'
+        cache: "pnpm"
 
     - name: Install dependencies
       run: pnpm install --ignore-scripts --fix-lockfile

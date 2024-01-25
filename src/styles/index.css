@@ -1,5 +1,4 @@
 @import 'components.css';
-@import "utilities.css";
 @import 'animations/index.css';
 
 @tailwind base;

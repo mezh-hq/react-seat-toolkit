@@ -3,8 +3,8 @@ import { create } from '@storybook/theming/create';
 
 export default create({
   base: 'light',
-  brandTitle: 'Bashaway',
-  brandUrl: 'https://bashaway.sliitfoss.org',
-  brandImage: './bashaway.svg',
+  brandTitle: 'Seat Designer',
+  brandUrl: 'https://seats.sliitfoss.org',
+  brandImage: './favicon.svg',
   brandTarget: '_self',
 });
