@@ -5,6 +5,7 @@
       "@/*": ["*"]
     },
     "jsx": "react-jsx",
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "declaration": true
+  },
 }
