@@ -2,13 +2,15 @@ pre-commit:
   parallel: true
   commands:
     format:
-      glob: "*.{js,ts,jsx}"
-      run: npm run format && git add .
+      glob: "*.{js,ts,jsx,tsx}"
+      run: bunx prettier --write --cache {staged_files} && git add {staged_files}
     lint:
-      glob: "*.{js,ts,jsx}"
-      run: npm run lint && git add .
+      glob: "*.{js,ts,jsx,tsx}"
+      run: bun run --bun eslint {staged_files} --ignore-path .gitignore --fix --cache --report-unused-disable-directives && git add {staged_files}
 
 commit-msg:
   commands:
     commitlint:
+      skip:
+        - rebase
       run: npx commitlint --edit --color
