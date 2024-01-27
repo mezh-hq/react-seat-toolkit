@@ -4,8 +4,17 @@
     "node": true,
     "es2022": true
   },
-  "extends": ["eslint:recommended", "plugin:storybook/recommended","plugin:react/recommended", "plugin:mdx/recommended"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:storybook/recommended",
+    "plugin:react/recommended",
+    "plugin:mdx/recommended"
+  ],
   "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "parser": "@typescript-eslint/parser",
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
@@ -14,9 +23,26 @@
       "version": "18.0"
     }
   },
-  "plugins": ["react", "react-hooks"],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks"
+  ],
   "rules": {
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "rules": {
+        "no-unused-vars": "off",
+        "no-undef": "off"
+      }
+    }
+  ]
 }

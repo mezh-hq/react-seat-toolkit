@@ -3,7 +3,7 @@ import { XIcon } from "lucide-react";
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 import { v4 as uuidv4 } from "uuid";
-import { ArrowPair } from "../icons";
+import { ArrowPair } from "../../icons";
 import { inputStyles } from "./input";
 
 const wrapperId = uuidv4();
