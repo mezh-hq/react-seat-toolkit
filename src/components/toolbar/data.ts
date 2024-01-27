@@ -1,12 +1,12 @@
 import { Circle, Eraser, Hand, MousePointer2, SquareEqual, Type } from "lucide-react";
 
 export enum Tool {
-  Select,
-  Eraser,
-  Seat,
-  Booth,
-  Text,
-  Hand
+  Select = "Select",
+  Eraser = "Eraser",
+  Seat = "Seat",
+  Booth = "Booth",
+  Text = "Text",
+  Hand = "Hand"
 }
 
 export const tools = {

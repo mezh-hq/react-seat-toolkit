@@ -16,7 +16,7 @@ const Editor = () => {
   }, []);
 
   return (
-    <svg style={{ border: "1px solid" }} width={"100%"} height={"100%"}>
+    <svg style={{ border: "1px solid" }} width={"100%"} height={"100vh"}>
       <rect ref={rectRef} x={20} y={20} width={50} height={50} />
     </svg>
   );
