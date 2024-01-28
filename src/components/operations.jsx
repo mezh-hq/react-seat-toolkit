@@ -1,13 +1,14 @@
 import { Braces, Cog, Eye } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
+import { ids } from "@/constants";
 import { useBreakpoint } from "@/hooks";
 import { store } from "@/store";
-import { locationPlaceholder, setLocation, showControls } from "@/store/reducers/editor";
+import { locationPlaceholder, setLocation, toggleControls } from "@/store/reducers/editor";
 import { Body, Button, IconButton } from "./core";
 
 const onCogClick = () => {
-  store.dispatch(showControls());
+  store.dispatch(toggleControls());
 };
 
 const Operations = () => {
@@ -26,11 +27,11 @@ const Operations = () => {
 
   return (
     <div
-      id="stk-operation-bar"
+      id={ids.operationBar}
       className="w-full flex justify-between items-center gap-6 bg-black/5 pl-5 md:pl-[3.25rem] pr-5 p-3"
     >
       <Body
-        id="stk-location-name"
+        id={ids.location}
         contentEditable="true"
         suppressContentEditableWarning={true}
         className={twMerge("text-xl font-bold outline-none", location === locationPlaceholder && "opacity-60")}
@@ -41,8 +42,8 @@ const Operations = () => {
       <div className="flex justify-between items-center gap-5">
         {md ? (
           <>
-            <Button>Preview</Button>
-            <Button>Export JSON</Button>
+            <Button className="py-[0.35rem]">Preview</Button>
+            <Button className="py-[0.35rem]">Export JSON</Button>
           </>
         ) : (
           <>

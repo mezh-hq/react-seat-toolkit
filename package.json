@@ -70,6 +70,7 @@
     "@storybook/testing-library": "0.2.0",
     "@storybook/theming": "7.3.2",
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
+    "@types/d3": "7.4.3",
     "@typescript-eslint/eslint-plugin": "6.16.0",
     "@typescript-eslint/parser": "6.16.0",
     "@dreamworld/addon-redux": "1.1.0",

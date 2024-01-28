@@ -2,9 +2,10 @@ import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components";
+import { ids } from "@/constants";
 import { store } from "@/store";
 import { clearCursor, setCursor } from "@/store/reducers/editor";
-import { selectTool } from "@/store/reducers/toolbar";
+import { clearTool, selectTool } from "@/store/reducers/toolbar";
 import { tools } from "./data";
 
 const ToolBar = () => {
@@ -12,6 +13,7 @@ const ToolBar = () => {
 
   const onEscape = useCallback((event) => {
     if (event.key === "Escape") {
+      store.dispatch(clearTool());
       store.dispatch(clearCursor());
     }
   }, []);
@@ -24,13 +26,16 @@ const ToolBar = () => {
   }, []);
 
   const onToolClick = (tool, icon) => {
-    store.dispatch(selectTool(tool));
-    store.dispatch(setCursor(icon));
+    try {
+      store.dispatch(selectTool(tool));
+      store.dispatch(setCursor(icon));
+       
+    } catch (_) {}
   };
 
   return (
     <div
-      id="stk-tool-bar"
+      id={ids.toolbar}
       className="h-full min-h-screen flex flex-col gap-6 border-t pt-5 border-black [&>*:last-child]:[&>*:last-child]:hidden bg-black/5"
     >
       {Object.entries(tools).map(([key, value], index) => {
@@ -42,7 +47,7 @@ const ToolBar = () => {
               "relative hover:bg-white transition-all duration-300 !cursor-pointer",
               selectedTool === key && "bg-white/80"
             )}
-            onClick={() => onToolClick(key, value.icon)}
+            onClick={() => onToolClick(key, value.iconCursor ?? value.icon)}
           >
             <Tooltip>
               <TooltipTrigger className="p-3.5 px-[1rem] rounded-md">

@@ -8,11 +8,11 @@ export const SeatDesigner = () => {
       <TooltipProvider>
         <div className="flex flex-col">
           <Operations />
-          <div className="w-full flex">
+          <div className="flex relative">
             <Toolbar />
             <Workspace />
+            <Controls />
           </div>
-          <Controls />
         </div>
       </TooltipProvider>
       <Cursor />

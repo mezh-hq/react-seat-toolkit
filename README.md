@@ -13,7 +13,7 @@ React UI library to design and render seat layouts
 
 ## Installation
 
-Run `bun i react-seat-toolkit` to incorporate into your project <br/> 
+Run `bun i react-seat-toolkit` to incorporate into your project <br/>
 
 ## Getting started
 

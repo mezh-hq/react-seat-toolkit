@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
+import { ids } from "@/constants";
+import { default as Crosshairs } from "./crosshairs";
 
 export { default as Cursor } from "./cursor";
 
@@ -17,9 +19,12 @@ export const Workspace = () => {
   }, []);
 
   return (
-    <svg id="stk-workspace" style={{ border: "1px solid" }} width={"100%"} height={"100vh"}>
-      <rect ref={rectRef} x={20} y={20} width={50} height={50} fill="white" className="stroke-2 stroke-black" />
-    </svg>
+    <div id={ids.workspace} style={{ border: "1px solid" }} className="w-full h-screen relative">
+      <svg className="w-full h-full">
+        <rect ref={rectRef} x={20} y={20} width={50} height={50} fill="white" className="stroke-2 stroke-black" />
+      </svg>
+      <Crosshairs />
+    </div>
   );
 };
 

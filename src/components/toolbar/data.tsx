@@ -20,7 +20,9 @@ export const tools = {
   },
   [Tool.Seat]: {
     icon: Circle,
-    shortcut: "S"
+    iconCursor: (props: any) => <Circle {...props} strokeWidth={2} fill="white" />,
+    shortcut: "S",
+    crosshairs: true
   },
   [Tool.Booth]: {
     icon: SquareEqual,

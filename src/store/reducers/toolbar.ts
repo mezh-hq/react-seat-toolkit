@@ -10,10 +10,13 @@ export const slice = createSlice({
   reducers: {
     selectTool: (state, action) => {
       state.selectedTool = action.payload;
+    },
+    clearTool: (state) => {
+      state.selectedTool = null;
     }
   }
 });
 
-export const { selectTool } = slice.actions;
+export const { clearTool, selectTool } = slice.actions;
 
 export default slice.reducer;

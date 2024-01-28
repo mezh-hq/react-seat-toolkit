@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import * as d3 from "d3";
+import { ids } from "@/constants";
 
 const styles = `#stk-workspace {
   cursor: none;
@@ -8,19 +10,17 @@ const styles = `#stk-workspace {
 export const Cursor = () => {
   const [cursorX, setCursorX] = useState(0);
   const [cursorY, setCursorY] = useState(0);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const Cursor = useSelector((state) => state.editor.cursor);
 
   const move = (e) => {
-    const touchEvent = e.touches ? e.touches[0] : null;
-    const x = !isTouchDevice ? e.clientX : touchEvent?.clientX || 0;
-    const y = !isTouchDevice ? e.clientY : touchEvent?.clientY || 0;
-    const workspace = document.getElementById("stk-workspace");
+    const pointer = d3.pointer(e);
+    const x = pointer[0];
+    const y = pointer[1];
+    const workspace = document.getElementById("stk-workspace")?.getBoundingClientRect();
     if (workspace) {
-      const rect = workspace.getBoundingClientRect();
       const customCursor = document.getElementById("stk-cursor");
-      if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+      if (x >= workspace.left && x <= workspace.right && y >= workspace.top && y <= workspace.bottom) {
         customCursor.style.display = "block";
       } else {
         customCursor.style.display = "none";
@@ -29,15 +29,6 @@ export const Cursor = () => {
     setCursorX(x);
     setCursorY(y);
   };
-
-  useEffect(() => {
-    try {
-      document.createEvent("TouchEvent");
-      setIsTouchDevice(true);
-    } catch (e) {
-      setIsTouchDevice(false);
-    }
-  }, []);
 
   useEffect(() => {
     if (Cursor) {
@@ -53,16 +44,15 @@ export const Cursor = () => {
   if (!Cursor) return null;
 
   return (
-    <div id="stk-cursor">
+    <div id={ids.cursor}>
       <style>{styles}</style>
       <Cursor
+        className="absolute pointer-events-none"
         style={{
           left: `${cursorX}px`,
           top: `${cursorY}px`,
-          position: "absolute",
-          pointerEvents: "none",
-          transform: "translate(-39%, -27%)",
-          display: cursorX >= 0 && cursorY >= 0 ? "block" : "none"
+          transform: "translate(-45%, -45%)",
+          display: cursorX > 0 && cursorY > 0 ? "block" : "none"
         }}
       />
     </div>
