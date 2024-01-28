@@ -7,7 +7,6 @@ const Editor = () => {
   useEffect(() => {
     const handleDrag = d3.drag().on("drag", function (event) {
       const me = d3.select(this);
-      console.log(event.x, event.y);
       me.attr("x", event.x);
       me.attr("y", event.y);
     });

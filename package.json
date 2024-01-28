@@ -10,7 +10,6 @@
     "./constants": "./src/constants/index.js",
     "./icons": "./src/icons/index.js",
     "./hooks": "./src/hooks/index.js",
-    "./providers": "./src/providers/index.js",
     "./styles": "./src/styles/index.css"
   },
   "scripts": {
