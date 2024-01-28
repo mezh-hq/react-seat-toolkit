@@ -51,7 +51,7 @@ export const Cursor = () => {
         style={{
           left: `${cursorX}px`,
           top: `${cursorY}px`,
-          transform: "translate(-45%, -45%)",
+          transform: "translate(-48%, -48%)",
           display: cursorX > 0 && cursorY > 0 ? "block" : "none"
         }}
       />

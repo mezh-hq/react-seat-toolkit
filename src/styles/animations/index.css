@@ -5,7 +5,8 @@
     @apply relative overflow-hidden;
 
     &:after {
-      @apply content-[''] absolute block bg-white w-0 h-0 hover:w-[100%] hover:h-[100%] top-1/2 left-1/2 opacity-[0.15] rounded-full -translate-x-1/2 -translate-y-1/2 transition-all duration-medium;
+      @apply content-[''] absolute block bg-white w-0 h-0 hover:w-[100%] hover:h-[100%] top-1/2 left-1/2 opacity-[0.15] -translate-x-1/2 -translate-y-1/2 transition-all duration-medium;
+      border-radius: inherit;
     }
   }
 
