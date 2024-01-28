@@ -1,31 +1,7 @@
 import { useEffect, useState } from "react";
-import { default as path } from "path";
 import { default as resolveConfig } from "tailwindcss/resolveConfig";
 
-let tailwindConfig;
-
-let iterations = 0;
-
-while (iterations <= 5) {
-  iterations++;
-  if (iterations > 5) {
-    tailwindConfig = {
-      theme: {
-        screens: {
-          xs: "400px",
-          xsm: "450px"
-        }
-      }
-    };
-    break;
-  }
-  try {
-    tailwindConfig = require(`${path.join(process.cwd(), "../".repeat(iterations), "tailwind.config.js")}`);
-    break;
-  } catch (e) {
-    console.error(e);
-  }
-}
+let tailwindConfig = (await import("../../tailwind.config.js")).default;
 
 const config = resolveConfig(tailwindConfig);
 

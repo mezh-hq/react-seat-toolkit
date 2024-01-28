@@ -1,12 +1,15 @@
 import { useCallback, useEffect } from "react";
-import { Cog } from "lucide-react";
+import { Braces, Cog, Eye } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
+import { useBreakpoint } from "@/hooks";
 import { store } from "@/store";
 import { locationPlaceholder, setLocation } from "@/store/reducers/editor";
-import { Body, Button } from "./core";
+import { Body, Button, IconButton } from "./core";
 
 const Navbar = () => {
+  const { md } = useBreakpoint();
+
   const location = useSelector((state) => state.editor.location);
 
   const onEscape = useCallback((event) => {
@@ -42,8 +45,18 @@ const Navbar = () => {
         {locationPlaceholder}
       </Body>
       <div className="flex justify-between items-center gap-5">
-        <Button>Export JSON</Button>
-        <Cog size={30} className="cursor-pointer transform hover:rotate-90 transition-all duration-300" />
+        {md ? (
+          <>
+            <Button>Preview</Button>
+            <Button>Export JSON</Button>
+          </>
+        ) : (
+          <>
+            <IconButton icon={<Eye />} label="Preview" />
+            <IconButton icon={<Braces />} label="Export JSON" />
+          </>
+        )}
+        <Cog size={35} className="cursor-pointer transform hover:rotate-90 transition-all duration-300" />
       </div>
     </div>
   );
