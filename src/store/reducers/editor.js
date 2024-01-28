@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export const locationPlaceholder = "Type your location here";
+
 const initialState = {
-  location: "Type your location here",
+  location: locationPlaceholder,
   selectedElement: null,
   categories: [],
   seats: [],

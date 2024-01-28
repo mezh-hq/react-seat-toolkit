@@ -101,6 +101,7 @@ textarea,
 button,
 select,
 div,
+span,
 a {
   -webkit-tap-highlight-color: transparent;
 }
