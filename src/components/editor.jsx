@@ -7,8 +7,8 @@ const Editor = () => {
   useEffect(() => {
     const handleDrag = d3.drag().on("drag", function (event) {
       const me = d3.select(this);
-      me.attr("x", event.x);
-      me.attr("y", event.y);
+      me.attr("x", +me.attr("x") + event.dx);
+      me.attr("y", +me.attr("y") + event.dy);
     });
     const node = rectRef.current;
     handleDrag(d3.select(node));
@@ -16,7 +16,7 @@ const Editor = () => {
 
   return (
     <svg style={{ border: "1px solid" }} width={"100%"} height={"100vh"}>
-      <rect ref={rectRef} x={20} y={20} width={50} height={50} />
+      <rect ref={rectRef} x={20} y={20} width={50} height={50} fill="white" className="stroke-2 stroke-black" />
     </svg>
   );
 };
