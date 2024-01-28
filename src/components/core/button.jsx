@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
 const buttonVariants = cva(
-  "group flex justify-center items-center cursor-pointer rounded-full px-[1.15rem] py-[0.4rem] font-semibold outline-none transition-all duration-medium gap-2 splash",
+  "group flex justify-center items-center cursor-pointer rounded-md px-[1.15rem] py-[0.4rem] font-semibold outline-none transition-all duration-medium gap-2 splash",
   {
     variants: {
       variant: {

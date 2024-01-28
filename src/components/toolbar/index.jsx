@@ -38,7 +38,7 @@ const ToolBar = () => {
 
   return (
     <div
-      className="h-full min-h-screen flex flex-col gap-6  [&>*:last-child]:[&>*:last-child]:hidden bg-black/5"
+      className="h-full min-h-screen flex flex-col gap-6 border-t pt-5 border-black [&>*:last-child]:[&>*:last-child]:hidden bg-black/5"
       onMouseOver={onHover}
       onMouseOut={onLeave}
     >

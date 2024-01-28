@@ -92,22 +92,7 @@ svg *:focus {
   outline: none !important;
 }
 
-html::-webkit-scrollbar {
-  width: 12px;
-}
-
-html::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-html::-webkit-scrollbar-thumb {
-  background: black;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-}
-
 html {
-  scrollbar-color: black var(--background);
-  scrollbar-width: thin;
   overflow-x: hidden !important;
 }
 
