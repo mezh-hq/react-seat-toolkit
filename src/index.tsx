@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import { Cursor, Editor, Navbar, Toolbar, TooltipProvider } from "@/components";
+import { Controls, Cursor, Operations, Toolbar, TooltipProvider, Workspace } from "@/components";
 import { store } from "@/store";
 
 export const SeatDesigner = () => {
@@ -7,11 +7,12 @@ export const SeatDesigner = () => {
     <Provider store={store}>
       <TooltipProvider>
         <div className="flex flex-col">
-          <Navbar />
+          <Operations />
           <div className="w-full flex">
             <Toolbar />
-            <Editor />
+            <Workspace />
           </div>
+          <Controls />
         </div>
       </TooltipProvider>
       <Cursor />

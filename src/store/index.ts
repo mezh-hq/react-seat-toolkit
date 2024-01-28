@@ -11,8 +11,8 @@ export function makeStore() {
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: {
-          ignoredActions: ["global/setCursor"],
-          ignoredPaths: ["global.cursor"]
+          ignoredActions: ["editor/setCursor"],
+          ignoredPaths: ["editor.cursor"]
         }
       }),
     enhancers(getDefaultEnhancers) {

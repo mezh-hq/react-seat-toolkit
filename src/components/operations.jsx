@@ -1,28 +1,19 @@
-import { useCallback, useEffect } from "react";
 import { Braces, Cog, Eye } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { useBreakpoint } from "@/hooks";
 import { store } from "@/store";
-import { locationPlaceholder, setLocation } from "@/store/reducers/editor";
+import { locationPlaceholder, setLocation, showControls } from "@/store/reducers/editor";
 import { Body, Button, IconButton } from "./core";
 
-const Navbar = () => {
+const onCogClick = () => {
+  store.dispatch(showControls());
+};
+
+const Operations = () => {
   const { md } = useBreakpoint();
 
   const location = useSelector((state) => state.editor.location);
-
-  const onEscape = useCallback((event) => {
-    if (event.key === "Escape") {
-    }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("keydown", onEscape);
-    return () => {
-      window.removeEventListener("keydown", onEscape);
-    };
-  }, []);
 
   const onLocationChange = (e) => {
     const location = e.target.innerText;
@@ -34,7 +25,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full flex justify-between items-center gap-6 bg-black/5 pl-5 md:pl-[3.25rem] pr-5 p-3">
+    <div
+      id="stk-operation-bar"
+      className="w-full flex justify-between items-center gap-6 bg-black/5 pl-5 md:pl-[3.25rem] pr-5 p-3"
+    >
       <Body
         id="stk-location-name"
         contentEditable="true"
@@ -56,10 +50,14 @@ const Navbar = () => {
             <IconButton icon={<Braces />} label="Export JSON" />
           </>
         )}
-        <Cog size={35} className="cursor-pointer transform hover:rotate-90 transition-all duration-300" />
+        <Cog
+          size={35}
+          className="cursor-pointer transform hover:rotate-90 transition-all duration-300"
+          onClick={onCogClick}
+        />
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default Operations;

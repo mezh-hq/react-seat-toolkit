@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-const Editor = () => {
+export { default as Cursor } from "./cursor";
+
+export const Workspace = () => {
   const rectRef = useRef();
 
   useEffect(() => {
@@ -15,10 +17,10 @@ const Editor = () => {
   }, []);
 
   return (
-    <svg style={{ border: "1px solid" }} width={"100%"} height={"100vh"}>
+    <svg id="stk-workspace" style={{ border: "1px solid" }} width={"100%"} height={"100vh"}>
       <rect ref={rectRef} x={20} y={20} width={50} height={50} fill="white" className="stroke-2 stroke-black" />
     </svg>
   );
 };
 
-export default Editor;
+export default Workspace;

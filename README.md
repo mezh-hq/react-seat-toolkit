@@ -6,8 +6,8 @@
 <a aria-label="CI Deploy" href="https://github.com/akalanka47000/react-seat-toolkit/actions/workflows/release.yml">
   <img alt="" src="https://github.com/akalanka47000/react-seat-toolkit/actions/workflows/release.yml/badge.svg">
 </a>
-
-<br/>
+ 
+<br/> <br/>
 
 React UI library to design and render seat layouts
 

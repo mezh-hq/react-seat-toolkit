@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-const styles = `*{
+const styles = `#stk-workspace {
   cursor: none;
 }`;
 
@@ -10,13 +10,22 @@ export const Cursor = () => {
   const [cursorY, setCursorY] = useState(0);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
-  const Cursor = useSelector((state) => state.global.cursor);
-  const cursorHidden = useSelector((state) => state.global.cursorHidden);
+  const Cursor = useSelector((state) => state.editor.cursor);
 
   const move = (e) => {
     const touchEvent = e.touches ? e.touches[0] : null;
     const x = !isTouchDevice ? e.clientX : touchEvent?.clientX || 0;
     const y = !isTouchDevice ? e.clientY : touchEvent?.clientY || 0;
+    const workspace = document.getElementById("stk-workspace");
+    if (workspace) {
+      const rect = workspace.getBoundingClientRect();
+      const customCursor = document.getElementById("stk-cursor");
+      if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+        customCursor.style.display = "block";
+      } else {
+        customCursor.style.display = "none";
+      }
+    }
     setCursorX(x);
     setCursorY(y);
   };
@@ -44,8 +53,8 @@ export const Cursor = () => {
   if (!Cursor) return null;
 
   return (
-    <>
-      {!cursorHidden && <style>{styles}</style>}
+    <div id="stk-cursor">
+      <style>{styles}</style>
       <Cursor
         style={{
           left: `${cursorX}px`,
@@ -53,10 +62,10 @@ export const Cursor = () => {
           position: "absolute",
           pointerEvents: "none",
           transform: "translate(-39%, -27%)",
-          opacity: cursorHidden ? 0 : 1
+          display: cursorX >= 0 && cursorY >= 0 ? "block" : "none"
         }}
       />
-    </>
+    </div>
   );
 };
 

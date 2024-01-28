@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components";
 import { store } from "@/store";
-import { clearCursor, hideCursor, setCursor, showCursor } from "@/store/reducers/global";
+import { clearCursor, setCursor } from "@/store/reducers/editor";
 import { selectTool } from "@/store/reducers/toolbar";
 import { tools } from "./data";
 
@@ -28,19 +28,10 @@ const ToolBar = () => {
     store.dispatch(setCursor(icon));
   };
 
-  const onHover = () => {
-    store.dispatch(hideCursor());
-  };
-
-  const onLeave = () => {
-    store.dispatch(showCursor());
-  };
-
   return (
     <div
+      id="stk-tool-bar"
       className="h-full min-h-screen flex flex-col gap-6 border-t pt-5 border-black [&>*:last-child]:[&>*:last-child]:hidden bg-black/5"
-      onMouseOver={onHover}
-      onMouseOut={onLeave}
     >
       {Object.entries(tools).map(([key, value], index) => {
         const Icon = value.icon;
