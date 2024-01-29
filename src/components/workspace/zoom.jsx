@@ -1,7 +1,9 @@
 import { memo, useLayoutEffect } from "react";
 import { Minus, Plus } from "lucide-react";
+import { useSelector } from "react-redux";
 import * as d3 from "d3";
 import { ids } from "@/constants";
+import { Tool } from "../toolbar/data";
 
 function handleZoom(e) {
   d3.select(`#${ids.workspace} g`).attr("transform", e.transform);
@@ -18,9 +20,22 @@ const zoomOut = () => {
 };
 
 const Zoom = () => {
+  const selectedTool = useSelector((state) => state.toolbar.selectedTool);
+
   useLayoutEffect(() => {
-    d3.select(`#${ids.workspace}`).call(zoom);
-  }, []);
+    const selection = d3.select(`#${ids.workspace}`);
+    selection.on("zoom", null);
+    if (selectedTool == Tool.Pan) {
+      d3.select(`#${ids.workspace}`).call(zoom);
+    } else {
+      d3.select(`#${ids.workspace}`)
+        .call(zoom)
+        .on("mousedown.zoom", null)
+        .on("touchstart.zoom", null)
+        .on("touchmove.zoom", null)
+        .on("touchend.zoom", null);
+    }
+  }, [selectedTool]);
 
   return (
     <div className="bg-gray-100 p-2.5 fixed bottom-6 left-20 rounded-md flex gap-1 items-center">

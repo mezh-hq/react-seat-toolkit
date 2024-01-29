@@ -6,7 +6,7 @@ export enum Tool {
   Seat = "Seat",
   Booth = "Booth",
   Text = "Text",
-  Hand = "Hand"
+  Pan = "Pan"
 }
 
 export const tools = {
@@ -32,8 +32,8 @@ export const tools = {
     icon: Type,
     shortcut: "T"
   },
-  [Tool.Hand]: {
+  [Tool.Pan]: {
     icon: Hand,
-    shortcut: "H"
+    shortcut: "P"
   }
 };
