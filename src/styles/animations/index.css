@@ -26,7 +26,8 @@
       -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
-      @apply content-[''] absolute inset-0 rounded-3xl border border-transparent filter contrast-[2] bg-current pointer-events-none transition-all duration-1000;
+      border-radius: inherit;
+      @apply content-[''] absolute inset-0 border border-transparent filter contrast-[2] bg-current pointer-events-none transition-all duration-1000;
     }
 
     &:after {

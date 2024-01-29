@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import * as d3 from "d3";
 import { ids } from "@/constants";
+import { isWithinBounds } from "@/utils";
 
 const styles = `#stk-workspace {
   cursor: none;
@@ -17,10 +18,11 @@ export const Cursor = () => {
     const pointer = d3.pointer(e);
     const x = pointer[0];
     const y = pointer[1];
-    const workspace = document.getElementById("stk-workspace")?.getBoundingClientRect();
+    const workspace = document.getElementById(ids.workspace)?.getBoundingClientRect();
+    const zoomControls = document.getElementById(ids.zoomControls)?.getBoundingClientRect();
     if (workspace) {
-      const customCursor = document.getElementById("stk-cursor");
-      if (x >= workspace.left && x <= workspace.right && y >= workspace.top && y <= workspace.bottom) {
+      const customCursor = document.getElementById(ids.cursor);
+      if (isWithinBounds(x, y, workspace) && !isWithinBounds(x, y, zoomControls)) {
         customCursor.style.display = "block";
       } else {
         customCursor.style.display = "none";

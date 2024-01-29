@@ -4,5 +4,6 @@ export const ids = {
   location: "stk-location",
   operationBar: "stk-operation-bar",
   toolbar: "stk-tool-bar",
-  workspace: "stk-workspace"
+  workspace: "stk-workspace",
+  zoomControls: "stk-zoom-controls"
 };
