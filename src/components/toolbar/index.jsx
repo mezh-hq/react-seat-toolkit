@@ -35,7 +35,7 @@ const ToolBar = () => {
   return (
     <div
       id={ids.toolbar}
-      className="h-full min-h-[95vh] flex flex-col gap-6 border-t pt-5 border-black [&>*:last-child]:[&>*:last-child]:hidden bg-black/5"
+      className="h-full min-h-[88.5vh] flex flex-col gap-6 border-t pt-5 border-black [&>*:last-child]:[&>*:last-child]:hidden bg-black/5"
     >
       {Object.entries(tools).map(([key, value], index) => {
         const Icon = value.icon;

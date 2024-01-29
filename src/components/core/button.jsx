@@ -21,7 +21,7 @@ const buttonVariants = cva(
 const Core = ({ variant = "primary", children, loading, className, ...props }) => {
   return (
     <div
-      role="button"
+      role=""
       className={twMerge(
         buttonVariants({ variant }),
         className,

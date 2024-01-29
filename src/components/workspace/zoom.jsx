@@ -58,7 +58,7 @@ const Zoom = () => {
   }, [selectedTool]);
 
   return (
-    <div id={ids.zoomControls} className="fixed bottom-6 left-20 flex flex-col items-center gap-4">
+    <div id={ids.zoomControls} className="fixed bottom-14 left-20 flex flex-col items-center gap-4">
       <div className="relative h-20 w-20 bg-white rounded-full border border-black/20 splash after:bg-black/5">
         <div className="absolute top-0 left-0 h-full w-full p-[1.125rem] z-20 pointer-events-none">
           <div className="h-full w-full rounded-full bg-white border-2 border-black/50" />

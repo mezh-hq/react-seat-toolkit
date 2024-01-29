@@ -14,6 +14,9 @@ export const SeatDesigner = () => {
             <Controls />
           </div>
         </div>
+        <div className="w-full h-8 flex justify-center items-center bg-black">
+          <span className="text-white text-sm">React Seat Toolkit </span>
+        </div>
       </TooltipProvider>
       <Cursor />
       <EventHandlers />

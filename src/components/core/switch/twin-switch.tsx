@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-const padding = "px-4 py-2";
+const padding = "px-4 py-[3px]";
 
 const valueStyles = "z-50 pointer-events-none transition-all duration-medium";
 
@@ -39,7 +39,7 @@ const TwinSwitch = ({ values = [], selectedValue, onChange, handleClassName, ...
       {...props}
       onClick={toggle}
       className={twMerge(
-        "relative flex border border-red-100 rounded-full font-semibold p-1.5 cursor-pointer tracking-wider",
+        "relative flex border border-black/20 rounded-full font-semibold p-1.5 cursor-pointer tracking-wider",
         props.className
       )}
     >
@@ -52,7 +52,7 @@ const TwinSwitch = ({ values = [], selectedValue, onChange, handleClassName, ...
       <div
         className={twMerge(
           padding,
-          "absolute flex justify-center items-center bg-[#f00] splash after:opacity-[0.2] rounded-full transition-all duration-medium",
+          "absolute flex justify-center items-center bg-blue-600 splash after:opacity-[0.2] rounded-full transition-all duration-medium",
           handleClassName
         )}
         style={handleStyles}

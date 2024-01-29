@@ -5,6 +5,7 @@ export const locationPlaceholder = "Type your location here";
 const initialState = {
   cursor: null,
   showControls: false,
+  grid: false,
   location: locationPlaceholder,
   selectedElementId: null,
   categories: [],
@@ -32,6 +33,9 @@ export const slice = createSlice({
     hideControls: (state) => {
       state.showControls = false;
     },
+    toggleGrid: (state, action) => {
+      state.grid = action.payload ?? !state.grid;
+    },
     setLocation: (state, action) => {
       state.location = action.payload;
     },
@@ -52,7 +56,8 @@ export const {
   clearElement,
   toggleControls,
   showControls,
-  hideControls
+  hideControls,
+  toggleGrid
 } = slice.actions;
 
 export default slice.reducer;
