@@ -21,19 +21,19 @@ const zoomOut = () => {
 };
 
 const panLeft = () => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, -50, 0);
-};
-
-const panRight = () => {
   d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, 50, 0);
 };
 
+const panRight = () => {
+  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, -50, 0);
+};
+
 const panUp = () => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, 0, -50);
+  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, 0, 50);
 };
 
 const panDown = () => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, 0, 50);
+  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, 0, -50);
 };
 
 const panHandleClasses =
