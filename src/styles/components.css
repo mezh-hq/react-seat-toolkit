@@ -5,4 +5,7 @@
   .element-unselected {
     @apply stroke-2 stroke-black;
   }
+  .element-selected {
+    @apply stroke-2 stroke-blue-500;
+  }
 }

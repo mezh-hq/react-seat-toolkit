@@ -7,9 +7,7 @@ import { ids, selectors } from "@/constants";
 import { Tool } from "../toolbar/data";
 
 function handleZoom(e) {
-  const workspace = d3.select(selectors.workspaceGroup);
-  workspace.attr("transform", e.transform);
-  workspace.dispatch("zoom", { detail: e.transform });
+  d3.select(selectors.workspaceGroup).attr("transform", e.transform);
 }
 
 const zoom = d3.zoom().on("zoom", handleZoom);

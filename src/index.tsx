@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import { Controls, Cursor, Operations, Toolbar, TooltipProvider, Workspace } from "@/components";
+import { Controls, Cursor, EventHandlers, Operations, Toolbar, TooltipProvider, Workspace } from "@/components";
 import { store } from "@/store";
 
 export const SeatDesigner = () => {
@@ -16,6 +16,7 @@ export const SeatDesigner = () => {
         </div>
       </TooltipProvider>
       <Cursor />
+      <EventHandlers />
     </Provider>
   );
 };
