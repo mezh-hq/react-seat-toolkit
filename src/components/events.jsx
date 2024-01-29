@@ -1,20 +1,22 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { store } from "@/store";
-import { clearElement } from "@/store/reducers/editor";
+import { clearElements } from "@/store/reducers/editor";
 
 const EventHandlers = () => {
-  const selectedElementId = useSelector((state) => state.editor.selectedElementId);
+  const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
+  const lastDeselectedElementId = useSelector((state) => state.editor.lastDeselectedElementId);
 
   useEffect(() => {
     const onElemClick = (e) => {
-      if (selectedElementId != e.target.id) store.dispatch(clearElement());
+      if (!selectedElementIds.includes(e.target.id) && lastDeselectedElementId !== e.target.id)
+        store.dispatch(clearElements());
     };
     document.addEventListener("click", onElemClick);
     return () => {
       document.removeEventListener("click", onElemClick);
     };
-  }, [selectedElementId]);
+  }, [selectedElementIds]);
 
   return null;
 };

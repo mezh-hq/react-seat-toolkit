@@ -7,7 +7,8 @@ const initialState = {
   showControls: false,
   grid: false,
   location: locationPlaceholder,
-  selectedElementId: null,
+  selectedElementIds: [],
+  lastDeselectedElementId: null,
   categories: [],
   seats: [],
   booths: [],
@@ -40,10 +41,14 @@ export const slice = createSlice({
       state.location = action.payload;
     },
     selectElement: (state, action) => {
-      state.selectedElementId = action.payload;
+      state.selectedElementIds = state.selectedElementIds.concat(action.payload);
     },
-    clearElement: (state) => {
-      state.selectedElementId = null;
+    deselectElement: (state, action) => {
+      state.lastDeselectedElementId = action.payload;
+      state.selectedElementIds = state.selectedElementIds.filter((id) => id !== action.payload);
+    },
+    clearElements: (state) => {
+      state.selectedElementIds = [];
     }
   }
 });
@@ -53,7 +58,8 @@ export const {
   clearCursor,
   setLocation,
   selectElement,
-  clearElement,
+  deselectElement,
+  clearElements,
   toggleControls,
   showControls,
   hideControls,
