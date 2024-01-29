@@ -6,7 +6,7 @@ const initialState = {
   cursor: null,
   showControls: false,
   location: locationPlaceholder,
-  selectedElement: null,
+  selectedElementId: null,
   categories: [],
   seats: [],
   booths: [],
@@ -36,12 +36,23 @@ export const slice = createSlice({
       state.location = action.payload;
     },
     selectElement: (state, action) => {
-      state.selectedElement = action.payload;
+      state.selectedElementId = action.payload;
+    },
+    clearElement: (state) => {
+      state.selectedElementId = null;
     }
   }
 });
 
-export const { setCursor, clearCursor, setLocation, selectElement, toggleControls, showControls, hideControls } =
-  slice.actions;
+export const {
+  setCursor,
+  clearCursor,
+  setLocation,
+  selectElement,
+  clearElement,
+  toggleControls,
+  showControls,
+  hideControls
+} = slice.actions;
 
 export default slice.reducer;

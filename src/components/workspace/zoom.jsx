@@ -3,11 +3,13 @@ import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Minus, Plus } from "
 import { useSelector } from "react-redux";
 import * as d3 from "d3";
 import { twMerge } from "tailwind-merge";
-import { ids } from "@/constants";
+import { ids, selectors } from "@/constants";
 import { Tool } from "../toolbar/data";
 
 function handleZoom(e) {
-  d3.select(`#${ids.workspace} g`).attr("transform", e.transform);
+  const workspace = d3.select(selectors.workspaceGroup);
+  workspace.attr("transform", e.transform);
+  workspace.dispatch("zoom", { detail: e.transform });
 }
 
 const zoom = d3.zoom().on("zoom", handleZoom);
@@ -59,7 +61,7 @@ const Zoom = () => {
 
   return (
     <div id={ids.zoomControls} className="fixed bottom-6 left-20 flex flex-col items-center gap-4">
-      <div className="relative h-20 w-20 rounded-full border border-black/20 splash after:bg-black/5">
+      <div className="relative h-20 w-20 bg-white rounded-full border border-black/20 splash after:bg-black/5">
         <div className="absolute top-0 left-0 h-full w-full p-[1.125rem] z-20 pointer-events-none">
           <div className="h-full w-full rounded-full bg-white border-2 border-black/50" />
         </div>

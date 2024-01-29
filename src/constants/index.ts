@@ -7,3 +7,8 @@ export const ids = {
   workspace: "stk-workspace",
   zoomControls: "stk-zoom-controls"
 };
+
+export const selectors = {
+  crosshairGroup: `#${ids.crosshairs} g`,
+  workspaceGroup: `#${ids.workspace} g`
+};

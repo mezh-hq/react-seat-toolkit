@@ -1,12 +1,12 @@
-export * from "../core/accordion";
+export * from "./accordion";
 export * from "./sheet";
 export * from "./switch";
 export * from "./typography";
 export * from "./toast";
 export * from "./tooltip";
 
-export { default as AnimatedSwitcher } from "../core/animated-switcher";
-export { default as Button } from "../core/button";
-export { default as Input } from "../core/input";
-export { default as IconButton } from "../core/icon-button";
-export { default as Dropdown } from "../core/dropdown";
+export { default as AnimatedSwitcher } from "./animated-switcher";
+export { default as Button } from "./button";
+export { default as Input } from "./input";
+export { default as IconButton } from "./icon-button";
+export { default as Dropdown } from "./dropdown";
