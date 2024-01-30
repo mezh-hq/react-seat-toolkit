@@ -10,7 +10,7 @@ const Footer = () => {
       <AnimatedSwitcher
         show={!!selectedTool}
         key={selectedTool}
-        className="absolute top-2 left-5 text-xs"
+        className="absolute top-[0.4rem] left-5 text-xs"
         component={<span>{tools[selectedTool]?.description}</span>}
         duration={0.2}
       />

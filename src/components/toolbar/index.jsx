@@ -28,7 +28,7 @@ const ToolBar = () => {
   useEffect(() => {
     if (selectedTool) {
       try {
-        store.dispatch(setCursor(tools[selectedTool].icon ?? setCursor(tools[selectedTool].iconCursor)));
+        store.dispatch(setCursor(tools[selectedTool].iconCursor ?? tools[selectedTool].icon));
       } catch (_) {}
     }
   }, [selectedTool]);

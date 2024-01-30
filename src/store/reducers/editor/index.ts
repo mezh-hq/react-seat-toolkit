@@ -55,7 +55,6 @@ export const slice = createSlice({
     initializeElements: (state) => {
       state.seats = seats();
       state.booths = booths();
-      console.log(state.seats);
     }
   }
 });
