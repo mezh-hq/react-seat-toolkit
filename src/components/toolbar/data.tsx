@@ -31,14 +31,14 @@ export const tools = {
   },
   [Tool.Seat]: {
     icon: Circle,
-    iconCursor: (props: any) => <Circle {...props} size={34} strokeWidth={1.5} />,
+    iconCursor: (props: any) => <Circle {...props} size={35} strokeWidth={1.5} />,
     shortcut: "S",
     crosshairs: true,
     description: "Click anywhere to place a seat"
   },
   [Tool.Booth]: {
     icon: SquareEqual,
-    iconCursor: (props: any) => <SquareEqual {...props} size={50} strokeWidth={1} />,
+    iconCursor: (props: any) => <SquareEqual {...props} size={52} strokeWidth={1} />,
     shortcut: "B",
     description: "Click anywhere to place a booth"
   },

@@ -55,6 +55,24 @@ export const slice = createSlice({
     initializeElements: (state) => {
       state.seats = seats();
       state.booths = booths();
+    },
+    addSeat(state, action) {
+      state.seats.push(action.payload);
+    },
+    deleteSeat(state, action) {
+      state.seats = state.seats.filter((seat) => seat.id !== action.payload);
+    },
+    addBooth(state, action) {
+      state.booths.push(action.payload);
+    },
+    deleteBooth(state, action) {
+      state.booths = state.booths.filter((booth) => booth.id !== action.payload);
+    },
+    addText(state, action) {
+      state.text.push(action.payload);
+    },
+    deleteText(state, action) {
+      state.text = state.text.filter((text) => text.id !== action.payload);
     }
   }
 });
@@ -63,14 +81,20 @@ export const {
   setCursor,
   clearCursor,
   setLocation,
+  toggleControls,
+  showControls,
+  hideControls,
+  toggleGrid,
   selectElement,
   deselectElement,
   clearElements,
   initializeElements,
-  toggleControls,
-  showControls,
-  hideControls,
-  toggleGrid
+  addSeat,
+  deleteSeat,
+  addBooth,
+  deleteBooth,
+  addText,
+  deleteText
 } = slice.actions;
 
 export default slice.reducer;
