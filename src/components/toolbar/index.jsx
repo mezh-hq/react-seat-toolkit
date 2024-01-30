@@ -25,12 +25,15 @@ const ToolBar = () => {
     };
   }, []);
 
-  const onToolClick = (tool, icon) => {
-    try {
-      store.dispatch(selectTool(tool));
-      store.dispatch(setCursor(icon));
-    } catch (_) {}
-  };
+  useEffect(() => {
+    if (selectedTool) {
+      try {
+        store.dispatch(setCursor(tools[selectedTool].icon ?? setCursor(tools[selectedTool].iconCursor)));
+      } catch (_) {}
+    }
+  }, [selectedTool]);
+
+  const onToolClick = (tool) => store.dispatch(selectTool(tool));
 
   return (
     <div
@@ -46,7 +49,7 @@ const ToolBar = () => {
               "relative hover:bg-white transition-all duration-300 !cursor-pointer",
               selectedTool === key && "bg-white/80"
             )}
-            onClick={() => onToolClick(key, value.iconCursor ?? value.icon)}
+            onClick={() => onToolClick(key)}
           >
             <Tooltip>
               <TooltipTrigger className="p-3.5 px-[1rem] rounded-md">

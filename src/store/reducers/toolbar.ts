@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Tool } from "@/components/toolbar/data";
 
 const initialState = {
-  selectedTool: null
+  selectedTool: Tool.Select
 };
 
 export const slice = createSlice({
