@@ -12,6 +12,7 @@ module.exports = {
         "Prerelease",
         "Chore",
         "Build",
+        "Perf",
         "Refactor",
         "Revert",
         "CI",
