@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useRef } from "react";
-import { useSelector } from "react-redux";
+import { memo, useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
+import { isEqual } from "lodash";
 import { twMerge } from "tailwind-merge";
-import { v4 as uuidv4 } from "uuid";
 import { store } from "@/store";
 import { clearElements, deselectElement, selectElement } from "@/store/reducers/editor";
 import { d3Extended } from "@/utils";
@@ -11,16 +10,10 @@ import { ElementType, elements, handleBoothDrag, handleSeatDrag } from "./utils"
 
 export * from "./utils";
 
-export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250 }) => {
+export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelected = false }) => {
   const ref = useRef();
 
-  id = useMemo(() => id ?? uuidv4(), [id]);
-
-  const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
-
   const node = ref.current && d3.select(ref.current);
-
-  const isSelected = selectedElementIds.includes(id);
 
   const centerCoords = isSelected && node && d3Extended.getNodeCenter(node);
 
@@ -48,7 +41,7 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250 }) => {
     const selectedTool = store.getState().toolbar.selectedTool;
     if (selectedTool == Tool.Select) {
       const ctrlPressed = e.ctrlKey || e.metaKey;
-      if (selectedElementIds.includes(ref.current.id)) {
+      if (isSelected) {
         if (ctrlPressed) {
           return store.dispatch(deselectElement(ref.current.id));
         }
@@ -86,4 +79,4 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250 }) => {
   );
 };
 
-export default Element;
+export default memo(Element, isEqual);

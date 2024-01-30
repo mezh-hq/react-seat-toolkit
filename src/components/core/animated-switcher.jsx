@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
-const AnimatedSwitcher = ({ key, component, alternateComponent, show, className, duration }) => {
+const AnimatedSwitcher = ({ customKey, component, alternateComponent, show, className, duration }) => {
   return (
     <motion.div
-      key={key ?? (show ? "component" : "alternateComponent")}
+      key={customKey ?? (show ? "component" : "alternateComponent")}
       className={twMerge("w-full h-full", className)}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

@@ -9,7 +9,7 @@ const Footer = () => {
       <span className="text-sm">React Seat Toolkit </span>
       <AnimatedSwitcher
         show={!!selectedTool}
-        key={selectedTool}
+        customKey={selectedTool}
         className="absolute top-[0.4rem] left-5 text-xs"
         component={<span>{tools[selectedTool]?.description}</span>}
         duration={0.2}
