@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import booths from "./booths";
 import seats from "./seats";
+import text from "./text";
 
 export const locationPlaceholder = "Type your location here";
 
@@ -55,6 +56,7 @@ export const slice = createSlice({
     initializeElements: (state) => {
       state.seats = seats();
       state.booths = booths();
+      state.text = text();
     },
     addSeat(state, action) {
       state.seats.push(action.payload);
