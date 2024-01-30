@@ -1,10 +1,12 @@
-export default [
+import { getWorkspaceCenterX, getWorkspaceHeight } from "@/utils";
+
+export default () => [
   {
-    x: 350,
-    y: 350
+    x: getWorkspaceCenterX() - 50 - 39,
+    y: getWorkspaceHeight() * 0.8
   },
   {
-    x: 750,
-    y: 150
+    x: getWorkspaceCenterX() + 50,
+    y: getWorkspaceHeight() * 0.8
   }
 ];

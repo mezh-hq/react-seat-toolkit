@@ -29,7 +29,7 @@ export const Element = ({ type = ElementType.Seat, x = 250, y = 250 }) => {
   const controlRadius = useMemo(() => {
     switch (type) {
       case ElementType.Seat:
-        return node?.attr("r") * 2.8;
+        return node?.attr("r") * 6;
     }
     return node?.attr("width") * 1.5;
   }, [node]);
@@ -67,7 +67,7 @@ export const Element = ({ type = ElementType.Seat, x = 250, y = 250 }) => {
           cx={centerCoords.x}
           cy={centerCoords.y}
           r={controlRadius}
-          className="stroke-2 stroke-black/20 fill-none pointer-events-none"
+          className="stroke-2 stroke-blue-200 fill-none pointer-events-none"
           strokeDasharray="20, 38"
         />
       )}

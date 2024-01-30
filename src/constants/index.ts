@@ -5,6 +5,7 @@ export const ids = {
   operationBar: "stk-operation-bar",
   toolbar: "stk-tool-bar",
   workspace: "stk-workspace",
+  workspaceContainer: "stk-workspace-container",
   zoomControls: "stk-zoom-controls"
 };
 

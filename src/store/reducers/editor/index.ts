@@ -12,8 +12,8 @@ const initialState = {
   selectedElementIds: [],
   lastDeselectedElementId: null,
   categories: [],
-  seats,
-  booths,
+  seats: [],
+  booths: [],
   text: []
 };
 
@@ -51,6 +51,11 @@ export const slice = createSlice({
     },
     clearElements: (state) => {
       state.selectedElementIds = [];
+    },
+    initializeElements: (state) => {
+      state.seats = seats();
+      state.booths = booths();
+      console.log(state.seats);
     }
   }
 });
@@ -62,6 +67,7 @@ export const {
   selectElement,
   deselectElement,
   clearElements,
+  initializeElements,
   toggleControls,
   showControls,
   hideControls,
