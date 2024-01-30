@@ -12,3 +12,12 @@ export const getRelativeClickCoords = (e: any) => {
     y: e.clientY - dim.top
   };
 };
+
+export const getRelativeClickCoordsWithTransform = (e: any, transform) => {
+  const coords = getRelativeClickCoords(e);
+  if (!transform) return coords;
+  return {
+    x: (coords.x - transform.x) / transform.k,
+    y: (coords.y - transform.y) / transform.k
+  };
+};
