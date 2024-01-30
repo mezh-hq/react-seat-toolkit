@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
-const Seat = forwardRef(({ x, y, ...props }, ref) => {
-  return <circle ref={ref} cx={x} cy={y} r={14} {...props} />;
+const Seat = forwardRef(({ x, y, id, ...props }, ref) => {
+  return <circle ref={ref} id={id} cx={x} cy={y} r={14} {...props} />;
 });
 
 Seat.displayName = "Seat";

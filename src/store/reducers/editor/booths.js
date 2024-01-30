@@ -1,12 +1,15 @@
+import { v4 as uuidV4 } from "uuid";
 import { getWorkspaceCenterX, getWorkspaceHeight } from "@/utils";
 
 export default () => [
   {
-    x: getWorkspaceCenterX() - 50 - 39,
-    y: getWorkspaceHeight() * 0.8
+    id: uuidV4(),
+    x: getWorkspaceCenterX() - 45 - 39,
+    y: getWorkspaceHeight() * 0.84
   },
   {
-    x: getWorkspaceCenterX() + 50,
-    y: getWorkspaceHeight() * 0.8
+    id: uuidV4(),
+    x: getWorkspaceCenterX() + 45,
+    y: getWorkspaceHeight() * 0.84
   }
 ];

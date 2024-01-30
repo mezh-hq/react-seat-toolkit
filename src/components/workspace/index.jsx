@@ -23,10 +23,10 @@ export const Workspace = () => {
       <svg id={ids.workspace} className="w-full h-full">
         <g>
           {seats.map((seat, i) => (
-            <Element type={ElementType.Seat} key={`seat-${i}`} x={seat.x} y={seat.y} />
+            <Element type={ElementType.Seat} key={`seat-${i}`} id={seat.id} x={seat.x} y={seat.y} />
           ))}
           {booths.map((booth, i) => (
-            <Element type={ElementType.Booth} key={`booth-${i}`} x={booth.x} y={booth.y} />
+            <Element type={ElementType.Booth} key={`booth-${i}`} id={booth.id} x={booth.x} y={booth.y} />
           ))}
         </g>
       </svg>

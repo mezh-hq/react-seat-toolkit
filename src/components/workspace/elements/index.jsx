@@ -11,10 +11,10 @@ import { ElementType, elements, handleBoothDrag, handleSeatDrag } from "./utils"
 
 export * from "./utils";
 
-export const Element = ({ type = ElementType.Seat, x = 250, y = 250 }) => {
+export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250 }) => {
   const ref = useRef();
 
-  const id = useMemo(() => uuidv4(), []);
+  id = useMemo(() => id ?? uuidv4(), [id]);
 
   const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
 
