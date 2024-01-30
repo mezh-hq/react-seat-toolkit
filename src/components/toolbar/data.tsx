@@ -12,28 +12,34 @@ export enum Tool {
 export const tools = {
   [Tool.Select]: {
     icon: MousePointer2,
-    shortcut: "V"
+    shortcut: "V",
+    description: "Select and move objects"
   },
   [Tool.Eraser]: {
     icon: Eraser,
-    shortcut: "E"
+    shortcut: "E",
+    description: "Click on an element to delete it"
   },
   [Tool.Seat]: {
     icon: Circle,
     iconCursor: (props: any) => <Circle {...props} strokeWidth={2} fill="white" />,
     shortcut: "S",
-    crosshairs: true
+    crosshairs: true,
+    description: "Click anywhere to place a seat"
   },
   [Tool.Booth]: {
     icon: SquareEqual,
-    shortcut: "B"
+    shortcut: "B",
+    description: "Click anywhere to place a booth"
   },
   [Tool.Text]: {
     icon: Type,
-    shortcut: "T"
+    shortcut: "T",
+    description: "Click anywhere to place text"
   },
   [Tool.Pan]: {
     icon: Hand,
-    shortcut: "P"
+    shortcut: "P",
+    description: "Click and drag to pan the workspace"
   }
 };
