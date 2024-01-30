@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import booths from "./booths";
+import seats from "./seats";
 
 export const locationPlaceholder = "Type your location here";
 
@@ -10,8 +12,8 @@ const initialState = {
   selectedElementIds: [],
   lastDeselectedElementId: null,
   categories: [],
-  seats: [],
-  booths: [],
+  seats,
+  booths,
   text: []
 };
 
