@@ -5,11 +5,11 @@ export default () => [
   {
     id: uuidV4(),
     x: getWorkspaceCenterX() - 45 - 39,
-    y: getWorkspaceHeight() * 0.84
+    y: getWorkspaceHeight() * 0.82
   },
   {
     id: uuidV4(),
     x: getWorkspaceCenterX() + 45,
-    y: getWorkspaceHeight() * 0.84
+    y: getWorkspaceHeight() * 0.82
   }
 ];

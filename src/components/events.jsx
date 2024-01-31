@@ -10,7 +10,9 @@ import {
   clearElements,
   deleteBooth,
   deleteSeat,
-  deleteText
+  deleteText,
+  selectElement,
+  toggleControls
 } from "@/store/reducers/editor";
 import { getRelativeClickCoordsWithTransform } from "@/utils";
 import { Tool } from "./toolbar/data";
@@ -23,8 +25,9 @@ const EventHandlers = () => {
 
   useEffect(() => {
     const onElemClick = (e) => {
-      if (!selectedElementIds.includes(e.target.id) && lastDeselectedElementId !== e.target.id)
-        store.dispatch(clearElements());
+      if (!selectedElementIds.includes(e.target.id) && lastDeselectedElementId !== e.target.id) {
+        store.dispatch(clearElements(selectedTool === Tool.Text && e.target.id === ids.workspace));
+      }
     };
     document.addEventListener("click", onElemClick);
     return () => {
@@ -40,8 +43,12 @@ const EventHandlers = () => {
         const coords = getRelativeClickCoordsWithTransform(e);
         store.dispatch(addBooth({ id: uuidV4(), x: coords.x - boothSize / 2, y: coords.y - boothSize / 2 }));
       } else if (selectedTool == Tool.Text) {
+        const id = uuidV4();
         const coords = getRelativeClickCoordsWithTransform(e);
-        store.dispatch(addText({ id: uuidV4(), x: coords.x, y: coords.y + 15, label: "Edit this in the sidebar" }));
+        store.dispatch(addText({ id, x: coords.x - 68, y: coords.y + 11, label: "Edit me!" }));
+        store.dispatch(selectElement(id));
+        const showControls = store.getState().editor.showControls;
+        if (!showControls) store.dispatch(toggleControls());
       } else if (selectedTool == Tool.Eraser) {
         if (e.target.nodeName === "circle") {
           store.dispatch(deleteSeat(e.target.id));

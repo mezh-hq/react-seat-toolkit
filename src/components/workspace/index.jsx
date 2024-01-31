@@ -47,6 +47,7 @@ export const Workspace = () => {
               type={ElementType.Text}
               fontSize={e.fontSize}
               fontWeight={e.fontWeight}
+              letterSpacing={e.letterSpacing}
               {...elementProps(e)}
             />
           ))}

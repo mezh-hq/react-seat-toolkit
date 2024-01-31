@@ -50,8 +50,13 @@ export const slice = createSlice({
       state.lastDeselectedElementId = action.payload;
       state.selectedElementIds = state.selectedElementIds.filter((id) => id !== action.payload);
     },
-    clearElements: (state) => {
-      state.selectedElementIds = [];
+    clearElements: (state, action) => {
+      const keepLast = action.payload ?? false;
+      if (!keepLast) {
+        state.selectedElementIds = [];
+      } else {
+        state.selectedElementIds = [state.selectedElementIds[state.selectedElementIds.length - 1]];
+      }
     },
     initializeElements: (state) => {
       state.seats = seats();

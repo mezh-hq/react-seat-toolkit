@@ -7,31 +7,31 @@ export default () => [
   ...[...Array(10).keys()].map((p) => ({
     id: uuidV4(),
     x: getWorkspaceCenterX() - gap * (p + 1),
-    y: getWorkspaceHeight() * 0.45
+    y: getWorkspaceHeight() * 0.42
   })),
   ...[...Array(10).keys()].map((p) => ({
     id: uuidV4(),
     x: getWorkspaceCenterX() + gap * (p + 1),
-    y: getWorkspaceHeight() * 0.45
+    y: getWorkspaceHeight() * 0.42
   })),
   ...[...Array(7).keys()].map((p) => ({
     id: uuidV4(),
     x: getWorkspaceCenterX() - gap * (p + 1),
-    y: getWorkspaceHeight() * 0.55
+    y: getWorkspaceHeight() * 0.52
   })),
   ...[...Array(7).keys()].map((p) => ({
     id: uuidV4(),
     x: getWorkspaceCenterX() + gap * (p + 1),
-    y: getWorkspaceHeight() * 0.55
+    y: getWorkspaceHeight() * 0.52
   })),
   ...[...Array(5).keys()].map((p) => ({
     id: uuidV4(),
     x: getWorkspaceCenterX() - gap * (p + 1),
-    y: getWorkspaceHeight() * 0.65
+    y: getWorkspaceHeight() * 0.62
   })),
   ...[...Array(5).keys()].map((p) => ({
     id: uuidV4(),
     x: getWorkspaceCenterX() + gap * (p + 1),
-    y: getWorkspaceHeight() * 0.65
+    y: getWorkspaceHeight() * 0.62
   }))
 ];
