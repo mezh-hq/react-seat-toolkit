@@ -1,15 +1,11 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { memo, useEffect, useState } from "react";
 import * as d3 from "d3";
 import { ids } from "@/constants";
-import { tools } from "../toolbar/data";
 
-export const Crosshairs = () => {
+export const Crosshairs = ({ render }) => {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [enabled, setEnabled] = useState(false);
-
-  const selectedTool = useSelector((state) => state.toolbar.selectedTool);
 
   const move = (e) => {
     const pointer = d3.pointer(e);
@@ -18,7 +14,7 @@ export const Crosshairs = () => {
   };
 
   useEffect(() => {
-    if (tools[selectedTool]?.crosshairs) {
+    if (render) {
       document.addEventListener("pointermove", move);
       document.addEventListener("touchmove", move);
       setEnabled(true);
@@ -29,7 +25,7 @@ export const Crosshairs = () => {
     } else {
       setEnabled(false);
     }
-  }, [selectedTool]);
+  }, [render]);
 
   if (!enabled) return null;
 
@@ -48,4 +44,4 @@ export const Crosshairs = () => {
   );
 };
 
-export default Crosshairs;
+export default memo(Crosshairs);

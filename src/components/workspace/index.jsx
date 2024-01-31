@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { ids } from "@/constants";
 import { store } from "@/store";
 import { initializeElements } from "@/store/reducers/editor";
+import { Tool, tools } from "../toolbar/data";
 import { default as Crosshairs } from "./crosshairs";
 import { default as Element, ElementType } from "./elements";
 import { default as Grid } from "./grid";
@@ -16,6 +17,7 @@ export const Workspace = () => {
   const text = useSelector((state) => state.editor.text);
   const shapes = useSelector((state) => state.editor.shapes);
   const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
+  const selectedTool = useSelector((state) => state.toolbar.selectedTool);
 
   useLayoutEffect(() => {
     store.dispatch(initializeElements());
@@ -53,11 +55,17 @@ export const Workspace = () => {
             />
           ))}
           {shapes.map((e) => (
-            <Element key={e.id} type={ElementType.Shape} name={e.name} {...elementProps(e)} />
+            <Element
+              key={e.id}
+              type={ElementType.Shape}
+              resizable={selectedTool === Tool.Select}
+              name={e.name}
+              {...elementProps(e)}
+            />
           ))}
         </g>
       </svg>
-      <Crosshairs />
+      <Crosshairs render={tools[selectedTool]?.crosshairs} />
       <Grid />
       <Zoom />
     </div>

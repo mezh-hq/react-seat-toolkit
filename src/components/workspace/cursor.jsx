@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import * as d3 from "d3";
 import { ids } from "@/constants";
+import { resizeCursors } from "@/hooks/interactions";
 import { isWithinBounds } from "@/utils";
 
 const styles = `#stk-workspace {
@@ -22,7 +23,11 @@ export const Cursor = () => {
     const zoomControls = document.getElementById(ids.zoomControls)?.getBoundingClientRect();
     if (workspace) {
       const customCursor = document.getElementById(ids.cursor);
-      if (isWithinBounds(x, y, workspace) && !isWithinBounds(x, y, zoomControls)) {
+      if (
+        isWithinBounds(x, y, workspace) &&
+        !isWithinBounds(x, y, zoomControls) &&
+        !resizeCursors.includes(e.target.parentNode?.style?.cursor)
+      ) {
         customCursor.style.display = "block";
       } else {
         customCursor.style.display = "none";

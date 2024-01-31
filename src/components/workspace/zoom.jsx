@@ -14,32 +14,28 @@ function handleZoom(e) {
 
 const zoom = d3.zoom().on("zoom", handleZoom);
 
-const zoomIn = (k = 1.1) => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.scaleBy, k);
+const zoomIn = () => {
+  d3.select(`#${ids.workspace}`).transition().call(zoom.scaleBy, 1.1);
 };
 
-const zoomOut = (k = 0.9) => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.scaleBy, k);
+const zoomOut = () => {
+  d3.select(`#${ids.workspace}`).transition().call(zoom.scaleBy, 0.9);
 };
 
-const panLeft = (x = 50) => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, x, 0);
+const panLeft = () => {
+  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, 50, 0);
 };
 
-const panRight = (x = 50) => {
-  d3.select(`#${ids.workspace}`)
-    .transition()
-    .call(zoom.translateBy, -1 * x, 0);
+const panRight = () => {
+  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, -50, 0);
 };
 
-const panUp = (y = 50) => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, 0, y);
+const panUp = () => {
+  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, 0, 50);
 };
 
-const panDown = (y = 50) => {
-  d3.select(`#${ids.workspace}`)
-    .transition()
-    .call(zoom.translateBy, 0, -1 * y);
+const panDown = () => {
+  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, 0, -50);
 };
 
 const panHandleClasses =
@@ -70,12 +66,12 @@ const Zoom = () => {
     if (showControls) {
       if (!controlTransformActive) {
         workspace.attr("control-transform-active", "true");
-        panRight(9 * 16);
+        workspace.transition().call(zoom.translateBy, -144, 0);
       }
     } else {
       if (controlTransformActive) {
         workspace.attr("control-transform-active", null);
-        panLeft(9 * 16);
+        workspace.transition().call(zoom.translateBy, 144, 0);
       }
     }
   }, [showControls]);

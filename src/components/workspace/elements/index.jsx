@@ -6,7 +6,7 @@ import { store } from "@/store";
 import { clearElements, deselectElement, selectElement } from "@/store/reducers/editor";
 import { d3Extended } from "@/utils";
 import { Tool } from "../../toolbar/data";
-import { ElementType, elements, handleDrag, handleSeatDrag, handleTextDrag } from "./utils";
+import { ElementType, elements, handleDrag, handleSeatDrag, handleShapeDrag, handleTextDrag } from "./utils";
 
 export * from "./utils";
 
@@ -34,6 +34,8 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
       handleSeatDrag(node);
     } else if (type === ElementType.Text) {
       handleTextDrag(node);
+    } else if (type === ElementType.Shape) {
+      handleShapeDrag(node);
     } else {
       handleDrag(node);
     }

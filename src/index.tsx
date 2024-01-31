@@ -1,8 +1,10 @@
 import { Provider } from "react-redux";
 import { Controls, Cursor, EventHandlers, Footer, Operations, Toolbar, TooltipProvider, Workspace } from "@/components";
+import { useInteractions } from "@/hooks";
 import { store } from "@/store";
 
 export const SeatDesigner = () => {
+  useInteractions();
   return (
     <Provider store={store}>
       <TooltipProvider>

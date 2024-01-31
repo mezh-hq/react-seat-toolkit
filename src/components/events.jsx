@@ -62,14 +62,14 @@ const EventHandlers = () => {
           addShape({ id: uuidV4(), x: coords.x - shapeSize / 2, y: coords.y - shapeSize / 2, name: cursor.displayName })
         );
       } else if (selectedTool == Tool.Eraser) {
-        if (e.target.nodeName === "circle") {
+        if (e.target.parentNode.nodeName === "svg" && e.target.id !== ids.workspace) {
+          store.dispatch(deleteShape(e.target.id || e.target.parentNode.id));
+        } else if (e.target.nodeName === "circle") {
           store.dispatch(deleteSeat(e.target.id));
         } else if (e.target.nodeName === "rect") {
           store.dispatch(deleteBooth(e.target.id));
         } else if (e.target.nodeName === "text") {
           store.dispatch(deleteText(e.target.id));
-        } else if (e.srcElement.nodeName === "svg" && e.target.id !== ids.workspace) {
-          store.dispatch(deleteShape(e.target.id));
         }
       }
     };

@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import { resizeCursors } from "@/hooks/interactions";
 import { d3Extended } from "@/utils";
 import Booth from "./booth";
 import Seat from "./seat";
@@ -46,4 +47,13 @@ export const handleTextDrag = d3.drag().on("drag", function (event) {
   const me = d3.select(this);
   me.attr("x", +me.attr("x") + event.dx);
   me.attr("y", +me.attr("y") + event.dy);
+});
+
+export const handleShapeDrag = d3.drag().on("drag", function (event) {
+  const me = d3.select(this);
+  if (resizeCursors.includes(me.style("cursor"))) return;
+  const x = +me.attr("x") + event.dx;
+  const y = +me.attr("y") + event.dy;
+  me.attr("x", x);
+  me.attr("y", y);
 });
