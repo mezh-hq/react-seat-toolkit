@@ -6,6 +6,8 @@ import { ids } from "@/constants";
 import { store } from "@/store";
 import { clearCursor, setCursor, showControls } from "@/store/reducers/editor";
 import { clearTool, selectTool } from "@/store/reducers/toolbar";
+import { fallible } from "@/utils";
+import { selectFirstShape } from "../controls/shapes";
 import { Tool, tools } from "./data";
 
 const ToolBar = () => {
@@ -26,17 +28,18 @@ const ToolBar = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedTool) {
-      try {
+    fallible(() => {
+      if (selectedTool && selectedTool !== Tool.Shapes) {
         store.dispatch(setCursor(tools[selectedTool].iconCursor ?? tools[selectedTool].icon));
-      } catch (_) {}
-    }
+      }
+    });
   }, [selectedTool]);
 
   const onToolClick = (tool) => {
     store.dispatch(selectTool(tool));
     if (tool === Tool.Shapes) {
       store.dispatch(showControls());
+      selectFirstShape();
     }
   };
 
