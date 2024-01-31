@@ -4,9 +4,9 @@ import { twMerge } from "tailwind-merge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components";
 import { ids } from "@/constants";
 import { store } from "@/store";
-import { clearCursor, setCursor } from "@/store/reducers/editor";
+import { clearCursor, setCursor, showControls } from "@/store/reducers/editor";
 import { clearTool, selectTool } from "@/store/reducers/toolbar";
-import { tools } from "./data";
+import { Tool, tools } from "./data";
 
 const ToolBar = () => {
   const selectedTool = useSelector((state) => state.toolbar.selectedTool);
@@ -33,7 +33,12 @@ const ToolBar = () => {
     }
   }, [selectedTool]);
 
-  const onToolClick = (tool) => store.dispatch(selectTool(tool));
+  const onToolClick = (tool) => {
+    store.dispatch(selectTool(tool));
+    if (tool === Tool.Shapes) {
+      store.dispatch(showControls());
+    }
+  };
 
   return (
     <div

@@ -12,7 +12,7 @@ import {
   deleteSeat,
   deleteText,
   selectElement,
-  toggleControls
+  showControls
 } from "@/store/reducers/editor";
 import { getRelativeClickCoordsWithTransform } from "@/utils";
 import { Tool } from "./toolbar/data";
@@ -47,8 +47,7 @@ const EventHandlers = () => {
         const coords = getRelativeClickCoordsWithTransform(e);
         store.dispatch(addText({ id, x: coords.x - 68, y: coords.y + 11, label: "Edit me!" }));
         store.dispatch(selectElement(id));
-        const showControls = store.getState().editor.showControls;
-        if (!showControls) store.dispatch(toggleControls());
+        store.dispatch(showControls());
       } else if (selectedTool == Tool.Eraser) {
         if (e.target.nodeName === "circle") {
           store.dispatch(deleteSeat(e.target.id));
