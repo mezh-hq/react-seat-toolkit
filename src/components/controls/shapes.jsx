@@ -1,74 +1,54 @@
 import { memo, useCallback, useState } from "react";
-import {
-  ArrowBigDown,
-  ArrowBigDownDash,
-  ArrowBigLeft,
-  ArrowBigLeftDash,
-  ArrowBigRight,
-  ArrowBigRightDash,
-  ArrowBigUp,
-  ArrowBigUpDash,
-  Boxes,
-  CircleDot,
-  CircleSlash,
-  Cone,
-  Diamond,
-  Fence,
-  Hexagon,
-  LandPlot,
-  Octagon,
-  Pentagon,
-  Power,
-  Pyramid,
-  RectangleHorizontal,
-  RectangleVertical,
-  Squircle,
-  Ticket,
-  Triangle,
-  TriangleRight,
-  Waypoints
-} from "lucide-react";
+import * as lucide from "lucide-react";
 import { isEqual } from "lodash";
 import { twMerge } from "tailwind-merge";
 import { store } from "@/store";
 import { setCursor } from "@/store/reducers/editor";
 import { fallible } from "@/utils";
+import { shapeSize, shapeStrokeWidth } from "../workspace/elements/shape";
 
 export const shapes = [
-  Triangle,
-  TriangleRight,
-  Squircle,
-  Hexagon,
-  Octagon,
-  Pentagon,
-  CircleDot,
-  CircleSlash,
-  RectangleHorizontal,
-  RectangleVertical,
-  Diamond,
-  Cone,
-  Pyramid,
-  ArrowBigDown,
-  ArrowBigDownDash,
-  ArrowBigUp,
-  ArrowBigUpDash,
-  ArrowBigLeft,
-  ArrowBigLeftDash,
-  ArrowBigRight,
-  ArrowBigRightDash,
-  Ticket,
-  Power,
-  Fence,
-  LandPlot,
-  Waypoints,
-  Boxes
+  lucide.RectangleHorizontal,
+  lucide.RectangleVertical,
+  lucide.Triangle,
+  lucide.TriangleRight,
+  lucide.Squircle,
+  lucide.Pentagon,
+  lucide.Hexagon,
+  lucide.Octagon,
+  lucide.CircleDot,
+  lucide.CircleSlash,
+  lucide.Diamond,
+  lucide.Cone,
+  lucide.Pyramid,
+  lucide.ArrowBigDown,
+  lucide.ArrowBigDownDash,
+  lucide.ArrowBigUp,
+  lucide.ArrowBigUpDash,
+  lucide.ArrowBigLeft,
+  lucide.ArrowBigLeftDash,
+  lucide.ArrowBigRight,
+  lucide.ArrowBigRightDash,
+  lucide.Ticket,
+  lucide.Power,
+  lucide.Fence,
+  lucide.LandPlot,
+  lucide.Waypoints,
+  lucide.Boxes
 ];
 
 const CursorShape = (Shape) => {
-  // eslint-disable-next-line react/display-name
-  return (props) => (
-    <Shape {...props} className={twMerge(props.className, "fill-transparent")} size={250} strokeWidth={0.3} />
+   
+  const icon = (props) => (
+    <Shape
+      {...props}
+      className={twMerge(props.className, "fill-transparent")}
+      size={shapeSize}
+      strokeWidth={shapeStrokeWidth}
+    />
   );
+  icon.displayName = Shape.displayName;
+  return icon;
 };
 
 const ShapeControls = () => {
@@ -101,7 +81,6 @@ const ShapeControls = () => {
 
 export const selectFirstShape = () =>
   fallible(() => {
-    console.log("selectFirstShape");
     store.dispatch(setCursor(CursorShape(shapes[0])));
   });
 

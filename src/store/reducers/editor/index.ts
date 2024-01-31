@@ -15,7 +15,8 @@ const initialState = {
   categories: [],
   seats: [],
   booths: [],
-  text: []
+  text: [],
+  shapes: []
 };
 
 export const slice = createSlice({
@@ -80,6 +81,12 @@ export const slice = createSlice({
     },
     deleteText(state, action) {
       state.text = state.text.filter((text) => text.id !== action.payload);
+    },
+    addShape(state, action) {
+      state.shapes.push(action.payload);
+    },
+    deleteShape(state, action) {
+      state.shapes = state.shapes.filter((shape) => shape.id !== action.payload);
     }
   }
 });
@@ -101,7 +108,9 @@ export const {
   addBooth,
   deleteBooth,
   addText,
-  deleteText
+  deleteText,
+  addShape,
+  deleteShape
 } = slice.actions;
 
 export default slice.reducer;

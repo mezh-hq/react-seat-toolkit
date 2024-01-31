@@ -14,6 +14,7 @@ export const Workspace = () => {
   const booths = useSelector((state) => state.editor.booths);
   const seats = useSelector((state) => state.editor.seats);
   const text = useSelector((state) => state.editor.text);
+  const shapes = useSelector((state) => state.editor.shapes);
   const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
 
   useLayoutEffect(() => {
@@ -50,6 +51,9 @@ export const Workspace = () => {
               letterSpacing={e.letterSpacing}
               {...elementProps(e)}
             />
+          ))}
+          {shapes.map((e) => (
+            <Element key={e.id} type={ElementType.Shape} name={e.name} {...elementProps(e)} />
           ))}
         </g>
       </svg>

@@ -41,7 +41,7 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
 
   const onClick = (e) => {
     const selectedTool = store.getState().toolbar.selectedTool;
-    if (selectedTool == Tool.Select) {
+    if (selectedTool === Tool.Select) {
       const ctrlPressed = e.ctrlKey || e.metaKey;
       if (isSelected) {
         if (ctrlPressed) {
@@ -56,7 +56,7 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
 
   return (
     <>
-      {centerCoords && type != ElementType.Text && (
+      {centerCoords && ![ElementType.Text, ElementType.Shape].includes(type) && (
         <circle
           id={`${id}-controls`}
           cx={centerCoords.x}

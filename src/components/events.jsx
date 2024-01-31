@@ -6,17 +6,21 @@ import { store } from "@/store";
 import {
   addBooth,
   addSeat,
+  addShape,
   addText,
   clearElements,
   deleteBooth,
   deleteSeat,
+  deleteShape,
   deleteText,
   selectElement,
   showControls
 } from "@/store/reducers/editor";
 import { getRelativeClickCoordsWithTransform } from "@/utils";
 import { Tool } from "./toolbar/data";
+import { ElementType } from "./workspace/elements";
 import { boothSize } from "./workspace/elements/booth";
+import { shapeSize } from "./workspace/elements/shape";
 
 const EventHandlers = () => {
   const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
@@ -25,8 +29,11 @@ const EventHandlers = () => {
 
   useEffect(() => {
     const onElemClick = (e) => {
-      if (!selectedElementIds.includes(e.target.id) && lastDeselectedElementId !== e.target.id) {
-        store.dispatch(clearElements(selectedTool === Tool.Text && e.target.id === ids.workspace));
+      let id = e.target.id;
+      const elementType = e.target.parentNode.getAttribute("data-element-type");
+      if (elementType === ElementType.Shape) id = e.target.parentNode.id;
+      if (!selectedElementIds.includes(id) && lastDeselectedElementId !== id) {
+        store.dispatch(clearElements(selectedTool === Tool.Text && id === ids.workspace));
       }
     };
     document.addEventListener("click", onElemClick);
@@ -48,6 +55,12 @@ const EventHandlers = () => {
         store.dispatch(addText({ id, x: coords.x - 68, y: coords.y + 11, label: "Edit me!" }));
         store.dispatch(selectElement(id));
         store.dispatch(showControls());
+      } else if (selectedTool == Tool.Shapes) {
+        const cursor = store.getState().editor.cursor;
+        const coords = getRelativeClickCoordsWithTransform(e);
+        store.dispatch(
+          addShape({ id: uuidV4(), x: coords.x - shapeSize / 2, y: coords.y - shapeSize / 2, name: cursor.displayName })
+        );
       } else if (selectedTool == Tool.Eraser) {
         if (e.target.nodeName === "circle") {
           store.dispatch(deleteSeat(e.target.id));
@@ -55,6 +68,8 @@ const EventHandlers = () => {
           store.dispatch(deleteBooth(e.target.id));
         } else if (e.target.nodeName === "text") {
           store.dispatch(deleteText(e.target.id));
+        } else if (e.srcElement.nodeName === "svg" && e.target.id !== ids.workspace) {
+          store.dispatch(deleteShape(e.target.id));
         }
       }
     };

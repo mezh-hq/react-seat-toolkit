@@ -2,18 +2,21 @@ import * as d3 from "d3";
 import { d3Extended } from "@/utils";
 import Booth from "./booth";
 import Seat from "./seat";
+import Shape from "./shape";
 import Text from "./text";
 
 export const ElementType = {
   Booth: "booth",
   Seat: "seat",
-  Text: "text"
+  Text: "text",
+  Shape: "shape"
 };
 
 export const elements = {
   [ElementType.Booth]: Booth,
   [ElementType.Seat]: Seat,
-  [ElementType.Text]: Text
+  [ElementType.Text]: Text,
+  [ElementType.Shape]: Shape
 };
 
 export const handleDrag = d3.drag().on("drag", function (event) {

@@ -118,3 +118,11 @@ a {
   scrollbar-color: transparent transparent;
   overflow-x: hidden !important;
 }
+
+.pointer-events-fill {
+  pointer-events: fill;
+}
+
+.pointer-events-stroke {
+  pointer-events: stroke;
+}
