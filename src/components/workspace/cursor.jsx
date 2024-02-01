@@ -26,7 +26,7 @@ export const Cursor = () => {
       if (
         isWithinBounds(x, y, workspace) &&
         !isWithinBounds(x, y, zoomControls) &&
-        !resizeCursors.includes(e.target.parentNode?.style?.cursor)
+        !resizeCursors.includes(e.target?.style?.cursor)
       ) {
         customCursor.style.display = "block";
       } else {

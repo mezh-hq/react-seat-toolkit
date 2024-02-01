@@ -5,11 +5,10 @@ import { twMerge } from "tailwind-merge";
 import { store } from "@/store";
 import { setCursor } from "@/store/reducers/editor";
 import { fallible } from "@/utils";
-import { shapeSize, shapeStrokeWidth } from "../workspace/elements/shape";
+import { resizableRectangle, shapeSize, shapeStrokeWidth } from "../workspace/elements/shape";
 
 export const shapes = [
   lucide.RectangleHorizontal,
-  lucide.RectangleVertical,
   lucide.Triangle,
   lucide.TriangleRight,
   lucide.Squircle,
@@ -34,17 +33,17 @@ export const shapes = [
   lucide.Fence,
   lucide.LandPlot,
   lucide.Waypoints,
-  lucide.Boxes
+  lucide.Boxes,
+  lucide.FireExtinguisher
 ];
 
 const CursorShape = (Shape) => {
-   
   const icon = (props) => (
     <Shape
       {...props}
       className={twMerge(props.className, "fill-transparent")}
-      size={shapeSize}
-      strokeWidth={shapeStrokeWidth}
+      size={Shape.displayName === lucide.RectangleHorizontal.displayName ? resizableRectangle.width : shapeSize}
+      strokeWidth={Shape.displayName === lucide.RectangleHorizontal.displayName ? 0.25 : shapeStrokeWidth}
     />
   );
   icon.displayName = Shape.displayName;

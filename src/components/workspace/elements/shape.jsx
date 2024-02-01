@@ -1,12 +1,31 @@
 import { forwardRef } from "react";
 import * as lucide from "lucide-react";
 import { twMerge } from "tailwind-merge";
-import { ElementType } from "./utils";
 
-export const shapeSize = 250;
-export const shapeStrokeWidth = 0.25;
+export const shapeSize = 65;
+export const shapeStrokeWidth = 0.65;
 
-const Shape = forwardRef(({ x, y, id, name, resizable, className, ...props }, ref) => {
+export const resizableRectangle = {
+  width: 200,
+  height: 100
+};
+
+const Shape = forwardRef(({ x, y, id, name, width, height, resizable, className, ...props }, ref) => {
+  if (name === "RectangleHorizontal") {
+    return (
+      <rect
+        ref={ref}
+        id={id}
+        x={x}
+        y={y}
+        width={width ?? resizableRectangle.width}
+        height={height ?? resizableRectangle.height}
+        rx={15}
+        className={twMerge(className, "fill-transparent", resizable && "resizable")}
+        {...props}
+      />
+    );
+  }
   const Icon = lucide[name];
   return (
     <Icon
@@ -15,9 +34,8 @@ const Shape = forwardRef(({ x, y, id, name, resizable, className, ...props }, re
       x={x}
       y={y}
       size={shapeSize}
-      className={twMerge(className, "stroke-[0.25] fill-transparent", resizable && "resizable")}
+      className={twMerge(className, "stroke-[0.75] fill-transparent")}
       {...props}
-      data-element-type={ElementType.Shape}
     />
   );
 });

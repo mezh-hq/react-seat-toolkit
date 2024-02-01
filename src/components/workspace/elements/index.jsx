@@ -79,6 +79,7 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
           isSelected ? "element-selected" : "element-unselected"
         )}
         onClick={onClick}
+        data-element-type={type}
       />
     </>
   );

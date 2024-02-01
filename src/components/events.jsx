@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect } from "react";
+import { RectangleHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
 import { v4 as uuidV4 } from "uuid";
 import { ids } from "@/constants";
@@ -20,7 +21,7 @@ import { getRelativeClickCoordsWithTransform } from "@/utils";
 import { Tool } from "./toolbar/data";
 import { ElementType } from "./workspace/elements";
 import { boothSize } from "./workspace/elements/booth";
-import { shapeSize } from "./workspace/elements/shape";
+import { resizableRectangle, shapeSize } from "./workspace/elements/shape";
 
 const EventHandlers = () => {
   const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
@@ -30,7 +31,7 @@ const EventHandlers = () => {
   useEffect(() => {
     const onElemClick = (e) => {
       let id = e.target.id;
-      const elementType = e.target.parentNode.getAttribute("data-element-type");
+      const elementType = e.target.parentNode?.getAttribute("data-element-type");
       if (elementType === ElementType.Shape) id = e.target.parentNode.id;
       if (!selectedElementIds.includes(id) && lastDeselectedElementId !== id) {
         store.dispatch(clearElements(selectedTool === Tool.Text && id === ids.workspace));
@@ -58,16 +59,28 @@ const EventHandlers = () => {
       } else if (selectedTool == Tool.Shapes) {
         const cursor = store.getState().editor.cursor;
         const coords = getRelativeClickCoordsWithTransform(e);
-        store.dispatch(
-          addShape({ id: uuidV4(), x: coords.x - shapeSize / 2, y: coords.y - shapeSize / 2, name: cursor.displayName })
-        );
+        const shape = { id: uuidV4(), x: coords.x, y: coords.y, name: cursor.displayName };
+        if (shape.name === RectangleHorizontal.displayName) {
+          shape.width = resizableRectangle.width * 0.83;
+          shape.height = resizableRectangle.height;
+          shape.x -= shape.width / 2;
+          shape.y -= shape.height / 2;
+        } else {
+          shape.x -= shapeSize / 2;
+          shape.y -= shapeSize / 2;
+        }
+        store.dispatch(addShape(shape));
       } else if (selectedTool == Tool.Eraser) {
         if (e.target.parentNode.nodeName === "svg" && e.target.id !== ids.workspace) {
           store.dispatch(deleteShape(e.target.id || e.target.parentNode.id));
         } else if (e.target.nodeName === "circle") {
           store.dispatch(deleteSeat(e.target.id));
         } else if (e.target.nodeName === "rect") {
-          store.dispatch(deleteBooth(e.target.id));
+          if (e.target.getAttribute("data-element-type") === ElementType.Shape) {
+            store.dispatch(deleteShape(e.target.id));
+          } else {
+            store.dispatch(deleteBooth(e.target.id));
+          }
         } else if (e.target.nodeName === "text") {
           store.dispatch(deleteText(e.target.id));
         }
