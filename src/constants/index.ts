@@ -3,6 +3,7 @@ export const ids = {
   cursor: "stk-cursor",
   location: "stk-location",
   operationBar: "stk-operation-bar",
+  sectionBar: "stk-section-bar",
   toolbar: "stk-tool-bar",
   workspace: "stk-workspace",
   workspaceContainer: "stk-workspace-container",

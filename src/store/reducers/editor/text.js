@@ -5,7 +5,7 @@ export default () => [
   {
     id: uuidV4(),
     x: getWorkspaceCenterX() - 58,
-    y: getWorkspaceHeight() * 0.25,
+    y: getWorkspaceHeight() * 0.24,
     label: "STAGE",
     fontSize: 35,
     fontWeight: 200,

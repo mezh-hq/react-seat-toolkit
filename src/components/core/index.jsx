@@ -1,4 +1,5 @@
 export * from "./accordion";
+export * from "./popover";
 export * from "./sheet";
 export * from "./switch";
 export * from "./typography";

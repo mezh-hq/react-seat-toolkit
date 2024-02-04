@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect } from "react";
+import { useCallback, useLayoutEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { ids } from "@/constants";
 import { store } from "@/store";
@@ -16,6 +16,7 @@ export const Workspace = () => {
   const seats = useSelector((state) => state.editor.seats);
   const text = useSelector((state) => state.editor.text);
   const shapes = useSelector((state) => state.editor.shapes);
+  const selectedSection = useSelector((state) => state.editor.selectedSection);
   const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
   const selectedTool = useSelector((state) => state.toolbar.selectedTool);
 
@@ -34,17 +35,22 @@ export const Workspace = () => {
     [selectedElementIds]
   );
 
+  const sectionSeats = useMemo(() => seats[selectedSection] ?? [], [seats, selectedSection]);
+  const sectionBooths = useMemo(() => booths[selectedSection] ?? [], [booths, selectedSection]);
+  const sectionText = useMemo(() => text[selectedSection] ?? [], [text, selectedSection]);
+  const sectionShapes = useMemo(() => shapes[selectedSection] ?? [], [shapes, selectedSection]);
+
   return (
-    <div id={ids.workspaceContainer} className="w-full h-[88.5vh] relative border border-b-0 border-black">
+    <div id={ids.workspaceContainer} className="w-full h-full relative border border-b-0 border-black">
       <svg id={ids.workspace} className="w-full h-full">
         <g>
-          {seats.map((e) => (
+          {sectionSeats.map((e) => (
             <Element key={e.id} type={ElementType.Seat} {...elementProps(e)} />
           ))}
-          {booths.map((e) => (
+          {sectionBooths.map((e) => (
             <Element key={e.id} type={ElementType.Booth} {...elementProps(e)} />
           ))}
-          {text.map((e) => (
+          {sectionText.map((e) => (
             <Element
               key={e.id}
               type={ElementType.Text}
@@ -54,7 +60,7 @@ export const Workspace = () => {
               {...elementProps(e)}
             />
           ))}
-          {shapes.map((e) => (
+          {sectionShapes.map((e) => (
             <Element
               key={e.id}
               type={ElementType.Shape}

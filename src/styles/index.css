@@ -73,6 +73,10 @@
 }
 
 @layer base {
+  html, body, #storybook-root {
+    min-height: 100% !important;
+    height: 100% !important;
+  }
   body {
     @apply bg-background text-foreground;
     margin-right: 0px !important;

@@ -5,7 +5,7 @@ import { tools } from "./toolbar/data";
 const Footer = () => {
   const selectedTool = useSelector((state) => state.toolbar.selectedTool);
   return (
-    <div className="w-full h-8 flex justify-center items-center bg-black text-white relative">
+    <div className="w-full fixed bottom-0 h-8 flex justify-center items-center bg-black text-white">
       <span className="text-sm">React Seat Toolkit </span>
       <AnimatedSwitcher
         show={!!selectedTool}

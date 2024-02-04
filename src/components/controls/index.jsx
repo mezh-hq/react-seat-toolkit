@@ -26,7 +26,7 @@ const Controls = () => {
       <div className={twMerge("pointer-events-none grow-0 shrink-0", transition, open ? width : "w-0")} />
       <div
         className={twMerge(
-          "py-5 px-6 h-[88.5vh] absolute top-0 border-t border-black overflow-y-auto",
+          "py-5 px-6 h-full absolute top-0 border-t border-black overflow-y-auto",
           transition,
           width,
           open ? "right-0" : "-right-[22rem]"

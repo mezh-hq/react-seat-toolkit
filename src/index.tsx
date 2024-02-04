@@ -1,5 +1,15 @@
 import { Provider } from "react-redux";
-import { Controls, Cursor, EventHandlers, Footer, Operations, Toolbar, TooltipProvider, Workspace } from "@/components";
+import {
+  Controls,
+  Cursor,
+  EventHandlers,
+  Footer,
+  Operations,
+  Sections,
+  Toolbar,
+  TooltipProvider,
+  Workspace
+} from "@/components";
 import { useInteractions } from "@/hooks";
 import { store } from "@/store";
 
@@ -8,9 +18,10 @@ export const SeatDesigner = () => {
   return (
     <Provider store={store}>
       <TooltipProvider>
-        <div className="flex flex-col">
+        <div className="h-full flex flex-col">
           <Operations />
-          <div className="flex relative">
+          <Sections />
+          <div className="h-full flex relative">
             <Toolbar />
             <Workspace />
             <Controls />

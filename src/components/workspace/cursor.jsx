@@ -26,7 +26,9 @@ export const Cursor = () => {
       if (
         isWithinBounds(x, y, workspace) &&
         !isWithinBounds(x, y, zoomControls) &&
-        !resizeCursors.includes(e.target?.style?.cursor)
+        !resizeCursors.includes(e.target?.style?.cursor) &&
+        !e.target.id.includes("radix:") &&
+        e.target.getAttribute("role") !== "dialog"
       ) {
         customCursor.style.display = "block";
       } else {
