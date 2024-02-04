@@ -77,6 +77,9 @@ export const slice = createSlice({
       state.shapes[state.selectedSection] = shapes();
     },
     addSeat(state, action) {
+      if (!state.seats[state.selectedSection]) {
+        state.seats[state.selectedSection] = [];
+      }
       state.seats[state.selectedSection].push(action.payload);
     },
     deleteSeat(state, action) {
@@ -85,6 +88,9 @@ export const slice = createSlice({
       );
     },
     addBooth(state, action) {
+      if (!state.booths[state.selectedSection]) {
+        state.booths[state.selectedSection] = [];
+      }
       state.booths[state.selectedSection].push(action.payload);
     },
     deleteBooth(state, action) {
@@ -93,6 +99,9 @@ export const slice = createSlice({
       );
     },
     addText(state, action) {
+      if (!state.text[state.selectedSection]) {
+        state.text[state.selectedSection] = [];
+      }
       state.text[state.selectedSection].push(action.payload);
     },
     deleteText(state, action) {
@@ -101,6 +110,9 @@ export const slice = createSlice({
       );
     },
     addShape(state, action) {
+      if (!state.shapes[state.selectedSection]) {
+        state.shapes[state.selectedSection] = [];
+      }
       state.shapes[state.selectedSection].push(action.payload);
     },
     deleteShape(state, action) {

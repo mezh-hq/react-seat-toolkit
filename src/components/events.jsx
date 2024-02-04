@@ -33,7 +33,7 @@ const EventHandlers = () => {
       let id = e.target.id;
       const elementType = e.target.parentNode?.getAttribute("data-element-type");
       if (elementType === ElementType.Shape) id = e.target.parentNode.id;
-      if (!selectedElementIds.includes(id) && lastDeselectedElementId !== id) {
+      if (!selectedElementIds.includes(id) && lastDeselectedElementId !== id && selectedElementIds.length) {
         store.dispatch(clearElements(selectedTool === Tool.Text && id === ids.workspace));
       }
     };
