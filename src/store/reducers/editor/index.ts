@@ -141,6 +141,10 @@ export const slice = createSlice({
       if (action.payload === state.selectedSection) {
         state.selectedSection = state.sections[0].id;
       }
+      delete state.seats[action.payload];
+      delete state.booths[action.payload];
+      delete state.text[action.payload];
+      delete state.shapes[action.payload];
     },
     selectSection: (state, action) => {
       state.selectedSection = action.payload;
