@@ -61,7 +61,7 @@ const ShapeControls = () => {
   }, []);
 
   return (
-    <div className="w-full grid grid-cols-3 gap-2 ">
+    <div className="w-full grid grid-cols-3 gap-2">
       {shapes.map((Shape, i) => (
         <div
           key={i}
