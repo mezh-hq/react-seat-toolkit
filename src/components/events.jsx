@@ -15,7 +15,7 @@ import {
   deleteShape,
   deleteText
 } from "@/store/reducers/editor";
-import { getRelativeClickCoordsWithTransform } from "@/utils";
+import { getRelativeClickCoordsWithTransform, isWithinBounds } from "@/utils";
 import { Tool } from "./toolbar/data";
 import { ElementType } from "./workspace/elements";
 import { boothSize } from "./workspace/elements/booth";
@@ -29,9 +29,15 @@ const EventHandlers = () => {
   useEffect(() => {
     const onElemClick = (e) => {
       let id = e.target.id;
+      const controls = document.getElementById(ids.controls)?.getBoundingClientRect();
       const elementType = e.target.parentNode?.getAttribute("data-element-type");
       if (elementType === ElementType.Shape) id = e.target.parentNode.id;
-      if (!selectedElementIds.includes(id) && lastDeselectedElementId !== id && selectedElementIds.length) {
+      if (
+        !selectedElementIds.includes(id) &&
+        lastDeselectedElementId !== id &&
+        selectedElementIds.length &&
+        !isWithinBounds(e.clientX, e.clientY, controls)
+      ) {
         store.dispatch(clearElements(selectedTool === Tool.Text && id === ids.workspace));
       }
     };

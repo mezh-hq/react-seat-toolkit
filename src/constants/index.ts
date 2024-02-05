@@ -1,4 +1,5 @@
 export const ids = {
+  controls: "stk-controls",
   crosshairs: "stk-crosshairs",
   cursor: "stk-cursor",
   location: "stk-location",

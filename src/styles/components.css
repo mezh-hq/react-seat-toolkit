@@ -15,9 +15,9 @@
     margin: 20px; /* Add margin to the grid container */
     grid-auto-flow: dense; /* Enable dense packing of items */
     position: relative; /* Enable positioning of the pseudo-element */
-}
+  }
 
-.grid-autofill::before {
+  .grid-autofill::before {
     content: ""; /* Create a pseudo-element for styling the lines */
     position: absolute;
     top: 0;
@@ -26,5 +26,5 @@
     width: 1px;
     background-color: #000; /* Color of the grid lines */
     transform: translateX(calc(100% + 5px)); /* Adjust the position of the lines */
-}
+  }
 }

@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
+import { ids } from "@/constants";
 import { AnimatedSwitcher } from "../core";
 import { Tool } from "../toolbar/data";
 import { default as NoControls } from "./no-controls";
@@ -32,6 +33,7 @@ const Controls = () => {
     <>
       <div className={twMerge("pointer-events-none grow-0 shrink-0", transition, open ? width : "w-0")} />
       <div
+        id={ids.controls}
         className={twMerge(
           "py-5 px-6 h-[calc(100%-32px)] absolute top-0 border-t border-black overflow-y-auto",
           transition,
