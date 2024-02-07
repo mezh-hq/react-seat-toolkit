@@ -25,7 +25,7 @@ const Controls = () => {
       }
       return NoSelectedElement;
     }
-    if (selectedTool === Tool.Shapes) return ShapeControls;
+    if (selectedTool === Tool.Shape) return ShapeControls;
     return NoControls;
   }, [selectedTool, selectedElementIds]);
 

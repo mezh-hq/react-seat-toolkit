@@ -5,6 +5,7 @@ export const ids = {
   location: "stk-location",
   operationBar: "stk-operation-bar",
   sectionBar: "stk-section-bar",
+  templine: "stk-templine",
   toolbar: "stk-tool-bar",
   workspace: "stk-workspace",
   workspaceContainer: "stk-workspace-container",

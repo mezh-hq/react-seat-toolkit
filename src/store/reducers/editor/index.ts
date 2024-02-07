@@ -22,10 +22,12 @@ const initialState = {
     }
   ],
   selectedSection: null,
+  selectedPolylineId: null,
   seats: {},
   booths: {},
   text: {},
-  shapes: {}
+  shapes: {},
+  polylines: {}
 };
 
 initialState.selectedSection = initialState.sections[0].id;
@@ -120,6 +122,21 @@ export const slice = createSlice({
         (shape) => shape.id !== action.payload
       );
     },
+    addPolyline: (state, action) => {
+      if (!state.polylines[state.selectedSection]) {
+        state.polylines[state.selectedSection] = [];
+      }
+      state.polylines[state.selectedSection].push(action.payload);
+    },
+    deletePolyline: (state, action) => {
+      state.polylines[state.selectedSection] = state.polylines[state.selectedSection].filter(
+        (polyline) => polyline.id !== action.payload
+      );
+    },
+    addPolylinePoint: (state, action) => {
+      const polyline = state.polylines[state.selectedSection].find((polyline) => polyline.id === action.payload.id);
+      polyline.points.push(action.payload.point);
+    },
     addCategory: (state, action) => {
       state.categories.push(action.payload);
     },
@@ -145,6 +162,7 @@ export const slice = createSlice({
       delete state.booths[action.payload];
       delete state.text[action.payload];
       delete state.shapes[action.payload];
+      delete state.polylines[action.payload];
     },
     selectSection: (state, action) => {
       state.selectedSection = action.payload;
@@ -152,6 +170,9 @@ export const slice = createSlice({
     updateSection: (state, action) => {
       const index = state.sections.findIndex((section) => section.id === action.payload.id);
       state.sections[index] = action.payload;
+    },
+    setSelectedPolylineId: (state, action) => {
+      state.selectedPolylineId = action.payload;
     }
   }
 });
@@ -176,13 +197,17 @@ export const {
   deleteText,
   addShape,
   deleteShape,
+  addPolyline,
+  deletePolyline,
+  addPolylinePoint,
   addCategory,
   deleteCategory,
   updateCategory,
   addSection,
   deleteSection,
   selectSection,
-  updateSection
+  updateSection,
+  setSelectedPolylineId
 } = slice.actions;
 
 export default slice.reducer;

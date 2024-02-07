@@ -1,4 +1,4 @@
-import { Circle, Eraser, Hand, MousePointer2, Shapes, SquareEqual, Type } from "lucide-react";
+import { Circle, Eraser, Hand, MousePointer2, PenTool, Shapes, SquareEqual, Type } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
 export enum Tool {
@@ -6,8 +6,9 @@ export enum Tool {
   Eraser = "Eraser",
   Seat = "Seat",
   Booth = "Booth",
+  Pen = "Pen",
   Text = "Text",
-  Shapes = "Shapes",
+  Shape = "Shapes",
   Pan = "Pan"
 }
 
@@ -43,12 +44,20 @@ export const tools = {
     shortcut: "B",
     description: "Click anywhere to place a booth"
   },
+  [Tool.Pen]: {
+    icon: PenTool,
+    iconCursor: (props: any) => (
+      <PenTool {...props} className={twMerge(props.className, "translate-x-[-15%] translate-y-[5%] rotate-[15deg]")} />
+    ),
+    shortcut: "P",
+    description: "Click anywhere to start drawing a shape"
+  },
   [Tool.Text]: {
     icon: Type,
     shortcut: "T",
     description: "Click anywhere to place text"
   },
-  [Tool.Shapes]: {
+  [Tool.Shape]: {
     icon: Shapes,
     shortcut: "C",
     description: "Click anywhere to place a chosen shape from the library"

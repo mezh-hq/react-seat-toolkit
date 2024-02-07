@@ -6,6 +6,8 @@ import { ids } from "@/constants";
 import { store } from "@/store";
 import {
   addBooth,
+  addPolyline,
+  addPolylinePoint,
   addSeat,
   addShape,
   addText,
@@ -13,8 +15,11 @@ import {
   deleteBooth,
   deleteSeat,
   deleteShape,
-  deleteText
+  deleteText,
+  selectElement,
+  setSelectedPolylineId
 } from "@/store/reducers/editor";
+import { selectTool } from "@/store/reducers/toolbar";
 import { getRelativeClickCoordsWithTransform, isWithinBounds } from "@/utils";
 import { Tool } from "./toolbar/data";
 import { ElementType } from "./workspace/elements";
@@ -24,6 +29,8 @@ import { resizableRectangle, shapeSize } from "./workspace/elements/shape";
 const EventHandlers = () => {
   const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
   const lastDeselectedElementId = useSelector((state) => state.editor.lastDeselectedElementId);
+  const selectedPolylineId = useSelector((state) => state.editor.selectedPolylineId);
+  const polylines = useSelector((state) => state.editor.polylines);
   const selectedTool = useSelector((state) => state.toolbar.selectedTool);
 
   useEffect(() => {
@@ -47,6 +54,29 @@ const EventHandlers = () => {
     };
   }, [selectedElementIds]);
 
+  useEffect(() => {
+    const onMouseMove = (e) => {
+      if (selectedPolylineId) {
+        const templine = document.getElementById(ids.templine);
+        const selectedPolyline = store
+          .getState()
+          .editor.polylines[store.getState().editor.selectedSection].find(
+            (polyline) => polyline.id === selectedPolylineId
+          );
+        const lastPoint = selectedPolyline.points[selectedPolyline.points.length - 1];
+        const coords = getRelativeClickCoordsWithTransform(e);
+        templine.setAttribute("x1", lastPoint.x);
+        templine.setAttribute("y1", lastPoint.y);
+        templine.setAttribute("x2", coords.x);
+        templine.setAttribute("y2", coords.y);
+      }
+    };
+    document.addEventListener("mousemove", onMouseMove);
+    return () => {
+      document.removeEventListener("mousemove", onMouseMove);
+    };
+  }, [selectedPolylineId, polylines]);
+
   useLayoutEffect(() => {
     const handler = (e) => {
       if (selectedTool == Tool.Seat) {
@@ -58,7 +88,7 @@ const EventHandlers = () => {
         const id = uuidV4();
         const coords = getRelativeClickCoordsWithTransform(e);
         store.dispatch(addText({ id, x: coords.x - 68, y: coords.y + 11, label: "Edit me!" }));
-      } else if (selectedTool == Tool.Shapes) {
+      } else if (selectedTool == Tool.Shape) {
         const cursor = store.getState().editor.cursor;
         const coords = getRelativeClickCoordsWithTransform(e);
         const shape = { id: uuidV4(), x: coords.x, y: coords.y, name: cursor.displayName };
@@ -72,6 +102,31 @@ const EventHandlers = () => {
           shape.y -= shapeSize / 2;
         }
         store.dispatch(addShape(shape));
+      } else if (selectedTool == Tool.Pen) {
+        const selectedPolylineId = store.getState().editor.selectedPolylineId;
+        const coords = getRelativeClickCoordsWithTransform(e);
+        if (selectedPolylineId) {
+          const selectedPolyline = store
+            .getState()
+            .editor.polylines[store.getState().editor.selectedSection].find(
+              (polyline) => polyline.id === selectedPolylineId
+            );
+          if (selectedPolyline.points.find((point) => point.x === coords.x && point.y === coords.y)) {
+            store.dispatch(setSelectedPolylineId(null));
+            store.dispatch(selectElement(selectedPolylineId));
+            store.dispatch(selectTool(Tool.Select));
+          }
+          store.dispatch(addPolylinePoint({ id: selectedPolylineId, point: coords }));
+        } else {
+          const id = uuidV4();
+          store.dispatch(setSelectedPolylineId(id));
+          store.dispatch(
+            addPolyline({
+              id,
+              points: [coords]
+            })
+          );
+        }
       } else if (selectedTool == Tool.Eraser) {
         if (e.target.parentNode.nodeName === "svg" && e.target.id !== ids.workspace) {
           store.dispatch(deleteShape(e.target.id || e.target.parentNode.id));

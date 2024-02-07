@@ -16,8 +16,10 @@ export const Workspace = () => {
   const seats = useSelector((state) => state.editor.seats);
   const text = useSelector((state) => state.editor.text);
   const shapes = useSelector((state) => state.editor.shapes);
+  const polylines = useSelector((state) => state.editor.polylines);
   const selectedSection = useSelector((state) => state.editor.selectedSection);
   const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
+  const selectedPolylineId = useSelector((state) => state.editor.selectedPolylineId);
   const selectedTool = useSelector((state) => state.toolbar.selectedTool);
 
   useLayoutEffect(() => {
@@ -39,6 +41,7 @@ export const Workspace = () => {
   const sectionBooths = useMemo(() => booths[selectedSection] ?? [], [booths, selectedSection]);
   const sectionText = useMemo(() => text[selectedSection] ?? [], [text, selectedSection]);
   const sectionShapes = useMemo(() => shapes[selectedSection] ?? [], [shapes, selectedSection]);
+  const sectionPolylines = useMemo(() => polylines[selectedSection] ?? [], [polylines, selectedSection]);
 
   return (
     <div id={ids.workspaceContainer} className="w-full h-full relative border border-b-0 border-black">
@@ -71,6 +74,10 @@ export const Workspace = () => {
               {...elementProps(e)}
             />
           ))}
+          {sectionPolylines.map((e) => (
+            <Element key={e.id} type={ElementType.Polyline} points={e.points} {...elementProps(e)} />
+          ))}
+          {selectedPolylineId && <line id={ids.templine} className="stroke-2 stroke-black fill-white" />}
         </g>
       </svg>
       <Crosshairs render={tools[selectedTool]?.crosshairs} />

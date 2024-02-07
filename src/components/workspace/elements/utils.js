@@ -2,6 +2,7 @@ import * as d3 from "d3";
 import { resizeCursors } from "@/hooks/interactions";
 import { d3Extended } from "@/utils";
 import Booth from "./booth";
+import Polyline from "./polyline";
 import Seat from "./seat";
 import Shape from "./shape";
 import Text from "./text";
@@ -10,14 +11,16 @@ export const ElementType = {
   Booth: "booth",
   Seat: "seat",
   Text: "text",
-  Shape: "shape"
+  Shape: "shape",
+  Polyline: "polyline"
 };
 
 export const elements = {
   [ElementType.Booth]: Booth,
   [ElementType.Seat]: Seat,
   [ElementType.Text]: Text,
-  [ElementType.Shape]: Shape
+  [ElementType.Shape]: Shape,
+  [ElementType.Polyline]: Polyline
 };
 
 export const handleDrag = d3.drag().on("drag", function (event) {
@@ -56,4 +59,17 @@ export const handleShapeDrag = d3.drag().on("drag", function (event) {
   const y = +me.attr("y") + event.dy;
   me.attr("x", x);
   me.attr("y", y);
+});
+
+export const handlePolylineDrag = d3.drag().on("drag", function (event) {
+  const me = d3.select(this);
+  const points = me
+    .attr("points")
+    .split(" ")
+    .map((point) => {
+      const [x, y] = point.split(",");
+      return `${+x + event.dx},${+y + event.dy}`;
+    })
+    .join(" ");
+  me.attr("points", points);
 });

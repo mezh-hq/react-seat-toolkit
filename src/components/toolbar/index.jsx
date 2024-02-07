@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components";
 import { ids } from "@/constants";
 import { store } from "@/store";
-import { clearCursor, setCursor, showControls } from "@/store/reducers/editor";
+import { clearCursor, setCursor, setSelectedPolylineId, showControls } from "@/store/reducers/editor";
 import { clearTool, selectTool } from "@/store/reducers/toolbar";
 import { fallible } from "@/utils";
 import { selectFirstShape } from "../controls/shapes";
@@ -13,23 +13,31 @@ import { Tool, tools } from "./data";
 const ToolBar = () => {
   const selectedTool = useSelector((state) => state.toolbar.selectedTool);
 
-  const onEscape = useCallback((event) => {
-    if (event.key === "Escape") {
-      store.dispatch(clearTool());
-      store.dispatch(clearCursor());
-    }
-  }, []);
+  const onEscape = useCallback(
+    (event) => {
+      if (event.key === "Escape") {
+        if (selectedTool === Tool.Pen) {
+          store.dispatch(selectTool(Tool.Select));
+        } else {
+          store.dispatch(clearTool());
+          store.dispatch(clearCursor());
+        }
+        store.dispatch(setSelectedPolylineId(null));
+      }
+    },
+    [selectedTool]
+  );
 
   useEffect(() => {
     window.addEventListener("keydown", onEscape);
     return () => {
       window.removeEventListener("keydown", onEscape);
     };
-  }, []);
+  }, [selectedTool]);
 
   useEffect(() => {
     fallible(() => {
-      if (selectedTool && selectedTool !== Tool.Shapes) {
+      if (selectedTool && selectedTool !== Tool.Shape) {
         store.dispatch(setCursor(tools[selectedTool].iconCursor ?? tools[selectedTool].icon));
       }
     });
@@ -37,7 +45,7 @@ const ToolBar = () => {
 
   const onToolClick = (tool) => {
     store.dispatch(selectTool(tool));
-    if (tool === Tool.Shapes) {
+    if (tool === Tool.Shape) {
       store.dispatch(showControls());
       selectFirstShape();
     }
