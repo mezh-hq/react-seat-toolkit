@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect } from "react";
 import { RectangleHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
 import { v4 as uuidV4 } from "uuid";
-import { ids } from "@/constants";
+import { dataAttributes, ids } from "@/constants";
 import { store } from "@/store";
 import {
   addBooth,
@@ -38,7 +38,7 @@ const EventHandlers = () => {
     const onElemClick = (e) => {
       let id = e.target.id;
       const controls = document.getElementById(ids.controls)?.getBoundingClientRect();
-      const elementType = e.target.parentNode?.getAttribute("data-element-type");
+      const elementType = e.target.parentNode?.getAttribute(dataAttributes.elementType);
       if (elementType === ElementType.Shape) id = e.target.parentNode.id;
       if (
         !selectedElementIds.includes(id) &&
@@ -134,7 +134,7 @@ const EventHandlers = () => {
         } else if (e.target.nodeName === "circle") {
           store.dispatch(deleteSeat(e.target.id));
         } else if (e.target.nodeName === "rect") {
-          if (e.target.getAttribute("data-element-type") === ElementType.Shape) {
+          if (e.target.getAttribute(dataAttributes.elementType) === ElementType.Shape) {
             store.dispatch(deleteShape(e.target.id));
           } else {
             store.dispatch(deleteBooth(e.target.id));

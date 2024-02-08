@@ -16,3 +16,7 @@ export const selectors = {
   crosshairGroup: `#${ids.crosshairs} g`,
   workspaceGroup: `#${ids.workspace} g`
 };
+
+export const dataAttributes = {
+  elementType: "data-element-type"
+};
