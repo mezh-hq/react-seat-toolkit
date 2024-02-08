@@ -45,16 +45,16 @@ const ToolBar = () => {
 
   const onToolClick = (tool) => {
     store.dispatch(selectTool(tool));
-    if (tool === Tool.Shape) {
+    if ([Tool.Image, Tool.Shape].includes(tool)) {
       store.dispatch(showControls());
-      selectFirstShape();
+      if (tool === Tool.Shape) selectFirstShape();
     }
   };
 
   return (
     <div
       id={ids.toolbar}
-      className="h-full flex flex-col gap-6 border-t pt-5 border-black [&>*:last-child]:[&>*:last-child]:hidden bg-black/5"
+      className="h-full flex flex-col gap-5 border-t pt-5 border-black [&>*:last-child]:[&>*:last-child]:hidden bg-black/5"
     >
       {Object.entries(tools).map(([key, value]) => {
         const Icon = value.icon;
@@ -81,7 +81,7 @@ const ToolBar = () => {
                 {key}
               </TooltipContent>
             </Tooltip>
-            <div className="bg-black h-1 w-1 mx-auto left-[45%] opacity-10 absolute bottom-0 transform translate-y-3.5 rotate-[-25deg]" />
+            <div className="bg-black h-1 w-1 mx-auto left-[45%] opacity-10 absolute bottom-0 transform translate-y-[0.75rem] rotate-[-25deg]" />
           </div>
         );
       })}

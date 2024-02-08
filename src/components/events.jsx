@@ -13,6 +13,7 @@ import {
   addText,
   clearElements,
   deleteBooth,
+  deleteImage,
   deleteSeat,
   deleteShape,
   deleteText,
@@ -140,6 +141,8 @@ const EventHandlers = () => {
           }
         } else if (e.target.nodeName === "text") {
           store.dispatch(deleteText(e.target.id));
+        } else if (e.target.nodeName === "image") {
+          store.dispatch(deleteImage(e.target.id));
         }
       }
     };

@@ -40,3 +40,24 @@ export const getRelativeClickCoordsWithTransform = (e: any) => {
     y: (coords.y - transform.y) / transform.k
   };
 };
+
+export const toBase64 = (file: File) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+};
+
+export const getImageDimensions = async (base64File) => {
+  const img = new Image();
+  img.src = URL.createObjectURL(await fetch(base64File).then((res) => res.blob()));
+  await img.decode();
+  const width = img.width;
+  const height = img.height;
+  return {
+    width,
+    height
+  };
+};

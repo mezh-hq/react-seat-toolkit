@@ -27,7 +27,8 @@ const initialState = {
   booths: {},
   text: {},
   shapes: {},
-  polylines: {}
+  polylines: {},
+  images: {}
 };
 
 initialState.selectedSection = initialState.sections[0].id;
@@ -137,6 +138,17 @@ export const slice = createSlice({
       const polyline = state.polylines[state.selectedSection].find((polyline) => polyline.id === action.payload.id);
       polyline.points.push(action.payload.point);
     },
+    addImage: (state, action) => {
+      if (!state.images[state.selectedSection]) {
+        state.images[state.selectedSection] = [];
+      }
+      state.images[state.selectedSection].push(action.payload);
+    },
+    deleteImage: (state, action) => {
+      state.images[state.selectedSection] = state.images[state.selectedSection].filter(
+        (image) => image.id !== action.payload
+      );
+    },
     addCategory: (state, action) => {
       state.categories.push(action.payload);
     },
@@ -163,6 +175,7 @@ export const slice = createSlice({
       delete state.text[action.payload];
       delete state.shapes[action.payload];
       delete state.polylines[action.payload];
+      delete state.images[action.payload];
     },
     selectSection: (state, action) => {
       state.selectedSection = action.payload;
@@ -200,6 +213,8 @@ export const {
   addPolyline,
   deletePolyline,
   addPolylinePoint,
+  addImage,
+  deleteImage,
   addCategory,
   deleteCategory,
   updateCategory,

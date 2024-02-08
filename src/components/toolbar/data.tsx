@@ -1,4 +1,4 @@
-import { Circle, Eraser, Hand, MousePointer2, PenTool, Shapes, SquareEqual, Type } from "lucide-react";
+import { Circle, Eraser, Hand, Image, MousePointer2, PenTool, Shapes, SquareEqual, Type } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
 export enum Tool {
@@ -9,6 +9,7 @@ export enum Tool {
   Pen = "Pen",
   Text = "Text",
   Shape = "Shapes",
+  Image = "Image",
   Pan = "Pan"
 }
 
@@ -61,6 +62,11 @@ export const tools = {
     icon: Shapes,
     shortcut: "C",
     description: "Click anywhere to place a chosen shape from the library"
+  },
+  [Tool.Image]: {
+    icon: Image,
+    shortcut: "I",
+    description: "Upload an image to the workspace"
   },
   [Tool.Pan]: {
     icon: Hand,

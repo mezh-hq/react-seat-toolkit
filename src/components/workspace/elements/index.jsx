@@ -68,16 +68,17 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
 
   return (
     <>
-      {centerCoords && ![ElementType.Text, ElementType.Shape].includes(type) && (
-        <circle
-          id={`${id}-controls`}
-          cx={centerCoords.x}
-          cy={centerCoords.y}
-          r={controlRadius}
-          className="stroke-2 stroke-blue-200 fill-none pointer-events-none"
-          strokeDasharray="20, 38"
-        />
-      )}
+      {centerCoords &&
+        ![ElementType.Text, ElementType.Shape, ElementType.Image, ElementType.Polyline].includes(type) && (
+          <circle
+            id={`${id}-controls`}
+            cx={centerCoords.x}
+            cy={centerCoords.y}
+            r={controlRadius}
+            className="stroke-2 stroke-blue-200 fill-none pointer-events-none"
+            strokeDasharray="20, 38"
+          />
+        )}
       <Element
         id={id}
         ref={ref}
