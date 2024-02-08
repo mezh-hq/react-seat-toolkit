@@ -42,7 +42,7 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
       handleSeatDrag(node);
     } else if (type === ElementType.Text) {
       handleTextDrag(node);
-    } else if (type === ElementType.Shape) {
+    } else if (type === ElementType.Shape || type === ElementType.Image) {
       handleShapeDrag(node);
     } else if (type === ElementType.Polyline) {
       handlePolylineDrag(node);
