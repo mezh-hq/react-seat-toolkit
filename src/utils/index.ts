@@ -61,3 +61,9 @@ export const getImageDimensions = async (base64File) => {
     height
   };
 };
+
+export const rgbToHex = (rgb: string) => {
+  if (!rgb) return "";
+  const [r, g, b] = rgb.match(/\d+/g);
+  return `#${parseInt(r).toString(16)}${parseInt(g).toString(16)}${parseInt(b).toString(16)}`;
+};

@@ -14,7 +14,23 @@ const initialState = {
   location: locationPlaceholder,
   selectedElementIds: [],
   lastDeselectedElementId: null,
-  categories: [],
+  categories: [
+    {
+      id: uuidv4(),
+      name: "Standard",
+      color: "#000000"
+    },
+    {
+      id: uuidv4(),
+      name: "Premium",
+      color: "#FF0000"
+    },
+    {
+      id: uuidv4(),
+      name: "VIP",
+      color: "#0000FF"
+    }
+  ],
   sections: [
     {
       id: uuidv4(),

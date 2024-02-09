@@ -38,7 +38,7 @@ const EventHandlers = () => {
     const onElemClick = (e) => {
       let id = e.target.id;
       const controls = document.getElementById(ids.controls)?.getBoundingClientRect();
-      const elementType = e.target.parentNode?.getAttribute(dataAttributes.elementType);
+      const elementType = e.target.parentNode?.getAttribute?.(dataAttributes.elementType);
       if (elementType === ElementType.Shape) id = e.target.parentNode.id;
       if (
         !selectedElementIds.includes(id) &&

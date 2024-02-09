@@ -6,7 +6,7 @@
     @apply stroke-2 stroke-black;
   }
   .element-selected {
-    @apply stroke-2 stroke-blue-500;
+    @apply stroke-2 !stroke-blue-500;
   }
   .grid-autofill {
     display: grid;
