@@ -37,17 +37,14 @@ const initialState = {
       name: "Section 1"
     }
   ],
-  selectedSection: null,
   selectedPolylineId: null,
-  seats: {},
-  booths: {},
-  text: {},
-  shapes: {},
-  polylines: {},
-  images: {}
+  seats: [],
+  booths: [],
+  text: [],
+  shapes: [],
+  polylines: [],
+  images: []
 };
-
-initialState.selectedSection = initialState.sections[0].id;
 
 export const slice = createSlice({
   name: "editor",
@@ -90,80 +87,50 @@ export const slice = createSlice({
       }
     },
     initializeElements: (state) => {
-      state.seats[state.selectedSection] = seats();
-      state.booths[state.selectedSection] = booths();
-      state.text[state.selectedSection] = text();
-      state.shapes[state.selectedSection] = shapes();
+      state.seats = seats();
+      state.booths = booths();
+      state.text = text();
+      state.shapes = shapes();
     },
     addSeat(state, action) {
-      if (!state.seats[state.selectedSection]) {
-        state.seats[state.selectedSection] = [];
-      }
-      state.seats[state.selectedSection].push(action.payload);
+      state.seats.push(action.payload);
     },
     deleteSeat(state, action) {
-      state.seats[state.selectedSection] = state.seats[state.selectedSection].filter(
-        (seat) => seat.id !== action.payload
-      );
+      state.seats = state.seats.filter((seat) => seat.id !== action.payload);
     },
     addBooth(state, action) {
-      if (!state.booths[state.selectedSection]) {
-        state.booths[state.selectedSection] = [];
-      }
-      state.booths[state.selectedSection].push(action.payload);
+      state.booths.push(action.payload);
     },
     deleteBooth(state, action) {
-      state.booths[state.selectedSection] = state.booths[state.selectedSection].filter(
-        (booth) => booth.id !== action.payload
-      );
+      state.booths = state.booths.filter((booth) => booth.id !== action.payload);
     },
     addText(state, action) {
-      if (!state.text[state.selectedSection]) {
-        state.text[state.selectedSection] = [];
-      }
-      state.text[state.selectedSection].push(action.payload);
+      state.text.push(action.payload);
     },
     deleteText(state, action) {
-      state.text[state.selectedSection] = state.text[state.selectedSection].filter(
-        (text) => text.id !== action.payload
-      );
+      state.text = state.text.filter((text) => text.id !== action.payload);
     },
     addShape(state, action) {
-      if (!state.shapes[state.selectedSection]) {
-        state.shapes[state.selectedSection] = [];
-      }
-      state.shapes[state.selectedSection].push(action.payload);
+      state.shapes.push(action.payload);
     },
     deleteShape(state, action) {
-      state.shapes[state.selectedSection] = state.shapes[state.selectedSection].filter(
-        (shape) => shape.id !== action.payload
-      );
+      state.shapes = state.shapes.filter((shape) => shape.id !== action.payload);
     },
     addPolyline: (state, action) => {
-      if (!state.polylines[state.selectedSection]) {
-        state.polylines[state.selectedSection] = [];
-      }
-      state.polylines[state.selectedSection].push(action.payload);
+      state.polylines.push(action.payload);
     },
     deletePolyline: (state, action) => {
-      state.polylines[state.selectedSection] = state.polylines[state.selectedSection].filter(
-        (polyline) => polyline.id !== action.payload
-      );
+      state.polylines = state.polylines.filter((polyline) => polyline.id !== action.payload);
     },
     addPolylinePoint: (state, action) => {
-      const polyline = state.polylines[state.selectedSection].find((polyline) => polyline.id === action.payload.id);
+      const polyline = state.polylines.find((polyline) => polyline.id === action.payload.id);
       polyline.points.push(action.payload.point);
     },
     addImage: (state, action) => {
-      if (!state.images[state.selectedSection]) {
-        state.images[state.selectedSection] = [];
-      }
-      state.images[state.selectedSection].push(action.payload);
+      state.images.push(action.payload);
     },
     deleteImage: (state, action) => {
-      state.images[state.selectedSection] = state.images[state.selectedSection].filter(
-        (image) => image.id !== action.payload
-      );
+      state.images = state.images.filter((image) => image.id !== action.payload);
     },
     addCategory: (state, action) => {
       state.categories.push(action.payload);
@@ -180,21 +147,6 @@ export const slice = createSlice({
         id: uuidv4(),
         name: `Section ${state.sections.length + 1}`
       });
-    },
-    deleteSection: (state, action) => {
-      state.sections = state.sections.filter((section) => section.id !== action.payload);
-      if (action.payload === state.selectedSection) {
-        state.selectedSection = state.sections[0].id;
-      }
-      delete state.seats[action.payload];
-      delete state.booths[action.payload];
-      delete state.text[action.payload];
-      delete state.shapes[action.payload];
-      delete state.polylines[action.payload];
-      delete state.images[action.payload];
-    },
-    selectSection: (state, action) => {
-      state.selectedSection = action.payload;
     },
     updateSection: (state, action) => {
       const index = state.sections.findIndex((section) => section.id === action.payload.id);
@@ -235,8 +187,6 @@ export const {
   deleteCategory,
   updateCategory,
   addSection,
-  deleteSection,
-  selectSection,
   updateSection,
   setSelectedPolylineId
 } = slice.actions;

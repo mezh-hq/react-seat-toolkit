@@ -61,9 +61,7 @@ const EventHandlers = () => {
         const templine = document.getElementById(ids.templine);
         const selectedPolyline = store
           .getState()
-          .editor.polylines[store.getState().editor.selectedSection].find(
-            (polyline) => polyline.id === selectedPolylineId
-          );
+          .editor.polylines.find((polyline) => polyline.id === selectedPolylineId);
         const lastPoint = selectedPolyline.points[selectedPolyline.points.length - 1];
         const coords = getRelativeClickCoordsWithTransform(e);
         templine.setAttribute("x1", lastPoint.x);
@@ -109,9 +107,7 @@ const EventHandlers = () => {
         if (selectedPolylineId) {
           const selectedPolyline = store
             .getState()
-            .editor.polylines[store.getState().editor.selectedSection].find(
-              (polyline) => polyline.id === selectedPolylineId
-            );
+            .editor.polylines.find((polyline) => polyline.id === selectedPolylineId);
           if (selectedPolyline.points.find((point) => point.x === coords.x && point.y === coords.y)) {
             store.dispatch(setSelectedPolylineId(null));
             store.dispatch(selectElement(selectedPolylineId));

@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useMemo } from "react";
+import { useCallback, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 import { ids } from "@/constants";
 import { store } from "@/store";
@@ -18,7 +18,6 @@ export const Workspace = () => {
   const shapes = useSelector((state) => state.editor.shapes);
   const polylines = useSelector((state) => state.editor.polylines);
   const images = useSelector((state) => state.editor.images);
-  const selectedSection = useSelector((state) => state.editor.selectedSection);
   const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
   const selectedPolylineId = useSelector((state) => state.editor.selectedPolylineId);
   const selectedTool = useSelector((state) => state.toolbar.selectedTool);
@@ -39,24 +38,17 @@ export const Workspace = () => {
     [selectedElementIds]
   );
 
-  const sectionSeats = useMemo(() => seats[selectedSection] ?? [], [seats, selectedSection]);
-  const sectionBooths = useMemo(() => booths[selectedSection] ?? [], [booths, selectedSection]);
-  const sectionText = useMemo(() => text[selectedSection] ?? [], [text, selectedSection]);
-  const sectionShapes = useMemo(() => shapes[selectedSection] ?? [], [shapes, selectedSection]);
-  const sectionPolylines = useMemo(() => polylines[selectedSection] ?? [], [polylines, selectedSection]);
-  const sectionImages = useMemo(() => images[selectedSection] ?? [], [images, selectedSection]);
-
   return (
     <div id={ids.workspaceContainer} className="w-full h-full relative border border-b-0 border-black">
       <svg id={ids.workspace} className="w-full h-full">
         <g>
-          {sectionSeats.map((e) => (
+          {seats.map((e) => (
             <Element key={e.id} type={ElementType.Seat} {...elementProps(e)} />
           ))}
-          {sectionBooths.map((e) => (
+          {booths.map((e) => (
             <Element key={e.id} type={ElementType.Booth} {...elementProps(e)} />
           ))}
-          {sectionText.map((e) => (
+          {text.map((e) => (
             <Element
               key={e.id}
               type={ElementType.Text}
@@ -66,7 +58,7 @@ export const Workspace = () => {
               {...elementProps(e)}
             />
           ))}
-          {sectionShapes.map((e) => (
+          {shapes.map((e) => (
             <Element
               key={e.id}
               type={ElementType.Shape}
@@ -77,10 +69,10 @@ export const Workspace = () => {
               {...elementProps(e)}
             />
           ))}
-          {sectionPolylines.map((e) => (
+          {polylines.map((e) => (
             <Element key={e.id} type={ElementType.Polyline} points={e.points} {...elementProps(e)} />
           ))}
-          {sectionImages.map((e) => (
+          {images.map((e) => (
             <Element
               key={e.id}
               type={ElementType.Image}
