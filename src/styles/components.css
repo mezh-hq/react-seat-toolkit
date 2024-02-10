@@ -33,4 +33,12 @@
     background-color: #000; /* Color of the grid lines */
     transform: translateX(calc(100% + 5px)); /* Adjust the position of the lines */
   }
+
+  .rounded-color-input::-webkit-color-swatch {
+    @apply border-none rounded-full;
+  }
+
+  .rounded-color-input::-webkit-color-swatch-wrapper {
+    @apply border-none rounded-full p-0;
+  }
 }

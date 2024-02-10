@@ -136,6 +136,11 @@ export const slice = createSlice({
       state.images = state.images.filter((image) => image.id !== action.payload);
     },
     addCategory: (state, action) => {
+      action.payload ??= {
+        id: uuidv4(),
+        name: "New Category",
+        color: "#000000"
+      };
       state.categories.push(action.payload);
     },
     deleteCategory: (state, action) => {

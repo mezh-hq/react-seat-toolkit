@@ -8,6 +8,7 @@ const GeneralSelectControls = () => {
   return (
     <div className="flex flex-col gap-4 py-1 mt-1">
       <Button
+        className="py-[0.35rem]"
         variant="secondary"
         onClick={() => {
           selectedElementIds.forEach((id) => {
@@ -18,6 +19,7 @@ const GeneralSelectControls = () => {
         Bring to Front
       </Button>
       <Button
+        className="py-[0.35rem]"
         onClick={() => {
           selectedElementIds.forEach((id) => {
             d3Extended.selectById(id).moveToBack();
