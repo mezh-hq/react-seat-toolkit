@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import * as lucide from "lucide-react";
 import { twMerge } from "tailwind-merge";
+import { dataAttributes } from "@/constants";
 
 export const shapeSize = 65;
 export const shapeStrokeWidth = 0.65;
@@ -23,7 +24,7 @@ const Shape = forwardRef(({ x, y, id, name, width, height, rx, resizable, classN
         rx={rx ?? 15}
         className={twMerge(className, "fill-transparent", resizable && "resizable")}
         stroke={color}
-        data-shape="RectangleHorizontal"
+        {...{ [dataAttributes.shape]: "RectangleHorizontal" }}
         {...props}
       />
     );
@@ -38,7 +39,7 @@ const Shape = forwardRef(({ x, y, id, name, width, height, rx, resizable, classN
       size={shapeSize}
       className={twMerge(className, "stroke-[0.75] fill-transparent")}
       stroke={color}
-      data-shape={name}
+      {...{ [dataAttributes.shape]: name }}
       {...props}
     />
   );

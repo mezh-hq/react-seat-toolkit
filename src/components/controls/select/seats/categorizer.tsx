@@ -1,8 +1,9 @@
 import { Trash2 } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
+import { dataAttributes } from "@/constants";
 import { store } from "@/store";
-import { addCategory, deleteCategory, updateCategory } from "@/store/reducers/editor";
+import { addCategory, deleteCategory, updateCategory, updateSeat } from "@/store/reducers/editor";
 import { Callout, Caption, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../core";
 
 const onAddCategory = () => store.dispatch(addCategory(undefined));
@@ -11,7 +12,7 @@ const onDeleteCategory = (id: string) => store.dispatch(deleteCategory(id));
 
 const onUpdateCategory = (category) => store.dispatch(updateCategory(category));
 
-const Categorizer = () => {
+const Categorizer = ({ firstElement, selectedElementIds }) => {
   const categories = useSelector((state: any) => state.editor.categories);
   return (
     <>
@@ -61,7 +62,12 @@ const Categorizer = () => {
           </PopoverContent>
         </Popover>
       </div>
-      <Select>
+      <Select
+        onValueChange={(value) => {
+          selectedElementIds.forEach((id: string) => store.dispatch(updateSeat({ id, category: value })));
+        }}
+        defaultValue={firstElement?.getAttribute?.(dataAttributes.category) || undefined}
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select Category" />
         </SelectTrigger>

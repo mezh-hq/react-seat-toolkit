@@ -19,5 +19,6 @@ export const selectors = {
 
 export const dataAttributes = {
   elementType: "data-element-type",
-  shape: "data-shape"
+  shape: "data-shape",
+  category: "data-category"
 };

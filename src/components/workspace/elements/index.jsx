@@ -2,6 +2,7 @@ import { memo, useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
 import { isEqual } from "lodash";
 import { twMerge } from "tailwind-merge";
+import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { clearAndSelectElements, deselectElement, selectElement } from "@/store/reducers/editor";
 import { d3Extended } from "@/utils";
@@ -99,7 +100,7 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
             : "element-unselected"
         )}
         onClick={onClick}
-        data-element-type={type}
+        {...{ [dataAttributes.elementType]: type }}
       />
     </>
   );
