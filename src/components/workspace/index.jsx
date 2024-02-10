@@ -64,6 +64,7 @@ export const Workspace = () => {
               type={ElementType.Shape}
               width={e.width}
               height={e.height}
+              rx={e.rx}
               resizable={selectedTool === Tool.Select}
               name={e.name}
               {...elementProps(e)}

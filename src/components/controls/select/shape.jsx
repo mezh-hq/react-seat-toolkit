@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Checkbox } from "@/components/core";
+import { dataAttributes } from "@/constants";
 import { d3Extended, rgbToHex } from "@/utils";
 import { default as ControlInput } from "../control-input";
 
@@ -63,6 +64,20 @@ const ShapeSelectControls = () => {
             Maintain Aspect Ratio
           </label>
         </div>
+
+        {firstElement?.getAttribute?.(dataAttributes.shape) === "RectangleHorizontal" && (
+          <ControlInput
+            id="shape-border-radius-input"
+            label="Border Radius"
+            defaultValue={firstElement?.getAttribute("rx")}
+            type="number"
+            onChange={(e) => {
+              selectedElementIds.forEach((id) => {
+                document.getElementById(id)?.setAttribute("rx", e.target.value);
+              });
+            }}
+          />
+        )}
 
         <ControlInput
           id="shape-color-input"

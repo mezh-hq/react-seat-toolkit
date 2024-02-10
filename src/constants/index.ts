@@ -18,5 +18,6 @@ export const selectors = {
 };
 
 export const dataAttributes = {
-  elementType: "data-element-type"
+  elementType: "data-element-type",
+  shape: "data-shape"
 };

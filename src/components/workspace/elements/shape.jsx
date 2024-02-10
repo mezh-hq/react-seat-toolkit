@@ -10,7 +10,7 @@ export const resizableRectangle = {
   height: 100
 };
 
-const Shape = forwardRef(({ x, y, id, name, width, height, resizable, className, color, ...props }, ref) => {
+const Shape = forwardRef(({ x, y, id, name, width, height, rx, resizable, className, color, ...props }, ref) => {
   if (name === "RectangleHorizontal") {
     return (
       <rect
@@ -20,9 +20,10 @@ const Shape = forwardRef(({ x, y, id, name, width, height, resizable, className,
         y={y}
         width={width ?? resizableRectangle.width}
         height={height ?? resizableRectangle.height}
-        rx={15}
+        rx={rx ?? 15}
         className={twMerge(className, "fill-transparent", resizable && "resizable")}
         stroke={color}
+        data-shape="RectangleHorizontal"
         {...props}
       />
     );
@@ -37,6 +38,7 @@ const Shape = forwardRef(({ x, y, id, name, width, height, resizable, className,
       size={shapeSize}
       className={twMerge(className, "stroke-[0.75] fill-transparent")}
       stroke={color}
+      data-shape={name}
       {...props}
     />
   );
