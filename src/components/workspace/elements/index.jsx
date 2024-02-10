@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import { isEqual } from "lodash";
 import { twMerge } from "tailwind-merge";
 import { store } from "@/store";
-import { clearElements, deselectElement, selectElement } from "@/store/reducers/editor";
+import { clearAndSelectElements, deselectElement, selectElement } from "@/store/reducers/editor";
 import { d3Extended } from "@/utils";
 import { Tool } from "../../toolbar/data";
 import {
@@ -61,8 +61,11 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
         }
         return;
       }
-      if (!ctrlPressed) store.dispatch(clearElements());
-      store.dispatch(selectElement(ref.current.id));
+      if (!ctrlPressed) {
+        store.dispatch(clearAndSelectElements([ref.current.id]));
+      } else {
+        store.dispatch(selectElement(ref.current.id));
+      }
     }
   };
 

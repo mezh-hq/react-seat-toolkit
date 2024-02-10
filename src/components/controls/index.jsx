@@ -30,7 +30,7 @@ const Controls = () => {
         if (firstElementType === ElementType.Booth) return NoSelectionControls;
         if (selectedElementIds.length > 1) {
           const same = selectedElementIds.every((id) => {
-            return document.getElementById(id).getAttribute(dataAttributes.elementType) === firstElementType;
+            return document.getElementById(id)?.getAttribute?.(dataAttributes.elementType) === firstElementType;
           });
           if (!same) return NoSelectionControls;
         }

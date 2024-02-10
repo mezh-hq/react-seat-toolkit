@@ -74,6 +74,9 @@ export const slice = createSlice({
     selectElement: (state, action) => {
       state.selectedElementIds = state.selectedElementIds.concat(action.payload);
     },
+    clearAndSelectElements: (state, action) => {
+      state.selectedElementIds = action.payload;
+    },
     deselectElement: (state, action) => {
       state.lastDeselectedElementId = action.payload;
       state.selectedElementIds = state.selectedElementIds.filter((id) => id !== action.payload);
@@ -169,6 +172,7 @@ export const {
   selectElement,
   deselectElement,
   clearElements,
+  clearAndSelectElements,
   initializeElements,
   addSeat,
   deleteSeat,
