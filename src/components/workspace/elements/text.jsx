@@ -14,6 +14,7 @@ const Text = forwardRef(
         fontWeight={fontWeight}
         letterSpacing={letterSpacing}
         stroke={color}
+        color={color}
         {...props}
       >
         {label}

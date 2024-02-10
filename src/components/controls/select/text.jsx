@@ -72,7 +72,9 @@ const TextSelectControls = () => {
           type="color"
           onChange={(e) => {
             selectedElementIds.forEach((id) => {
-              d3Extended.selectById(id).style("stroke", e.target.value);
+              const element = d3Extended.selectById(id);
+              element.style("stroke", e.target.value);
+              element.style("color", e.target.value);
             });
           }}
         />

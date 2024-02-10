@@ -8,6 +8,12 @@
   .element-selected {
     @apply stroke-2 !stroke-blue-500;
   }
+  .text-unselected {
+    @apply element-unselected text-black;
+  }
+  .text-selected {
+    @apply element-selected !text-blue-500;
+  }
   .grid-autofill {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Change minmax values as needed */
