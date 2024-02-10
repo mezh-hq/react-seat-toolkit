@@ -20,6 +20,7 @@ const Seat = forwardRef(({ x, y, id, label, category, ...props }, ref) => {
         r={seatSize / 2}
         {...{ [dataAttributes.category]: category }}
         {...props}
+        className={twMerge(props.className, "fill-transparent")}
       />
       {label && (
         <text

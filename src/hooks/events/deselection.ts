@@ -21,6 +21,7 @@ const useDeselection = () => {
       if (
         !selectedElementIds.includes(id) &&
         lastDeselectedElementId !== id &&
+        ![id, e.target.parentNode?.id].includes(ids.operationTrigger) &&
         selectedElementIds.length &&
         !isWithinBounds(e.clientX, e.clientY, controls)
       ) {

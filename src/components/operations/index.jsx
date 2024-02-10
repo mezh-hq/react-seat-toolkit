@@ -54,6 +54,7 @@ const Operations = () => {
           </>
         )}
         <Cog
+          id={ids.operationTrigger}
           size={35}
           className="cursor-pointer transform hover:rotate-90 transition-all duration-300"
           onClick={onCogClick}

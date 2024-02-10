@@ -4,6 +4,7 @@ export const ids = {
   cursor: "stk-cursor",
   location: "stk-location",
   operationBar: "stk-operation-bar",
+  operationTrigger: "stk-operation-trigger",
   sectionBar: "stk-section-bar",
   templine: "stk-templine",
   toolbar: "stk-tool-bar",
