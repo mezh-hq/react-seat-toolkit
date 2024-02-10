@@ -8,6 +8,7 @@ export default () => [
     y: getWorkspaceHeight() * 0.145,
     width: 1100,
     height: 100,
+    rx: 10,
     name: "RectangleHorizontal"
   }
 ];
