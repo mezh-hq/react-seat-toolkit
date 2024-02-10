@@ -101,6 +101,10 @@ export const slice = createSlice({
     deleteSeat(state, action) {
       state.seats = state.seats.filter((seat) => seat.id !== action.payload);
     },
+    updateSeat(state, action) {
+      const index = state.seats.findIndex((seat) => seat.id === action.payload.id);
+      state.seats[index] = { ...state.seats[index], ...action.payload };
+    },
     addBooth(state, action) {
       state.booths.push(action.payload);
     },
@@ -181,6 +185,7 @@ export const {
   initializeElements,
   addSeat,
   deleteSeat,
+  updateSeat,
   addBooth,
   deleteBooth,
   addText,
