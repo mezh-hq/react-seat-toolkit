@@ -40,13 +40,20 @@ export const handleDrag = d3.drag().on("drag", function (event) {
 
 export const handleSeatDrag = d3.drag().on("drag", function (event) {
   const me = d3.select(this);
-  const controls = d3Extended.selectById(`${me.attr("id")}-controls`);
+
   const x = +me.attr("cx") + event.dx;
   const y = +me.attr("cy") + event.dy;
+
   me.attr("cx", x);
   me.attr("cy", y);
+
+  const controls = d3Extended.selectById(`${me.attr("id")}-controls`);
   controls.attr("cx", x);
   controls.attr("cy", y);
+
+  const label = d3Extended.selectById(`${me.attr("id")}-label`);
+  label.attr("x", +label.attr("x") + event.dx);
+  label.attr("y", +label.attr("y") + event.dy);
 });
 
 export const handleTextDrag = d3.drag().on("drag", function (event) {
