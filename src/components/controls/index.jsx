@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { dataAttributes, ids } from "@/constants";
 import { AnimatedSwitcher } from "../core";
 import { Tool } from "../toolbar/data";
+import { ElementType } from "../workspace/elements";
 import { default as ImageControls } from "./image";
 import { default as NoControls } from "./no-controls";
 import { default as NoSelectedElement } from "./no-selection";
@@ -23,10 +24,11 @@ const Controls = () => {
   const ControlComponent = useMemo(() => {
     if (selectedTool === Tool.Select) {
       if (selectedElementIds.length) {
+        const firstElementType = document
+          .getElementById(selectedElementIds[0])
+          ?.getAttribute?.(dataAttributes.elementType);
+        if (firstElementType === ElementType.Booth) return NoSelectionControls;
         if (selectedElementIds.length > 1) {
-          const firstElementType = document
-            .getElementById(selectedElementIds[0])
-            .getAttribute(dataAttributes.elementType);
           const same = selectedElementIds.every((id) => {
             return document.getElementById(id).getAttribute(dataAttributes.elementType) === firstElementType;
           });

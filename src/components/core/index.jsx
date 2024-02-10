@@ -1,4 +1,5 @@
 export * from "./accordion";
+export * from "./checkbox";
 export * from "./context-menu";
 export * from "./input";
 export * from "./label";

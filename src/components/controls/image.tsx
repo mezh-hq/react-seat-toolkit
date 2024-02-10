@@ -24,7 +24,7 @@ const ImageControls = () => {
   };
 
   const onAddToWorkspace = useCallback(async () => {
-    let dimensions = await getImageDimensions(file);
+    const dimensions = await getImageDimensions(file);
     while (dimensions.height > 500) {
       dimensions.height /= 2;
       dimensions.width /= 2;

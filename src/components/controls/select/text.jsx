@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
-import * as d3 from "d3";
-import { Input, Label } from "@/components/core";
 import { d3Extended, rgbToHex } from "@/utils";
+import { default as ControlInput } from "../control-input";
 
 const TextSelectControls = () => {
   const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
@@ -11,11 +10,10 @@ const TextSelectControls = () => {
   return (
     <div className="flex flex-col gap-4 py-1">
       <div className="grid grid-cols-3 items-center gap-4">
-        <Label htmlFor="text-label-input">Label</Label>
-        <Input
+        <ControlInput
           id="text-label-input"
+          label="Label"
           defaultValue={firstElement?.textContent}
-          className="col-span-2 h-8"
           onChange={(e) => {
             selectedElementIds.forEach((id) => {
               const element = document.getElementById(id);
@@ -23,11 +21,10 @@ const TextSelectControls = () => {
             });
           }}
         />
-        <Label htmlFor="text-font-size-input">Font Size</Label>
-        <Input
+        <ControlInput
           id="text-font-size-input"
+          label="Font Size"
           defaultValue={firstElement?.getAttribute("font-size")}
-          className="col-span-2 h-8"
           type="number"
           onChange={(e) => {
             selectedElementIds.forEach((id) => {
@@ -35,11 +32,10 @@ const TextSelectControls = () => {
             });
           }}
         />
-        <Label htmlFor="text-font-weight-input">Font Weight</Label>
-        <Input
+        <ControlInput
           id="text-font-weight-input"
+          label="Font Weight"
           defaultValue={firstElement?.getAttribute("font-weight")}
-          className="col-span-2 h-8"
           type="number"
           step={100}
           min={100}
@@ -50,11 +46,10 @@ const TextSelectControls = () => {
             });
           }}
         />
-        <Label htmlFor="text-letter-spacing-input">Letter Spacing</Label>
-        <Input
+        <ControlInput
           id="text-letter-spacing-input"
+          label="Letter Spacing"
           defaultValue={firstElement?.getAttribute("letter-spacing")}
-          className="col-span-2 h-8"
           type="number"
           step={0.1}
           min={0}
@@ -64,11 +59,10 @@ const TextSelectControls = () => {
             });
           }}
         />
-        <Label htmlFor="text-color-input">Color</Label>
-        <Input
+        <ControlInput
           id="text-color-input"
-          defaultValue={rgbToHex(d3.select(firstElement).style("stroke"))}
-          className="col-span-2 h-8"
+          label="Color"
+          defaultValue={rgbToHex(d3Extended.select(firstElement).style("stroke"))}
           type="color"
           onChange={(e) => {
             selectedElementIds.forEach((id) => {

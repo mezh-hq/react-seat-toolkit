@@ -18,10 +18,10 @@ const buttonVariants = cva(
   }
 );
 
-const Core = ({ variant = "primary", children, loading, className, ...props }) => {
+const Core = ({ variant = "primary", children, loading, className, ...props }: any) => {
   return (
     <div
-      role=""
+      role="button"
       className={twMerge(
         buttonVariants({ variant }),
         className,
@@ -44,7 +44,14 @@ const Core = ({ variant = "primary", children, loading, className, ...props }) =
   );
 };
 
-const Button = ({ to, wrapperClassName, target, ariaLabel, ...props }) => {
+interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
+  to?: string;
+  wrapperClassName?: string;
+  target?: string;
+  ariaLabel?: string;
+}
+
+const Button = ({ to, wrapperClassName, target, ariaLabel, ...props }: ButtonProps) => {
   if (to) {
     return (
       <Link to={to} target={target ?? "_self"} className={wrapperClassName} aria-label={ariaLabel}>
