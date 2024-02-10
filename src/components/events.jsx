@@ -21,7 +21,7 @@ import {
   setSelectedPolylineId
 } from "@/store/reducers/editor";
 import { selectTool } from "@/store/reducers/toolbar";
-import { getRelativeClickCoordsWithTransform, isWithinBounds } from "@/utils";
+import { calculateDistance, getRelativeClickCoordsWithTransform, isWithinBounds } from "@/utils";
 import { Tool } from "./toolbar/data";
 import { ElementType } from "./workspace/elements";
 import { boothSize } from "./workspace/elements/booth";
@@ -108,7 +108,7 @@ const EventHandlers = () => {
           const selectedPolyline = store
             .getState()
             .editor.polylines.find((polyline) => polyline.id === selectedPolylineId);
-          if (selectedPolyline.points.find((point) => point.x === coords.x && point.y === coords.y)) {
+          if (selectedPolyline.points.find((point) => calculateDistance(point, coords) <= 5)) {
             store.dispatch(setSelectedPolylineId(null));
             store.dispatch(selectElement(selectedPolylineId));
             store.dispatch(selectTool(Tool.Select));
