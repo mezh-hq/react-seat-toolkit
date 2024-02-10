@@ -1,12 +1,21 @@
 import { Provider } from "react-redux";
-import { Controls, Cursor, EventHandlers, Footer, Operations, Toolbar, TooltipProvider, Workspace } from "@/components";
-import { useInteractions } from "@/hooks";
+import { Controls, Cursor, Footer, Operations, Toolbar, TooltipProvider, Workspace } from "@/components";
+import { useEvents, useInteractions } from "@/hooks";
 import { store } from "@/store";
 
-export const SeatDesigner = () => {
-  useInteractions();
+export const SeatToolkit = () => {
   return (
     <Provider store={store}>
+      <Designer />
+    </Provider>
+  );
+};
+
+const Designer = () => {
+  useEvents();
+  useInteractions();
+  return (
+    <>
       <TooltipProvider>
         <div className="h-full flex flex-col">
           <Operations />
@@ -19,9 +28,8 @@ export const SeatDesigner = () => {
         <Footer />
       </TooltipProvider>
       <Cursor />
-      <EventHandlers />
-    </Provider>
+    </>
   );
 };
 
-export default SeatDesigner;
+export default SeatToolkit;

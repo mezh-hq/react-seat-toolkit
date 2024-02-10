@@ -1,8 +1,8 @@
-import SeatDesigner from "@/index";
+import SeatToolkit from "@/index";
 
 export default {
   title: "Designer",
-  component: SeatDesigner,
+  component: SeatToolkit,
   parameters: {
     layout: "fullscreen"
   },
@@ -10,5 +10,5 @@ export default {
 };
 
 export const Default = {
-  render: () => <SeatDesigner />
+  render: () => <SeatToolkit />
 };

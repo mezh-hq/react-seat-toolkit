@@ -9,7 +9,7 @@ const useInteractions = () => {
       edges: { left: true, right: true, bottom: true, top: true },
       listeners: {
         move(event) {
-          var target = event.target;
+          const target = event.target;
           target.setAttribute("width", event.rect.width);
           target.setAttribute("height", event.rect.height);
         }

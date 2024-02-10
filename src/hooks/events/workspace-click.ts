@@ -1,7 +1,11 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { RectangleHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
 import { v4 as uuidV4 } from "uuid";
+import { Tool } from "@/components/toolbar/data";
+import { ElementType } from "@/components/workspace/elements";
+import { boothSize } from "@/components/workspace/elements/booth";
+import { resizableRectangle, shapeSize } from "@/components/workspace/elements/shape";
 import { dataAttributes, ids } from "@/constants";
 import { store } from "@/store";
 import {
@@ -11,7 +15,6 @@ import {
   addSeat,
   addShape,
   addText,
-  clearElements,
   deleteBooth,
   deleteImage,
   deleteSeat,
@@ -21,60 +24,10 @@ import {
   setSelectedPolylineId
 } from "@/store/reducers/editor";
 import { selectTool } from "@/store/reducers/toolbar";
-import { calculateDistance, getRelativeClickCoordsWithTransform, isWithinBounds } from "@/utils";
-import { Tool } from "./toolbar/data";
-import { ElementType } from "./workspace/elements";
-import { boothSize } from "./workspace/elements/booth";
-import { resizableRectangle, shapeSize } from "./workspace/elements/shape";
+import { calculateDistance, getRelativeClickCoordsWithTransform } from "@/utils";
 
-const EventHandlers = () => {
-  const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
-  const lastDeselectedElementId = useSelector((state) => state.editor.lastDeselectedElementId);
-  const selectedPolylineId = useSelector((state) => state.editor.selectedPolylineId);
-  const polylines = useSelector((state) => state.editor.polylines);
-  const selectedTool = useSelector((state) => state.toolbar.selectedTool);
-
-  useEffect(() => {
-    const onElemClick = (e) => {
-      let id = e.target.id;
-      const controls = document.getElementById(ids.controls)?.getBoundingClientRect();
-      const elementType = e.target.parentNode?.getAttribute?.(dataAttributes.elementType);
-      if (elementType === ElementType.Shape) id = e.target.parentNode.id;
-      if (
-        !selectedElementIds.includes(id) &&
-        lastDeselectedElementId !== id &&
-        selectedElementIds.length &&
-        !isWithinBounds(e.clientX, e.clientY, controls)
-      ) {
-        store.dispatch(clearElements(selectedTool === Tool.Text && id === ids.workspace));
-      }
-    };
-    document.addEventListener("click", onElemClick);
-    return () => {
-      document.removeEventListener("click", onElemClick);
-    };
-  }, [selectedElementIds]);
-
-  useEffect(() => {
-    const onMouseMove = (e) => {
-      if (selectedPolylineId) {
-        const templine = document.getElementById(ids.templine);
-        const selectedPolyline = store
-          .getState()
-          .editor.polylines.find((polyline) => polyline.id === selectedPolylineId);
-        const lastPoint = selectedPolyline.points[selectedPolyline.points.length - 1];
-        const coords = getRelativeClickCoordsWithTransform(e);
-        templine.setAttribute("x1", lastPoint.x);
-        templine.setAttribute("y1", lastPoint.y);
-        templine.setAttribute("x2", coords.x);
-        templine.setAttribute("y2", coords.y);
-      }
-    };
-    document.addEventListener("mousemove", onMouseMove);
-    return () => {
-      document.removeEventListener("mousemove", onMouseMove);
-    };
-  }, [selectedPolylineId, polylines]);
+const useWorkspaceClick = () => {
+  const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
 
   useLayoutEffect(() => {
     const handler = (e) => {
@@ -90,7 +43,7 @@ const EventHandlers = () => {
       } else if (selectedTool == Tool.Shape) {
         const cursor = store.getState().editor.cursor;
         const coords = getRelativeClickCoordsWithTransform(e);
-        const shape = { id: uuidV4(), x: coords.x, y: coords.y, name: cursor.displayName };
+        const shape = { id: uuidV4(), x: coords.x, y: coords.y, name: cursor.displayName } as any;
         if (shape.name === RectangleHorizontal.displayName) {
           shape.width = resizableRectangle.width * 0.83;
           shape.height = resizableRectangle.height;
@@ -151,4 +104,4 @@ const EventHandlers = () => {
   return null;
 };
 
-export default EventHandlers;
+export default useWorkspaceClick;
