@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Label, RadioGroup, RadioGroupItem } from "@/components/core";
-import { SeatStatus, dataAttributes } from "@/constants";
+import { SeatStatus, dataAttributes, seatStatusColors } from "@/constants";
 import { store } from "@/store";
 import { updateSeat } from "@/store/reducers/editor";
 import { d3Extended } from "@/utils";
@@ -34,7 +34,22 @@ const SeatSelectControls = () => {
           defaultValue={firstElement?.getAttribute(dataAttributes.status) ?? SeatStatus.Available.toString()}
           onValueChange={(value) => {
             selectedElementIds.forEach((id: string) => {
-              d3Extended.selectById(id).attr(dataAttributes.status, value);
+              const seat = d3Extended.selectById(id);
+              const seatLabel = d3Extended.selectById(`${id}-label`);
+              seat.attr(dataAttributes.status, value);
+              let color = seatStatusColors[value].background;
+              let textColor = seatStatusColors[value].label;
+              if (value === SeatStatus.Available) {
+                const category = store
+                  .getState()
+                  .editor.categories.find((c) => c.id === seat.attr(dataAttributes.category));
+                if (category) {
+                  color = category.color;
+                  textColor = category.textColor;
+                }
+              }
+              seat.style("color", color, "important");
+              seatLabel?.style("stroke", textColor, "important");
             });
           }}
           className="flex justify-between gap-2 my-1"

@@ -1,6 +1,6 @@
-import { forwardRef, useEffect } from "react";
+import { forwardRef, useEffect, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
-import { dataAttributes } from "@/constants";
+import { SeatStatus, dataAttributes, seatStatusColors } from "@/constants";
 import { d3Extended } from "@/utils";
 
 export const seatSize = 28;
@@ -14,12 +14,22 @@ const Seat = forwardRef(({ x, y, id, label, categories, category, status, ...pro
 
   if (labelLength >= 2) textX -= (seatLabelFontSize / 2.75) * (labelLength - 1);
 
-  const categoryObject = categories?.find?.((c) => c.id === category);
+  const categoryObject = useMemo(() => categories?.find?.((c) => c.id === category), [categories, category]);
 
   useEffect(() => {
-    if (ref.current && categoryObject) {
-      d3Extended.select(ref.current).style("color", categoryObject.color, "important");
-      d3Extended.selectById(`${id}-label`).style("stroke", categoryObject.textColor, "important");
+    if (ref.current) {
+      const seat = d3Extended.select(ref.current);
+      const seatLabel = d3Extended.selectById(`${id}-label`);
+      const status = seat.attr(dataAttributes.status);
+      if (status === SeatStatus.Unavailable || status === SeatStatus.Reserved) {
+        seat.style("color", seatStatusColors[status].background, "important");
+        seatLabel?.style("stroke", seatStatusColors[status].label, "important");
+      } else {
+        if (categoryObject) {
+          seat.style("color", categoryObject.color, "important");
+          seatLabel?.style("stroke", categoryObject.textColor, "important");
+        }
+      }
     }
   }, [ref, categoryObject]);
 
