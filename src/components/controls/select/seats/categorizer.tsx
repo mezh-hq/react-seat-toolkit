@@ -1,5 +1,6 @@
 import { Trash2 } from "lucide-react";
 import { useSelector } from "react-redux";
+import { debounce } from "lodash";
 import { Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
@@ -10,10 +11,11 @@ const onAddCategory = () => store.dispatch(addCategory(undefined));
 
 const onDeleteCategory = (id: string) => store.dispatch(deleteCategory(id));
 
-const onUpdateCategory = (category) => store.dispatch(updateCategory(category));
+const onUpdateCategory = debounce((category) => store.dispatch(updateCategory(category)), 150);
 
 const Categorizer = ({ firstElement, selectedElementIds }) => {
   const categories = useSelector((state: any) => state.editor.categories);
+
   return (
     <>
       <div className="w-full flex justify-between items-center gap-12">
