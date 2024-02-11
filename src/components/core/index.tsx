@@ -4,6 +4,7 @@ export * from "./context-menu";
 export * from "./input";
 export * from "./label";
 export * from "./popover";
+export * from "./radio-group";
 export * from "./select";
 export * from "./sheet";
 export * from "./switch";

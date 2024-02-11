@@ -21,5 +21,12 @@ export const selectors = {
 export const dataAttributes = {
   elementType: "data-element-type",
   shape: "data-shape",
-  category: "data-category"
+  category: "data-category",
+  status: "data-status"
 };
+
+export enum SeatStatus {
+  Available = "Available",
+  Unavailable = "Unavailable",
+  Reserved = "Reserved"
+}

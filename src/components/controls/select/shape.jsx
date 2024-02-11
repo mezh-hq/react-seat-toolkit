@@ -51,15 +51,10 @@ const ShapeSelectControls = () => {
         />
 
         <div className="col-span-3 w-full flex justify-end items-center gap-[2.3rem]">
-          <Checkbox
-            id="terms"
-            checked={maintainAspectRatio}
-            onCheckedChange={setMaintainAspectRatio}
-            className="col-span-1 "
-          />
+          <Checkbox id="stk-aspect-ratio" checked={maintainAspectRatio} onCheckedChange={setMaintainAspectRatio} />
           <label
-            htmlFor="terms"
-            className="col-span-1 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            htmlFor="stk-aspect-ratio"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
             Maintain Aspect Ratio
           </label>

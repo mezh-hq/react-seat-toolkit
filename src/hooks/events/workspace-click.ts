@@ -6,7 +6,7 @@ import { Tool } from "@/components/toolbar/data";
 import { ElementType } from "@/components/workspace/elements";
 import { boothSize } from "@/components/workspace/elements/booth";
 import { resizableRectangle, shapeSize } from "@/components/workspace/elements/shape";
-import { dataAttributes, ids } from "@/constants";
+import { SeatStatus, dataAttributes, ids } from "@/constants";
 import { store } from "@/store";
 import {
   addBooth,
@@ -32,7 +32,9 @@ const useWorkspaceClick = () => {
   useLayoutEffect(() => {
     const handler = (e) => {
       if (selectedTool == Tool.Seat) {
-        store.dispatch(addSeat({ id: uuidV4(), ...getRelativeClickCoordsWithTransform(e) }));
+        store.dispatch(
+          addSeat({ id: uuidV4(), ...getRelativeClickCoordsWithTransform(e), label: "?", status: SeatStatus.Available })
+        );
       } else if (selectedTool == Tool.Booth) {
         const coords = getRelativeClickCoordsWithTransform(e);
         store.dispatch(addBooth({ id: uuidV4(), x: coords.x - boothSize / 2, y: coords.y - boothSize / 2 }));

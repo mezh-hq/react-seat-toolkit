@@ -49,6 +49,7 @@ export const Workspace = () => {
               type={ElementType.Seat}
               categories={categories}
               category={e.category}
+              status={e.status}
               {...elementProps(e)}
             />
           ))}

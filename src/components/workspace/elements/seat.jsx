@@ -7,7 +7,7 @@ export const seatSize = 28;
 
 export const seatLabelFontSize = seatSize / 3;
 
-const Seat = forwardRef(({ x, y, id, label, categories, category, ...props }, ref) => {
+const Seat = forwardRef(({ x, y, id, label, categories, category, status, ...props }, ref) => {
   let textX = x - seatLabelFontSize / 3.5;
 
   const labelLength = label?.toString()?.length ?? 0;
@@ -32,6 +32,7 @@ const Seat = forwardRef(({ x, y, id, label, categories, category, ...props }, re
         cy={y}
         r={seatSize / 2}
         {...{ [dataAttributes.category]: category }}
+        {...{ [dataAttributes.status]: status }}
         {...props}
       />
       {label && (

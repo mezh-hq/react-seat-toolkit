@@ -98,7 +98,7 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
             : type === ElementType.Text
             ? "text-unselected"
             : "element-unselected",
-          !props.color && "text-white"
+          !props.color && type !== ElementType.Text && "text-white"
         )}
         onClick={onClick}
         {...{ [dataAttributes.elementType]: type }}

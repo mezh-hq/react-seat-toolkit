@@ -33,7 +33,9 @@ const useDuplicate = () => {
             copy = {
               id: uuidV4(),
               x: Number(element.getAttribute("cx")) + offset,
-              y: Number(element.getAttribute("cy")) + offset
+              y: Number(element.getAttribute("cy")) + offset,
+              label: document.getElementById(`${id}-label`)?.textContent,
+              status: element.getAttribute(dataAttributes.status)
             };
             store.dispatch(addSeat(copy));
           } else if (elementType === ElementType.Booth) {
