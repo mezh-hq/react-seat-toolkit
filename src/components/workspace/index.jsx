@@ -18,6 +18,7 @@ export const Workspace = () => {
   const shapes = useSelector((state) => state.editor.shapes);
   const polylines = useSelector((state) => state.editor.polylines);
   const images = useSelector((state) => state.editor.images);
+  const categories = useSelector((state) => state.editor.categories);
   const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
   const selectedPolylineId = useSelector((state) => state.editor.selectedPolylineId);
   const selectedTool = useSelector((state) => state.toolbar.selectedTool);
@@ -43,7 +44,13 @@ export const Workspace = () => {
       <svg id={ids.workspace} className="w-full h-full">
         <g>
           {seats.map((e) => (
-            <Element key={e.id} type={ElementType.Seat} category={e.category} {...elementProps(e)} />
+            <Element
+              key={e.id}
+              type={ElementType.Seat}
+              categories={categories}
+              category={e.category}
+              {...elementProps(e)}
+            />
           ))}
           {booths.map((e) => (
             <Element key={e.id} type={ElementType.Booth} {...elementProps(e)} />

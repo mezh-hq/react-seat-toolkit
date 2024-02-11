@@ -41,4 +41,12 @@
   .rounded-color-input::-webkit-color-swatch-wrapper {
     @apply border-none rounded-full p-0;
   }
+
+  .square-color-input::-webkit-color-swatch {
+    @apply border-none rounded-md;
+  }
+
+  .square-color-input::-webkit-color-swatch-wrapper {
+    @apply border-none rounded-md p-0;
+  }
 }

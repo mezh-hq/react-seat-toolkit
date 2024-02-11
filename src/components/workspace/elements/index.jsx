@@ -90,14 +90,15 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
         y={y}
         {...props}
         className={twMerge(
-          "fill-current text-white transition-all duration-medium",
+          "fill-current transition-all duration-medium",
           isSelected
             ? type === ElementType.Text
               ? "text-selected"
               : "element-selected"
             : type === ElementType.Text
             ? "text-unselected"
-            : "element-unselected"
+            : "element-unselected",
+          !props.color && "text-white"
         )}
         onClick={onClick}
         {...{ [dataAttributes.elementType]: type }}

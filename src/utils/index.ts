@@ -70,6 +70,10 @@ export const getImageDimensions = async (base64File) => {
 
 export const rgbToHex = (rgb: string) => {
   if (!rgb) return "";
+  function componentToHex(c) {
+    const hex = Number(c).toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+  }
   const [r, g, b] = rgb.match(/\d+/g);
-  return `#${parseInt(r).toString(16)}${parseInt(g).toString(16)}${parseInt(b).toString(16)}`;
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 };

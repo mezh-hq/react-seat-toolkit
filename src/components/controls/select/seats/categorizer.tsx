@@ -37,22 +37,29 @@ const Categorizer = ({ firstElement, selectedElementIds }) => {
                 </span>
                 <hr />
               </div>
-              <div className="grid gap-4">
+              <div className="flex flex-col gap-4">
                 {categories.map((category) => (
-                  <div key={`category-${category.id}`} className="flex items-center gap-4 relative">
+                  <div key={`category-${category.id}`} className="flex justify-start items-center gap-4">
                     <input
                       defaultValue={category.color}
                       type="color"
-                      className="w-7 h-7 p-0 bg-white rounded-color-input"
+                      className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
                       onChange={(e) => onUpdateCategory({ ...category, color: e.target.value })}
+                    />
+                    <input
+                      defaultValue={category.textColor}
+                      type="color"
+                      className="flex-shrink-0 w-6 h-6 p-0  bg-white square-color-input"
+                      onChange={(e) => onUpdateCategory({ ...category, textColor: e.target.value })}
                     />
                     <Input
                       defaultValue={category.name}
-                      className="w-auto flex-grow h-8"
+                      className="h-8"
                       onChange={(e) => onUpdateCategory({ ...category, name: e.target.value })}
                     />
                     <Trash2
-                      className="hover:text-gray-500 cursor-pointer transition-all duration-medium"
+                      size={22}
+                      className="hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium"
                       onClick={() => onDeleteCategory(category.id)}
                     />
                   </div>

@@ -18,17 +18,20 @@ const initialState = {
     {
       id: uuidv4(),
       name: "Standard",
-      color: "#000000"
+      color: "#000000",
+      textColor: "#f7f7f7"
     },
     {
       id: uuidv4(),
       name: "Premium",
-      color: "#FF0000"
+      color: "#FF0000",
+      textColor: "#f7f7f7"
     },
     {
       id: uuidv4(),
       name: "VIP",
-      color: "#0000FF"
+      color: "#0000FF",
+      textColor: "#f7f7f7"
     }
   ],
   sections: [

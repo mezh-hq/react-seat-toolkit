@@ -15,7 +15,6 @@ const useDeselection = () => {
   useEffect(() => {
     const onElemClick = (e) => {
       let id = e.target.id;
-      const controls = document.getElementById(ids.controls)?.getBoundingClientRect();
       const elementType = e.target.parentNode?.getAttribute?.(dataAttributes.elementType);
       if (elementType === ElementType.Shape) id = e.target.parentNode.id;
       if (
@@ -23,7 +22,7 @@ const useDeselection = () => {
         lastDeselectedElementId !== id &&
         ![id, e.target.parentNode?.id].includes(ids.operationTrigger) &&
         selectedElementIds.length &&
-        !isWithinBounds(e.clientX, e.clientY, controls)
+        !isWithinBounds(e.clientX, e.clientY, document.getElementById(ids.controls)?.getBoundingClientRect())
       ) {
         store.dispatch(clearElements(selectedTool === Tool.Text && id === ids.workspace));
       }
