@@ -42,7 +42,7 @@ const Seat = forwardRef(({ x, y, id, label, categories, category, status, ...pro
         cy={y}
         r={seatSize / 2}
         {...{ [dataAttributes.category]: category }}
-        {...{ [dataAttributes.status]: status }}
+        {...{ [dataAttributes.status]: status ?? SeatStatus.Available }}
         {...props}
       />
       {label && (
@@ -54,6 +54,7 @@ const Seat = forwardRef(({ x, y, id, label, categories, category, status, ...pro
           fontWeight={200}
           letterSpacing={1}
           {...props}
+          {...{ [dataAttributes.elementType]: undefined }}
           className={twMerge(props.className, "unselectable !stroke-1")}
         >
           {label ?? "A"}

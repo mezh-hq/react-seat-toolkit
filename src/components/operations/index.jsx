@@ -5,6 +5,7 @@ import { ids } from "@/constants";
 import { useBreakpoint } from "@/hooks";
 import { store } from "@/store";
 import { locationPlaceholder, setLocation, toggleControls } from "@/store/reducers/editor";
+import { stateToJSON } from "@/utils";
 import { Body, Button, IconButton } from "../core";
 import GridSwitch from "./grid-switch";
 
@@ -26,6 +27,10 @@ const Operations = () => {
     store.dispatch(setLocation(location));
   };
 
+  const onExportJson = () => {
+    console.log(stateToJSON());
+  };
+
   return (
     <div
       id={ids.operationBar}
@@ -45,12 +50,14 @@ const Operations = () => {
         {md ? (
           <>
             <Button className="py-[0.35rem]">Preview</Button>
-            <Button className="py-[0.35rem]">Export JSON</Button>
+            <Button className="py-[0.35rem]" onClick={onExportJson}>
+              Export JSON
+            </Button>
           </>
         ) : (
           <>
             <IconButton icon={<Eye />} label="Preview" />
-            <IconButton icon={<Braces />} label="Export JSON" />
+            <IconButton icon={<Braces />} label="Export JSON" onClick={onExportJson} />
           </>
         )}
         <Cog

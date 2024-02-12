@@ -4,6 +4,7 @@ declare module "d3" {
   interface Selection<GElement extends d3.BaseType, Datum, PElement extends d3.BaseType, PDatum> {
     moveToBack(): Selection<GElement, Datum, PElement, PDatum>;
     moveToFront(): Selection<GElement, Datum, PElement, PDatum>;
+    map<T>(callback: (d: Selection<GElement, Datum, PElement, PDatum>, i: number) => T): T[];
   }
 }
 
@@ -20,6 +21,14 @@ d3.selection.prototype.moveToBack = function () {
       this.parentNode.insertBefore(this, firstChild);
     }
   });
+};
+
+d3.selection.prototype.map = function (callback) {
+  const results = [];
+  this.each(function (_, i) {
+    results.push(callback(d3.select(this), i));
+  });
+  return results;
 };
 
 export const d3Extended = {

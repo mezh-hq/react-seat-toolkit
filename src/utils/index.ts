@@ -2,6 +2,7 @@ import * as d3 from "d3";
 import { ids, selectors } from "@/constants";
 
 export * from "./d3";
+export * from "./transformer";
 export * from "./workspace";
 
 export const fallible = (fn: Function) => {
