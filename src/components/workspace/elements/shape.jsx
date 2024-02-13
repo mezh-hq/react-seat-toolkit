@@ -36,7 +36,8 @@ const Shape = forwardRef(({ x, y, id, name, width, height, rx, resizable, classN
       ref={ref}
       x={x}
       y={y}
-      size={shapeSize}
+      width={width ?? shapeSize}
+      height={height ?? shapeSize}
       className={twMerge(className, "stroke-[0.75] fill-transparent")}
       stroke={color}
       {...{ [dataAttributes.shape]: name }}
