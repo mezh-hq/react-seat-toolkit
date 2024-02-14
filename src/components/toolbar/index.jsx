@@ -12,6 +12,7 @@ import { Tool, tools } from "./data";
 
 const ToolBar = () => {
   const selectedTool = useSelector((state) => state.toolbar.selectedTool);
+  const selectedPolylineId = store.getState().editor.selectedPolylineId;
 
   const onEscape = useCallback(
     (event) => {
@@ -48,6 +49,9 @@ const ToolBar = () => {
     if ([Tool.Image, Tool.Shape].includes(tool)) {
       store.dispatch(showControls());
       if (tool === Tool.Shape) selectFirstShape();
+    }
+    if (tool !== Tool.Pen && selectedPolylineId) {
+      store.dispatch(setSelectedPolylineId(null));
     }
   };
 

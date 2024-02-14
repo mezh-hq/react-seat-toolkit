@@ -17,6 +17,7 @@ import {
   addText,
   deleteBooth,
   deleteImage,
+  deletePolyline,
   deleteSeat,
   deleteShape,
   deleteText,
@@ -94,6 +95,8 @@ const useWorkspaceClick = () => {
           store.dispatch(deleteText(e.target.id));
         } else if (e.target.nodeName === "image") {
           store.dispatch(deleteImage(e.target.id));
+        } else if (e.target.nodeName === "polyline") {
+          store.dispatch(deletePolyline(e.target.id));
         }
       }
     };
