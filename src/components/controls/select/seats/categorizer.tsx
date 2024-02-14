@@ -59,6 +59,13 @@ const Categorizer = ({ firstElement, selectedElementIds }) => {
                       className="h-8"
                       onChange={(e) => onUpdateCategory({ ...category, name: e.target.value })}
                     />
+                    <Input
+                      defaultValue={category.cost}
+                      className="h-8 w-5/12"
+                      onChange={(e) =>
+                        onUpdateCategory({ ...category, cost: e.target.value ? parseFloat(e.target.value) : 0 })
+                      }
+                    />
                     <Trash2
                       size={22}
                       className="hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium"
