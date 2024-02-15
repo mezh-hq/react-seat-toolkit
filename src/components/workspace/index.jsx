@@ -34,7 +34,8 @@ export const Workspace = () => {
       y: elem.y,
       isSelected: selectedElementIds.includes(elem.id),
       label: elem.label,
-      color: elem.color
+      color: elem.color,
+      stroke: elem.stroke
     }),
     [selectedElementIds]
   );

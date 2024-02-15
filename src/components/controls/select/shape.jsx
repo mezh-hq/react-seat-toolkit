@@ -73,15 +73,25 @@ const ShapeSelectControls = () => {
             }}
           />
         )}
-
         <ControlInput
-          id="shape-color-input"
-          label="Color"
+          id="shape-stroke-input"
+          label="Stroke"
           defaultValue={rgbToHex(d3Extended.select(firstElement).style("stroke"))}
           type="color"
           onChange={(e) => {
             selectedElementIds.forEach((id) => {
               d3Extended.selectById(id).style("stroke", e.target.value);
+            });
+          }}
+        />
+        <ControlInput
+          id="shape-fill-input"
+          label="Fill"
+          defaultValue={rgbToHex(d3Extended.select(firstElement).style("color"))}
+          type="color"
+          onChange={(e) => {
+            selectedElementIds.forEach((id) => {
+              d3Extended.selectById(id).style("color", e.target.value);
             });
           }}
         />

@@ -52,7 +52,7 @@ const TwinSwitch = ({ values = [], selectedValue, onChange, handleClassName, ...
       <div
         className={twMerge(
           padding,
-          "absolute flex justify-center items-center bg-blue-600 splash after:opacity-[0.2] rounded-full transition-all duration-medium",
+          "!absolute flex justify-center items-center bg-blue-600 splash after:opacity-[0.2] rounded-full transition-all duration-medium",
           handleClassName
         )}
         style={handleStyles}

@@ -71,6 +71,7 @@ export const getImageDimensions = async (base64File) => {
 
 export const rgbToHex = (rgb: string) => {
   if (!rgb) return "";
+  if (rgb.includes("transparent")) return "#ffffff00";
   function componentToHex(c) {
     const hex = Number(c).toString(16);
     return hex.length == 1 ? "0" + hex : hex;

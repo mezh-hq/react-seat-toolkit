@@ -11,40 +11,44 @@ export const resizableRectangle = {
   height: 100
 };
 
-const Shape = forwardRef(({ x, y, id, name, width, height, rx, resizable, className, color, ...props }, ref) => {
-  if (name === "RectangleHorizontal") {
+const Shape = forwardRef(
+  ({ x, y, id, name, width, height, rx, resizable, className, stroke, color, ...props }, ref) => {
+    if (name === "RectangleHorizontal") {
+      return (
+        <rect
+          ref={ref}
+          id={id}
+          x={x}
+          y={y}
+          width={width ?? resizableRectangle.width}
+          height={height ?? resizableRectangle.height}
+          rx={rx ?? 15}
+          className={twMerge(className, resizable && "resizable")}
+          stroke={stroke}
+          style={{ color: color ?? "transparent" }}
+          {...{ [dataAttributes.shape]: "RectangleHorizontal" }}
+          {...props}
+        />
+      );
+    }
+    const Icon = lucide[name];
     return (
-      <rect
-        ref={ref}
+      <Icon
         id={id}
+        ref={ref}
         x={x}
         y={y}
-        width={width ?? resizableRectangle.width}
-        height={height ?? resizableRectangle.height}
-        rx={rx ?? 15}
-        className={twMerge(className, "fill-transparent", resizable && "resizable")}
-        stroke={color}
-        {...{ [dataAttributes.shape]: "RectangleHorizontal" }}
+        width={width ?? shapeSize}
+        height={height ?? shapeSize}
+        className={twMerge(className, "stroke-[0.75]")}
+        stroke={stroke}
+        style={{ color: color ?? "transparent" }}
+        {...{ [dataAttributes.shape]: name }}
         {...props}
       />
     );
   }
-  const Icon = lucide[name];
-  return (
-    <Icon
-      id={id}
-      ref={ref}
-      x={x}
-      y={y}
-      width={width ?? shapeSize}
-      height={height ?? shapeSize}
-      className={twMerge(className, "stroke-[0.75] fill-transparent")}
-      stroke={color}
-      {...{ [dataAttributes.shape]: name }}
-      {...props}
-    />
-  );
-});
+);
 
 Shape.displayName = "Shape";
 
