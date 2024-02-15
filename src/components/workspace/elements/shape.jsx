@@ -24,8 +24,7 @@ const Shape = forwardRef(
           height={height ?? resizableRectangle.height}
           rx={rx ?? 15}
           className={twMerge(className, resizable && "resizable")}
-          stroke={stroke}
-          style={{ color: color ?? "transparent" }}
+          style={{ color: color ?? "transparent", stroke }}
           {...{ [dataAttributes.shape]: "RectangleHorizontal" }}
           {...props}
         />
@@ -41,8 +40,7 @@ const Shape = forwardRef(
         width={width ?? shapeSize}
         height={height ?? shapeSize}
         className={twMerge(className, "stroke-[0.75]")}
-        stroke={stroke}
-        style={{ color: color ?? "transparent" }}
+        style={{ color: color ?? "transparent", stroke }}
         {...{ [dataAttributes.shape]: name }}
         {...props}
       />

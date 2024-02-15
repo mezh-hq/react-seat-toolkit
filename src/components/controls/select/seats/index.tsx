@@ -48,8 +48,8 @@ const SeatSelectControls = () => {
                   textColor = category.textColor;
                 }
               }
-              seat.style("color", color, "important");
-              seatLabel?.style("stroke", textColor, "important");
+              seat.style("color", color);
+              seatLabel?.style("stroke", textColor);
             });
           }}
           className="flex justify-between gap-2 my-1"

@@ -1,14 +1,15 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
-const Polyline = forwardRef(({ id, points, ...props }, ref) => {
+const Polyline = forwardRef(({ id, points, color, stroke, ...props }, ref) => {
   return (
     <polyline
       ref={ref}
       id={id}
       points={points.map((p) => `${p.x},${p.y}`).join(" ")}
       {...props}
-      className={twMerge(props.className, "fill-transparent")}
+      style={{ color: color ?? "transparent", stroke }}
+      className={twMerge(props.className)}
     />
   );
 });
