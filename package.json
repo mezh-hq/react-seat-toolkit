@@ -2,15 +2,11 @@
   "name": "@mezh-hq/react-seat-toolkit",
   "version": "0.0.0",
   "description": "React UI library to design and render seat layouts",
-  "main": "src/index.jsx",
+  "main": "dist/index.js",
   "private": false,
   "exports": {
-    ".": "./src/index.jsx",
-    "./components": "./src/components/index.jsx",
-    "./constants": "./src/constants/index.js",
-    "./icons": "./src/icons/index.js",
-    "./hooks": "./src/hooks/index.js",
-    "./styles": "./src/styles/index.css"
+    ".": "./dist/index.js",
+    "./styles": "./dist/index.css"
   },
   "scripts": {
     "build": "bun run ./esbuild.config.js && bun build:css",
@@ -24,17 +20,21 @@
     "release": "npm publish --access=public --no-git-checks || true",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "Designer",
+    "Seats",
+    "Layout"
+  ],
+  "author": "Akalanka Perera, Miyuru Gunarathna",
+  "license": "MIT",
+  "homepage": "https://github.com/mezh-hq/react-seat-toolkit#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sliit-foss/bashaway-ui.git"
+    "url": "git+https://github.com/mezh-hq/react-seat-toolkit.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sliit-foss/bashaway-ui/issues"
+    "url": "https://github.com/mezh-hq/react-seat-toolkit/issues"
   },
-  "homepage": "https://github.com/sliit-foss/bashaway-ui#readme",
   "dependencies": {
     "@radix-ui/react-accordion": "1.1.2",
     "@radix-ui/react-checkbox": "1.0.4",
