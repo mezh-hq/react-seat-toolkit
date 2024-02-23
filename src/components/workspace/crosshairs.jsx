@@ -31,8 +31,8 @@ export const Crosshairs = ({ render }) => {
 
   const workspace = document.getElementById(ids.workspace)?.getBoundingClientRect();
 
-  const x1 = x - workspace?.left ?? 0;
-  const y1 = y - workspace?.top ?? 0;
+  const x1 = x - workspace.left ?? 0;
+  const y1 = y - workspace.top ?? 0;
 
   if (x1 < 0 || y1 < 0) return null;
 
