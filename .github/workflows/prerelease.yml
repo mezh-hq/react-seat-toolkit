@@ -14,6 +14,9 @@ on:
           - blizzard
           - dev
 
+permissions:
+  contents: write
+
 jobs:
   package-release:
     name: Publish
