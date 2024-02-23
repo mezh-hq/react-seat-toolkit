@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux";
 import { d3Extended, rgbToHex } from "@/utils";
-import { default as ControlInput } from "../control-input";
+import { default as ControlInput } from "../../control-input";
+import { default as SectionSelector } from "./section-selector";
 
 const PolylineSelectControls = () => {
-  const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
-
+  const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
   const firstElement = document.getElementById(selectedElementIds[0]);
-
   return (
     <div className="flex flex-col gap-4 py-1">
+      <SectionSelector firstElement={firstElement} selectedElementIds={selectedElementIds} />
       <div className="grid grid-cols-3 items-center gap-4">
         <ControlInput
           id="polyline-stroke-input"

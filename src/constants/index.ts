@@ -22,7 +22,8 @@ export const dataAttributes = {
   elementType: "data-element-type",
   shape: "data-shape",
   category: "data-category",
-  status: "data-status"
+  status: "data-status",
+  section: "data-section"
 };
 
 export enum SeatStatus {

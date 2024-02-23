@@ -39,8 +39,28 @@ const initialState = {
   ],
   sections: [
     {
+      id: 0,
+      name: "No Section",
+      color: "#ffffff"
+    },
+    {
       id: uuidv4(),
-      name: "Section 1"
+      name: "Section 1",
+      color: "#000000",
+      freeSeating: true,
+      capacity: 100
+    },
+    {
+      id: uuidv4(),
+      name: "Section 2",
+      color: "#FF0000",
+      freeSeating: false
+    },
+    {
+      id: uuidv4(),
+      name: "Section 3",
+      color: "#0000FF",
+      freeSeating: false
     }
   ],
   selectedPolylineId: null,
@@ -132,6 +152,10 @@ export const slice = createSlice({
     addPolyline: (state, action) => {
       state.polylines.push(action.payload);
     },
+    updatePolyline(state, action) {
+      const index = state.polylines.findIndex((polyline) => polyline.id === action.payload.id);
+      state.polylines[index] = { ...state.polylines[index], ...action.payload };
+    },
     deletePolyline: (state, action) => {
       state.polylines = state.polylines.filter((polyline) => polyline.id !== action.payload);
     },
@@ -165,12 +189,17 @@ export const slice = createSlice({
     addSection: (state) => {
       state.sections.push({
         id: uuidv4(),
-        name: `Section ${state.sections.length + 1}`
+        name: `Section ${state.sections.length + 1}`,
+        color: "#000000",
+        freeSeating: false
       });
     },
     updateSection: (state, action) => {
       const index = state.sections.findIndex((section) => section.id === action.payload.id);
       state.sections[index] = action.payload;
+    },
+    deleteSection: (state, action) => {
+      state.sections = state.sections.filter((section) => section.id !== action.payload);
     },
     setSelectedPolylineId: (state, action) => {
       state.selectedPolylineId = action.payload;
@@ -201,6 +230,7 @@ export const {
   addShape,
   deleteShape,
   addPolyline,
+  updatePolyline,
   deletePolyline,
   addPolylinePoint,
   addImage,
@@ -210,6 +240,7 @@ export const {
   updateCategory,
   addSection,
   updateSection,
+  deleteSection,
   setSelectedPolylineId
 } = slice.actions;
 
