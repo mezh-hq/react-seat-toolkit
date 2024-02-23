@@ -11,13 +11,13 @@
   "scripts": {
     "build": "bun run ./esbuild.config.js && bun build:css",
     "build:css": "bunx tailwindcss -o ./dist/index.css --minify",
-    "bump-version": "bun run --bun automatic-versioning --no-commit --recursive --prerelease-tag=blizzard --prerelease-branch=development -name=react-seat-toolkit",
+    "bump-version": "bunx --bun automatic-versioning --disable-auto-sync --recursive $(if [ \"$TAG\" != \"latest\" ]; then echo --prerelease; fi) --prerelease-branch=development --prerelease-tag=$TAG --name=@mezh-hq/react-seat-toolkit --ignore-prefixes=ci",
     "format": "bunx prettier --write --cache \"**/*.{js,jsx,ts,tsx,md,css,yml}\"",
     "lint": "bun run --bun eslint . --ext js,jsx,ts,tsx,mdx --ignore-path .gitignore --fix --cache --report-unused-disable-directives",
     "storybook": "NODE_ENV=storybook storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "lefthook install",
-    "release": "npm publish --access=public --no-git-checks || true",
+    "release": "bunx github:akalanka47000/bunpublish --tag=${TAG:=latest}",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -66,7 +66,7 @@
     "@commitlint/cli": "17.4.2",
     "@commitlint/config-conventional": "17.4.2",
     "@interactjs/types": "1.10.26",
-    "@sliit-foss/automatic-versioning": "2.1.1",
+    "@sliit-foss/automatic-versioning": "2.3.0",
     "@storybook/addon-essentials": "7.3.2",
     "@storybook/addon-interactions": "7.3.2",
     "@storybook/addon-links": "7.3.2",
@@ -101,5 +101,9 @@
   },
   "overrides": {
     "jsondiffpatch": "^0.5.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   }
 }

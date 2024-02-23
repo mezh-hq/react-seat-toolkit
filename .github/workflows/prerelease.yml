@@ -1,10 +1,18 @@
-name: CI/CD Release
-run-name: Release
+name: CI/CD Prerelease
+run-name: Prerelease
 
 on:
   push:
     branches:
-      - main
+      - development
+  workflow_dispatch:
+    inputs:
+      tag:
+        type: choice
+        description: "Choose a prerelease tag"
+        options:
+          - blizzard
+          - dev
 
 jobs:
   package-release:
@@ -21,8 +29,7 @@ jobs:
 
       - name: Release 🚀
         uses: sliit-foss/actions/bun/publish@main
-        with:
-          latest: true
         env:
-          TAG: latest
+          TAG: ${{ inputs.tag || 'blizzard' }}
           NPM_ACCESS_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+

@@ -5,7 +5,6 @@
 src/
 test/
 coverage/
-injections
 node_modules/
 patches/
 storybook-static/

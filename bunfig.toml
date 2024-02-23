@@ -1,0 +1,5 @@
+[install]
+exact = true
+
+[install.scopes]
+"@mezh-hq" = { token = "$NPM_ACCESS_TOKEN", url = "https://registry.npmjs.org/" }

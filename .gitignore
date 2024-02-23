@@ -1,8 +1,9 @@
 .cache
+.eslintcache
+.env
+.npmrc
+.DS_Store
+
 dist
 node_modules
 storybook-static
-.eslintcache
-.npmrc
-
-.DS_Store
