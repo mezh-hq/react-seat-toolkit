@@ -1,10 +1,13 @@
 <br/>
 
-<a aria-label="License" href="https://github.com/akalanka47000/react-seat-toolkit/blob/main/LICENSE">
+<a aria-label="License" href="https://github.com/mezh-hq/react-seat-toolkit/blob/main/LICENSE">
   <img alt="" src="https://img.shields.io/badge/License-MIT-yellow.svg">
 </a>
-<a aria-label="CI Deploy" href="https://github.com/akalanka47000/react-seat-toolkit/actions/workflows/release.yml">
-  <img alt="" src="https://github.com/akalanka47000/react-seat-toolkit/actions/workflows/release.yml/badge.svg">
+<a aria-label="CI Release" href="https://github.com/mezh-hq/react-seat-toolkit/actions/workflows/release.yml">
+  <img alt="" src="https://github.com/mezh-hq/react-seat-toolkit/actions/workflows/release.yml/badge.svg">
+</a>
+<a aria-label="CI Release" href="https://github.com/mezh-hq/react-seat-toolkit/actions/workflows/prerelease.yml">
+  <img alt="" src="https://github.com/mezh-hq/react-seat-toolkit/actions/workflows/prerelease.yml/badge.svg">
 </a>
  
 <br/> <br/>
