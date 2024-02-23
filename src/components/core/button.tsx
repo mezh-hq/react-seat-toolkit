@@ -1,5 +1,4 @@
 import { RotatingLines } from "react-loader-spinner";
-import { Link } from "react-router-dom";
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
@@ -54,9 +53,9 @@ interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
 const Button = ({ to, wrapperClassName, target, ariaLabel, ...props }: ButtonProps) => {
   if (to) {
     return (
-      <Link to={to} target={target ?? "_self"} className={wrapperClassName} aria-label={ariaLabel}>
+      <a href={to} target={target ?? "_self"} className={wrapperClassName} aria-label={ariaLabel}>
         <Button {...props} />
-      </Link>
+      </a>
     );
   }
   return <Core {...props} />;
