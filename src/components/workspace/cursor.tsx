@@ -13,7 +13,7 @@ export const Cursor = () => {
   const [cursorX, setCursorX] = useState(0);
   const [cursorY, setCursorY] = useState(0);
 
-  const Cursor = useSelector((state) => state.editor.cursor);
+  const Cursor = useSelector((state: any) => state.editor.cursor);
 
   const move = (e) => {
     const pointer = d3.pointer(e);

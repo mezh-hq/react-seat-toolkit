@@ -1,8 +1,9 @@
 import { useCallback, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
-import { ids } from "@/constants";
+import { STKMode, ids } from "@/constants";
 import { store } from "@/store";
-import { initializeElements } from "@/store/reducers/editor";
+import { initializeElements, sync } from "@/store/reducers/editor";
+import type { ISTKProps } from "@/types";
 import { Tool, tools } from "../toolbar/data";
 import { default as Crosshairs } from "./crosshairs";
 import { default as Element, ElementType } from "./elements";
@@ -11,21 +12,25 @@ import { default as Zoom } from "./zoom";
 
 export { default as Cursor } from "./cursor";
 
-export const Workspace = () => {
-  const booths = useSelector((state) => state.editor.booths);
-  const seats = useSelector((state) => state.editor.seats);
-  const text = useSelector((state) => state.editor.text);
-  const shapes = useSelector((state) => state.editor.shapes);
-  const polylines = useSelector((state) => state.editor.polylines);
-  const images = useSelector((state) => state.editor.images);
-  const categories = useSelector((state) => state.editor.categories);
-  const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
-  const selectedPolylineId = useSelector((state) => state.editor.selectedPolylineId);
-  const selectedTool = useSelector((state) => state.toolbar.selectedTool);
+export const Workspace: React.FC<ISTKProps> = (props) => {
+  const booths = useSelector((state: any) => state.editor.booths);
+  const seats = useSelector((state: any) => state.editor.seats);
+  const text = useSelector((state: any) => state.editor.text);
+  const shapes = useSelector((state: any) => state.editor.shapes);
+  const polylines = useSelector((state: any) => state.editor.polylines);
+  const images = useSelector((state: any) => state.editor.images);
+  const categories = useSelector((state: any) => state.editor.categories);
+  const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
+  const selectedPolylineId = useSelector((state: any) => state.editor.selectedPolylineId);
+  const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
 
   useLayoutEffect(() => {
-    store.dispatch(initializeElements());
-  }, []);
+    if (props.data) {
+      store.dispatch(sync(props.data));
+    } else {
+      store.dispatch(initializeElements());
+    }
+  }, [props.data]);
 
   const elementProps = useCallback(
     (elem) => ({
@@ -35,7 +40,12 @@ export const Workspace = () => {
       isSelected: selectedElementIds.includes(elem.id),
       label: elem.label,
       color: elem.color,
-      stroke: elem.stroke
+      stroke: elem.stroke,
+      options: {
+        mode: props.mode,
+        events: props.events
+      },
+      element: elem
     }),
     [selectedElementIds]
   );
@@ -95,8 +105,12 @@ export const Workspace = () => {
           {selectedPolylineId && <line id={ids.templine} className="stroke-2 stroke-black fill-white" />}
         </g>
       </svg>
-      <Crosshairs render={tools[selectedTool]?.crosshairs} />
-      <Grid />
+      {props.mode === STKMode.Designer && (
+        <>
+          <Crosshairs render={tools[selectedTool]?.crosshairs} />
+          <Grid />
+        </>
+      )}
       <Zoom />
     </div>
   );

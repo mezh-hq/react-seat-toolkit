@@ -17,9 +17,9 @@ const transition = "transition-all duration-500";
 const width = "w-[22rem]";
 
 const Controls = () => {
-  const open = useSelector((state) => state.editor.showControls);
-  const selectedTool = useSelector((state) => state.toolbar.selectedTool);
-  const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
+  const open = useSelector((state: any) => state.editor.showControls);
+  const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
+  const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
 
   const ControlComponent = useMemo(() => {
     if (selectedTool === Tool.Select) {

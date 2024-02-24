@@ -1,7 +1,8 @@
+import { STKMode } from "@/constants";
 import SeatToolkit from "@/index";
 
 export default {
-  title: "Designer",
+  title: "Designer Mode",
   component: SeatToolkit,
   parameters: {
     layout: "fullscreen"
@@ -10,5 +11,5 @@ export default {
 };
 
 export const Default = {
-  render: () => <SeatToolkit />
+  render: () => <SeatToolkit mode={STKMode.Designer} />
 };
