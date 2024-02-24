@@ -12,10 +12,10 @@ export const getWorkspaceHeight = () => {
 
 export const getWorkspaceCenterX = () => {
   const workspaceContainer = document.getElementById(ids.workspaceContainer);
-  return window.innerWidth / 2 - workspaceContainer.offsetLeft - 8;
+  return window.innerWidth / 2 - (workspaceContainer?.offsetLeft ?? 0) - 8;
 };
 
 export const getWorkspaceCenterY = () => {
   const workspaceContainer = document.getElementById(ids.workspaceContainer);
-  return window.innerHeight / 2 - workspaceContainer.offsetTop;
+  return window.innerHeight / 2 - (workspaceContainer?.offsetTop ?? 0);
 };

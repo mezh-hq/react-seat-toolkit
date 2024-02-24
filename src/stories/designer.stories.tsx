@@ -1,3 +1,4 @@
+import { STKMode } from "@/constants";
 import SeatToolkit from "@/index";
 
 export default {
@@ -10,5 +11,5 @@ export default {
 };
 
 export const Default = {
-  render: () => <SeatToolkit />
+  render: () => <SeatToolkit mode={STKMode.Designer} />
 };

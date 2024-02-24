@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
+import type { ISTKData } from "@/types";
 import booths from "./booths";
 import seats from "./seats";
 import shapes from "./shapes";
@@ -203,6 +204,13 @@ export const slice = createSlice({
     },
     setSelectedPolylineId: (state, action) => {
       state.selectedPolylineId = action.payload;
+    },
+    sync: (state, action) => {
+      const { name, ...data } = action.payload as ISTKData;
+      state.location = name ?? state.location;
+      Object.keys(data).forEach((key) => {
+        state[key] = data[key] ?? state[key];
+      });
     }
   }
 });
@@ -241,7 +249,8 @@ export const {
   addSection,
   updateSection,
   deleteSection,
-  setSelectedPolylineId
+  setSelectedPolylineId,
+  sync
 } = slice.actions;
 
 export default slice.reducer;

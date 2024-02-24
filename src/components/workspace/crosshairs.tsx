@@ -7,7 +7,7 @@ export const Crosshairs = ({ render }) => {
   const [y, setY] = useState(0);
   const [enabled, setEnabled] = useState(false);
 
-  const move = (e) => {
+  const move = (e: Event) => {
     const pointer = d3.pointer(e);
     setX(pointer[0]);
     setY(pointer[1]);

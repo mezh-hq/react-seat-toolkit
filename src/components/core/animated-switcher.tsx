@@ -1,7 +1,23 @@
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
-const AnimatedSwitcher = ({ customKey, component, alternateComponent, show, className, duration }) => {
+interface AnimatedSwitcherProps {
+  customKey?: string;
+  component: React.ReactNode;
+  alternateComponent?: React.ReactNode;
+  show: boolean;
+  className?: string;
+  duration?: number;
+}
+
+const AnimatedSwitcher = ({
+  customKey,
+  component,
+  alternateComponent,
+  show,
+  className,
+  duration
+}: AnimatedSwitcherProps) => {
   return (
     <motion.div
       key={customKey ?? (show ? "component" : "alternateComponent")}

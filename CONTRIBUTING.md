@@ -1,7 +1,3 @@
-## Installation
-
-Run `bun i @mezh-hq/react-seat-toolkit` to incorporate into your project <br/>
-
 ## Getting started
 
 - Run `bun install` to install all dependencies

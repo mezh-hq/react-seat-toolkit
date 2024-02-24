@@ -29,8 +29,6 @@ React UI library to design and render seat layouts. The library is still under a
 </p>
 
 
-
-
 ## Features
 
 - **JSON based**: Define your seat layout using JSON data and retrieve it back as JSON after customization ✓
@@ -82,6 +80,71 @@ React UI library to design and render seat layouts. The library is still under a
 
 - **Override styles**: Override the default styles to match your application's theme 🛠️
 
+## Installation
+
+Run `bun i @mezh-hq/react-seat-toolkit` to incorporate into your project <br/>
+
+## Usage
+
+### User mode
+
+```jsx
+import React from 'react';
+import SeatToolkit from '@mezh-hq/react-seat-toolkit';
+
+const App = () => {
+  const data = {
+    seats: [
+      {
+        id: '1',
+        x: 100,
+        y: 100,
+        label: 'A1',
+        color: 'blue',
+      },
+    ],
+  };
+  return (
+    <SeatToolkit
+      mode="user"
+      data={data}
+      events={{
+        onSeatClick: (seat) => {
+          console.log(seat);
+        },
+        onSectionClick: (section) => {
+          console.log(section);
+        },
+      }}
+    />
+  );
+};
+
+export default App;
+```
+
+### Designer mode
+
+```jsx
+import React from 'react';
+import SeatToolkit from '@mezh-hq/react-seat-toolkit';
+
+const App = () => {
+  return (
+    <SeatToolkit
+      mode="designer"
+      events={{
+        onExport: (data) => {
+          console.log(data);
+        },
+      }}
+    />
+  );
+};
+
+export default App;
+```
+
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/mezh-hq/react-seat-toolkit/blob/main/CONTRIBUTING.md) for details on setting up your development environment and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/mezh-hq/react-seat-toolkit/blob/main/CONTRIBUTING.md) for details on setting up your development environment and the process of submitting pull requests to us.

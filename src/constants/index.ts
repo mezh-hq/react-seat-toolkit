@@ -46,3 +46,8 @@ export const seatStatusColors = {
     label: "#ffffff"
   }
 };
+
+export enum STKMode {
+  Designer = "designer",
+  User = "user"
+}
