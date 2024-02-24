@@ -1,6 +1,5 @@
 # React Seat Toolkit
 
-<br/>
 
 <a aria-label="License" href="https://github.com/mezh-hq/react-seat-toolkit/blob/main/LICENSE">
   <img alt="" src="https://img.shields.io/badge/License-MIT-yellow.svg">
