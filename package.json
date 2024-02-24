@@ -17,7 +17,7 @@
     "storybook": "NODE_ENV=storybook storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "lefthook install",
-    "release": "bunx github:akalanka47000/bunpublish --tag=${TAG:=latest}",
+    "release": "bunx github:akalanka47000/bunpublish --tag=${TAG:=latest} --provenance",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
