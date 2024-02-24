@@ -61,13 +61,15 @@
     "interactjs": "1.10.26",
     "lodash": "4.17.21",
     "lucide-react": "0.316.0",
-    "react": "18.0.0",
-    "react-dom": "18.0.0",
     "react-gridlines": "1.1.7",
     "react-loader-spinner": "5.3.4",
     "react-redux": "9.1.0",
     "tailwind-merge": "1.13.2",
     "uuid": "9.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "17.4.2",

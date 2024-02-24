@@ -14,5 +14,6 @@ build({
   keepNames: true,
   loader: {
     ".png": "file"
-  }
+  },
+  external: ["react", "react-dom"]
 });
