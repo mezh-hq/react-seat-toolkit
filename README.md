@@ -1,3 +1,5 @@
+# React Seat Toolkit
+
 <br/>
 
 <a aria-label="License" href="https://github.com/mezh-hq/react-seat-toolkit/blob/main/LICENSE">
@@ -10,9 +12,11 @@
   <img alt="" src="https://github.com/mezh-hq/react-seat-toolkit/actions/workflows/prerelease.yml/badge.svg">
 </a>
  
-<br/> <br/>
+<br/>
 
 React UI library to design and render seat layouts. The library is still under active development and not yet ready for production use until the next major release (v1.0.0).
+
+<br/>
 
 <p align="center">
   <img width="49.5%" alt="image" src="https://github.com/mezh-hq/react-seat-toolkit/assets/73662613/18a321a0-4ced-49c8-91eb-44605ea2ab9c">
