@@ -14,6 +14,8 @@
  
 <br/>
 
+---
+
 React UI library to design and render seat layouts. The library is still under active development and not yet ready for production use until the next major release (v1.0.0).
 
 <br/>
