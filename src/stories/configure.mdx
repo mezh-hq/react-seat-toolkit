@@ -1,7 +1,7 @@
 import { Meta } from "@storybook/blocks";
 import { Button, Toaster, toast } from "../components";
 
-export const command = "bun install react-seat-toolkit"
+export const command = "bun install @mezh-hq/react-seat-toolkit"
 
 export const copy = () => {
   navigator.clipboard.writeText(command);
@@ -14,8 +14,8 @@ export const copy = () => {
 <Meta title="Configure your project" />
 
 <div className="h-full w-full flex flex-col justify-center items-center gap-12 text-center p-3 md:p-12">
-  <span className="w-10/12 text-[30px] lg:text-[54px] text-center font-bold tracking-[-2px]"> Complete toolkit for seat design</span>
-  <span className="text-[18px] lg:text-[22px] text-start font-semibold">Just one command away...</span>
-  <Button onClick={copy} className="text-[18px] xs:text-[20px] md:text-[25px] lg:text-[28px] font-medium rounded-full p-4 px-8 sm:px-12 border bg-black text-white" >{command}</Button>
+  <span className="w-10/12 !text-[30px] md:!text-[48px] lg:!text-[54px] text-center font-bold tracking-[-2px]"> Complete toolkit for seat design</span>
+  <span className="!text-[18px] !lg:text-[22px] text-start font-semibold">Just one command away...</span>
+  <Button onClick={copy} className="!text-[18px] xs:!text-[20px] md:!text-[25px] lg:!text-[28px] font-medium rounded-full p-4 px-8 sm:px-12 border bg-black text-white" >{command}</Button>
 </div>
 <Toaster/>

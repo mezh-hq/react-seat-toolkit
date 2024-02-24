@@ -12,26 +12,59 @@
  
 <br/> <br/>
 
-React UI library to design and render seat layouts
+React UI library to design and render seat layouts. The library is still under active development and not yet ready for production use until the next major release (v1.0.0).
 
-## Installation
+## Features
 
-Run `bun i react-seat-toolkit` to incorporate into your project <br/>
+- **JSON based**: Define your seat layout using JSON data and retrieve it back as JSON after customization ✓
 
-## Getting started
+- **Customizable**: Customize the layout as per your requirements
 
-- Run `bun install` to install all dependencies
-- Run `bun storybook` to start the storybooks dev server
-- Run `bun build-storybook` to build the project for a web release
-- Run `bun build` to build the project for a package release
+    - **Seats**
+      - Add new seats ✓
+      - Remove existing seats ✓
+      - Change seat colors ✓
+      - Change seat labels ✓
+      - Change seat status ✓
+      - Group seats together into categories ✓
+      - Categorier (Manage seat categories) ✓
 
-## Commit messages
+    - **Pen**
+      - Draw on the layout using a pen tool to create custom shapes ✓
 
-- We follow conventional commits during our development workflow as a good practice. More information can be found at their official [documentation](https://www.conventionalcommits.org/en/v1.0.0-beta.4/#examples)
-- Refer the [commitlint.config.js](https://github.com/akalanka47000/react-seat-toolkit/blob/main/commitlint.config.cjs) file for a full list of supported commit message prefixes
+    - **Text**
+      - Add text to the layout ✓
+      - Change text color ✓
+      - Change text size ✓
+      - Change text font weight ✓
 
-## Additional tools
+    - **Shapes**
+      - Add shapes to the layout ✓
+      - Change shape color ✓
+      - Change shape size ✓
+      - Change shape border color ✓
 
-- This project is bootstrapped with [Lefthook](https://evilmartians.com/opensource/lefthook), [Eslint](https://eslint.org/) and [Prettier](https://prettier.io/). Please make good use of them.
+    - **Sections**
+      - Section manager ✗
+      - Free seating sections ✗
 
-<br/>
+    - **Miscallaneous**
+      - Add, move around and scale background images ✓
+      - Add and move around booths ✓
+      - Multiple element selection and deselection ✓
+      - Bring elements to front or back ✓
+
+- **Responsive**: The layout is responsive and can be viewed on any device 🛠️
+
+- **Preview**: Preview the layout in a separate window 🛠️
+
+- **Designer mode and User mode**: Switch between designer and user mode to enable or disable customization 🛠️
+  - Designer mode: Enable customization
+  - User mode: Disable customization 
+      - Add callback functions to handle seat selection
+
+- **Override styles**: Override the default styles to match your application's theme 🛠️
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://github.com/mezh-hq/react-seat-toolkit/blob/main/CONTRIBUTING.md) for details on setting up your development environment and the process for submitting pull requests to us.
