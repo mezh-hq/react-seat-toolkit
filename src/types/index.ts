@@ -2,9 +2,9 @@ import { STKMode } from "@/constants";
 import { IBooth, IImage, IPolyline, ISeat, ISeatCategory, ISection, IShape, IText } from "./elements";
 
 export interface IEvents {
-  onSeatClick: (seat: ISeat & { category?: ISeatCategory }) => void;
-  onSectionClick: (section: ISection) => void;
-  onExport: (data: ISTKData) => void;
+  onSeatClick?: (seat: ISeat & { category?: ISeatCategory }) => void;
+  onSectionClick?: (section: ISection) => void;
+  onExport?: (data: ISTKData) => void;
 }
 
 export interface ISTKData {

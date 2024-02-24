@@ -1,6 +1,6 @@
 import { useCallback, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
-import { ids } from "@/constants";
+import { STKMode, ids } from "@/constants";
 import { store } from "@/store";
 import { initializeElements, sync } from "@/store/reducers/editor";
 import type { ISTKProps } from "@/types";
@@ -40,7 +40,12 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
       isSelected: selectedElementIds.includes(elem.id),
       label: elem.label,
       color: elem.color,
-      stroke: elem.stroke
+      stroke: elem.stroke,
+      options: {
+        mode: props.mode,
+        events: props.events
+      },
+      element: elem
     }),
     [selectedElementIds]
   );
@@ -100,8 +105,12 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
           {selectedPolylineId && <line id={ids.templine} className="stroke-2 stroke-black fill-white" />}
         </g>
       </svg>
-      <Crosshairs render={tools[selectedTool]?.crosshairs} />
-      <Grid />
+      {props.mode === STKMode.Designer && (
+        <>
+          <Crosshairs render={tools[selectedTool]?.crosshairs} />
+          <Grid />
+        </>
+      )}
       <Zoom />
     </div>
   );

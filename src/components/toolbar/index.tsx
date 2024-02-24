@@ -11,7 +11,7 @@ import { selectFirstShape } from "../controls/shapes";
 import { Tool, tools } from "./data";
 
 const ToolBar = () => {
-  const selectedTool = useSelector((state) => state.toolbar.selectedTool);
+  const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
   const selectedPolylineId = store.getState().editor.selectedPolylineId;
 
   const onEscape = useCallback(
