@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "React UI library to design and render seat layouts",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "private": false,
   "exports": {
     ".": "./dist/index.js",
@@ -20,6 +21,11 @@
     "release": "bunx github:akalanka47000/bunpublish --tag=${TAG:=latest} --provenance",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
   "keywords": [
     "Designer",
     "Seats",

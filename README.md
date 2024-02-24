@@ -74,11 +74,8 @@ React UI library to design and render seat layouts. The library is still under a
 - **Preview**: Preview the layout in a separate window 🛠️
 
 - **Designer mode and User mode**: Switch between designer and user mode to enable or disable customization 🛠️
-  - Designer mode: Enable customization
-  - User mode: Disable customization 
-      - Add callback functions to handle seat selection
 
-- **Override styles**: Override the default styles to match your application's theme 🛠️
+- **Custom styles**: Override the default styles to match your application's theme 🛠️
 
 ## Installation
 
