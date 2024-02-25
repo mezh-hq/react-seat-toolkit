@@ -1,8 +1,14 @@
-import { enhancer as withReduxEnhancer } from "@dreamworld/addon-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { default as rootReducer } from "./reducers";
 
 const storybook = process.env.NODE_ENV === "storybook";
+
+let withReduxEnhancer;
+
+if (storybook) {
+  // @ts-expect-error - This is a dynamic import
+  withReduxEnhancer = (await import("@dreamworld/addon-redux")).enhancer;
+}
 
 export function makeStore() {
   return configureStore({

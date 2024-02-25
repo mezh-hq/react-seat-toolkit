@@ -15,5 +15,5 @@ build({
   loader: {
     ".png": "file"
   },
-  external: ["react", "react-dom"]
+  external: ["react", "react-dom", "@dreamworld/addon-redux"]
 });
