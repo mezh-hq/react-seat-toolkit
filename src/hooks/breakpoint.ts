@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { default as resolveConfig } from "tailwindcss/resolveConfig";
-
-let tailwindConfig = (await import("../../tailwind.config.js")).default;
+import tailwindConfig from "../../tailwind.config.js";
 
 const config = resolveConfig(tailwindConfig);
 
