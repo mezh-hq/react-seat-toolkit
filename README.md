@@ -60,8 +60,8 @@ React UI library to design and render seat layouts. The library is still under a
       - Change shape border color ✓
 
     - **Sections**
-      - Section manager ✗
-      - Free seating sections ✗
+      - Section manager 🛠️
+      - Free seating sections 🛠️
 
     - **Miscallaneous**
       - Add, move around and scale background images ✓
