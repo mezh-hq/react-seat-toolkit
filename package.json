@@ -17,6 +17,7 @@
     "lint": "bun run --bun eslint . --ext js,jsx,ts,tsx,mdx --ignore-path .gitignore --fix --cache --report-unused-disable-directives",
     "storybook": "NODE_ENV=storybook storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "postinstall": "patch-package",
     "prepare": "lefthook install",
     "release": "bunx github:akalanka47000/bunpublish --tag=${TAG:=latest} --provenance",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -100,6 +101,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-storybook": "0.6.13",
     "lefthook": "1.4.3",
+    "patch-package": "8.0.0",
     "postcss": "8.4.23",
     "prettier": "2.8.8",
     "storybook": "7.3.2",
