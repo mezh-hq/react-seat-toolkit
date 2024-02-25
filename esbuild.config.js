@@ -9,7 +9,7 @@ build({
   outdir: "./dist",
   platform: "browser",
   format: "esm",
-  minify: true,
+  minify: false,
   sourcemap: true,
   keepNames: true,
   loader: {

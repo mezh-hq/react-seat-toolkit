@@ -1,4 +1,4 @@
-import { default as GridLines } from "react-gridlines";
+import { default as GridLines } from "@mezh-hq/react-gridlines";
 import { useSelector } from "react-redux";
 import { AnimatedSwitcher } from "../core";
 
