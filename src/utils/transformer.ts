@@ -21,8 +21,8 @@ export const domBoothsToJSON = () => {
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`).map((booth) => {
     return {
       id: booth.attr("id"),
-      x: +booth.attr("cx"),
-      y: +booth.attr("cy")
+      x: +booth.attr("x"),
+      y: +booth.attr("y")
     };
   });
 };
@@ -52,7 +52,8 @@ export const domShapesToJSON = () => {
       width: +shape.attr("width"),
       height: +shape.attr("height"),
       rx: shape.attr("rx") ? +shape.attr("rx") : undefined,
-      color: rgbToHex(shape.style("stroke")) || shape.attr("stroke")
+      color: rgbToHex(shape.style("color")) || shape.attr("color"),
+      stroke: rgbToHex(shape.style("stroke")) || shape.attr("stroke")
     };
   });
 };
