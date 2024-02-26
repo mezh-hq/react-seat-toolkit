@@ -88,6 +88,7 @@ Run `bun i @mezh-hq/react-seat-toolkit` to incorporate into your project <br/>
 ```jsx
 import React from 'react';
 import SeatToolkit from '@mezh-hq/react-seat-toolkit';
+import '@mezh-hq/react-seat-toolkit/styles';
 
 const App = () => {
   const data = {
@@ -125,6 +126,7 @@ export default App;
 ```jsx
 import React from 'react';
 import SeatToolkit from '@mezh-hq/react-seat-toolkit';
+import '@mezh-hq/react-seat-toolkit/styles';
 
 const App = () => {
   return (
