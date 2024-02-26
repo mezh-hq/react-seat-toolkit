@@ -6,6 +6,7 @@ const config = resolveConfig(tailwindConfig);
 
 const calculateBreakpoints = () =>
   Object.entries(config.theme.screens).reduce((acc, [key, value]) => {
+    if (typeof window === "undefined") return acc;
     acc[key] = window.matchMedia(`(min-width: ${value})`).matches;
     return acc;
   }, {});
