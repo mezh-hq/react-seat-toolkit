@@ -30,7 +30,7 @@ const Designer: React.FC<ISTKProps> = (props) => {
 
 const User: React.FC<ISTKProps> = (props) => {
   return (
-    <div className="h-full flex flex-col relative">
+    <div className="h-full min-h-[85vh] flex flex-col relative">
       <Workspace {...props} />
     </div>
   );
