@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import type { StoreEnhancer } from "redux";
 import { default as rootReducer } from "./reducers";
 
 const storybook = process.env.NODE_ENV === "storybook";
 
-let withReduxEnhancer;
+let withReduxEnhancer: StoreEnhancer<any>;
 
 if (storybook) {
   // @ts-expect-error - This is a dynamic import

@@ -74,6 +74,7 @@
 @layer base {
   html,
   body,
+  #root,
   #storybook-root {
     min-height: 100% !important;
     height: 100% !important;
