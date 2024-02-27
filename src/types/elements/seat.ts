@@ -17,6 +17,6 @@ export interface ISeat {
   x: number;
   y: number;
   label?: string;
-  category?: string;
-  status?: SeatStatus;
+  category?: string | null;
+  status?: SeatStatus | string;
 }
