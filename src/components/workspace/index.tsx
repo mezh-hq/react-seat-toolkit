@@ -1,9 +1,9 @@
 import { useCallback, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
-import { STKMode, ids } from "@/constants";
+import { ids } from "@/constants";
 import { store } from "@/store";
 import { initializeElements, sync } from "@/store/reducers/editor";
-import type { ISTKProps } from "@/types";
+import { type ISTKProps, STKMode } from "@/types";
 import { Tool, tools } from "../toolbar/data";
 import { default as Crosshairs } from "./crosshairs";
 import { default as Element, ElementType } from "./elements";

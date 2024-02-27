@@ -1,14 +1,15 @@
 import { forwardRef, useEffect, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
-import { SeatStatus, dataAttributes, seatStatusColors } from "@/constants";
+import { dataAttributes, seatStatusColors } from "@/constants";
+import { SeatStatus } from "@/types/elements";
 import { d3Extended } from "@/utils";
 
 export const seatSize = 28;
 
 export const seatLabelFontSize = seatSize / 3;
 
-const Seat = forwardRef(
-  ({ x, y, id, label, categories, category, status, onClick, options, element, ...props }, ref) => {
+const Seat: React.FC<any> = forwardRef(
+  ({ x, y, id, label, categories, category, status, onClick, options, element, ...props }, ref: any) => {
     const categoryObject = useMemo(() => categories?.find?.((c) => c.id === category), [categories, category]);
 
     const textX = useMemo(() => {

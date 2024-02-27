@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig.json",
+    "exclude": [
+      "src/stories/**/*.ts",
+    ],
+    "compilerOptions": {
+      "declaration": true,
+      "declarationDir": "./dist",
+      "outDir": "./dist",
+      "emitDeclarationOnly": true
+    }
+  }

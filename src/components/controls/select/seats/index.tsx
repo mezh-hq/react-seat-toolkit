@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 import { Label, RadioGroup, RadioGroupItem } from "@/components/core";
-import { SeatStatus, dataAttributes, seatStatusColors } from "@/constants";
+import { dataAttributes, seatStatusColors } from "@/constants";
 import { store } from "@/store";
 import { updateSeat } from "@/store/reducers/editor";
+import { SeatStatus } from "@/types/elements";
 import { d3Extended } from "@/utils";
 import { default as ControlInput } from "../../control-input";
 import { default as Categorizer } from "./categorizer";

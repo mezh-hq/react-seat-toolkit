@@ -1,3 +1,5 @@
+import { SeatStatus } from "@/types/elements";
+
 export const ids = {
   controls: "stk-controls",
   crosshairs: "stk-crosshairs",
@@ -26,12 +28,6 @@ export const dataAttributes = {
   section: "data-section"
 };
 
-export enum SeatStatus {
-  Available = "Available",
-  Unavailable = "Unavailable",
-  Reserved = "Reserved"
-}
-
 export const seatStatusColors = {
   [SeatStatus.Available]: {
     background: "#ffffff",
@@ -46,8 +42,3 @@ export const seatStatusColors = {
     label: "#ffffff"
   }
 };
-
-export enum STKMode {
-  Designer = "designer",
-  User = "user"
-}

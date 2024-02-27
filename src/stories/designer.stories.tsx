@@ -1,5 +1,5 @@
-import { STKMode } from "@/constants";
 import SeatToolkit from "@/index";
+import { STKMode } from "@/types";
 
 export default {
   title: "Designer Mode",

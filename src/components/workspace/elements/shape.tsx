@@ -11,8 +11,8 @@ export const resizableRectangle = {
   height: 100
 };
 
-const Shape = forwardRef(
-  ({ x, y, id, name, width, height, rx, resizable, className, stroke, color, ...props }, ref) => {
+const Shape: React.FC<any> = forwardRef(
+  ({ x, y, id, name, width, height, rx, resizable, className, stroke, color, ...props }, ref: any) => {
     if (name === "RectangleHorizontal") {
       return (
         <rect

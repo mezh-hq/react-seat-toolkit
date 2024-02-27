@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { Reducer, createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import type { ISTKData } from "@/types";
 import booths from "./booths";
@@ -253,4 +253,4 @@ export const {
   sync
 } = slice.actions;
 
-export default slice.reducer;
+export default slice.reducer as Reducer<typeof initialState>;

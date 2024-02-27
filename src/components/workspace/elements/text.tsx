@@ -2,8 +2,8 @@ import { forwardRef } from "react";
 
 export const textFontSize = 35;
 
-const Text = forwardRef(
-  ({ x, y, id, label, fontSize = textFontSize, fontWeight = 200, letterSpacing = 3, color, ...props }, ref) => {
+const Text: React.FC<any> = forwardRef(
+  ({ x, y, id, label, fontSize = textFontSize, fontWeight = 200, letterSpacing = 3, color, ...props }, ref: any) => {
     return (
       <text
         ref={ref}

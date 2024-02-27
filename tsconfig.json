@@ -7,5 +7,7 @@
     "jsx": "react-jsx",
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
+    "downlevelIteration": true,
   },
 }

@@ -6,7 +6,7 @@ import { Tool } from "@/components/toolbar/data";
 import { ElementType } from "@/components/workspace/elements";
 import { boothSize } from "@/components/workspace/elements/booth";
 import { resizableRectangle, shapeSize } from "@/components/workspace/elements/shape";
-import { SeatStatus, dataAttributes, ids } from "@/constants";
+import { dataAttributes, ids } from "@/constants";
 import { store } from "@/store";
 import {
   addBooth,
@@ -25,6 +25,7 @@ import {
   setSelectedPolylineId
 } from "@/store/reducers/editor";
 import { selectTool } from "@/store/reducers/toolbar";
+import { SeatStatus } from "@/types/elements";
 import { calculateDistance, getRelativeClickCoordsWithTransform } from "@/utils";
 
 const useWorkspaceClick = () => {

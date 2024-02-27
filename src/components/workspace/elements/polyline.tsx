@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes } from "@/constants";
 
-const Polyline = forwardRef(({ id, points, color, stroke, section, ...props }, ref) => {
+const Polyline: React.FC<any> = forwardRef(({ id, points, color, stroke, section, ...props }, ref: any) => {
   return (
     <polyline
       ref={ref}

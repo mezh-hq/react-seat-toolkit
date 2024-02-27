@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { EnhancedStore, configureStore } from "@reduxjs/toolkit";
 import type { StoreEnhancer } from "redux";
 import { default as rootReducer } from "./reducers";
 
@@ -11,7 +11,7 @@ if (storybook) {
   withReduxEnhancer = (await import("@dreamworld/addon-redux")).enhancer;
 }
 
-export function makeStore() {
+function makeStore() {
   return configureStore({
     devTools: storybook,
     reducer: rootReducer,
@@ -32,6 +32,6 @@ export function makeStore() {
   });
 }
 
-export const store = makeStore();
+export const store: EnhancedStore = makeStore();
 
-export default { store };
+export default store;

@@ -2,9 +2,10 @@ import { memo, useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
 import { isEqual } from "lodash";
 import { twMerge } from "tailwind-merge";
-import { STKMode, dataAttributes } from "@/constants";
+import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { clearAndSelectElements, deselectElement, selectElement } from "@/store/reducers/editor";
+import { STKMode } from "@/types";
 import { d3Extended } from "@/utils";
 import { Tool } from "../../toolbar/data";
 import {

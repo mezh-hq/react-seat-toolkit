@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { Reducer, createSlice } from "@reduxjs/toolkit";
 import { Tool } from "@/components/toolbar/data";
 
 const initialState = {
@@ -20,4 +20,4 @@ export const slice = createSlice({
 
 export const { clearTool, selectTool } = slice.actions;
 
-export default slice.reducer;
+export default slice.reducer as Reducer<typeof initialState>;

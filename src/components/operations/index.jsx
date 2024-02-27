@@ -28,7 +28,9 @@ const Operations = () => {
   };
 
   const onExportJson = () => {
-    console.log(stateToJSON());
+    const json = stateToJSON();
+    console.log(json);
+    navigator.clipboard.writeText(JSON.stringify(json));
   };
 
   return (

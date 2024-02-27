@@ -1,6 +1,5 @@
-import { STKMode } from "@/constants";
 import { useEvents, useInteractions } from "@/hooks";
-import type { ISTKProps } from "@/types";
+import { type ISTKProps, STKMode } from "@/types";
 import { default as Controls } from "./controls";
 import { default as Footer } from "./footer";
 import { default as Operations } from "./operations";

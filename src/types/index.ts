@@ -1,5 +1,11 @@
-import { STKMode } from "@/constants";
 import { IBooth, IImage, IPolyline, ISeat, ISeatCategory, ISection, IShape, IText } from "./elements";
+
+export * from "./elements";
+
+export enum STKMode {
+  Designer = "designer",
+  User = "user"
+}
 
 export interface IEvents {
   onSeatClick?: (seat: ISeat & { category?: ISeatCategory }) => void;

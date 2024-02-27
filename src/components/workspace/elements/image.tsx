@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
-const Image = forwardRef(({ x, y, id, href, width, height, ...props }, ref) => {
+const Image: React.FC<any> = forwardRef(({ x, y, id, href, width, height, ...props }, ref: any) => {
   return (
     <image
       ref={ref}
