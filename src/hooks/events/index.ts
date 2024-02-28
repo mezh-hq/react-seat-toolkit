@@ -1,5 +1,5 @@
 import useDeselection from "./deselection";
-import useDuplicate from "./duplicate";
+import useDuplicate from "./duplication";
 import usePolyline from "./polyline";
 import useWorkspaceClick from "./workspace-click";
 

@@ -7,6 +7,7 @@ interface AnimatedSwitcherProps {
   alternateComponent?: React.ReactNode;
   show: boolean;
   className?: string;
+  style?: React.CSSProperties;
   duration?: number;
 }
 
@@ -16,6 +17,7 @@ const AnimatedSwitcher = ({
   alternateComponent,
   show,
   className,
+  style,
   duration
 }: AnimatedSwitcherProps) => {
   return (
@@ -25,6 +27,7 @@ const AnimatedSwitcher = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: duration ?? 0.3 }}
+      style={style}
       exit={{ opacity: 0 }}
     >
       {show ? component : alternateComponent}

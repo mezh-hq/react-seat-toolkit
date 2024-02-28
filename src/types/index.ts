@@ -1,4 +1,5 @@
 import { IBooth, IImage, IPolyline, ISeat, ISeatCategory, ISection, IShape, IText } from "./elements";
+import { IStyles } from "./styles";
 
 export * from "./elements";
 
@@ -29,4 +30,5 @@ export interface ISTKProps {
   mode: STKMode;
   events?: IEvents;
   data?: ISTKData;
+  styles?: IStyles;
 }

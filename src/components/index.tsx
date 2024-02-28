@@ -1,3 +1,4 @@
+import { twMerge } from "tailwind-merge";
 import { useEvents, useInteractions } from "@/hooks";
 import { type ISTKProps, STKMode } from "@/types";
 import { default as Controls } from "./controls";
@@ -13,15 +14,21 @@ const Designer: React.FC<ISTKProps> = (props) => {
   useInteractions();
   return (
     <>
-      <div className="h-full flex flex-col">
+      <div
+        className={twMerge("h-full min-h-[85vh] flex flex-col", props.styles?.root?.className)}
+        style={props?.styles?.root?.properties}
+      >
         <Operations />
-        <div className="h-full flex relative">
-          <Toolbar />
+        <div
+          className={twMerge("h-full flex relative", props.styles?.workspace?.container?.className)}
+          style={props.styles?.workspace?.container?.properties}
+        >
+          <Toolbar {...props} />
           <Workspace {...props} />
           <Controls />
         </div>
       </div>
-      <Footer />
+      <Footer {...props} />
       <Cursor />
     </>
   );
@@ -29,7 +36,10 @@ const Designer: React.FC<ISTKProps> = (props) => {
 
 const User: React.FC<ISTKProps> = (props) => {
   return (
-    <div className="h-full min-h-[85vh] flex flex-col relative">
+    <div
+      className={twMerge("h-full min-h-[85vh] flex flex-col relative", props.styles?.root?.className)}
+      style={props?.styles.root?.properties}
+    >
       <Workspace {...props} />
     </div>
   );

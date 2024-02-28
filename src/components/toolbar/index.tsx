@@ -6,13 +6,16 @@ import { ids } from "@/constants";
 import { store } from "@/store";
 import { clearCursor, setCursor, setSelectedPolylineId, showControls } from "@/store/reducers/editor";
 import { clearTool, selectTool } from "@/store/reducers/toolbar";
+import { ISTKProps } from "@/types";
 import { fallible } from "@/utils";
 import { selectFirstShape } from "../controls/shapes";
 import { Tool, tools } from "./data";
 
-const ToolBar = () => {
+const ToolBar: React.FC<ISTKProps> = (props) => {
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
   const selectedPolylineId = store.getState().editor.selectedPolylineId;
+
+  const styles = props.styles?.toolbar;
 
   const onEscape = useCallback(
     (event) => {
@@ -58,7 +61,11 @@ const ToolBar = () => {
   return (
     <div
       id={ids.toolbar}
-      className="h-full flex flex-col gap-5 border-t pt-5 border-black [&>*:last-child]:[&>*:last-child]:hidden bg-black/5"
+      className={twMerge(
+        "h-full flex flex-col gap-5 border-t pt-5 border-black [&>*:last-child]:[&>*:last-child]:hidden bg-black/5",
+        styles?.root?.className
+      )}
+      style={styles?.root?.properties}
     >
       {Object.entries(tools).map(([key, value]) => {
         const Icon = value.icon;
@@ -67,8 +74,10 @@ const ToolBar = () => {
             key={key}
             className={twMerge(
               "relative hover:bg-white transition-all duration-300 !cursor-pointer",
-              selectedTool === key && "bg-white/80"
+              selectedTool === key && "bg-white/80",
+              styles?.tool?.root?.className
             )}
+            style={styles?.tool?.root?.properties}
             onClick={() => onToolClick(key)}
           >
             <Tooltip>
@@ -77,15 +86,29 @@ const ToolBar = () => {
                   size={20}
                   className={twMerge(
                     "pointer-events-none",
-                    selectedTool === key && "text-blue-600 transition-all duration-300"
+                    selectedTool === key && "text-blue-600 transition-all duration-300",
+                    styles?.tool?.icon?.className
                   )}
+                  style={styles?.tool?.icon?.properties}
                 />
               </TooltipTrigger>
-              <TooltipContent align="start" alignOffset={30} sideOffset={-39} className="flex gap-3 ml-8">
+              <TooltipContent
+                align="start"
+                alignOffset={30}
+                sideOffset={-39}
+                className={twMerge("flex gap-3 ml-8", styles?.tool?.label?.className)}
+                style={styles?.tool?.label?.properties}
+              >
                 {key}
               </TooltipContent>
             </Tooltip>
-            <div className="bg-black h-1 w-1 mx-auto left-[45%] opacity-10 absolute bottom-0 transform translate-y-[0.75rem] rotate-[-25deg]" />
+            <div
+              className={twMerge(
+                "bg-black h-1 w-1 mx-auto left-[45%] opacity-10 absolute bottom-0 transform translate-y-[0.75rem] rotate-[-25deg]",
+                styles?.divider?.className
+              )}
+              style={styles?.divider?.properties}
+            />
           </div>
         );
       })}
