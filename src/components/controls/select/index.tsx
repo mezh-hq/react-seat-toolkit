@@ -9,7 +9,7 @@ import { default as ShapeSelectControls } from "./shape";
 import { default as TextSelectControls } from "./text";
 
 const SelectControls = () => {
-  const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
+  const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
 
   const ControlComponent = useMemo(() => {
     const firstElementType = document.getElementById(selectedElementIds[0])?.getAttribute?.(dataAttributes.elementType);

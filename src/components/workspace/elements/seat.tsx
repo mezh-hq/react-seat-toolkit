@@ -1,16 +1,27 @@
 import { forwardRef, useEffect, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, seatStatusColors } from "@/constants";
-import { SeatStatus } from "@/types/elements";
+import { ISTKProps } from "@/types";
+import { ISeat, ISeatCategory, SeatStatus } from "@/types/elements";
 import { d3Extended } from "@/utils";
 
 export const seatSize = 28;
 
 export const seatLabelFontSize = seatSize / 3;
 
-const Seat: React.FC<any> = forwardRef(
-  ({ x, y, id, label, categories, category, status, onClick, options, element, ...props }, ref: any) => {
+export interface ISeatProps extends ISeat {
+  className?: string;
+  consumer: ISTKProps;
+  element: ISeat;
+  categories: ISeatCategory[];
+  onClick: (e: any) => void;
+}
+
+const Seat: React.FC<ISeatProps> = forwardRef(
+  ({ x, y, id, label, categories, category, status, onClick, consumer, element, ...props }, ref: any) => {
     const categoryObject = useMemo(() => categories?.find?.((c) => c.id === category), [categories, category]);
+
+    const showLabel = consumer.options?.showSeatLabels ?? true;
 
     const textX = useMemo(() => {
       let value = (+ref.current?.getAttribute("cx") || x) - seatLabelFontSize / 3.5;
@@ -42,7 +53,7 @@ const Seat: React.FC<any> = forwardRef(
 
     const localOnClick = (e) => {
       onClick(e);
-      options.events?.onSeatClick?.({
+      consumer.events?.onSeatClick?.({
         ...element,
         category: categoryObject
       });
@@ -61,7 +72,7 @@ const Seat: React.FC<any> = forwardRef(
           {...{ [dataAttributes.status]: status ?? SeatStatus.Available }}
           {...props}
         />
-        {label && (
+        {label && showLabel && (
           <text
             id={`${id}-label`}
             x={textX}

@@ -3,7 +3,7 @@ import { d3Extended, rgbToHex } from "@/utils";
 import { default as ControlInput } from "../control-input";
 
 const TextSelectControls = () => {
-  const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
+  const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
 
   const firstElement = document.getElementById(selectedElementIds[0]);
 

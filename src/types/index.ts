@@ -1,4 +1,4 @@
-import { IBooth, IImage, IPolyline, ISeat, ISeatCategory, ISection, IShape, IText } from "./elements";
+import { IBooth, IImage, IPolyline, IPopulatedSeat, ISeat, ISeatCategory, ISection, IShape, IText } from "./elements";
 import { IStyles } from "./styles";
 
 export * from "./elements";
@@ -9,7 +9,7 @@ export enum STKMode {
 }
 
 export interface IEvents {
-  onSeatClick?: (seat: ISeat & { category?: ISeatCategory }) => void;
+  onSeatClick?: (seat: IPopulatedSeat) => void;
   onSectionClick?: (section: ISection) => void;
   onExport?: (data: ISTKData) => void;
 }
@@ -31,4 +31,11 @@ export interface ISTKProps {
   events?: IEvents;
   data?: ISTKData;
   styles?: IStyles;
+  options?: {
+    showGridSwitch?: boolean;
+    showSeatLabels?: boolean;
+    showFooter?: boolean;
+    exportButtonText?: string;
+    operationTriggerIcon?: React.FC;
+  };
 }

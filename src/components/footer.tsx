@@ -4,8 +4,9 @@ import { ISTKProps } from "@/types";
 import { AnimatedSwitcher } from "./core";
 import { tools } from "./toolbar/data";
 
-const Footer: React.FC<ISTKProps> = (props) => {
+const Footer: React.FC<ISTKProps> = ({ options: { showFooter = true } = {}, ...props }) => {
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
+  if (!showFooter) return null;
   const styles = props.styles?.footer;
   return (
     <div

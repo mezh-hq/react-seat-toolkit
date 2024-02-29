@@ -20,3 +20,7 @@ export interface ISeat {
   category?: string | null;
   status?: SeatStatus | string;
 }
+
+export interface IPopulatedSeat extends Omit<ISeat, "category"> {
+  category?: ISeatCategory;
+}

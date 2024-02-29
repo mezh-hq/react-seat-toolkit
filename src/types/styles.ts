@@ -18,9 +18,31 @@ export interface IStyles {
     };
     divider?: IStyle;
   };
+  operations?: {
+    root?: IStyle;
+    input?: IStyle;
+    trigger?: IStyle;
+  };
   footer: {
     root?: IStyle;
     title?: IStyle;
     meta?: IStyle;
+  };
+  elements?: {
+    all?: {
+      selected?: IStyle;
+      unselected?: IStyle;
+    };
+    seats?: {
+      selected?: IStyle;
+      unselected?: IStyle;
+    };
+    text?: {
+      selected?: IStyle;
+      unselected?: IStyle;
+    };
+  };
+  core?: {
+    button?: IStyle;
   };
 }

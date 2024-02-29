@@ -3,7 +3,7 @@ import { Button } from "@/components/core";
 import { d3Extended } from "@/utils";
 
 const GeneralSelectControls = () => {
-  const selectedElementIds = useSelector((state) => state.editor.selectedElementIds);
+  const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
 
   return (
     <div className="flex flex-col gap-4 py-1 mt-1">

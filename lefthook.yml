@@ -13,4 +13,4 @@ commit-msg:
     commitlint:
       skip:
         - rebase
-      run: npx commitlint --edit --color
+      run: bunx --bun commitlint --edit --color

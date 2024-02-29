@@ -19,13 +19,13 @@ import {
 
 export * from "./utils";
 
-export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelected = false, options, ...props }) => {
+export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelected = false, consumer, ...props }) => {
   const ref = useRef<HTMLElement>();
 
-  const Element = elements[type];
+  const Element = elements[type] as any;
 
   useEffect(() => {
-    if (!ref.current || options.mode !== STKMode.Designer) return;
+    if (!ref.current || consumer.mode !== STKMode.Designer) return;
     const node = d3.select(ref.current);
     if (type === ElementType.Seat) {
       handleSeatDrag(node);
@@ -38,7 +38,7 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
     } else {
       handleDrag(node);
     }
-  }, [ref, options.mode]);
+  }, [ref, consumer.mode]);
 
   const onClick = (e: any) => {
     const selectedTool = store.getState().toolbar.selectedTool;
@@ -77,7 +77,7 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
         !props.color && type !== ElementType.Text && "text-white"
       )}
       onClick={onClick}
-      options={options}
+      consumer={consumer}
       {...{ [dataAttributes.elementType]: type }}
     />
   );

@@ -48,6 +48,7 @@ interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   wrapperClassName?: string;
   target?: string;
   ariaLabel?: string;
+  variant?: "primary" | "secondary";
 }
 
 const Button = ({ to, wrapperClassName, target, ariaLabel, ...props }: ButtonProps) => {

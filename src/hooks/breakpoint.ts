@@ -18,7 +18,7 @@ const calculateBreakpoints = () =>
  *
  * console.log(md); // true if the screen is at least 768px wide
  */
-const useBreakpoint = () => {
+const useBreakpoint = (): Record<string, boolean> => {
   const [breakpoints, setBreakpoints] = useState(calculateBreakpoints());
   useEffect(() => {
     const resizeHandler = () => {

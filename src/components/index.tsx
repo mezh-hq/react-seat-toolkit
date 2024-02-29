@@ -18,7 +18,7 @@ const Designer: React.FC<ISTKProps> = (props) => {
         className={twMerge("h-full min-h-[85vh] flex flex-col", props.styles?.root?.className)}
         style={props?.styles?.root?.properties}
       >
-        <Operations />
+        <Operations {...props} />
         <div
           className={twMerge("h-full flex relative", props.styles?.workspace?.container?.className)}
           style={props.styles?.workspace?.container?.properties}

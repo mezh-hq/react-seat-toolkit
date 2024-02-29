@@ -1,7 +1,12 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
+import { IImage } from "@/types";
 
-const Image: React.FC<any> = forwardRef(({ x, y, id, href, width, height, ...props }, ref: any) => {
+export interface IImageProps extends IImage {
+  className?: string;
+}
+
+const Image: React.FC<IImageProps> = forwardRef(({ x, y, id, href, width, height, ...props }, ref: any) => {
   return (
     <image
       ref={ref}

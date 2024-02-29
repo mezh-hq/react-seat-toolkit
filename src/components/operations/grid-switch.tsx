@@ -5,7 +5,7 @@ import { toggleGrid } from "@/store/reducers/editor";
 import { TwinSwitch } from "../core";
 
 const GridSwitch = ({ className }) => {
-  const grid = useSelector((state) => state.editor.grid);
+  const grid = useSelector((state: any) => state.editor.grid);
   return (
     <TwinSwitch
       values={["Whitespace", "Grid"]}

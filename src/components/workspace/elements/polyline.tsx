@@ -1,8 +1,13 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes } from "@/constants";
+import { IPolyline } from "@/types";
 
-const Polyline: React.FC<any> = forwardRef(({ id, points, color, stroke, section, ...props }, ref: any) => {
+export interface IPolylineProps extends IPolyline {
+  className?: string;
+}
+
+const Polyline: React.FC<IPolylineProps> = forwardRef(({ id, points, color, stroke, section, ...props }, ref: any) => {
   return (
     <polyline
       ref={ref}
