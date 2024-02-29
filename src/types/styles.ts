@@ -29,11 +29,19 @@ export interface IStyles {
     meta?: IStyle;
   };
   elements?: {
-    all?: {
+    booth?: {
       selected?: IStyle;
       unselected?: IStyle;
     };
-    seats?: {
+    seat?: {
+      selected?: IStyle;
+      unselected?: IStyle;
+    };
+    shape?: {
+      selected?: IStyle;
+      unselected?: IStyle;
+    };
+    image?: {
       selected?: IStyle;
       unselected?: IStyle;
     };

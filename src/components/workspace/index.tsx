@@ -1,5 +1,6 @@
 import { useCallback, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
+import { twMerge } from "tailwind-merge";
 import { ids } from "@/constants";
 import { store } from "@/store";
 import { initializeElements, sync } from "@/store/reducers/editor";
@@ -52,7 +53,14 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
   );
 
   return (
-    <div id={ids.workspaceContainer} className="w-full h-full relative border border-b-0 border-black">
+    <div
+      id={ids.workspaceContainer}
+      className={twMerge(
+        "w-full h-full relative border border-b-0 border-black",
+        props.styles?.workspace?.root?.className
+      )}
+      style={props.styles?.workspace?.root?.properties}
+    >
       <svg id={ids.workspace} className="w-full h-full">
         <g>
           {seats.map((e) => (
