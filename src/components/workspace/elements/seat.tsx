@@ -71,6 +71,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
           {...{ [dataAttributes.category]: category }}
           {...{ [dataAttributes.status]: status ?? SeatStatus.Available }}
           {...props}
+          className={twMerge(props.className, "filter hover:brightness-[1.05]")}
         />
         {label && showLabel && (
           <text
