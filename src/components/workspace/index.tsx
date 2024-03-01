@@ -21,6 +21,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
   const polylines = useSelector((state: any) => state.editor.polylines);
   const images = useSelector((state: any) => state.editor.images);
   const categories = useSelector((state: any) => state.editor.categories);
+  const sections = useSelector((state: any) => state.editor.sections);
   const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
   const selectedPolylineId = useSelector((state: any) => state.editor.selectedPolylineId);
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
@@ -99,7 +100,14 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
             />
           ))}
           {polylines.map((e) => (
-            <Element key={e.id} type={ElementType.Polyline} points={e.points} {...elementProps(e)} />
+            <Element
+              key={e.id}
+              type={ElementType.Polyline}
+              points={e.points}
+              sections={sections}
+              section={e.section}
+              {...elementProps(e)}
+            />
           ))}
           {images.map((e) => (
             <Element

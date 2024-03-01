@@ -1,4 +1,4 @@
-import { Reducer, createSlice } from "@reduxjs/toolkit";
+import { Reducer, createSelector, createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import type { ISTKData } from "@/types";
 import booths from "./booths";
@@ -48,6 +48,7 @@ const initialState = {
       id: uuidv4(),
       name: "Section 1",
       color: "#000000",
+      stroke: "#000000",
       freeSeating: true,
       capacity: 100
     },
@@ -55,12 +56,14 @@ const initialState = {
       id: uuidv4(),
       name: "Section 2",
       color: "#FF0000",
+      stroke: "#FF0000",
       freeSeating: false
     },
     {
       id: uuidv4(),
       name: "Section 3",
       color: "#0000FF",
+      stroke: "#0000FF",
       freeSeating: false
     }
   ],
@@ -192,6 +195,7 @@ export const slice = createSlice({
         id: uuidv4(),
         name: `Section ${state.sections.length + 1}`,
         color: "#000000",
+        stroke: "#000000",
         freeSeating: false
       });
     },
@@ -252,5 +256,11 @@ export const {
   setSelectedPolylineId,
   sync
 } = slice.actions;
+
+export const selectPolylineById = (id: string) =>
+  createSelector(
+    (state: any) => state.editor.polylines,
+    (polylines) => polylines.find((polyline) => polyline.id === id)
+  );
 
 export default slice.reducer as Reducer<typeof initialState>;

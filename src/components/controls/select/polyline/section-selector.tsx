@@ -48,6 +48,12 @@ const SectionSelector = ({ firstElement, selectedElementIds }) => {
                       className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
                       onChange={(e) => onUpdateSection({ ...section, color: e.target.value })}
                     />
+                    <input
+                      defaultValue={section.stroke}
+                      type="color"
+                      className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
+                      onChange={(e) => onUpdateSection({ ...section, stroke: e.target.value })}
+                    />
                     <Input
                       defaultValue={section.name}
                       className="h-8"
@@ -71,7 +77,7 @@ const SectionSelector = ({ firstElement, selectedElementIds }) => {
       <Select
         onValueChange={(value) => {
           selectedElementIds.forEach((id: string) =>
-            store.dispatch(updatePolyline({ id, section: value === "0" ? null : value }))
+            store.dispatch(updatePolyline({ id, section: +value === 0 ? null : value }))
           );
         }}
         defaultValue={firstElement?.getAttribute?.(dataAttributes.section) || undefined}

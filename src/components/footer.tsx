@@ -17,7 +17,7 @@ const Footer: React.FC<ISTKProps> = ({ options: { showFooter = true } = {}, ...p
       style={styles?.root?.properties}
     >
       <span className={twMerge("text-sm", styles?.title?.className)} style={styles?.title?.properties}>
-        React Seat Toolkit{" "}
+        React Seat Toolkit
       </span>
       <AnimatedSwitcher
         show={!!selectedTool}
