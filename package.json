@@ -81,7 +81,7 @@
     "@commitlint/config-conventional": "17.4.2",
     "@dreamworld/addon-redux": "1.1.0",
     "@interactjs/types": "1.10.26",
-    "@sliit-foss/automatic-versioning": "2.3.0",
+    "@sliit-foss/automatic-versioning": "2.3.2",
     "@storybook/addon-essentials": "7.3.2",
     "@storybook/addon-interactions": "7.3.2",
     "@storybook/addon-links": "7.3.2",
