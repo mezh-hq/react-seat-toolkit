@@ -96,7 +96,7 @@ export const stateToJSON = () => {
     booths: domBoothsToJSON(),
     text: domTextToJSON(),
     shapes: domShapesToJSON(),
-    polyline: domPolylineToJSON(),
+    polylines: domPolylineToJSON(),
     images: domImagesToJSON()
   };
 };
