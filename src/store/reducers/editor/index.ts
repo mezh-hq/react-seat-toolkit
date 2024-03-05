@@ -8,6 +8,13 @@ import text from "./text";
 
 export const locationPlaceholder = "Type your location here";
 
+const noSection = {
+  id: "0",
+  name: "No Section",
+  color: "#ffffff",
+  stroke: "#ffffff"
+};
+
 const initialState = {
   cursor: null,
   showControls: false,
@@ -39,11 +46,7 @@ const initialState = {
     }
   ],
   sections: [
-    {
-      id: "0",
-      name: "No Section",
-      color: "#ffffff"
-    },
+    noSection,
     {
       id: uuidv4(),
       name: "Section 1",
@@ -210,8 +213,9 @@ export const slice = createSlice({
       state.selectedPolylineId = action.payload;
     },
     sync: (state, action) => {
-      const { name, ...data } = action.payload as ISTKData;
+      const { name, sections, ...data } = action.payload as ISTKData;
       state.location = name ?? state.location;
+      state.sections = sections ? [noSection, ...sections] : state.sections;
       Object.keys(data).forEach((key) => {
         state[key] = data[key] ?? state[key];
       });

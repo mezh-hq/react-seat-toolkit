@@ -91,7 +91,7 @@ export const stateToJSON = () => {
   return {
     name: state.location,
     categories: state.categories,
-    sections: state.sections,
+    sections: state.sections.slice(1),
     seats: domSeatsToJSON(),
     booths: domBoothsToJSON(),
     text: domTextToJSON(),
