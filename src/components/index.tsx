@@ -38,7 +38,7 @@ const User: React.FC<ISTKProps> = (props) => {
   return (
     <div
       className={twMerge("h-full min-h-[85vh] flex flex-col relative", props.styles?.root?.className)}
-      style={props?.styles.root?.properties}
+      style={props?.styles?.root?.properties}
     >
       <Workspace {...props} />
     </div>
