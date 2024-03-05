@@ -40,7 +40,7 @@ const initialState = {
   ],
   sections: [
     {
-      id: 0,
+      id: "0",
       name: "No Section",
       color: "#ffffff"
     },

@@ -42,7 +42,7 @@ React UI library to design and render seat layouts. The library is still under a
       - Change seat labels ✓
       - Change seat status ✓
       - Group seats together into categories ✓
-      - Categorier (Manage seat categories) ✓
+      - Categorizer (Manage seat categories) ✓
 
     - **Pen**
       - Draw on the layout using a pen tool to create custom shapes ✓
