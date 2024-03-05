@@ -3,7 +3,7 @@ export interface ISection {
   name: string;
   color: string;
   stroke: string;
-  freeSeating: boolean;
+  freeSeating?: boolean;
   capacity?: number;
 }
 
