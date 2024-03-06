@@ -3,7 +3,6 @@ export interface ISeatCategory {
   name: string;
   color: string;
   textColor: string;
-  cost: number;
 }
 
 export enum SeatStatus {

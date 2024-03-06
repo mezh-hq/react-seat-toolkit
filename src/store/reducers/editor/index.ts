@@ -27,22 +27,19 @@ const initialState = {
       id: uuidv4(),
       name: "Standard",
       color: "#000000",
-      textColor: "#f7f7f7",
-      cost: 0
+      textColor: "#f7f7f7"
     },
     {
       id: uuidv4(),
       name: "Premium",
       color: "#FF0000",
-      textColor: "#f7f7f7",
-      cost: 100
+      textColor: "#f7f7f7"
     },
     {
       id: uuidv4(),
       name: "VIP",
       color: "#0000FF",
-      textColor: "#f7f7f7",
-      cost: 500
+      textColor: "#f7f7f7"
     }
   ],
   sections: [
@@ -181,8 +178,7 @@ export const slice = createSlice({
         id: uuidv4(),
         name: "New Category",
         color: "#000000",
-        textColor: "#f7f7f7",
-        cost: 0
+        textColor: "#f7f7f7"
       };
       state.categories.push(action.payload);
     },
