@@ -51,12 +51,22 @@ const Zoom = () => {
     if (selectedTool == Tool.Pan) {
       d3.select(`#${ids.workspace}`).call(zoom);
     } else {
-      d3.select(`#${ids.workspace}`)
+      selection
         .call(zoom)
         .on("mousedown.zoom", null)
         .on("touchstart.zoom", null)
         .on("touchmove.zoom", null)
-        .on("touchend.zoom", null);
+        .on("touchend.zoom", null)
+        .on("wheel.zoom", (e) => {
+          e.preventDefault();
+          const currentZoom = selection.property("__zoom").k || 1;
+          if (e.ctrlKey) {
+            const nextZoom = currentZoom * Math.pow(2, -e.deltaY * 0.01);
+            zoom.scaleTo(selection, nextZoom, d3.pointer(e));
+          } else {
+            zoom.translateBy(selection, -(e.deltaX / currentZoom), -(e.deltaY / currentZoom));
+          }
+        });
     }
   }, [selectedTool]);
 
