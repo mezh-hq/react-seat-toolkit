@@ -80,7 +80,7 @@ const Operations: React.FC<ISTKProps> = ({
               Preview
             </Button>
             <Button
-              className={twMerge("py-[0.35rem]", coreStyles?.button?.className)}
+              className={twMerge("py-[0.35rem] text-center", coreStyles?.button?.className)}
               style={coreStyles?.button?.properties}
               onClick={onExportJson}
             >

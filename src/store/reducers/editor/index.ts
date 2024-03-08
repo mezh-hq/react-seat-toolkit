@@ -187,7 +187,7 @@ export const slice = createSlice({
     },
     updateCategory: (state, action) => {
       const index = state.categories.findIndex((category) => category.id === action.payload.id);
-      state.categories[index] = action.payload;
+      state.categories[index] = { ...state.categories[index], ...action.payload };
     },
     addSection: (state) => {
       state.sections.push({
@@ -200,7 +200,7 @@ export const slice = createSlice({
     },
     updateSection: (state, action) => {
       const index = state.sections.findIndex((section) => section.id === action.payload.id);
-      state.sections[index] = action.payload;
+      state.sections[index] = { ...state.sections[index], ...action.payload };
     },
     deleteSection: (state, action) => {
       state.sections = state.sections.filter((section) => section.id !== action.payload);

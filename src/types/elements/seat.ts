@@ -1,8 +1,11 @@
+import { ISection } from "./polyline";
+
 export interface ISeatCategory {
   id: string;
   name: string;
   color: string;
   textColor: string;
+  section?: string;
 }
 
 export enum SeatStatus {
@@ -20,6 +23,10 @@ export interface ISeat {
   status?: SeatStatus | string;
 }
 
+export interface IPopulatedSeatCategory extends Omit<ISeatCategory, "section"> {
+  section?: ISection;
+}
+
 export interface IPopulatedSeat extends Omit<ISeat, "category"> {
-  category?: ISeatCategory;
+  category?: IPopulatedSeatCategory;
 }

@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, seatStatusColors } from "@/constants";
 import { ISTKProps } from "@/types";
-import { ISeat, ISeatCategory, SeatStatus } from "@/types/elements";
+import { ISeat, ISeatCategory, ISection, SeatStatus } from "@/types/elements";
 import { d3Extended } from "@/utils";
 
 export const seatSize = 28;
@@ -14,12 +14,17 @@ export interface ISeatProps extends ISeat {
   consumer: ISTKProps;
   element: ISeat;
   categories: ISeatCategory[];
+  sections: ISection[];
   onClick: (e: any) => void;
 }
 
 const Seat: React.FC<ISeatProps> = forwardRef(
-  ({ x, y, id, label, categories, category, status, onClick, consumer, element, ...props }, ref: any) => {
+  ({ x, y, id, label, categories, category, sections, status, onClick, consumer, element, ...props }, ref: any) => {
     const categoryObject = useMemo(() => categories?.find?.((c) => c.id === category), [categories, category]);
+    const sectionObject = useMemo(
+      () => sections?.find?.((s) => s.id === categoryObject?.section),
+      [sections, categoryObject]
+    );
 
     const showLabel = consumer.options?.showSeatLabels ?? true;
 
@@ -55,7 +60,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       onClick(e);
       consumer.events?.onSeatClick?.({
         ...element,
-        category: categoryObject
+        category: categoryObject ? { ...categoryObject, section: sectionObject } : null
       });
     };
 
@@ -69,6 +74,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
           r={seatSize / 2}
           onClick={localOnClick}
           {...{ [dataAttributes.category]: category }}
+          {...{ [dataAttributes.section]: categoryObject?.section }}
           {...{ [dataAttributes.status]: status ?? SeatStatus.Available }}
           {...props}
           className={twMerge(props.className, "filter hover:brightness-[1.05]")}

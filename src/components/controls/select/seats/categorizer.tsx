@@ -1,6 +1,9 @@
-import { Trash2 } from "lucide-react";
+import { MouseEvent } from "react";
+import { PopoverClose } from "@radix-ui/react-popover";
+import { LayoutTemplate, Trash2 } from "lucide-react";
 import { useSelector } from "react-redux";
 import { debounce } from "lodash";
+import { twMerge } from "tailwind-merge";
 import { Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
@@ -13,8 +16,16 @@ const onDeleteCategory = (id: string) => store.dispatch(deleteCategory(id));
 
 const onUpdateCategory = debounce((category) => store.dispatch(updateCategory(category)), 150);
 
+const onSectionSelect = (e: MouseEvent<HTMLButtonElement>) => {
+  const element = e.target as HTMLButtonElement;
+  const categoryId = element.getAttribute(dataAttributes.category);
+  const sectionId = element.getAttribute(dataAttributes.section);
+  store.dispatch(updateCategory({ id: categoryId, section: +sectionId === 0 ? null : sectionId }));
+};
+
 const Categorizer = ({ firstElement, selectedElementIds }) => {
   const categories = useSelector((state: any) => state.editor.categories);
+  const sections = useSelector((state: any) => state.editor.sections);
 
   return (
     <>
@@ -59,6 +70,36 @@ const Categorizer = ({ firstElement, selectedElementIds }) => {
                       className="h-8"
                       onChange={(e) => onUpdateCategory({ ...category, name: e.target.value })}
                     />
+                    <Popover>
+                      <PopoverTrigger>
+                        <LayoutTemplate
+                          size={22}
+                          className={twMerge(
+                            "flex-shrink-0 cursor-pointer transition-all duration-medium ",
+                            category.section ? "text-blue-600 hover:text-blue-500" : "hover:text-gray-500"
+                          )}
+                        />
+                      </PopoverTrigger>
+                      <PopoverContent className="bg-white w-auto p-0 mr-4">
+                        {sections.map((section) => (
+                          <PopoverClose
+                            key={section.id}
+                            className={twMerge(
+                              "flex gap-3 items-center py-2 px-4 text-base cursor-pointer hover:bg-gray-100 transition-all duration-medium",
+                              section.id === "0" && "justify-center border-b pb-2"
+                            )}
+                            {...{ [dataAttributes.section]: section.id }}
+                            {...{ [dataAttributes.category]: category.id }}
+                            onClick={onSectionSelect}
+                          >
+                            {section.id !== "0" && (
+                              <div className="h-4 w-4 rounded-full" style={{ backgroundColor: section.color }} />
+                            )}
+                            {section.name}
+                          </PopoverClose>
+                        ))}
+                      </PopoverContent>
+                    </Popover>
                     <Trash2
                       size={22}
                       className="hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium"

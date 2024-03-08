@@ -68,6 +68,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
             <Element
               key={e.id}
               type={ElementType.Seat}
+              sections={sections}
               categories={categories}
               category={e.category}
               status={e.status}

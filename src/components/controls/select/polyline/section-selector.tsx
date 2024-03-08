@@ -40,35 +40,38 @@ const SectionSelector = ({ firstElement, selectedElementIds }) => {
                 <hr />
               </div>
               <div className="flex flex-col gap-4">
-                {sections.map((section, index) => (
-                  <div key={`category-${section.id}`} className="flex justify-start items-center gap-4">
-                    <input
-                      defaultValue={section.color}
-                      type="color"
-                      className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
-                      onChange={(e) => onUpdateSection({ ...section, color: e.target.value })}
-                    />
-                    <input
-                      defaultValue={section.stroke}
-                      type="color"
-                      className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
-                      onChange={(e) => onUpdateSection({ ...section, stroke: e.target.value })}
-                    />
-                    <Input
-                      defaultValue={section.name}
-                      className="h-8"
-                      onChange={(e) => onUpdateSection({ ...section, name: e.target.value })}
-                    />
-                    <Trash2
-                      size={22}
-                      className={twMerge(
-                        "hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium",
-                        index === 0 && "opacity-0 pointer-events-none"
-                      )}
-                      onClick={() => onDeleteSection(section.id)}
-                    />
-                  </div>
-                ))}
+                {sections.map(
+                  (section, index) =>
+                    section.id !== "0" && (
+                      <div key={`category-${section.id}`} className="flex justify-start items-center gap-4">
+                        <input
+                          defaultValue={section.color}
+                          type="color"
+                          className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
+                          onChange={(e) => onUpdateSection({ ...section, color: e.target.value })}
+                        />
+                        <input
+                          defaultValue={section.stroke}
+                          type="color"
+                          className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
+                          onChange={(e) => onUpdateSection({ ...section, stroke: e.target.value })}
+                        />
+                        <Input
+                          defaultValue={section.name}
+                          className="h-8"
+                          onChange={(e) => onUpdateSection({ ...section, name: e.target.value })}
+                        />
+                        <Trash2
+                          size={22}
+                          className={twMerge(
+                            "hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium",
+                            index === 0 && "opacity-0 pointer-events-none"
+                          )}
+                          onClick={() => onDeleteSection(section.id)}
+                        />
+                      </div>
+                    )
+                )}
               </div>
             </div>
           </PopoverContent>
@@ -89,7 +92,7 @@ const SectionSelector = ({ firstElement, selectedElementIds }) => {
           {sections.map((section) => (
             <SelectItem key={section.id} value={section.id}>
               <div className="flex gap-3 items-center">
-                {section.id === 0 ? (
+                {section.id === "0" ? (
                   <div className="w-4 h-0.5 bg-black" />
                 ) : (
                   <div className="h-4 w-4 rounded-full" style={{ backgroundColor: section.color }} />
