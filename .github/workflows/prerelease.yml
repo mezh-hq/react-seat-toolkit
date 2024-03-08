@@ -30,10 +30,12 @@ jobs:
           token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
 
       - name: Build 🏗️
-        uses: sliit-foss/actions/bun/build@main
+        uses: sliit-foss/actions/bun/build@v1.1
 
       - name: Release 🚀
-        uses: sliit-foss/actions/bun/publish@main
+        uses: sliit-foss/actions/bun/publish@v1.1
+        with:
+          scrub_dependencies: true
         env:
           TAG: ${{ inputs.tag || 'blizzard' }}
           NPM_ACCESS_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}

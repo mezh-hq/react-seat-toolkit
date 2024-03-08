@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run commitlint 🟩
-        uses: sliit-foss/actions/quality-checks/commitlint@main
+        uses: sliit-foss/actions/quality-checks/commitlint@v1.1
 
   lint:
     name: Enforce ESLint rules
@@ -30,6 +30,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run linter 📢
-        uses: sliit-foss/actions/quality-checks/linter@main
+        uses: sliit-foss/actions/quality-checks/linter@v1.1
         with:
           package-manager: 'bun'
