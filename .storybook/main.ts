@@ -12,7 +12,6 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
-    "storybook-addon-react-router-v6",
     "@dreamworld/addon-redux",
   ],
   framework: {
