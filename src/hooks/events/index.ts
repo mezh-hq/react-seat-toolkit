@@ -1,13 +1,18 @@
-import useDeselection from "./deselection";
-import useDuplicate from "./duplication";
-import usePolyline from "./polyline";
-import useWorkspaceClick from "./workspace-click";
+import { ISTKProps } from "@/types";
+import { default as useDeselection } from "./deselection";
+import { default as useDuplicate } from "./duplication";
+import { default as usePolyline } from "./polyline";
+import { default as useWorkspaceClick } from "./workspace-click";
+import { default as useWorkspaceLoad } from "./workspace-load";
 
-const useEvents = () => {
+export const useDesignerEvents = (props: ISTKProps) => {
   useDeselection();
+  useDuplicate();
   usePolyline();
   useWorkspaceClick();
-  useDuplicate();
+  useWorkspaceLoad(props);
 };
 
-export default useEvents;
+export const useUserEvents = (props: ISTKProps) => {
+  useWorkspaceLoad(props);
+};

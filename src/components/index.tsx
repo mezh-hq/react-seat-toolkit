@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import { useEvents, useInteractions } from "@/hooks";
+import { useDesignerEvents, useInteractions, useUserEvents } from "@/hooks";
 import { type ISTKProps } from "@/types";
 import { default as Controls } from "./controls";
 import { default as Footer } from "./footer";
@@ -10,7 +10,7 @@ import { Cursor, default as Workspace } from "./workspace";
 export * from "./core";
 
 const Designer: React.FC<ISTKProps> = (props) => {
-  useEvents();
+  useDesignerEvents(props);
   useInteractions();
   return (
     <>
@@ -35,6 +35,7 @@ const Designer: React.FC<ISTKProps> = (props) => {
 };
 
 const User: React.FC<ISTKProps> = (props) => {
+  useUserEvents(props);
   return (
     <div
       className={twMerge("h-full min-h-[85vh] flex flex-col relative", props.styles?.root?.className)}

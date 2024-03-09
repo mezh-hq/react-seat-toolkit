@@ -19,6 +19,7 @@ export interface IEvents {
   onSeatClick?: (seat: IPopulatedSeat) => void;
   onSectionClick?: (section: ISection) => void;
   onExport?: (data: ISTKData) => void;
+  onWorkspaceLoad?: () => void;
 }
 
 export interface ISTKData {
