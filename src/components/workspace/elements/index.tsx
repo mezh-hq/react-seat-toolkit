@@ -105,6 +105,7 @@ export const Element: React.FC<IElementProps> = ({
       )}
       onClick={onClick}
       consumer={consumer}
+      isSelected={isSelected}
       {...{ [dataAttributes.elementType]: type }}
     />
   );

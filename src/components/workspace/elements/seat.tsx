@@ -16,10 +16,14 @@ export interface ISeatProps extends ISeat {
   categories: ISeatCategory[];
   sections: ISection[];
   onClick: (e: any) => void;
+  isSelected?: boolean;
 }
 
 const Seat: React.FC<ISeatProps> = forwardRef(
-  ({ x, y, id, label, categories, category, sections, status, onClick, consumer, element, ...props }, ref: any) => {
+  (
+    { x, y, id, label, categories, category, sections, status, onClick, consumer, element, isSelected, ...props },
+    ref: any
+  ) => {
     const categoryObject = useMemo(() => categories?.find?.((c) => c.id === category), [categories, category]);
     const sectionObject = useMemo(
       () => sections?.find?.((s) => s.id === categoryObject?.section),
@@ -27,6 +31,8 @@ const Seat: React.FC<ISeatProps> = forwardRef(
     );
 
     const showLabel = consumer.options?.showSeatLabels ?? true;
+
+    const SeatIcon = isSelected ? consumer.options?.selectedSeatIcon : consumer.options?.seatIcon;
 
     const textX = useMemo(() => {
       let value = (+ref.current?.getAttribute("cx") || x) - seatLabelFontSize / 3.5;
@@ -79,7 +85,16 @@ const Seat: React.FC<ISeatProps> = forwardRef(
           {...props}
           className={twMerge(props.className, "filter hover:brightness-[1.05]")}
         />
-        {label && showLabel && (
+        {SeatIcon && (
+          <SeatIcon
+            x={x - seatSize / 2.73}
+            y={y - seatSize / 2.65}
+            width={seatSize * 0.75}
+            height={seatSize * 0.75}
+            size={seatSize * 0.75}
+          />
+        )}
+        {label && showLabel && !SeatIcon && (
           <text
             id={`${id}-label`}
             x={textX}

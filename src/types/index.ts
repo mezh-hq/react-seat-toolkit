@@ -46,5 +46,7 @@ export interface ISTKProps {
     showZoomControls?: boolean;
     exportButtonText?: string;
     operationTriggerIcon?: React.FC;
+    seatIcon?: React.FC<any>;
+    selectedSeatIcon?: React.FC<any>;
   };
 }
