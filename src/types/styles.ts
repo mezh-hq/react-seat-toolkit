@@ -28,6 +28,24 @@ export interface IStyles {
     title?: IStyle;
     meta?: IStyle;
   };
+  zoomControls?: {
+    in?: IStyle;
+    out?: IStyle;
+    buttons?: IStyle;
+    root?: IStyle;
+  };
+  panControls?: {
+    wheel?: {
+      outerRing?: IStyle;
+      innerRing?: IStyle;
+    };
+    handles?: {
+      up?: IStyle;
+      right?: IStyle;
+      down?: IStyle;
+      left?: IStyle;
+    };
+  };
   elements?: {
     booth?: {
       selected?: IStyle;

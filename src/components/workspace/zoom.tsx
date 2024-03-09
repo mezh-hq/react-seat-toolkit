@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { ids, selectors } from "@/constants";
 import { useSkipFirstRender } from "@/hooks";
+import type { ISTKProps } from "@/types";
 import { d3Extended } from "@/utils";
 import { Tool } from "../toolbar/data";
 
@@ -49,7 +50,7 @@ export const panAndZoom = ({ k, x, y }) => {
 const panHandleClasses =
   "absolute z-10 text-black/40 cursor-pointer hover:text-black/80 transition-all duration-medium";
 
-const Zoom = () => {
+const Zoom = (props: ISTKProps) => {
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
   const showControls = useSelector((state: any) => state.editor.showControls);
 
@@ -94,29 +95,79 @@ const Zoom = () => {
     }
   }, [showControls]);
 
+  const zoomStyles = props.styles?.zoomControls;
+  const panStyles = props.styles?.panControls;
+
   return (
-    <div id={ids.zoomControls} className="fixed bottom-14 left-20 flex flex-col items-center gap-4">
-      <div className="relative h-20 w-20 bg-white rounded-full border border-black/20 splash after:bg-black/5">
+    <div
+      id={ids.zoomControls}
+      className={twMerge("fixed bottom-14 left-20 flex flex-col items-center gap-4", zoomStyles?.root?.className)}
+      style={zoomStyles?.root?.properties}
+    >
+      <div
+        className={twMerge(
+          "relative h-20 w-20 bg-white rounded-full border border-black/20 splash after:bg-black/5",
+          panStyles?.wheel?.outerRing?.className
+        )}
+        style={panStyles?.wheel?.outerRing?.properties}
+      >
         <div className="absolute top-0 left-0 h-full w-full p-[1.125rem] z-20 pointer-events-none">
-          <div className="h-full w-full rounded-full bg-white border-2 border-black/50" />
+          <div
+            className={twMerge(
+              "h-full w-full rounded-full bg-white border-2 border-black/50",
+              panStyles?.wheel?.innerRing?.className
+            )}
+            style={panStyles?.wheel?.innerRing?.properties}
+          />
         </div>
-        <ChevronLeft size={17} className={twMerge(panHandleClasses, "left-0 top-[40%]")} onClick={panLeft} />
-        <ChevronRight size={17} className={twMerge(panHandleClasses, "right-0 top-[40%]")} onClick={panRight} />
-        <ChevronUp size={17} className={twMerge(panHandleClasses, "top-0 left-[40%]")} onClick={panUp} />
-        <ChevronDown size={17} className={twMerge(panHandleClasses, "bottom-0 left-[40%]")} onClick={panDown} />
+        <ChevronLeft
+          size={17}
+          className={twMerge(panHandleClasses, "left-0 top-[40%]", panStyles?.handles?.left?.className)}
+          onClick={panLeft}
+          style={panStyles?.handles?.left?.properties}
+        />
+        <ChevronRight
+          size={17}
+          className={twMerge(panHandleClasses, "right-0 top-[40%]", panStyles?.handles?.right?.className)}
+          onClick={panRight}
+          style={panStyles?.handles?.right?.properties}
+        />
+        <ChevronUp
+          size={17}
+          className={twMerge(panHandleClasses, "top-0 left-[40%]", panStyles?.handles?.up?.className)}
+          onClick={panUp}
+          style={panStyles?.handles?.up?.properties}
+        />
+        <ChevronDown
+          size={17}
+          className={twMerge(panHandleClasses, "bottom-0 left-[40%]", panStyles?.handles?.down?.className)}
+          onClick={panDown}
+          style={panStyles?.handles?.down?.properties}
+        />
       </div>
-      <div className="bg-gray-100 p-2.5 rounded-md flex gap-1 items-center">
+      <div
+        className={twMerge("bg-gray-100 p-2.5 rounded-md flex gap-1 items-center", zoomStyles?.buttons?.className)}
+        style={zoomStyles?.buttons?.properties}
+      >
         <div
-          className="w-full sm:w-auto px-3 py-1.5 bg-white font-medium text-black/40 rounded-l cursor-pointer splash after:bg-black/5"
+          className={twMerge(
+            "w-full sm:w-auto px-3 py-1.5 bg-white font-medium text-black/40 rounded-l cursor-pointer splash after:bg-black/5",
+            zoomStyles?.out?.className
+          )}
           onClick={zoomOut}
           role="button"
+          style={zoomStyles?.out?.properties}
         >
           <Minus size={17} />
         </div>
         <div
-          className="pz-2 py-1.5 min-w-[40px] flex justify-center items-center bg-white font-semibold rounded-r cursor-pointer splash after:bg-black/5"
+          className={twMerge(
+            "pz-2 py-1.5 min-w-[40px] flex justify-center items-center bg-white font-semibold rounded-r cursor-pointer splash after:bg-black/5",
+            zoomStyles?.in?.className
+          )}
           onClick={zoomIn}
           role="button"
+          style={zoomStyles?.in?.properties}
         >
           <Plus size={17} />
         </div>

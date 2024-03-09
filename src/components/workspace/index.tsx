@@ -119,7 +119,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
           <Grid />
         </>
       )}
-      <Zoom />
+      <Zoom {...props} />
     </div>
   );
 };
