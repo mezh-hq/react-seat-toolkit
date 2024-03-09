@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import { useEvents, useInteractions } from "@/hooks";
-import { type ISTKProps, STKMode } from "@/types";
+import { type ISTKProps } from "@/types";
 import { default as Controls } from "./controls";
 import { default as Footer } from "./footer";
 import { default as Operations } from "./operations";
@@ -46,7 +46,7 @@ const User: React.FC<ISTKProps> = (props) => {
 };
 
 const Core = (props: ISTKProps) => {
-  if (props.mode === STKMode.Designer) {
+  if (props.mode === "designer") {
     return <Designer {...props} />;
   }
   return <User {...props} />;

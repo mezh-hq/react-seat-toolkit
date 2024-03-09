@@ -1,12 +1,19 @@
-import { IBooth, IImage, IPolyline, IPopulatedSeat, ISeat, ISeatCategory, ISection, IShape, IText } from "./elements";
-import { IStyles } from "./styles";
+import type {
+  IBooth,
+  IImage,
+  IPolyline,
+  IPopulatedSeat,
+  ISeat,
+  ISeatCategory,
+  ISection,
+  IShape,
+  IText
+} from "./elements";
+import type { IStyles } from "./styles";
 
 export * from "./elements";
 
-export enum STKMode {
-  Designer = "designer",
-  User = "user"
-}
+export type STKMode = "designer" | "user";
 
 export interface IEvents {
   onSeatClick?: (seat: IPopulatedSeat) => void;

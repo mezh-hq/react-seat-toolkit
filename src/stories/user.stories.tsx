@@ -1,5 +1,4 @@
 import SeatToolkit from "@/index";
-import { STKMode } from "@/types";
 
 export default {
   title: "User Mode",
@@ -13,7 +12,7 @@ export default {
 export const Default = {
   render: () => (
     <SeatToolkit
-      mode={STKMode.User}
+      mode={"user"}
       data={{
         seats: [
           {

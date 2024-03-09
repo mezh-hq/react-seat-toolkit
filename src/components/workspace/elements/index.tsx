@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { clearAndSelectElements, deselectElement, selectElement } from "@/store/reducers/editor";
-import { ISTKProps, STKMode } from "@/types";
+import { ISTKProps } from "@/types";
 import { Tool } from "../../toolbar/data";
 import {
   ElementType,
@@ -19,7 +19,20 @@ import {
 
 export * from "./utils";
 
-export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelected = false, consumer, ...props }) => {
+interface IElementProps {
+  [prop: string]: any;
+  consumer: ISTKProps;
+}
+
+export const Element: React.FC<IElementProps> = ({
+  type = ElementType.Seat,
+  id,
+  x = 250,
+  y = 250,
+  isSelected = false,
+  consumer,
+  ...props
+}) => {
   const ref = useRef<HTMLElement>();
 
   const Element = elements[type] as any;
@@ -27,7 +40,7 @@ export const Element = ({ type = ElementType.Seat, id, x = 250, y = 250, isSelec
   const styles = (consumer as ISTKProps).styles?.elements;
 
   useEffect(() => {
-    if (!ref.current || consumer.mode !== STKMode.Designer) return;
+    if (!ref.current || consumer.mode !== "designer") return;
     const node = d3.select(ref.current);
     if (type === ElementType.Seat) {
       handleSeatDrag(node);

@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { ids } from "@/constants";
 import { store } from "@/store";
 import { initializeElements, sync } from "@/store/reducers/editor";
-import { type ISTKProps, STKMode } from "@/types";
+import { type ISTKProps } from "@/types";
 import { Tool, tools } from "../toolbar/data";
 import { default as Crosshairs } from "./crosshairs";
 import { default as Element, ElementType } from "./elements";
@@ -123,7 +123,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
           {selectedPolylineId && <line id={ids.templine} className="stroke-2 stroke-black fill-white" />}
         </g>
       </svg>
-      {props.mode === STKMode.Designer && (
+      {props.mode === "designer" && (
         <>
           <Crosshairs render={tools[selectedTool]?.crosshairs} />
           <Grid />

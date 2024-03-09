@@ -1,4 +1,4 @@
-import { ISection } from "./polyline";
+import type { ISection } from "./polyline";
 
 export interface ISeatCategory {
   id: string;
