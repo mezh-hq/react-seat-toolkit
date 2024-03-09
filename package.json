@@ -10,7 +10,7 @@
   "exports": {
     ".": "./dist/index.js",
     "./styles": "./dist/index.css",
-    "./types": "./dist/types/ind2344ex.d.ts"
+    "./types": "./dist/types/index.d.ts"
   },
   "scripts": {
     "build": "bun run ./esbuild.config.js",
