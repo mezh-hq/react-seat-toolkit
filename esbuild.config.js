@@ -9,7 +9,6 @@ const cleaner = {
   setup(build) {
     build.onLoad({ filter: /store\/index.ts*/ }, async (args) => {
       const source = await readFile(args.path, "utf8");
-      console.log(args.path);
       return {
         contents: source.replaceAll(`(await import("@dreamworld/addon-redux")).enhancer`, "null"),
         loader: "ts"

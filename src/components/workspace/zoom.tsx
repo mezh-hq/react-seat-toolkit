@@ -38,7 +38,7 @@ const panDown = () => {
   d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, 0, -50);
 };
 
-export const zoomAndPan = ({ k, x, y }) => {
+export const panAndZoom = ({ k, x, y }) => {
   d3Extended
     .selectById(ids.workspace)
     .transition()

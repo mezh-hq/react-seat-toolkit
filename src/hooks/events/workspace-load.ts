@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import { zoomAndPan } from "@/components/workspace/zoom";
+import { panAndZoom } from "@/components/workspace/zoom";
 import { ids, selectors } from "@/constants";
 import { store } from "@/store";
 import { initializeElements, sync } from "@/store/reducers/editor";
@@ -21,7 +21,7 @@ const useWorkspaceLoad = (props: ISTKProps) => {
           width: workspaceGroupWidth
         } = d3Extended.selectionBounds(d3Extended.select(selectors.workspaceGroup));
         const scaleFactor = 1.05;
-        zoomAndPan({
+        panAndZoom({
           k: scaleFactor,
           y: (workspaceheight - (wgOffsetTop * scaleFactor * 2 + workspaceGroupHeight * scaleFactor)) / 2 - 5,
           x: (workspaceWidth - (wgOffsetLeft * scaleFactor * 2 + workspaceGroupWidth * scaleFactor)) / 2
