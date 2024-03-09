@@ -1,55 +1,63 @@
 import { memo, useLayoutEffect } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Minus, Plus } from "lucide-react";
 import { useSelector } from "react-redux";
-import * as d3 from "d3";
 import { twMerge } from "tailwind-merge";
 import { ids, selectors } from "@/constants";
 import { useSkipFirstRender } from "@/hooks";
+import { d3Extended } from "@/utils";
 import { Tool } from "../toolbar/data";
 
 function handleZoom(e) {
-  const workspace = d3.select(selectors.workspaceGroup);
+  const workspace = d3Extended.select(selectors.workspaceGroup);
   workspace.attr("transform", e.transform);
 }
 
-const zoom = d3.zoom().on("zoom", handleZoom);
+const zoom = d3Extended.zoom().on("zoom", handleZoom);
 
 const zoomIn = () => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.scaleBy, 1.1);
+  d3Extended.selectById(ids.workspace).transition().call(zoom.scaleBy, 1.1);
 };
 
 const zoomOut = () => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.scaleBy, 0.9);
+  d3Extended.selectById(ids.workspace).transition().call(zoom.scaleBy, 0.9);
 };
 
 const panLeft = () => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, 50, 0);
+  d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, 50, 0);
 };
 
 const panRight = () => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, -50, 0);
+  d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, -50, 0);
 };
 
 const panUp = () => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, 0, 50);
+  d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, 0, 50);
 };
 
 const panDown = () => {
-  d3.select(`#${ids.workspace}`).transition().call(zoom.translateBy, 0, -50);
+  d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, 0, -50);
+};
+
+export const zoomAndPan = ({ k, x, y }) => {
+  d3Extended
+    .selectById(ids.workspace)
+    .transition()
+    .duration(1000)
+    .call(zoom.transform, d3Extended.zoomIdentity.translate(x, y).scale(k));
 };
 
 const panHandleClasses =
   "absolute z-10 text-black/40 cursor-pointer hover:text-black/80 transition-all duration-medium";
 
 const Zoom = () => {
-  const selectedTool = useSelector((state) => state.toolbar.selectedTool);
-  const showControls = useSelector((state) => state.editor.showControls);
+  const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
+  const showControls = useSelector((state: any) => state.editor.showControls);
 
   useLayoutEffect(() => {
-    const selection = d3.select(`#${ids.workspace}`);
+    const selection = d3Extended.selectById(ids.workspace);
     selection.on("zoom", null);
     if (selectedTool == Tool.Pan) {
-      d3.select(`#${ids.workspace}`).call(zoom);
+      selection.call(zoom);
     } else {
       selection
         .call(zoom)
@@ -62,7 +70,7 @@ const Zoom = () => {
           const currentZoom = selection.property("__zoom").k || 1;
           if (e.ctrlKey) {
             const nextZoom = currentZoom * Math.pow(2, -e.deltaY * 0.01);
-            zoom.scaleTo(selection, nextZoom, d3.pointer(e));
+            zoom.scaleTo(selection, nextZoom, d3Extended.pointer(e));
           } else {
             zoom.translateBy(selection, -(e.deltaX / currentZoom), -(e.deltaY / currentZoom));
           }
@@ -71,7 +79,7 @@ const Zoom = () => {
   }, [selectedTool]);
 
   useSkipFirstRender(() => {
-    const workspace = d3.select(`#${ids.workspace}`);
+    const workspace = d3Extended.selectById(ids.workspace);
     const controlTransformActive = workspace.attr("control-transform-active");
     if (showControls) {
       if (!controlTransformActive) {

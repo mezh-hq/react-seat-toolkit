@@ -33,7 +33,7 @@ d3.selection.prototype.map = function (callback) {
 
 export const d3Extended = {
   ...d3,
-  selectById(id: string): d3.Selection<d3.BaseType, {}, HTMLElement, any> {
+  selectById(id: string): d3.Selection<Element, {}, HTMLElement, any> {
     return d3.select(`[id='${id}']`);
   },
   getNodeCenter(node: any) {
@@ -44,6 +44,12 @@ export const d3Extended = {
       x: +node.attr("x") + Number(node.attr("width")) / 2,
       y: +node.attr("y") + Number(node.attr("height")) / 2
     };
+  },
+  selectionWidth(selection: d3.Selection<any, any, any, any>) {
+    return selection.node().getBoundingClientRect().width;
+  },
+  selectionBounds(selection: d3.Selection<any, any, any, any>) {
+    return selection.node().getBoundingClientRect();
   }
 };
 

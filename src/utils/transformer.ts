@@ -1,5 +1,5 @@
 import { ElementType } from "@/components/workspace/elements";
-import { dataAttributes } from "@/constants";
+import { dataAttributes, selectors } from "@/constants";
 import { store } from "@/store";
 import { rgbToHex } from ".";
 import { default as d3Extended } from "./d3";
@@ -84,6 +84,10 @@ export const domImagesToJSON = () => {
       href: image.attr("href")
     };
   });
+};
+
+export const domTransform = () => {
+  return d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup));
 };
 
 export const stateToJSON = () => {

@@ -1,15 +1,16 @@
 import { useCallback, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
-import { ids } from "@/constants";
+import { ids, selectors } from "@/constants";
 import { store } from "@/store";
 import { initializeElements, sync } from "@/store/reducers/editor";
 import { type ISTKProps } from "@/types";
+import { d3Extended } from "@/utils";
 import { Tool, tools } from "../toolbar/data";
 import { default as Crosshairs } from "./crosshairs";
 import { default as Element, ElementType } from "./elements";
 import { default as Grid } from "./grid";
-import { default as Zoom } from "./zoom";
+import { default as Zoom, zoomAndPan } from "./zoom";
 
 export { default as Cursor } from "./cursor";
 
@@ -29,6 +30,23 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
   useLayoutEffect(() => {
     if (props.data) {
       store.dispatch(sync(props.data));
+      setTimeout(() => {
+        const { height: workspaceheight, width: workspaceWidth } = d3Extended.selectionBounds(
+          d3Extended.selectById(ids.workspace)
+        );
+        const {
+          left: wgOffsetLeft,
+          top: wgOffsetTop,
+          height: workspaceGroupHeight,
+          width: workspaceGroupWidth
+        } = d3Extended.selectionBounds(d3Extended.select(selectors.workspaceGroup));
+        const scaleFactor = 1.05;
+        zoomAndPan({
+          k: scaleFactor,
+          y: (workspaceheight - (wgOffsetTop * scaleFactor * 2 + workspaceGroupHeight * scaleFactor)) / 2 - 5,
+          x: (workspaceWidth - (wgOffsetLeft * scaleFactor * 2 + workspaceGroupWidth * scaleFactor)) / 2
+        });
+      }, 0);
     } else {
       store.dispatch(initializeElements());
     }
