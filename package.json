@@ -1,6 +1,6 @@
 {
   "name": "@mezh-hq/react-seat-toolkit",
-  "version": "0.23.2",
+  "version": "0.23.3",
   "description": "React UI library to design and render seat layouts",
   "browser": "dist/index.js",
   "main": "dist/index.js",
@@ -10,7 +10,7 @@
   "exports": {
     ".": "./dist/index.js",
     "./styles": "./dist/index.css",
-    "./types": "./dist/types/index.d.ts"
+    "./types": "./dist/types/ind2344ex.d.ts"
   },
   "scripts": {
     "build": "bun run ./esbuild.config.js",

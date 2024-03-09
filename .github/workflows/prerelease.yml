@@ -33,7 +33,7 @@ jobs:
         uses: sliit-foss/actions/bun/build@v1.1
 
       - name: Release 🚀
-        uses: sliit-foss/actions/bun/publish@v1.1
+        uses: sliit-foss/actions/bun/publish@v1.1.1
         with:
           scrub_dependencies: true
         env:
