@@ -101,7 +101,11 @@ const Zoom = (props: ISTKProps) => {
   return (
     <div
       id={ids.zoomControls}
-      className={twMerge("fixed bottom-14 left-20 flex flex-col items-center gap-4", zoomStyles?.root?.className)}
+      className={twMerge(
+        "fixed bottom-14 left-20 flex flex-col items-center gap-4",
+        props.mode === "user" && "bottom-5 left-6  sm:bottom-6 sm:left-8 md:bottom-8 md:left-10",
+        zoomStyles?.root?.className
+      )}
       style={zoomStyles?.root?.properties}
     >
       <div

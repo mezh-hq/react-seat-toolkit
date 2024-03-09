@@ -43,6 +43,8 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
     [selectedElementIds]
   );
 
+  const showZoomControls = props.options?.showZoomControls ?? true;
+
   return (
     <div
       id={ids.workspaceContainer}
@@ -119,7 +121,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
           <Grid />
         </>
       )}
-      <Zoom {...props} />
+      {showZoomControls && <Zoom {...props} />}
     </div>
   );
 };

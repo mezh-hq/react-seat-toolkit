@@ -23,7 +23,7 @@ const useWorkspaceLoad = (props: ISTKProps) => {
         const scaleFactor = 1.05;
         panAndZoom({
           k: scaleFactor,
-          y: (workspaceheight - (wgOffsetTop * scaleFactor * 2 + workspaceGroupHeight * scaleFactor)) / 2 - 5,
+          y: (workspaceheight - (wgOffsetTop * scaleFactor * 2 + workspaceGroupHeight * scaleFactor)) / 2 - 7,
           x: (workspaceWidth - (wgOffsetLeft * scaleFactor * 2 + workspaceGroupWidth * scaleFactor)) / 2
         });
       }, 0);

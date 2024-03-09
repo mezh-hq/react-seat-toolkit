@@ -43,6 +43,7 @@ export interface ISTKProps {
     showGridSwitch?: boolean;
     showSeatLabels?: boolean;
     showFooter?: boolean;
+    showZoomControls?: boolean;
     exportButtonText?: string;
     operationTriggerIcon?: React.FC;
   };
