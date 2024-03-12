@@ -1,6 +1,6 @@
 import { Trash2 } from "lucide-react";
 import { useSelector } from "react-redux";
-import { debounce } from "lodash";
+import { default as debounce } from "lodash/debounce";
 import { twMerge } from "tailwind-merge";
 import { Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
 import { dataAttributes } from "@/constants";

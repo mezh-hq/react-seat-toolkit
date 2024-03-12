@@ -1,6 +1,6 @@
 import { memo, useEffect, useMemo, useRef } from "react";
 import * as d3 from "d3";
-import { isEqual } from "lodash";
+import { default as isEqual } from "lodash/isEqual";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";

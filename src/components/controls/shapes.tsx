@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from "react";
 import * as lucide from "lucide-react";
-import { isEqual } from "lodash";
+import { default as isEqual } from "lodash/isEqual";
 import { twMerge } from "tailwind-merge";
 import { store } from "@/store";
 import { setCursor } from "@/store/reducers/editor";
