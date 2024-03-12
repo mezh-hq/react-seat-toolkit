@@ -1,0 +1,34 @@
+html,
+body,
+#root,
+#storybook-root {
+  min-height: 100% !important;
+  height: 100% !important;
+}
+body {
+  @apply bg-background text-foreground;
+  margin-right: 0px !important;
+}
+
+body:not(.anything) {
+  margin-right: 0px !important;
+}
+
+svg,
+svg *:focus {
+  outline: none !important;
+}
+
+html {
+  overflow-x: hidden !important;
+}
+
+input,
+textarea,
+button,
+select,
+div,
+span,
+a {
+  -webkit-tap-highlight-color: transparent;
+}

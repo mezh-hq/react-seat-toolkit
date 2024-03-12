@@ -1,0 +1,29 @@
+@layer utilities {
+  .hide-blink {
+    caret-color: transparent;
+  }
+  .invisible-scroll::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .invisible-scroll {
+    scrollbar-color: transparent transparent;
+    overflow-x: hidden !important;
+  }
+
+  .pointer-events-fill {
+    pointer-events: fill;
+  }
+
+  .pointer-events-stroke {
+    pointer-events: stroke;
+  }
+
+  .unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+  }
+}

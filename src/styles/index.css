@@ -1,5 +1,6 @@
 @import "components.css";
 @import "animations/index.css";
+@import "utilities.css";
 
 @tailwind base;
 @tailwind components;
@@ -69,74 +70,4 @@
 
     --ring: 240 3.7% 15.9%;
   }
-}
-
-@layer base {
-  html,
-  body,
-  #root,
-  #storybook-root {
-    min-height: 100% !important;
-    height: 100% !important;
-  }
-  body {
-    @apply bg-background text-foreground;
-    margin-right: 0px !important;
-  }
-
-  body:not(.anything) {
-    margin-right: 0px !important;
-  }
-
-  .markdown * {
-    all: revert;
-  }
-}
-
-svg,
-svg *:focus {
-  outline: none !important;
-}
-
-html {
-  overflow-x: hidden !important;
-}
-
-input,
-textarea,
-button,
-select,
-div,
-span,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-.hide-blink {
-  caret-color: transparent;
-}
-
-.invisible-scroll::-webkit-scrollbar {
-  width: 0px;
-}
-
-.invisible-scroll {
-  scrollbar-color: transparent transparent;
-  overflow-x: hidden !important;
-}
-
-.pointer-events-fill {
-  pointer-events: fill;
-}
-
-.pointer-events-stroke {
-  pointer-events: stroke;
-}
-
-.unselectable {
-  -webkit-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
-   pointer-events: none;
 }

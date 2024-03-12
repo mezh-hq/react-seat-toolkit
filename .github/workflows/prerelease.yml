@@ -39,4 +39,3 @@ jobs:
         env:
           TAG: ${{ inputs.tag || 'blizzard' }}
           NPM_ACCESS_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
-

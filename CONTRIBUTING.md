@@ -22,4 +22,3 @@
 - Please add a description to your PRs
 - Please add a screenshot or a gif to your PRs if it's a UI change
 - Please add a documentation update if it's a feature or a bug fix
-

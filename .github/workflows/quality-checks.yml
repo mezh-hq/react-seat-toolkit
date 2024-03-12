@@ -32,4 +32,4 @@ jobs:
       - name: Run linter 📢
         uses: sliit-foss/actions/quality-checks/linter@v1.1
         with:
-          package-manager: 'bun'
+          package-manager: "bun"

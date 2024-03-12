@@ -1,6 +1,5 @@
 # React Seat Toolkit
 
-
 <a aria-label="License" href="https://github.com/mezh-hq/react-seat-toolkit/blob/main/LICENSE">
   <img alt="" src="https://img.shields.io/badge/License-MIT-yellow.svg">
 </a>
@@ -28,46 +27,50 @@ React UI library to design and render seat layouts. The library is still under a
   <img width="49.5%" alt="image" src="https://github.com/mezh-hq/react-seat-toolkit/assets/73662613/0e023ffd-b4a2-4724-81f3-3ba74114b9a5">
 </p>
 
-
 ## Features
 
 - **JSON based**: Define your seat layout using JSON data and retrieve it back as JSON after customization ✓
 
 - **Customizable**: Customize the layout as per your requirements
 
-    - **Seats**
-      - Add new seats ✓
-      - Remove existing seats ✓
-      - Change seat colors ✓
-      - Change seat labels ✓
-      - Change seat status ✓
-      - Group seats together into categories ✓
-      - Categorizer (Manage seat categories) ✓
+  - **Seats**
 
-    - **Pen**
-      - Draw on the layout using a pen tool to create custom shapes ✓
+    - Add new seats ✓
+    - Remove existing seats ✓
+    - Change seat colors ✓
+    - Change seat labels ✓
+    - Change seat status ✓
+    - Group seats together into categories ✓
+    - Categorizer (Manage seat categories) ✓
 
-    - **Text**
-      - Add text to the layout ✓
-      - Change text color ✓
-      - Change text size ✓
-      - Change text font weight ✓
+  - **Pen**
 
-    - **Shapes**
-      - Add shapes to the layout ✓
-      - Change shape color ✓
-      - Change shape size ✓
-      - Change shape border color ✓
+    - Draw on the layout using a pen tool to create custom shapes ✓
 
-    - **Sections**
-      - Section manager 🛠️
-      - Free seating sections 🛠️
+  - **Text**
 
-    - **Miscallaneous**
-      - Add, move around and scale background images ✓
-      - Add and move around booths ✓
-      - Multiple element selection and deselection ✓
-      - Bring elements to front or back ✓
+    - Add text to the layout ✓
+    - Change text color ✓
+    - Change text size ✓
+    - Change text font weight ✓
+
+  - **Shapes**
+
+    - Add shapes to the layout ✓
+    - Change shape color ✓
+    - Change shape size ✓
+    - Change shape border color ✓
+
+  - **Sections**
+
+    - Section manager 🛠️
+    - Free seating sections 🛠️
+
+  - **Miscallaneous**
+    - Add, move around and scale background images ✓
+    - Add and move around booths ✓
+    - Multiple element selection and deselection ✓
+    - Bring elements to front or back ✓
 
 - **Responsive**: The layout is responsive and can be viewed on any device 🛠️
 
@@ -86,21 +89,21 @@ Run `bun i @mezh-hq/react-seat-toolkit` to incorporate into your project <br/>
 ### User mode
 
 ```jsx
-import React from 'react';
-import SeatToolkit from '@mezh-hq/react-seat-toolkit';
-import '@mezh-hq/react-seat-toolkit/styles';
+import React from "react";
+import SeatToolkit from "@mezh-hq/react-seat-toolkit";
+import "@mezh-hq/react-seat-toolkit/styles";
 
 const App = () => {
   const data = {
     seats: [
       {
-        id: '1',
+        id: "1",
         x: 100,
         y: 100,
-        label: 'A1',
-        color: 'blue',
-      },
-    ],
+        label: "A1",
+        color: "blue"
+      }
+    ]
   };
   return (
     <SeatToolkit
@@ -112,7 +115,7 @@ const App = () => {
         },
         onSectionClick: (section) => {
           console.log(section);
-        },
+        }
       }}
     />
   );
@@ -124,9 +127,9 @@ export default App;
 ### Designer mode
 
 ```jsx
-import React from 'react';
-import SeatToolkit from '@mezh-hq/react-seat-toolkit';
-import '@mezh-hq/react-seat-toolkit/styles';
+import React from "react";
+import SeatToolkit from "@mezh-hq/react-seat-toolkit";
+import "@mezh-hq/react-seat-toolkit/styles";
 
 const App = () => {
   return (
@@ -135,7 +138,7 @@ const App = () => {
       events={{
         onExport: (data) => {
           console.log(data);
-        },
+        }
       }}
     />
   );
