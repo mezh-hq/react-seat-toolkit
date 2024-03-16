@@ -63,8 +63,8 @@ React UI library to design and render seat layouts. The library is still under a
 
   - **Sections**
 
-    - Section manager 🛠️
-    - Free seating sections 🛠️
+    - Section manager ✓
+    - Free seating sections ✓
 
   - **Miscallaneous**
     - Add, move around and scale background images ✓
@@ -76,7 +76,7 @@ React UI library to design and render seat layouts. The library is still under a
 
 - **Preview**: Preview the layout in a separate window 🛠️
 
-- **Designer mode and User mode**: Switch between designer and user mode to enable or disable customization 🛠️
+- **Designer mode and User mode**: Switch between designer and user mode to enable or disable customization ✓
 
 - **Custom styles**: Override the default styles to match your application's theme 🛠️
 

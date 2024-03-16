@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Label, RadioGroup, RadioGroupItem } from "@/components/core";
 import { dataAttributes, seatStatusColors } from "@/constants";
 import { store } from "@/store";
-import { updateSeat } from "@/store/reducers/editor";
+import { updateSeats } from "@/store/reducers/editor";
 import { SeatStatus } from "@/types/elements";
 import { d3Extended } from "@/utils";
 import { default as ControlInput } from "../../control-input";
@@ -25,9 +25,7 @@ const SeatSelectControls = () => {
           label="Label"
           defaultValue={firstElementLabel?.textContent}
           onChange={(e) => {
-            selectedElementIds.forEach((id: string) => {
-              store.dispatch(updateSeat({ id, label: e.target.value }));
-            });
+            store.dispatch(updateSeats({ ids: selectedElementIds, data: { label: e.target.value } }));
           }}
         />
         <RadioGroup

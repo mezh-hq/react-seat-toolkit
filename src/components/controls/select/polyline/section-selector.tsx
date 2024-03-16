@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 import { Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
-import { addSection, deleteSection, updatePolyline, updateSection } from "@/store/reducers/editor";
+import { addSection, deleteSection, updatePolylines, updateSection } from "@/store/reducers/editor";
 import { Callout, Caption, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../core";
 
 const onAddSection = () => store.dispatch(addSection(undefined));
@@ -79,9 +79,7 @@ const SectionSelector = ({ firstElement, selectedElementIds }) => {
       </div>
       <Select
         onValueChange={(value) => {
-          selectedElementIds.forEach((id: string) =>
-            store.dispatch(updatePolyline({ id, section: +value === 0 ? null : value }))
-          );
+          store.dispatch(updatePolylines({ ids: selectedElementIds, data: { section: +value === 0 ? null : value } }));
         }}
         defaultValue={firstElement?.getAttribute?.(dataAttributes.section) || undefined}
       >

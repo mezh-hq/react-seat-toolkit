@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Checkbox } from "@/components/core";
 import { store } from "@/store";
-import { selectPolylineById, updatePolyline } from "@/store/reducers/editor";
+import { selectPolylineById, updatePolylines } from "@/store/reducers/editor";
 import { d3Extended, rgbToHex } from "@/utils";
 import { default as ControlInput } from "../../control-input";
 import { default as SectionSelector } from "./section-selector";
@@ -14,9 +14,7 @@ const PolylineSelectControls = () => {
 
   const onCheckedChange = useCallback(
     (value: boolean) => {
-      selectedElementIds.forEach((id: string) => {
-        store.dispatch(updatePolyline({ id, freeSeating: value }));
-      });
+      store.dispatch(updatePolylines({ ids: selectedElementIds, data: { freeSeating: value } }));
     },
     [selectedElementIds]
   );

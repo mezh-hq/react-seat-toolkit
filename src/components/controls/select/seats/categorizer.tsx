@@ -7,7 +7,7 @@ import { twMerge } from "tailwind-merge";
 import { Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
-import { addCategory, deleteCategory, updateCategory, updateSeat } from "@/store/reducers/editor";
+import { addCategory, deleteCategory, updateCategory, updateSeats } from "@/store/reducers/editor";
 import { Callout, Caption, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../core";
 
 const onAddCategory = () => store.dispatch(addCategory(undefined));
@@ -115,7 +115,7 @@ const Categorizer = ({ firstElement, selectedElementIds }) => {
       </div>
       <Select
         onValueChange={(value) => {
-          selectedElementIds.forEach((id: string) => store.dispatch(updateSeat({ id, category: value })));
+          store.dispatch(updateSeats({ ids: selectedElementIds, data: { category: value } }));
         }}
         defaultValue={firstElement?.getAttribute?.(dataAttributes.category) || undefined}
       >

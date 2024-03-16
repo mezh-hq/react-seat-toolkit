@@ -135,6 +135,11 @@ export const slice = createSlice({
       const index = state.seats.findIndex((seat) => seat.id === action.payload.id);
       state.seats[index] = { ...state.seats[index], ...action.payload };
     },
+    updateSeats(state, action) {
+      state.seats = state.seats.map((seat) =>
+        action.payload.ids.includes(seat.id) ? { ...seat, ...action.payload.data } : seat
+      );
+    },
     addBooth(state, action) {
       state.booths.push(action.payload);
     },
@@ -159,6 +164,11 @@ export const slice = createSlice({
     updatePolyline(state, action) {
       const index = state.polylines.findIndex((polyline) => polyline.id === action.payload.id);
       state.polylines[index] = { ...state.polylines[index], ...action.payload };
+    },
+    updatePolylines(state, action) {
+      state.polylines = state.polylines.map((polyline) =>
+        action.payload.ids.includes(polyline.id) ? { ...polyline, ...action.payload.data } : polyline
+      );
     },
     deletePolyline: (state, action) => {
       state.polylines = state.polylines.filter((polyline) => polyline.id !== action.payload);
@@ -235,6 +245,7 @@ export const {
   addSeat,
   deleteSeat,
   updateSeat,
+  updateSeats,
   addBooth,
   deleteBooth,
   addText,
@@ -243,6 +254,7 @@ export const {
   deleteShape,
   addPolyline,
   updatePolyline,
+  updatePolylines,
   deletePolyline,
   addPolylinePoint,
   addImage,
