@@ -40,5 +40,9 @@ export const seatStatusColors = {
   [SeatStatus.Reserved]: {
     background: "#ff0000",
     label: "#ffffff"
+  },
+  [SeatStatus.Locked]: {
+    background: "#000000",
+    label: "#ffffff"
   }
 };

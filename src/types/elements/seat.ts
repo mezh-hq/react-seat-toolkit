@@ -11,7 +11,8 @@ export interface ISeatCategory {
 export enum SeatStatus {
   Available = "Available",
   Unavailable = "Unavailable",
-  Reserved = "Reserved"
+  Reserved = "Reserved",
+  Locked = "Locked"
 }
 
 export interface ISeat {

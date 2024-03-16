@@ -50,7 +50,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
         const seat = d3Extended.select(ref.current);
         const seatLabel = d3Extended.selectById(`${id}-label`);
         const status = seat.attr(dataAttributes.status);
-        if (status === SeatStatus.Unavailable || status === SeatStatus.Reserved) {
+        if (status === SeatStatus.Unavailable || status === SeatStatus.Reserved || status === SeatStatus.Locked) {
           seat.style("color", seatStatusColors[status].background);
           seatLabel?.style("stroke", seatStatusColors[status].label);
         } else {
