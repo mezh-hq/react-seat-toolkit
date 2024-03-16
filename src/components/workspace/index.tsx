@@ -49,12 +49,12 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
     <div
       id={ids.workspaceContainer}
       className={twMerge(
-        "w-full h-full relative border border-b-0 border-black",
+        "w-full h-full flex flex-col flex-1 relative border border-b-0 border-black",
         props.styles?.workspace?.root?.className
       )}
       style={props.styles?.workspace?.root?.properties}
     >
-      <svg id={ids.workspace} className="w-full h-full">
+      <svg id={ids.workspace} className="w-full h-full flex-1">
         <g>
           {seats.map((e) => (
             <Element
