@@ -1,12 +1,13 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
-import { IImage } from "@/types";
+import { IImage, ISTKProps } from "@/types";
 
 export interface IImageProps extends IImage {
   className?: string;
+  consumer: ISTKProps;
 }
 
-const Image: React.FC<IImageProps> = forwardRef(({ x, y, id, href, width, height, ...props }, ref: any) => {
+const Image: React.FC<IImageProps> = forwardRef(({ x, y, id, href, width, height, consumer, ...props }, ref: any) => {
   return (
     <image
       ref={ref}
@@ -17,8 +18,13 @@ const Image: React.FC<IImageProps> = forwardRef(({ x, y, id, href, width, height
       width={width}
       height={height}
       {...props}
-      className={twMerge(props.className, "resizable fill-transparent object-cover")}
+      className={twMerge(
+        props.className,
+        "resizable fill-transparent object-cover",
+        consumer.styles?.elements?.image?.base?.className
+      )}
       preserveAspectRatio="none"
+      style={consumer.styles?.elements?.image?.base?.properties}
     />
   );
 });

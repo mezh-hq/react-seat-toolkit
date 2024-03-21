@@ -26,9 +26,13 @@ const Polyline: React.FC<IPolylineProps> = forwardRef(
         points={points.map((p) => `${p.x},${p.y}`).join(" ")}
         onClick={localOnClick}
         {...props}
-        style={{ color: sectionObject?.color ?? color ?? "transparent", stroke: sectionObject?.stroke ?? stroke }}
+        style={{
+          color: sectionObject?.color ?? color ?? "transparent",
+          stroke: sectionObject?.stroke ?? stroke,
+          ...consumer.styles?.elements?.shape?.base?.properties
+        }}
         {...{ [dataAttributes.section]: section }}
-        className={twMerge(props.className)}
+        className={twMerge(props.className, consumer.styles?.elements?.shape?.base?.className)}
       />
     );
   }

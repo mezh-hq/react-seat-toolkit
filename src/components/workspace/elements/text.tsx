@@ -1,12 +1,19 @@
 import { forwardRef } from "react";
-import { IText } from "@/types";
+import { twMerge } from "tailwind-merge";
+import { ISTKProps, IText } from "@/types";
 
 export const textFontSize = 35;
 
-export interface ITextProps extends IText {}
+export interface ITextProps extends IText {
+  className: string;
+  consumer: ISTKProps;
+}
 
 const Text: React.FC<ITextProps> = forwardRef(
-  ({ x, y, id, label, fontSize = textFontSize, fontWeight = 200, letterSpacing = 3, color, ...props }, ref: any) => {
+  (
+    { x, y, id, label, fontSize = textFontSize, fontWeight = 200, letterSpacing = 3, color, consumer, ...props },
+    ref: any
+  ) => {
     return (
       <text
         ref={ref}
@@ -19,6 +26,8 @@ const Text: React.FC<ITextProps> = forwardRef(
         stroke={color}
         color={color}
         {...props}
+        className={twMerge(props.className, consumer.styles?.elements?.text?.base?.className)}
+        style={consumer.styles?.elements?.text?.base?.properties}
       >
         {label}
       </text>

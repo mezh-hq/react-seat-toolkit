@@ -14,38 +14,15 @@
   .text-selected {
     @apply element-selected !text-blue-500;
   }
-  .grid-autofill {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Change minmax values as needed */
-    gap: 10px; /* Adjust the gap between grid items */
-    margin: 20px; /* Add margin to the grid container */
-    grid-auto-flow: dense; /* Enable dense packing of items */
-    position: relative; /* Enable positioning of the pseudo-element */
-  }
-
-  .grid-autofill::before {
-    content: ""; /* Create a pseudo-element for styling the lines */
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 1px;
-    background-color: #000; /* Color of the grid lines */
-    transform: translateX(calc(100% + 5px)); /* Adjust the position of the lines */
-  }
-
   .rounded-color-input::-webkit-color-swatch {
     @apply border-none rounded-full;
   }
-
   .rounded-color-input::-webkit-color-swatch-wrapper {
     @apply border-none rounded-full p-0;
   }
-
   .square-color-input::-webkit-color-swatch {
     @apply border-none rounded-md;
   }
-
   .square-color-input::-webkit-color-swatch-wrapper {
     @apply border-none rounded-md p-0;
   }

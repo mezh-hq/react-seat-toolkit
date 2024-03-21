@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import * as lucide from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes } from "@/constants";
-import { IShape } from "@/types";
+import { ISTKProps, IShape } from "@/types";
 
 export const shapeSize = 65;
 export const shapeStrokeWidth = 0.65;
@@ -15,10 +15,11 @@ export const resizableRectangle = {
 export interface IShapeProps extends IShape {
   className?: string;
   resizable?: boolean;
+  consumer: ISTKProps;
 }
 
 const Shape: React.FC<IShapeProps> = forwardRef(
-  ({ x, y, id, name, width, height, rx, resizable, className, stroke, color, ...props }, ref: any) => {
+  ({ x, y, id, name, width, height, rx, resizable, className, stroke, color, consumer, ...props }, ref: any) => {
     if (name === "RectangleHorizontal") {
       return (
         <rect
@@ -29,8 +30,8 @@ const Shape: React.FC<IShapeProps> = forwardRef(
           width={width ?? resizableRectangle.width}
           height={height ?? resizableRectangle.height}
           rx={rx ?? 15}
-          className={twMerge(className, resizable && "resizable")}
-          style={{ color: color ?? "transparent", stroke }}
+          className={twMerge(className, resizable && "resizable", consumer.styles?.elements?.shape?.base?.className)}
+          style={{ color: color ?? "transparent", stroke, ...consumer.styles?.elements?.shape?.base?.properties }}
           {...{ [dataAttributes.shape]: "RectangleHorizontal" }}
           {...props}
         />

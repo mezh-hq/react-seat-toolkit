@@ -32,6 +32,8 @@ const Seat: React.FC<ISeatProps> = forwardRef(
 
     const showLabel = consumer.options?.showSeatLabels ?? true;
 
+    const consumerSeatStatusColors = consumer.styles?.elements?.seat?.statusColors;
+
     const SeatIcon = isSelected ? consumer.options?.selectedSeatIcon : consumer.options?.seatIcon;
 
     const textX = useMemo(() => {
@@ -51,8 +53,8 @@ const Seat: React.FC<ISeatProps> = forwardRef(
         const seatLabel = d3Extended.selectById(`${id}-label`);
         const status = seat.attr(dataAttributes.status);
         if (status === SeatStatus.Unavailable || status === SeatStatus.Reserved || status === SeatStatus.Locked) {
-          seat.style("color", seatStatusColors[status].background);
-          seatLabel?.style("stroke", seatStatusColors[status].label);
+          seat.style("color", consumerSeatStatusColors?.[status]?.background ?? seatStatusColors[status].background);
+          seatLabel?.style("stroke", consumerSeatStatusColors?.[status]?.label ?? seatStatusColors[status].label);
         } else {
           if (categoryObject) {
             seat.style("color", categoryObject.color);
@@ -83,7 +85,12 @@ const Seat: React.FC<ISeatProps> = forwardRef(
           {...{ [dataAttributes.section]: categoryObject?.section }}
           {...{ [dataAttributes.status]: status ?? SeatStatus.Available }}
           {...props}
-          className={twMerge(props.className, "filter hover:brightness-[1.05]")}
+          className={twMerge(
+            props.className,
+            "filter hover:brightness-[1.05]",
+            consumer.styles?.elements?.seat?.base?.className
+          )}
+          style={consumer.styles?.elements?.seat?.base?.properties}
         />
         {SeatIcon && (
           <SeatIcon

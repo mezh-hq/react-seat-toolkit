@@ -50,22 +50,33 @@ export interface IStyles {
     booth?: {
       selected?: IStyle;
       unselected?: IStyle;
+      base?: IStyle;
     };
     seat?: {
       selected?: IStyle;
       unselected?: IStyle;
+      base?: IStyle;
+      statusColors?: {
+        [key: string]: {
+          background?: string;
+          label?: string;
+        };
+      };
     };
     shape?: {
       selected?: IStyle;
       unselected?: IStyle;
+      base?: IStyle;
     };
     image?: {
       selected?: IStyle;
       unselected?: IStyle;
+      base?: IStyle;
     };
     text?: {
       selected?: IStyle;
       unselected?: IStyle;
+      base?: IStyle;
     };
   };
   core?: {
