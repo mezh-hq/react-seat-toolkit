@@ -6,7 +6,6 @@ body,
   height: 100% !important;
 }
 body {
-  @apply bg-background text-foreground;
   margin-right: 0px !important;
 }
 
