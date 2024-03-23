@@ -6,11 +6,6 @@ export default {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx,stories.js,css}"],
   theme: {
     extend: {
-      colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        border: "var(--border)"
-      },
       fontFamily: {
         inter: ["Inter", "sans-serif"]
       },
