@@ -11,7 +11,7 @@ const Footer: React.FC<ISTKProps> = ({ options: { showFooter = true } = {}, ...p
   return (
     <div
       className={twMerge(
-        "w-full fixed bottom-0 h-8 flex justify-center items-center bg-black text-white",
+        "w-full absolute bottom-0 h-8 flex justify-center items-center bg-black text-white",
         styles?.root?.className
       )}
       style={styles?.root?.properties}
