@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import { default as resolveConfig } from "tailwindcss/resolveConfig";
-import tailwindConfig from "../../tailwind.config.js";
-
-const config = resolveConfig(tailwindConfig);
+import { screens } from "../../tailwind.config";
 
 const calculateBreakpoints = () =>
-  Object.entries(config.theme.screens).reduce((acc, [key, value]) => {
+  Object.entries(screens).reduce((acc, [key, value]) => {
     if (typeof window === "undefined") return acc;
     acc[key] = window.matchMedia(`(min-width: ${value})`).matches;
     return acc;

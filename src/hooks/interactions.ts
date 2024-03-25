@@ -1,5 +1,7 @@
 import { useEffect } from "react";
-import { default as interact } from "interactjs";
+import "@interactjs/actions/resize";
+import "@interactjs/auto-start";
+import { default as interact } from "@interactjs/interact";
 
 export const resizeCursors = ["ns-resize", "ew-resize", "nwse-resize", "nesw-resize"];
 

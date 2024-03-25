@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
-import * as lucide from "lucide-react";
 import { twMerge } from "tailwind-merge";
+import { shapes } from "@/components/controls/shapes/shape-list";
 import { dataAttributes } from "@/constants";
 import { ISTKProps, IShape } from "@/types";
 
@@ -37,7 +37,7 @@ const Shape: React.FC<IShapeProps> = forwardRef(
         />
       );
     }
-    const Icon = lucide[name];
+    const Icon = shapes[name];
     return (
       <Icon
         id={id}
