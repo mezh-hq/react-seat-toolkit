@@ -16,7 +16,7 @@ const Polyline: React.FC<IPolylineProps> = forwardRef(
 
     const localOnClick = (e) => {
       onClick(e);
-      consumer.events?.onSectionClick?.(sectionObject);
+      if (sectionObject) consumer.events?.onSectionClick?.(sectionObject);
     };
 
     return (

@@ -49,8 +49,7 @@ const initialState = {
       name: "Section 1",
       color: "#000000",
       stroke: "#000000",
-      freeSeating: true,
-      capacity: 100
+      freeSeating: true
     },
     {
       id: uuidv4(),

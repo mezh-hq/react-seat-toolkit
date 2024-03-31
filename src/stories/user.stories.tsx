@@ -26,8 +26,7 @@ export const Default = {
             name: "Section 1",
             color: "#000000",
             stroke: "#000000",
-            freeSeating: true,
-            capacity: 100
+            freeSeating: true
           },
           {
             id: "0e3e85da-eb6d-4a9b-b170-e8bcf1e76739",
