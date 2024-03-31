@@ -1,22 +1,30 @@
 import { memo } from "react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
-import { ids, selectors } from "@/constants";
+import { dataAttributes, ids, selectors } from "@/constants";
 import { store } from "@/store";
 import { setInitialViewBoxScale, setVisibilityOffset } from "@/store/reducers/editor";
 import type { ISTKProps } from "@/types";
 import { d3Extended } from "@/utils";
 import { Button } from "../core";
+import { showPostOffsetElements } from "./elements";
 
 const freeze = () =>
   store.dispatch(setInitialViewBoxScale(d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup)).k));
 
 const unfreeze = () => store.dispatch(setInitialViewBoxScale(null));
 
-const setVisibility = () =>
-  store.dispatch(setVisibilityOffset(d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup)).k));
+const setVisibility = () => {
+  const offset = d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup)).k;
+  store.dispatch(setVisibilityOffset(offset));
+  d3Extended.select(selectors.workspaceGroup).attr(dataAttributes.visibilityOffset, offset);
+};
 
-const unsetVisibility = () => store.dispatch(setVisibilityOffset(0));
+const unsetVisibility = () => {
+  d3Extended.select(selectors.workspaceGroup).attr(dataAttributes.visibilityOffset, 0);
+  store.dispatch(setVisibilityOffset(0));
+  showPostOffsetElements();
+};
 
 const VisibilityControls = (props: ISTKProps) => {
   const initialViewBoxScale = useSelector((state: any) => state.editor.initialViewBoxScale);

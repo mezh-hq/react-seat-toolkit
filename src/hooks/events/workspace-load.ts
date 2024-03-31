@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react";
 import { panAndZoom } from "@/components/workspace/zoom";
-import { ids, selectors } from "@/constants";
+import { dataAttributes, ids, selectors } from "@/constants";
 import { store } from "@/store";
 import { initializeElements, initializeWorkspace, sync } from "@/store/reducers/editor";
 import { ISTKProps } from "@/types";
@@ -14,13 +14,17 @@ const useWorkspaceLoad = (props: ISTKProps) => {
         const { height: workspaceheight, width: workspaceWidth } = d3Extended.selectionBounds(
           d3Extended.selectById(ids.workspace)
         );
+        const workspaceGroup = d3Extended.select(selectors.workspaceGroup);
         const {
           left: wgOffsetLeft,
           top: wgOffsetTop,
           height: workspaceGroupHeight,
           width: workspaceGroupWidth
-        } = d3Extended.selectionBounds(d3Extended.select(selectors.workspaceGroup));
+        } = d3Extended.selectionBounds(workspaceGroup);
         let scaleFactor = props.data.workspace?.initialViewBoxScale ?? 1;
+        if (props.data.workspace?.visibilityOffset) {
+          workspaceGroup.attr(dataAttributes.visibilityOffset, props.data.workspace.visibilityOffset);
+        }
         scaleFactor *= 1.05;
         panAndZoom({
           k: scaleFactor,

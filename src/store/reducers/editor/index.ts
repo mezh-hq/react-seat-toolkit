@@ -50,7 +50,7 @@ const initialState = {
       name: "Section 1",
       color: "#000000",
       stroke: "#000000",
-      freeSeating: true
+      freeSeating: false
     },
     {
       id: uuidv4(),
@@ -157,6 +157,11 @@ export const slice = createSlice({
     },
     deleteText(state, action) {
       state.text = state.text.filter((text) => text.id !== action.payload);
+    },
+    updateText(state, action) {
+      state.text = state.text.map((text) =>
+        action.payload.ids.includes(text.id) ? { ...text, ...action.payload.data } : text
+      );
     },
     addShape(state, action) {
       state.shapes.push(action.payload);
@@ -265,6 +270,7 @@ export const {
   deleteBooth,
   addText,
   deleteText,
+  updateText,
   addShape,
   deleteShape,
   addPolyline,
@@ -290,6 +296,12 @@ export const selectPolylineById = (id: string) =>
   createSelector(
     (state: any) => state.editor.polylines,
     (polylines) => polylines.find((polyline) => polyline.id === id)
+  );
+
+export const selectTextById = (id: string) =>
+  createSelector(
+    (state: any) => state.editor.text,
+    (text) => text.find((t) => t.id === id)
   );
 
 export default slice.reducer as Reducer<typeof initialState>;

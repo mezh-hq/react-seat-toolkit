@@ -2,14 +2,21 @@ import { memo, useLayoutEffect } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Minus, Plus } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
-import { ids, selectors } from "@/constants";
+import { dataAttributes, ids, selectors } from "@/constants";
 import { useSkipFirstRender } from "@/hooks";
 import type { ISTKProps } from "@/types";
 import { d3Extended } from "@/utils";
 import { Tool } from "../toolbar/data";
+import { showPostOffsetElements, showPreOffsetElements } from "./elements";
 
 function handleZoom(e) {
   const workspace = d3Extended.select(selectors.workspaceGroup);
+  const visibilityOffset = +workspace.attr(dataAttributes.visibilityOffset) || 0;
+  if (e.transform.k * 1.1 < visibilityOffset) {
+    showPreOffsetElements();
+  } else {
+    showPostOffsetElements();
+  }
   workspace.attr("transform", e.transform);
 }
 
@@ -40,10 +47,14 @@ const panDown = () => {
 };
 
 export const panAndZoom = ({ k, x, y }) => {
+  d3Extended.selectById(ids.workspace).call(zoom.transform, d3Extended.zoomIdentity.translate(x, y).scale(k));
+};
+
+export const panAndZoomWithTransition = ({ k, x, y }) => {
   d3Extended
     .selectById(ids.workspace)
     .transition()
-    .duration(0)
+    .duration(1000)
     .call(zoom.transform, d3Extended.zoomIdentity.translate(x, y).scale(k));
 };
 

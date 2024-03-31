@@ -52,7 +52,6 @@ const PolylineSelectControls = () => {
             id="stk-free-section-marker"
             checked={firstPolyline.freeSeating}
             onCheckedChange={onCheckedChange}
-            disabled={!!firstPolyline.section}
           />
           <label
             htmlFor="stk-free-section-marker"

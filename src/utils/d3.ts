@@ -5,6 +5,7 @@ declare module "d3" {
     moveToBack(): Selection<GElement, Datum, PElement, PDatum>;
     moveToFront(): Selection<GElement, Datum, PElement, PDatum>;
     map<T>(callback: (d: Selection<GElement, Datum, PElement, PDatum>, i: number) => T): T[];
+    forEach<T>(callback: (d: Selection<GElement, Datum, PElement, PDatum>, i: number) => T): T[];
   }
 }
 
@@ -29,6 +30,12 @@ d3.selection.prototype.map = function (callback) {
     results.push(callback(d3.select(this), i));
   });
   return results;
+};
+
+d3.selection.prototype.forEach = function (callback) {
+  this.each(function (_, i) {
+    callback(d3.select(this), i);
+  });
 };
 
 export const d3Extended = {

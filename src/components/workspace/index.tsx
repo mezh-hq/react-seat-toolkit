@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
-import { ids } from "@/constants";
+import { dataAttributes, ids } from "@/constants";
 import { type ISTKProps } from "@/types";
 import { Tool, tools } from "../toolbar/data";
 import { default as Crosshairs } from "./crosshairs";
@@ -60,7 +60,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
       style={props.styles?.workspace?.root?.properties}
     >
       <svg id={ids.workspace} className="w-full h-full flex-1">
-        <g>
+        <g {...{ [dataAttributes.visibilityOffset]: "0" }}>
           {seats.map((e) => (
             <Element
               key={e.id}
@@ -82,6 +82,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
               fontSize={e.fontSize}
               fontWeight={e.fontWeight}
               letterSpacing={e.letterSpacing}
+              embraceOffset={e.embraceOffset}
               {...elementProps(e)}
             />
           ))}

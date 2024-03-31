@@ -1,11 +1,22 @@
+import { useCallback } from "react";
 import { useSelector } from "react-redux";
+import { Checkbox } from "@/components/core";
+import { store } from "@/store";
+import { selectTextById, updateText } from "@/store/reducers/editor";
 import { d3Extended, rgbToHex } from "@/utils";
 import { default as ControlInput } from "../control-input";
 
 const TextSelectControls = () => {
   const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
-
+  const firstTextElement = useSelector(selectTextById(selectedElementIds[0]));
   const firstElement = document.getElementById(selectedElementIds[0]);
+
+  const onCheckedChange = useCallback(
+    (value: boolean) => {
+      store.dispatch(updateText({ ids: selectedElementIds, data: { embraceOffset: value } }));
+    },
+    [selectedElementIds]
+  );
 
   return (
     <div className="flex flex-col gap-4 py-1">
@@ -72,6 +83,19 @@ const TextSelectControls = () => {
             });
           }}
         />
+        <div className="col-span-3 w-full flex justify-end items-center gap-[2.3rem]">
+          <Checkbox
+            id="stk-embrace-offset-marker"
+            checked={firstTextElement.embraceOffset}
+            onCheckedChange={onCheckedChange}
+          />
+          <label
+            htmlFor="stk-embrace-offset-marker"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Embrace Offset
+          </label>
+        </div>
       </div>
     </div>
   );

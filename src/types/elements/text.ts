@@ -7,4 +7,5 @@ export interface IText {
   fontWeight?: number;
   letterSpacing?: number;
   color?: string;
+  embraceOffset?: boolean;
 }

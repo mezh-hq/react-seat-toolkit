@@ -1,7 +1,9 @@
 import { forwardRef, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
-import { dataAttributes } from "@/constants";
+import { dataAttributes, selectors } from "@/constants";
 import { IPolyline, ISTKProps, ISection } from "@/types";
+import { d3Extended, getRelativeWorkspaceClickCoords } from "@/utils";
+import { panAndZoomWithTransition } from "../zoom";
 
 export interface IPolylineProps extends IPolyline {
   className?: string;
@@ -16,7 +18,20 @@ const Polyline: React.FC<IPolylineProps> = forwardRef(
 
     const localOnClick = (e) => {
       onClick(e);
-      if (sectionObject) consumer.events?.onSectionClick?.(sectionObject);
+      if (sectionObject) {
+        consumer.events?.onSectionClick?.(sectionObject);
+        if (!sectionObject.freeSeating) {
+          const visibilityOffset = +d3Extended.select(selectors.workspaceGroup).attr(dataAttributes.visibilityOffset);
+          if (visibilityOffset > 0) {
+            const coords = getRelativeWorkspaceClickCoords(e);
+            panAndZoomWithTransition({
+              k: visibilityOffset,
+              x: coords.x - coords.x * visibilityOffset,
+              y: coords.y - coords.y * visibilityOffset
+            });
+          }
+        }
+      }
     };
 
     return (

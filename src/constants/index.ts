@@ -26,7 +26,9 @@ export const dataAttributes = {
   shape: "data-shape",
   category: "data-category",
   status: "data-status",
-  section: "data-section"
+  section: "data-section",
+  visibilityOffset: "data-seat-visibility-offset",
+  embraceOffset: "data-embrace-offset"
 };
 
 export const seatStatusColors = {
