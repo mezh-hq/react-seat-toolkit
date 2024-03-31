@@ -435,3 +435,428 @@ export const Default = {
     />
   )
 };
+
+export const WithInitialViewBoxTransform = {
+  render: () => (
+    <SeatToolkit
+      mode={"user"}
+      data={{
+        name: "Type your location here",
+        categories: [
+          { id: "6cf3629a-a0a9-4fb5-8567-04cfb4b36cd1", name: "Standard", color: "#000000", textColor: "#f7f7f7" },
+          { id: "4faabe77-45b2-4450-b35e-e02934ee3fdb", name: "Premium", color: "#FF0000", textColor: "#f7f7f7" },
+          { id: "c1d2e702-6a57-49a1-89b6-17c9fcbec405", name: "VIP", color: "#0000FF", textColor: "#f7f7f7" }
+        ],
+        sections: [
+          {
+            id: "74810ecc-42ce-417b-b77e-36716aaea9c4",
+            name: "Section 1",
+            color: "#000000",
+            stroke: "#000000",
+            freeSeating: true
+          },
+          {
+            id: "7d031adf-7981-44ce-ac6d-500a5bec7a64",
+            name: "Section 2",
+            color: "#FF0000",
+            stroke: "#FF0000",
+            freeSeating: false
+          },
+          {
+            id: "b89a6701-5e4b-4be0-96a2-41a1c8d68abf",
+            name: "Section 3",
+            color: "#0000FF",
+            stroke: "#0000FF",
+            freeSeating: false
+          }
+        ],
+        seats: [
+          {
+            id: "6e2f2a99-b719-4368-b19d-b74efa9eafb1",
+            x: 610,
+            y: 299.03999999999996,
+            label: "1",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "86dc4d67-f66a-4bc1-9aeb-d8951f185be9",
+            x: 560,
+            y: 299.03999999999996,
+            label: "2",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "d06de13d-711e-4d6f-b49e-4aaf4b3b74b3",
+            x: 510,
+            y: 299.03999999999996,
+            label: "3",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "a20d9ab2-4326-497b-b840-8e2875aeecad",
+            x: 460,
+            y: 299.03999999999996,
+            label: "4",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "331b9479-a8ba-4592-8b6e-5421afa248ff",
+            x: 410,
+            y: 299.03999999999996,
+            label: "5",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "65002aba-04ce-4e15-93ea-7cd62558844c",
+            x: 360,
+            y: 299.03999999999996,
+            label: "6",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "92f60db9-1524-4505-a342-b88abd57b931",
+            x: 310,
+            y: 299.03999999999996,
+            label: "7",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "9edf6f6e-60fb-4d02-9852-0bc631338e05",
+            x: 260,
+            y: 299.03999999999996,
+            label: "8",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "3c93473e-ebea-479f-bea6-21287de10873",
+            x: 210,
+            y: 299.03999999999996,
+            label: "9",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "cf48a638-f228-459d-bddf-be94a039dbdf",
+            x: 160,
+            y: 299.03999999999996,
+            label: "10",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "b12535e3-d895-4757-b756-9b8ff6c43488",
+            x: 710,
+            y: 299.03999999999996,
+            label: "1",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "ca873ff6-9c61-4843-85f3-6e93a220453b",
+            x: 760,
+            y: 299.03999999999996,
+            label: "2",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "7e333a51-5d4a-4ce3-9905-8538687b8868",
+            x: 810,
+            y: 299.03999999999996,
+            label: "3",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "3a63306d-89fd-4b2c-bc57-1f13febbc033",
+            x: 860,
+            y: 299.03999999999996,
+            label: "4",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "e632ad90-471f-41f5-9d5a-3883fe45d46d",
+            x: 910,
+            y: 299.03999999999996,
+            label: "5",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "9a0f6a22-8e71-4049-8d02-385385c5748a",
+            x: 960,
+            y: 299.03999999999996,
+            label: "6",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "b58fe1e1-c5e8-4eee-88f6-4abe9f08a67d",
+            x: 1010,
+            y: 299.03999999999996,
+            label: "7",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "384b753b-e553-4094-a2bd-c3f494c7fcf1",
+            x: 1060,
+            y: 299.03999999999996,
+            label: "8",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "6f372f69-d9d2-4a73-93e1-43ba62a1a156",
+            x: 1110,
+            y: 299.03999999999996,
+            label: "9",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "3a5173a9-ca4e-461e-9ea4-6d08b05551a2",
+            x: 1160,
+            y: 299.03999999999996,
+            label: "10",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "d8f5879f-176b-4e21-82a0-4f1e0ca15a1b",
+            x: 610,
+            y: 370.24,
+            label: "1",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "5da96ce2-a593-40ab-9b9f-3d8612572d18",
+            x: 560,
+            y: 370.24,
+            label: "2",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "f7eeb654-1b86-40f0-8b46-032405f642c3",
+            x: 510,
+            y: 370.24,
+            label: "3",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "deb12709-35cf-439a-9209-e2a5bc61c6e3",
+            x: 460,
+            y: 370.24,
+            label: "4",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "06ee6d6b-4fbe-4213-b088-b0f5838cee5c",
+            x: 410,
+            y: 370.24,
+            label: "5",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "bf04f0ef-7d6a-4abd-8b45-365ec1f3c7e9",
+            x: 360,
+            y: 370.24,
+            label: "6",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "75371079-6745-489f-aa58-23391d3046bb",
+            x: 310,
+            y: 370.24,
+            label: "7",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "3a31b0f8-e5ac-4fcb-984e-6091744b0379",
+            x: 710,
+            y: 370.24,
+            label: "1",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "4792a1fa-5441-4eee-869b-729dec2517bd",
+            x: 760,
+            y: 370.24,
+            label: "2",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "073b1e2c-9f45-4924-a281-1fcfe64ec2c4",
+            x: 810,
+            y: 370.24,
+            label: "3",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "25f22918-f115-419f-a7a9-4b2274e26d7d",
+            x: 860,
+            y: 370.24,
+            label: "4",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "e879ea01-0653-411f-b3a6-885fcfde42fc",
+            x: 910,
+            y: 370.24,
+            label: "5",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "cad003e5-7657-475f-b1a5-fdd5a753ff0f",
+            x: 960,
+            y: 370.24,
+            label: "6",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "51b6472c-1ff9-4a56-863d-a95643cebd58",
+            x: 1010,
+            y: 370.24,
+            label: "7",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "b5b3e17f-5d4e-48ad-a4f1-98a3fea91556",
+            x: 610,
+            y: 441.44,
+            label: "1",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "ccb05b4e-568d-44d0-8fa4-331536a94dc8",
+            x: 560,
+            y: 441.44,
+            label: "2",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "5a837697-93ca-40af-9f64-2c094c167d16",
+            x: 510,
+            y: 441.44,
+            label: "3",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "e2789eba-9379-4f04-80f9-40dea86a7742",
+            x: 460,
+            y: 441.44,
+            label: "4",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "b5ba13a6-d4ac-4422-9297-b21cc3725f7f",
+            x: 410,
+            y: 441.44,
+            label: "5",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "f1166991-86fd-4c71-a015-26650ab45fa6",
+            x: 710,
+            y: 441.44,
+            label: "1",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "17811c8b-7f97-4469-9355-407de836a547",
+            x: 760,
+            y: 441.44,
+            label: "2",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "13899164-0541-413f-b6d3-d38b46f98fcc",
+            x: 810,
+            y: 441.44,
+            label: "3",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "c13f10dd-5bfe-4e31-a667-5f8a8a19d1e9",
+            x: 860,
+            y: 441.44,
+            label: "4",
+            status: "Available",
+            category: null
+          },
+          {
+            id: "8c379eb9-45a6-4fc7-9de2-a93e67b4bf96",
+            x: 910,
+            y: 441.44,
+            label: "5",
+            status: "Available",
+            category: null
+          }
+        ],
+        booths: [
+          { id: "92d30d1f-aa2a-4de0-a2ff-4b0a6433bdbf", x: 582, y: 562.48 },
+          { id: "3a825886-1737-49cb-b1f0-3bebd54acaa0", x: 708, y: 562.48 }
+        ],
+        text: [
+          {
+            id: "9758de86-ca95-44d7-845e-7891408a77d5",
+            x: 602,
+            y: 170.88,
+            label: "STAGE",
+            fontSize: 35,
+            fontWeight: 200,
+            letterSpacing: 5,
+            color: "#000000"
+          }
+        ],
+        shapes: [
+          {
+            id: "2f62a2a5-4bd9-4f59-9e96-39e49b85d554",
+            name: "RectangleHorizontal",
+            x: 110,
+            y: 103.24,
+            width: 1100,
+            height: 100,
+            rx: 10,
+            color: "#ffffff00",
+            stroke: "#000000"
+          }
+        ],
+        polylines: [],
+        images: [],
+        workspace: { initialViewBoxScale: 0.63822814939213, visibilityOffset: 0 }
+      }}
+    />
+  )
+};

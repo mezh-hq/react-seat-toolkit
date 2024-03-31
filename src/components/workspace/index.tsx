@@ -7,11 +7,13 @@ import { Tool, tools } from "../toolbar/data";
 import { default as Crosshairs } from "./crosshairs";
 import { default as Element, ElementType } from "./elements";
 import { default as Grid } from "./grid";
+import { default as VisibilityControls } from "./visibility";
 import { default as Zoom } from "./zoom";
 
 export { default as Cursor } from "./cursor";
 
 export const Workspace: React.FC<ISTKProps> = (props) => {
+  const initialized = useSelector((state: any) => state.editor.initialized);
   const booths = useSelector((state: any) => state.editor.booths);
   const seats = useSelector((state: any) => state.editor.seats);
   const text = useSelector((state: any) => state.editor.text);
@@ -45,11 +47,14 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
 
   const showZoomControls = props.options?.showZoomControls ?? true;
 
+  const showVisibilityControls = props.mode === "designer" && (props.options?.showVisibilityControls ?? true);
+
   return (
     <div
       id={ids.workspaceContainer}
       className={twMerge(
-        "w-full h-full flex flex-col flex-1 relative border border-b-0 border-black",
+        "w-full h-full flex flex-col flex-1 relative border border-b-0 border-black transition-all",
+        initialized ? "opacity-100" : "opacity-0",
         props.styles?.workspace?.root?.className
       )}
       style={props.styles?.workspace?.root?.properties}
@@ -122,6 +127,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
         </>
       )}
       {showZoomControls && <Zoom {...props} />}
+      {showVisibilityControls && <VisibilityControls {...props} />}
     </div>
   );
 };

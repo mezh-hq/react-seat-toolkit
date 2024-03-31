@@ -32,6 +32,10 @@ export interface ISTKData {
   shapes?: IShape[];
   polylines?: IPolyline[];
   images?: IImage[];
+  workspace?: {
+    initialViewBoxScale?: number;
+    visibilityOffset?: number;
+  };
 }
 
 export interface ISTKProps {
@@ -44,6 +48,7 @@ export interface ISTKProps {
     showSeatLabels?: boolean;
     showFooter?: boolean;
     showZoomControls?: boolean;
+    showVisibilityControls?: boolean;
     exportButtonText?: string;
     operationTriggerIcon?: React.FC;
     seatIcon?: React.FC<any>;

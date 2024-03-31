@@ -16,6 +16,7 @@ const noSection = {
 };
 
 const initialState = {
+  initialized: false,
   cursor: null,
   showControls: false,
   grid: false,
@@ -72,13 +73,18 @@ const initialState = {
   text: [],
   shapes: [],
   polylines: [],
-  images: []
+  images: [],
+  initialViewBoxScale: null,
+  visibilityOffset: 0
 };
 
 export const slice = createSlice({
   name: "editor",
   initialState,
   reducers: {
+    initializeWorkspace: (state) => {
+      state.initialized = true;
+    },
     setCursor: (state, action) => {
       state.cursor = action.payload;
     },
@@ -123,6 +129,7 @@ export const slice = createSlice({
       state.booths = booths();
       state.text = text();
       state.shapes = shapes();
+      state.initialized = true;
     },
     addSeat(state, action) {
       state.seats.push(action.payload);
@@ -221,14 +228,23 @@ export const slice = createSlice({
       const { name, sections, ...data } = action.payload as ISTKData;
       state.location = name ?? state.location;
       state.sections = sections ? [noSection, ...sections] : state.sections;
+      state.initialViewBoxScale = data.workspace?.initialViewBoxScale;
+      state.visibilityOffset = data.workspace?.visibilityOffset ?? state.visibilityOffset;
       Object.keys(data).forEach((key) => {
         state[key] = data[key] ?? state[key];
       });
+    },
+    setInitialViewBoxScale: (state, action) => {
+      state.initialViewBoxScale = action.payload;
+    },
+    setVisibilityOffset: (state, action) => {
+      state.visibilityOffset = action.payload;
     }
   }
 });
 
 export const {
+  initializeWorkspace,
   setCursor,
   clearCursor,
   setLocation,
@@ -265,7 +281,9 @@ export const {
   updateSection,
   deleteSection,
   setSelectedPolylineId,
-  sync
+  sync,
+  setInitialViewBoxScale,
+  setVisibilityOffset
 } = slice.actions;
 
 export const selectPolylineById = (id: string) =>

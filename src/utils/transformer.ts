@@ -101,6 +101,10 @@ export const stateToJSON = () => {
     text: domTextToJSON(),
     shapes: domShapesToJSON(),
     polylines: domPolylineToJSON(),
-    images: domImagesToJSON()
+    images: domImagesToJSON(),
+    workspace: {
+      initialViewBoxScale: state.initialViewBoxScale,
+      visibilityOffset: state.visibilityOffset
+    }
   };
 };

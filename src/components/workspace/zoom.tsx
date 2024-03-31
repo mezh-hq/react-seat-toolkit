@@ -43,7 +43,7 @@ export const panAndZoom = ({ k, x, y }) => {
   d3Extended
     .selectById(ids.workspace)
     .transition()
-    .duration(1000)
+    .duration(0)
     .call(zoom.transform, d3Extended.zoomIdentity.translate(x, y).scale(k));
 };
 

@@ -46,6 +46,10 @@ export interface IStyles {
       left?: IStyle;
     };
   };
+  visibilityControls?: {
+    root?: IStyle;
+    buttons?: IStyle;
+  };
   elements?: {
     booth?: {
       selected?: IStyle;

@@ -12,7 +12,8 @@ export const ids = {
   toolbar: "stk-tool-bar",
   workspace: "stk-workspace",
   workspaceContainer: "stk-workspace-container",
-  zoomControls: "stk-zoom-controls"
+  zoomControls: "stk-zoom-controls",
+  visibilityControls: "stk-visibility-controls"
 };
 
 export const selectors = {
