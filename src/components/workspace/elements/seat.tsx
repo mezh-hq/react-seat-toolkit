@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useMemo } from "react";
+import { forwardRef, useEffect, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, seatStatusColors } from "@/constants";
 import { ISTKProps } from "@/types";
@@ -70,29 +70,23 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       consumer.events?.onSeatClick?.(getDetailedSeat(element, categoryObject, sectionObject));
     };
 
-    const onMouseOver = useCallback(
-      (e: React.MouseEvent<SVGElement>) => {
-        if (consumer.mode === "user") {
-          consumer.events?.onSeatHover?.(getDetailedSeat(element, categoryObject, sectionObject), {
-            x: e.clientX,
-            y: e.clientY
-          });
-        }
-      },
-      [consumer.events?.onSeatHover]
-    );
+    const onMouseOver = (e: React.MouseEvent<SVGElement>) => {
+      if (consumer.mode === "user") {
+        consumer.events?.onSeatHover?.(getDetailedSeat(element, categoryObject, sectionObject), {
+          x: e.clientX,
+          y: e.clientY
+        });
+      }
+    };
 
-    const onMouseOut = useCallback(
-      (e: React.MouseEvent<SVGElement>) => {
-        if (consumer.mode === "user") {
-          consumer.events?.onSeatLeave?.(getDetailedSeat(element, categoryObject, sectionObject), {
-            x: e.clientX,
-            y: e.clientY
-          });
-        }
-      },
-      [consumer.events?.onSeatLeave]
-    );
+    const onMouseOut = (e: React.MouseEvent<SVGElement>) => {
+      if (consumer.mode === "user") {
+        consumer.events?.onSeatLeave?.(getDetailedSeat(element, categoryObject, sectionObject), {
+          x: e.clientX,
+          y: e.clientY
+        });
+      }
+    };
 
     status ??= SeatStatus.Available;
 

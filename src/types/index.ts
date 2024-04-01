@@ -26,6 +26,7 @@ export interface IEvents {
   onSeatHover?: (seat: IPopulatedSeat, coords: ICoordinates) => void;
   /** Only applicable in user mode */
   onSeatLeave?: (seat: IPopulatedSeat, coords: ICoordinates) => void;
+  onWorkspaceHover?: () => void;
   onSectionClick?: (section: ISection) => void;
   onExport?: (data: ISTKData) => void;
   onWorkspaceLoad?: () => void;

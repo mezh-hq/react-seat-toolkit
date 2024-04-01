@@ -49,6 +49,13 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
 
   const showVisibilityControls = props.mode === "designer" && (props.options?.showVisibilityControls ?? true);
 
+  const onWorkspaceHover = useCallback(
+    (e: any) => {
+      if (props.events?.onWorkspaceHover && e.target.id === ids.workspace) props.events.onWorkspaceHover();
+    },
+    [props.events?.onWorkspaceHover]
+  );
+
   return (
     <div
       id={ids.workspaceContainer}
@@ -59,7 +66,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
       )}
       style={props.styles?.workspace?.root?.properties}
     >
-      <svg id={ids.workspace} className="w-full h-full flex-1">
+      <svg id={ids.workspace} className="w-full h-full flex-1" onMouseOver={onWorkspaceHover}>
         <g {...{ [dataAttributes.visibilityOffset]: "0" }}>
           {seats.map((e) => (
             <Element
