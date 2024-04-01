@@ -15,8 +15,17 @@ export * from "./elements";
 
 export type STKMode = "designer" | "user";
 
+export interface ICoordinates {
+  x: number;
+  y: number;
+}
+
 export interface IEvents {
   onSeatClick?: (seat: IPopulatedSeat) => void;
+  /** Only applicable in user mode */
+  onSeatHover?: (seat: IPopulatedSeat, coords: ICoordinates) => void;
+  /** Only applicable in user mode */
+  onSeatLeave?: (seat: IPopulatedSeat, coords: ICoordinates) => void;
   onSectionClick?: (section: ISection) => void;
   onExport?: (data: ISTKData) => void;
   onWorkspaceLoad?: () => void;

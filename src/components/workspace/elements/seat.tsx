@@ -1,9 +1,10 @@
-import { forwardRef, useEffect, useMemo } from "react";
+import { forwardRef, useCallback, useEffect, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, seatStatusColors } from "@/constants";
 import { ISTKProps } from "@/types";
 import { ISeat, ISeatCategory, ISection, SeatStatus } from "@/types/elements";
 import { d3Extended } from "@/utils";
+import { getDetailedSeat } from "./utils";
 
 export const seatSize = 28;
 
@@ -66,11 +67,32 @@ const Seat: React.FC<ISeatProps> = forwardRef(
 
     const localOnClick = (e) => {
       onClick(e);
-      consumer.events?.onSeatClick?.({
-        ...element,
-        category: categoryObject ? { ...categoryObject, section: sectionObject } : null
-      });
+      consumer.events?.onSeatClick?.(getDetailedSeat(element, categoryObject, sectionObject));
     };
+
+    const onMouseOver = useCallback(
+      (e: React.MouseEvent<SVGElement>) => {
+        if (consumer.mode === "user") {
+          consumer.events?.onSeatHover?.(getDetailedSeat(element, categoryObject, sectionObject), {
+            x: e.clientX,
+            y: e.clientY
+          });
+        }
+      },
+      [consumer.events?.onSeatHover]
+    );
+
+    const onMouseOut = useCallback(
+      (e: React.MouseEvent<SVGElement>) => {
+        if (consumer.mode === "user") {
+          consumer.events?.onSeatLeave?.(getDetailedSeat(element, categoryObject, sectionObject), {
+            x: e.clientX,
+            y: e.clientY
+          });
+        }
+      },
+      [consumer.events?.onSeatLeave]
+    );
 
     status ??= SeatStatus.Available;
 
@@ -96,6 +118,8 @@ const Seat: React.FC<ISeatProps> = forwardRef(
             consumer.styles?.elements?.seat?.base?.className
           )}
           style={consumer.styles?.elements?.seat?.base?.properties}
+          onMouseOver={onMouseOver}
+          onMouseOut={onMouseOut}
         />
         {SeatIcon && (
           <SeatIcon

@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { dataAttributes } from "@/constants";
 import { resizeCursors } from "@/hooks/interactions";
+import { IPopulatedSeat } from "@/types";
 import { d3Extended } from "@/utils";
 import Booth from "./booth";
 import Image from "./image";
@@ -165,4 +166,11 @@ export const showAllElements = () => {
     element.style("opacity", 1);
     element.style("pointer-events", "all");
   });
+};
+
+export const getDetailedSeat = (seat, categoryObject, sectionObject): IPopulatedSeat => {
+  return {
+    ...seat,
+    category: categoryObject ? { ...categoryObject, section: sectionObject } : null
+  };
 };

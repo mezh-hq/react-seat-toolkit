@@ -430,7 +430,9 @@ export const Default = {
         images: []
       }}
       events={{
-        onSeatClick: (seat) => console.log(seat)
+        onSeatClick: (seat) => console.log(seat),
+        onSeatHover: (seat, coords) => console.log("hovered", seat, coords),
+        onSeatLeave: (seat, coords) => console.log("left", seat, coords)
       }}
     />
   )
