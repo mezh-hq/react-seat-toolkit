@@ -49,7 +49,7 @@ export const Default = {
             x: 610,
             y: 299.03999999999996,
             label: "1",
-            status: "Available",
+            status: "Unavailable",
             category: null
           },
           {
@@ -65,7 +65,7 @@ export const Default = {
             x: 510,
             y: 299.03999999999996,
             label: "3",
-            status: "Available",
+            status: "Locked",
             category: null
           },
           {

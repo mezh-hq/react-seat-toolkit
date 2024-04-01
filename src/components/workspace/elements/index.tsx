@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { clearAndSelectElements, deselectElement, selectElement } from "@/store/reducers/editor";
-import { ISTKProps } from "@/types";
+import { ISTKProps, SeatStatus } from "@/types";
 import { Tool } from "../../toolbar/data";
 import {
   ElementType,
@@ -56,6 +56,8 @@ export const Element: React.FC<IElementProps> = ({
   }, [ref, consumer.mode]);
 
   const onClick = (e: any) => {
+    if (type === ElementType.Seat && consumer.mode === "user" && props.status && props.status !== SeatStatus.Available)
+      return;
     const selectedTool = store.getState().toolbar.selectedTool;
     if (selectedTool === Tool.Select && ref.current) {
       const ctrlPressed = e.ctrlKey || e.metaKey;

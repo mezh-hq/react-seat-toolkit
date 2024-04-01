@@ -93,7 +93,7 @@ const TextSelectControls = () => {
             htmlFor="stk-embrace-offset-marker"
             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
-            Embrace Offset
+            Embrace Visibility Offset
           </label>
         </div>
       </div>

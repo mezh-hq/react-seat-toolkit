@@ -72,6 +72,8 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       });
     };
 
+    status ??= SeatStatus.Available;
+
     return (
       <>
         <circle
@@ -83,11 +85,14 @@ const Seat: React.FC<ISeatProps> = forwardRef(
           onClick={localOnClick}
           {...{ [dataAttributes.category]: category }}
           {...{ [dataAttributes.section]: categoryObject?.section }}
-          {...{ [dataAttributes.status]: status ?? SeatStatus.Available }}
+          {...{ [dataAttributes.status]: status }}
           {...props}
           className={twMerge(
             props.className,
-            "filter hover:brightness-[1.05]",
+            consumer.mode === "designer" && "filter hover:brightness-[1.05]",
+            consumer.mode === "user" &&
+              status === SeatStatus.Available &&
+              "cursor-pointer filter hover:brightness-[1.05]",
             consumer.styles?.elements?.seat?.base?.className
           )}
           style={consumer.styles?.elements?.seat?.base?.properties}
