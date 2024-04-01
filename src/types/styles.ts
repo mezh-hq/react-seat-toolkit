@@ -23,7 +23,7 @@ export interface IStyles {
     input?: IStyle;
     trigger?: IStyle;
   };
-  footer: {
+  footer?: {
     root?: IStyle;
     title?: IStyle;
     meta?: IStyle;
