@@ -7,7 +7,7 @@ import { setInitialViewBoxScale, setVisibilityOffset } from "@/store/reducers/ed
 import type { ISTKProps } from "@/types";
 import { d3Extended } from "@/utils";
 import { Button } from "../core";
-import { showPostOffsetElements } from "./elements";
+import { showAllElements } from "./elements";
 
 const freeze = () =>
   store.dispatch(setInitialViewBoxScale(d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup)).k));
@@ -23,7 +23,7 @@ const setVisibility = () => {
 const unsetVisibility = () => {
   d3Extended.select(selectors.workspaceGroup).attr(dataAttributes.visibilityOffset, 0);
   store.dispatch(setVisibilityOffset(0));
-  showPostOffsetElements();
+  showAllElements();
 };
 
 const VisibilityControls = (props: ISTKProps) => {

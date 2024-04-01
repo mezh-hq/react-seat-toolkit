@@ -103,10 +103,10 @@ export const hideSeat = (seat: d3.Selection<Element, {}, HTMLElement, any>) => {
 
 export const showPreOffsetElements = () => {
   const seats = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`);
-  const booths = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`);
-  const sections = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`);
-  const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
   if (+seats.style("opacity") !== 0) {
+    const booths = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`);
+    const sections = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`);
+    const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
     seats.forEach(hideSeat);
     booths.forEach((booth) => {
       booth.style("opacity", 0);
@@ -125,10 +125,10 @@ export const showPreOffsetElements = () => {
 
 export const showPostOffsetElements = () => {
   const seats = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`);
-  const booths = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`);
-  const sections = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`);
-  const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
   if (+seats.style("opacity") !== 1) {
+    const booths = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`);
+    const sections = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`);
+    const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
     seats.forEach(showSeat);
     booths.forEach((booth) => {
       booth.style("opacity", 1);
@@ -145,4 +145,24 @@ export const showPostOffsetElements = () => {
       element.style("pointer-events", "none");
     });
   }
+};
+
+export const showAllElements = () => {
+  const seats = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`);
+  const booths = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`);
+  const sections = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`);
+  const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
+  seats.forEach(showSeat);
+  booths.forEach((booth) => {
+    booth.style("opacity", 1);
+    booth.style("pointer-events", "all");
+  });
+  sections.forEach((section) => {
+    section.style("opacity", 1);
+    section.style("pointer-events", "all");
+  });
+  elementsEmbracingOffset.forEach((element) => {
+    element.style("opacity", 1);
+    element.style("pointer-events", "all");
+  });
 };
