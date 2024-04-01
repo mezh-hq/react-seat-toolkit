@@ -104,7 +104,7 @@ export const hideSeat = (seat: d3.Selection<Element, {}, HTMLElement, any>) => {
 
 export const showPreOffsetElements = () => {
   const seats = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`);
-  if (+seats.style("opacity") !== 0) {
+  if (seats.size() && +seats?.style("opacity") !== 0) {
     const booths = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`);
     const sections = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`);
     const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
@@ -126,7 +126,7 @@ export const showPreOffsetElements = () => {
 
 export const showPostOffsetElements = () => {
   const seats = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`);
-  if (+seats.style("opacity") !== 1) {
+  if (seats.size() && +seats.style("opacity") !== 1) {
     const booths = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`);
     const sections = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`);
     const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);

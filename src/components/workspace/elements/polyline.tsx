@@ -10,10 +10,12 @@ export interface IPolylineProps extends IPolyline {
   consumer: ISTKProps;
   sections?: ISection[];
   onClick: (e: any) => void;
+  isSelected?: boolean;
 }
 
 const Polyline: React.FC<IPolylineProps> = forwardRef(
-  ({ id, points, color, stroke, sections, section, onClick, consumer, ...props }, ref: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ({ id, points, color, stroke, sections, section, onClick, consumer, isSelected: _, ...props }, ref: any) => {
     const sectionObject = useMemo(() => sections?.find?.((s) => s.id === section), [sections, section]);
 
     const localOnClick = (e) => {

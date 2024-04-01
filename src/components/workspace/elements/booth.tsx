@@ -7,9 +7,10 @@ export const boothSize = 39;
 export interface IBoothProps extends IBooth {
   className: string;
   consumer: ISTKProps;
+  isSelected?: boolean;
 }
-
-const Booth: React.FC<IBoothProps> = forwardRef(({ id, x, y, consumer, ...props }, ref: any) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Booth: React.FC<IBoothProps> = forwardRef(({ id, x, y, consumer, isSelected: _, ...props }, ref: any) => {
   return (
     <rect
       ref={ref}
