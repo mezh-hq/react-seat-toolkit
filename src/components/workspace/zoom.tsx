@@ -110,29 +110,23 @@ const Zoom = (props: ISTKProps) => {
   const panStyles = props.styles?.panControls;
 
   return (
-    <div
-      id={ids.zoomControls}
-      className={twMerge(
-        "absolute bottom-14 left-7 flex flex-col items-center gap-4",
-        props.mode === "user" && "bottom-5 left-6  sm:bottom-6 sm:left-8 md:bottom-8 md:left-10",
-        zoomStyles?.root?.className
-      )}
-      style={zoomStyles?.root?.properties}
-    >
+    <>
       <div
+        id={ids.panControls}
         className={twMerge(
-          "relative h-20 w-20 bg-white rounded-full border border-black/20 splash after:bg-black/5",
-          panStyles?.wheel?.outerRing?.className
+          "absolute bottom-[7.5rem] left-10 flex h-20 w-20 bg-white rounded-full border border-black/20 splash after:bg-black/5",
+          props.mode === "user" && "bottom-[5.25rem] left-9 md:bottom-[6rem] md:left-12",
+          panStyles?.root?.className
         )}
-        style={panStyles?.wheel?.outerRing?.properties}
+        style={panStyles?.root?.properties}
       >
         <div className="absolute top-0 left-0 h-full w-full p-[1.125rem] z-20 pointer-events-none">
           <div
             className={twMerge(
               "h-full w-full rounded-full bg-white border-2 border-black/50",
-              panStyles?.wheel?.innerRing?.className
+              panStyles?.innerRing?.className
             )}
-            style={panStyles?.wheel?.innerRing?.properties}
+            style={panStyles?.innerRing?.properties}
           />
         </div>
         <ChevronLeft
@@ -161,8 +155,13 @@ const Zoom = (props: ISTKProps) => {
         />
       </div>
       <div
-        className={twMerge("bg-gray-100 p-2.5 rounded-md flex gap-1 items-center", zoomStyles?.buttons?.className)}
-        style={zoomStyles?.buttons?.properties}
+        id={ids.zoomControls}
+        className={twMerge(
+          "absolute bottom-14 left-7 bg-gray-100 p-2.5 rounded-md flex gap-1 items-center",
+          props.mode === "user" && "bottom-5 left-6 md:bottom-8 md:left-9",
+          zoomStyles?.root?.className
+        )}
+        style={zoomStyles?.root?.properties}
       >
         <div
           className={twMerge(
@@ -187,7 +186,7 @@ const Zoom = (props: ISTKProps) => {
           <Plus size={17} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

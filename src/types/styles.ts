@@ -31,14 +31,11 @@ export interface IStyles {
   zoomControls?: {
     in?: IStyle;
     out?: IStyle;
-    buttons?: IStyle;
     root?: IStyle;
   };
   panControls?: {
-    wheel?: {
-      outerRing?: IStyle;
-      innerRing?: IStyle;
-    };
+    root?: IStyle;
+    innerRing?: IStyle;
     handles?: {
       up?: IStyle;
       right?: IStyle;

@@ -13,6 +13,7 @@ export const ids = {
   workspace: "stk-workspace",
   workspaceContainer: "stk-workspace-container",
   zoomControls: "stk-zoom-controls",
+  panControls: "stk-pan-controls",
   visibilityControls: "stk-visibility-controls"
 };
 

@@ -34,9 +34,9 @@ const useWorkspaceLoad = (props: ISTKProps) => {
         height: workspaceGroupHeight,
         width: workspaceGroupWidth
       } = d3Extended.selectionBounds(workspaceGroup);
-      let scaleFactor = props.data.workspace?.initialViewBoxScale ?? 1;
-      if (props.data.workspace?.visibilityOffset) {
-        workspaceGroup.attr(dataAttributes.visibilityOffset, props.data.workspace.visibilityOffset);
+      let scaleFactor = props.data?.workspace?.initialViewBoxScale ?? 1;
+      if (props.data?.workspace?.visibilityOffset) {
+        workspaceGroup.attr(dataAttributes.visibilityOffset, props.data?.workspace.visibilityOffset);
       }
       scaleFactor *= 1.05;
       panAndZoom({
