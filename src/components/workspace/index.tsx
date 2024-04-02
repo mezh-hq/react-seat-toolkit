@@ -38,7 +38,8 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
       consumer: {
         mode: props.mode,
         events: props.events,
-        options: props.options
+        options: props.options,
+        styles: props.styles
       },
       element: elem
     }),
