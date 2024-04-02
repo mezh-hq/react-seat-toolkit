@@ -56,7 +56,11 @@ export const Element: React.FC<IElementProps> = ({
   }, [ref, consumer.mode]);
 
   const onClick = (e: any) => {
-    if (type === ElementType.Seat && consumer.mode === "user" && props.status && props.status !== SeatStatus.Available)
+    if (
+      consumer.mode === "user" &&
+      (type !== ElementType.Seat ||
+        (type === ElementType.Seat && props.status && props.status !== SeatStatus.Available))
+    )
       return;
     const selectedTool = store.getState().toolbar.selectedTool;
     if (selectedTool === Tool.Select && ref.current) {
