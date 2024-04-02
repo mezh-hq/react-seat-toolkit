@@ -122,6 +122,8 @@ const Seat: React.FC<ISeatProps> = forwardRef(
             width={seatSize * 0.75}
             height={seatSize * 0.75}
             size={seatSize * 0.75}
+            className={consumer.styles?.elements?.seat?.icon?.className}
+            style={consumer.styles?.elements?.seat?.icon?.properties}
           />
         )}
         {label && showLabel && !SeatIcon && (

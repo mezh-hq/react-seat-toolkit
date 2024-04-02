@@ -60,6 +60,7 @@ export interface IStyles {
       selected?: IStyle;
       unselected?: IStyle;
       base?: IStyle;
+      icon?: IStyle;
       statusColors?: {
         [key: string]: {
           background?: string;
