@@ -17,6 +17,7 @@ const noSection = {
 
 const initialState = {
   initialized: false,
+  dataSynced: false,
   cursor: null,
   showControls: false,
   grid: false,
@@ -238,6 +239,7 @@ export const slice = createSlice({
       Object.keys(data).forEach((key) => {
         state[key] = data[key] ?? state[key];
       });
+      state.dataSynced = true;
     },
     setInitialViewBoxScale: (state, action) => {
       state.initialViewBoxScale = action.payload;
