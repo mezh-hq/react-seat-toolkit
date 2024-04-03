@@ -1,6 +1,6 @@
 {
   "name": "@mezh-hq/react-seat-toolkit",
-  "version": "0.35.3",
+  "version": "0.36.0",
   "description": "React UI library to design and render seat layouts",
   "browser": "dist/index.js",
   "main": "dist/index.js",
