@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { panAndZoom } from "@/components/workspace/zoom";
 import { dataAttributes, ids, selectors } from "@/constants";
 import { store } from "@/store";
-import { initializeElements, initializeWorkspace, resetWorkspace, sync } from "@/store/reducers/editor";
+import { initializeElements, initializeWorkspace, sync } from "@/store/reducers/editor";
 import { ISTKProps } from "@/types";
 import { d3Extended } from "@/utils";
 
@@ -47,12 +47,6 @@ const useWorkspaceLoad = (props: ISTKProps) => {
       store.dispatch(initializeWorkspace());
     }
   }, [dataSynced]);
-
-  useEffect(() => {
-    return () => {
-      store.dispatch(resetWorkspace());
-    };
-  }, []);
 };
 
 export default useWorkspaceLoad;
