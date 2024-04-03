@@ -30,20 +30,26 @@ const zoomOut = () => {
   d3Extended.selectById(ids.workspace).transition().call(zoom.scaleBy, 0.9);
 };
 
-export const panLeft = () => {
-  d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, 50, 0);
+export const panLeft = (by = 50) => {
+  d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, by, 0);
 };
 
-export const panRight = () => {
-  d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, -50, 0);
+export const panRight = (by = 50) => {
+  d3Extended
+    .selectById(ids.workspace)
+    .transition()
+    .call(zoom.translateBy, -1 * by, 0);
 };
 
-export const panUp = () => {
-  d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, 0, 50);
+export const panUp = (by = 50) => {
+  d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, 0, by);
 };
 
-export const panDown = () => {
-  d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, 0, -50);
+export const panDown = (by = 50) => {
+  d3Extended
+    .selectById(ids.workspace)
+    .transition()
+    .call(zoom.translateBy, 0, -1 * by);
 };
 
 export const panAndZoom = ({ k, x, y }) => {
@@ -132,25 +138,25 @@ const Zoom = (props: ISTKProps) => {
         <ChevronLeft
           size={17}
           className={twMerge(panHandleClasses, "left-0 top-[40%]", panStyles?.handles?.left?.className)}
-          onClick={panLeft}
+          onClick={() => panLeft()}
           style={panStyles?.handles?.left?.properties}
         />
         <ChevronRight
           size={17}
           className={twMerge(panHandleClasses, "right-0 top-[40%]", panStyles?.handles?.right?.className)}
-          onClick={panRight}
+          onClick={() => panRight()}
           style={panStyles?.handles?.right?.properties}
         />
         <ChevronUp
           size={17}
           className={twMerge(panHandleClasses, "top-0 left-[40%]", panStyles?.handles?.up?.className)}
-          onClick={panUp}
+          onClick={() => panUp()}
           style={panStyles?.handles?.up?.properties}
         />
         <ChevronDown
           size={17}
           className={twMerge(panHandleClasses, "bottom-0 left-[40%]", panStyles?.handles?.down?.className)}
-          onClick={panDown}
+          onClick={() => panDown()}
           style={panStyles?.handles?.down?.properties}
         />
       </div>
