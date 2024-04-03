@@ -86,6 +86,10 @@ export const slice = createSlice({
     initializeWorkspace: (state) => {
       state.initialized = true;
     },
+    resetWorkspace: (state) => {
+      state.initialized = false;
+      state.dataSynced = false;
+    },
     setCursor: (state, action) => {
       state.cursor = action.payload;
     },
@@ -252,6 +256,7 @@ export const slice = createSlice({
 
 export const {
   initializeWorkspace,
+  resetWorkspace,
   setCursor,
   clearCursor,
   setLocation,
