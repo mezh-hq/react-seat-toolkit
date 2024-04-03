@@ -30,25 +30,27 @@ const zoomOut = () => {
   d3Extended.selectById(ids.workspace).transition().call(zoom.scaleBy, 0.9);
 };
 
-export const panLeft = (by = 50) => {
-  d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, by, 0);
+export const panLeft = (by = 50, duration = 250) => {
+  d3Extended.selectById(ids.workspace).transition().duration(duration).call(zoom.translateBy, by, 0);
 };
 
-export const panRight = (by = 50) => {
+export const panRight = (by = 50, duration = 250) => {
   d3Extended
     .selectById(ids.workspace)
     .transition()
+    .duration(duration)
     .call(zoom.translateBy, -1 * by, 0);
 };
 
-export const panUp = (by = 50) => {
-  d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, 0, by);
+export const panUp = (by = 50, duration = 250) => {
+  d3Extended.selectById(ids.workspace).transition().duration(duration).call(zoom.translateBy, 0, by);
 };
 
-export const panDown = (by = 50) => {
+export const panDown = (by = 50, duration = 250) => {
   d3Extended
     .selectById(ids.workspace)
     .transition()
+    .duration(duration)
     .call(zoom.translateBy, 0, -1 * by);
 };
 
