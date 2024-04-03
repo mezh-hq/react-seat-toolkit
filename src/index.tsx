@@ -5,6 +5,8 @@ import { type ISTKProps } from "./types";
 
 export { SeatStatus } from "@/types/elements";
 
+export { mutations } from "@/mutations";
+
 export const SeatToolkit = (props: ISTKProps) => {
   return (
     <Provider store={store}>

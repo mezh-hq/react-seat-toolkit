@@ -10,13 +10,13 @@
   "exports": {
     ".": "./dist/index.js",
     "./styles": "./dist/index.css",
-    "./raw-styles": "./dist/raw/index.css",
+    "./raw-styles": "./dist/styles/index.css",
     "./types": "./dist/types/index.d.ts"
   },
   "scripts": {
     "build": "bun run ./esbuild.config.js",
-    "build:css": "bunx tailwindcss -i src/styles/index.css -o ./dist/index.css --minify && cp -r src/styles dist/raw && rm dist/raw/storybook.css",
-    "build:types": "bunx tsc --project ./tsconfig.declaration.json && tsc-alias --project ./tsconfig.declaration.json && cd dist && ls -d */ | grep -v 'types' | xargs rm -rf",
+    "build:css": "bunx tailwindcss -i src/styles/index.css -o ./dist/index.css --minify && cp -r src/styles dist/styles && rm dist/styles/storybook.css",
+    "build:types": "bunx tsc --project ./tsconfig.declaration.json && tsc-alias --project ./tsconfig.declaration.json && cd dist && ls -d */ | grep -Ev 'mutations|types' | xargs rm -rf",
     "bump-version": "bunx --bun automatic-versioning --disable-auto-sync --recursive $(if [ \"$TAG\" != \"latest\" ]; then echo --prerelease; fi) --prerelease-branch=development --prerelease-tag=$TAG --name=@mezh-hq/react-seat-toolkit --ignore-prefixes=ci",
     "format": "bunx prettier --write --cache \"**/*.{js,jsx,ts,tsx,md,css,yml}\"",
     "lint": "bun run --bun eslint . --ext js,jsx,ts,tsx,mdx --ignore-path .gitignore --fix --cache --report-unused-disable-directives",
