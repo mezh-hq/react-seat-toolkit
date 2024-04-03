@@ -30,19 +30,19 @@ const zoomOut = () => {
   d3Extended.selectById(ids.workspace).transition().call(zoom.scaleBy, 0.9);
 };
 
-const panLeft = () => {
+export const panLeft = () => {
   d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, 50, 0);
 };
 
-const panRight = () => {
+export const panRight = () => {
   d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, -50, 0);
 };
 
-const panUp = () => {
+export const panUp = () => {
   d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, 0, 50);
 };
 
-const panDown = () => {
+export const panDown = () => {
   d3Extended.selectById(ids.workspace).transition().call(zoom.translateBy, 0, -50);
 };
 
