@@ -34,6 +34,8 @@ export interface IEvents {
   onSectionClick?: (section: ISection) => void;
   onExport?: (data: ISTKData) => void;
   onWorkspaceLoad?: () => void;
+  /** Only used when the reload button is enabled */
+  onReload?: () => void;
 }
 
 export interface ISTKData {

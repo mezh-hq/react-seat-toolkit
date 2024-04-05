@@ -4,7 +4,11 @@ import { twMerge } from "tailwind-merge";
 import { ids } from "@/constants";
 import type { ISTKProps } from "@/types";
 
-const Reloader = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
+interface IProps extends Pick<ISTKProps, "mode" | "styles" | "options"> {
+  onReload: () => void;
+}
+
+const Reloader = (props: IProps) => {
   return (
     <div
       id={ids.reloader}
@@ -13,6 +17,7 @@ const Reloader = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
         props.styles?.reloadButton?.className
       )}
       style={props.styles?.reloadButton?.properties}
+      onClick={props?.onReload}
     >
       <RotateCcw size={20.5} />
     </div>

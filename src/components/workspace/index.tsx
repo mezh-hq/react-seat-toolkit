@@ -135,7 +135,9 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
       )}
       {showZoomControls && <Zoom mode={props.mode} options={props.options} styles={props.styles} />}
       {showVisibilityControls && <VisibilityControls mode={props.mode} options={props.options} styles={props.styles} />}
-      {showReloadButton && <Reload mode={props.mode} options={props.options} styles={props.styles} />}
+      {showReloadButton && (
+        <Reload mode={props.mode} options={props.options} styles={props.styles} onReload={props.events?.onReload} />
+      )}
     </div>
   );
 };
