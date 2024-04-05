@@ -15,6 +15,8 @@ export * from "./elements";
 
 export type STKMode = "designer" | "user";
 
+export type SeatSelectionMode = "default" | "chain";
+
 export interface ICoordinates {
   x: number;
   y: number;
@@ -52,6 +54,8 @@ export interface ISTKData {
 
 export interface ISTKProps {
   mode: STKMode;
+  /** Only applicable in user mode. If set to "chain", user can select multiple seats in a row without pressing ctrl and needs to reclick a selected seat to deselect it. */
+  seatSelectionMode?: SeatSelectionMode;
   events?: IEvents;
   data?: ISTKData;
   styles?: IStyles;
@@ -61,6 +65,7 @@ export interface ISTKProps {
     showFooter?: boolean;
     showZoomControls?: boolean;
     showVisibilityControls?: boolean;
+    showReloadButton?: boolean;
     exportButtonText?: string;
     operationTriggerIcon?: React.FC;
     seatIcon?: React.FC<any>;

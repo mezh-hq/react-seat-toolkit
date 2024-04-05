@@ -58,23 +58,30 @@ export const Element: React.FC<IElementProps> = ({
   const onClick = (e: any) => {
     if (
       consumer.mode === "user" &&
-      (type !== ElementType.Seat ||
-        (type === ElementType.Seat && props.status && props.status !== SeatStatus.Available))
-    )
+      (type !== ElementType.Seat || (props.status && props.status !== SeatStatus.Available))
+    ) {
       return;
-    const selectedTool = store.getState().toolbar.selectedTool;
-    if (selectedTool === Tool.Select && ref.current) {
-      const ctrlPressed = e.ctrlKey || e.metaKey;
+    }
+    if (consumer.mode === "user" && consumer.seatSelectionMode === "chain") {
       if (isSelected) {
-        if (ctrlPressed) {
-          return store.dispatch(deselectElement(ref.current.id));
-        }
-        return;
+        return store.dispatch(deselectElement(id));
       }
-      if (!ctrlPressed) {
-        store.dispatch(clearAndSelectElements([ref.current.id]));
-      } else {
-        store.dispatch(selectElement(ref.current.id));
+      return store.dispatch(selectElement(id));
+    } else {
+      const selectedTool = store.getState().toolbar.selectedTool;
+      if (selectedTool === Tool.Select && ref.current) {
+        const ctrlPressed = e.ctrlKey || e.metaKey;
+        if (isSelected) {
+          if (ctrlPressed) {
+            return store.dispatch(deselectElement(ref.current.id));
+          }
+          return;
+        }
+        if (!ctrlPressed) {
+          store.dispatch(clearAndSelectElements([ref.current.id]));
+        } else {
+          store.dispatch(selectElement(ref.current.id));
+        }
       }
     }
   };

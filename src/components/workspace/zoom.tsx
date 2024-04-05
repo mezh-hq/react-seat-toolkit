@@ -1,4 +1,4 @@
-import { memo, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Minus, Plus } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
@@ -69,7 +69,7 @@ export const panAndZoomWithTransition = ({ k, x, y }) => {
 const panHandleClasses =
   "absolute z-10 text-black/40 cursor-pointer hover:text-black/80 transition-all duration-medium";
 
-const Zoom = (props: ISTKProps) => {
+const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
   const showControls = useSelector((state: any) => state.editor.showControls);
 
@@ -198,4 +198,4 @@ const Zoom = (props: ISTKProps) => {
   );
 };
 
-export default memo(Zoom);
+export default Zoom;

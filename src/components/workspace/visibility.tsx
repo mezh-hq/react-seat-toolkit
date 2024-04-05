@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, ids, selectors } from "@/constants";
@@ -26,7 +25,7 @@ const unsetVisibility = () => {
   showAllElements();
 };
 
-const VisibilityControls = (props: ISTKProps) => {
+const VisibilityControls = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
   const initialViewBoxScale = useSelector((state: any) => state.editor.initialViewBoxScale);
   const visibilityOffset = useSelector((state: any) => state.editor.visibilityOffset);
 
@@ -60,4 +59,4 @@ const VisibilityControls = (props: ISTKProps) => {
   );
 };
 
-export default memo(VisibilityControls);
+export default VisibilityControls;

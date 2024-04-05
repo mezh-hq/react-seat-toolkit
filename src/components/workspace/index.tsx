@@ -7,6 +7,7 @@ import { Tool, tools } from "../toolbar/data";
 import { default as Crosshairs } from "./crosshairs";
 import { default as Element, ElementType } from "./elements";
 import { default as Grid } from "./grid";
+import { default as Reload } from "./reload";
 import { default as VisibilityControls } from "./visibility";
 import { default as Zoom } from "./zoom";
 
@@ -45,6 +46,8 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
     }),
     [selectedElementIds]
   );
+
+  const showReloadButton = props.options?.showReloadButton ?? false;
 
   const showZoomControls = props.options?.showZoomControls ?? true;
 
@@ -135,8 +138,9 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
           <Grid />
         </>
       )}
-      {showZoomControls && <Zoom {...props} />}
-      {showVisibilityControls && <VisibilityControls {...props} />}
+      {showZoomControls && <Zoom mode={props.mode} options={props.options} styles={props.styles} />}
+      {showVisibilityControls && <VisibilityControls mode={props.mode} options={props.options} styles={props.styles} />}
+      {showReloadButton && <Reload mode={props.mode} options={props.options} styles={props.styles} />}
     </div>
   );
 };
