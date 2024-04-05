@@ -36,12 +36,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
       label: elem.label,
       color: elem.color,
       stroke: elem.stroke,
-      consumer: {
-        mode: props.mode,
-        events: props.events,
-        options: props.options,
-        styles: props.styles
-      },
+      consumer: props,
       element: elem
     }),
     [selectedElementIds]
