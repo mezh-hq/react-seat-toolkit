@@ -52,7 +52,6 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       if (ref.current) {
         const seat = d3Extended.select(ref.current);
         const seatLabel = d3Extended.selectById(`${id}-label`);
-        const status = seat.attr(dataAttributes.status);
         if (status === SeatStatus.Unavailable || status === SeatStatus.Reserved || status === SeatStatus.Locked) {
           seat.style("color", consumerSeatStatusColors?.[status]?.background ?? seatStatusColors[status].background);
           seatLabel?.style("stroke", consumerSeatStatusColors?.[status]?.label ?? seatStatusColors[status].label);
@@ -63,7 +62,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
           }
         }
       }
-    }, [ref, categoryObject]);
+    }, [ref, categoryObject, status]);
 
     const localOnClick = (e) => {
       onClick(e);
