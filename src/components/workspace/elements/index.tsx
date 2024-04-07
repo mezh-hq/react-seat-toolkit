@@ -56,11 +56,16 @@ export const Element: React.FC<IElementProps> = ({
   }, [ref, consumer.mode]);
 
   const onClick = (e: any) => {
-    if (
-      consumer.mode === "user" &&
-      (type !== ElementType.Seat || (props.status && props.status !== SeatStatus.Available))
-    ) {
-      return;
+    if (consumer.mode === "user") {
+      if (type !== ElementType.Seat || props.status !== SeatStatus.Available) {
+        return;
+      }
+      if (
+        consumer.options?.maxSeatSelectionCount &&
+        store.getState().editor.selectedElementIds.length > consumer.options?.maxSeatSelectionCount
+      ) {
+        return consumer.events?.onMaxSeatSelectionCountReached?.();
+      }
     }
     if (consumer.mode === "user" && consumer.seatSelectionMode === "chain") {
       if (isSelected) {

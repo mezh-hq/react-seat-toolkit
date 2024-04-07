@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, ids } from "@/constants";
-import { type ISTKProps } from "@/types";
+import { type ISTKProps, SeatStatus } from "@/types";
 import { Tool, tools } from "../toolbar/data";
 import { default as Crosshairs } from "./crosshairs";
 import { default as Element, ElementType } from "./elements";
@@ -74,7 +74,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
               sections={sections}
               categories={categories}
               category={e.category}
-              status={e.status}
+              status={e.status ?? SeatStatus.Available}
               {...elementProps(e)}
             />
           ))}

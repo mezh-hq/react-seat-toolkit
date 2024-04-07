@@ -30,6 +30,8 @@ export interface IEvents {
   onSeatLeave?: (seat: IPopulatedSeat, coords: ICoordinates) => void;
   /** Only applicable in user mode */
   onSeatSelectionChange?: (seats: IPopulatedSeat[]) => void;
+  /** Only applicable in user mode. Fired when the user tries to select more seats than the maxSeatSelectionCount */
+  onMaxSeatSelectionCountReached?: () => void;
   onWorkspaceHover?: () => void;
   onSectionClick?: (section: ISection) => void;
   onExport?: (data: ISTKData) => void;
@@ -72,5 +74,7 @@ export interface ISTKProps {
     operationTriggerIcon?: React.FC;
     seatIcon?: React.FC<any>;
     selectedSeatIcon?: React.FC<any>;
+    /** Only applicable in user mode. If provided, will stop the user from selecting more seats than the provided number. */
+    maxSeatSelectionCount?: number;
   };
 }
