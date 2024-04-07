@@ -64,7 +64,7 @@ export const Element: React.FC<IElementProps> = ({
     const maxSeatSelectionCheck = () => {
       if (
         consumer.options?.maxSeatSelectionCount &&
-        store.getState().editor.selectedElementIds.length > consumer.options?.maxSeatSelectionCount
+        store.getState().editor.selectedElementIds.length >= consumer.options?.maxSeatSelectionCount
       ) {
         consumer.events?.onMaxSeatSelectionCountReached?.();
         return true;
