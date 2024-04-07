@@ -60,17 +60,22 @@ export const Element: React.FC<IElementProps> = ({
       if (type !== ElementType.Seat || props.status !== SeatStatus.Available) {
         return;
       }
+    }
+    const maxSeatSelectionCheck = () => {
       if (
         consumer.options?.maxSeatSelectionCount &&
         store.getState().editor.selectedElementIds.length > consumer.options?.maxSeatSelectionCount
       ) {
-        return consumer.events?.onMaxSeatSelectionCountReached?.();
+        consumer.events?.onMaxSeatSelectionCountReached?.();
+        return true;
       }
-    }
+      return false;
+    };
     if (consumer.mode === "user" && consumer.seatSelectionMode === "chain") {
       if (isSelected) {
         return store.dispatch(deselectElement(id));
       }
+      if (maxSeatSelectionCheck()) return;
       return store.dispatch(selectElement(id));
     } else {
       const selectedTool = store.getState().toolbar.selectedTool;
@@ -82,6 +87,7 @@ export const Element: React.FC<IElementProps> = ({
           }
           return;
         }
+        if (consumer.mode === "user" && maxSeatSelectionCheck()) return;
         if (!ctrlPressed) {
           store.dispatch(clearAndSelectElements([ref.current.id]));
         } else {
