@@ -1,5 +1,6 @@
 import type {
   IBooth,
+  IFreeSeat,
   IImage,
   IPolyline,
   IPopulatedSeat,
@@ -24,6 +25,8 @@ export interface ICoordinates {
 
 export interface IEvents {
   onSeatClick?: (seat: IPopulatedSeat) => void;
+  /** Triggered once a free seating section is clicked */
+  onFreeSeatClick?: (seat: IFreeSeat) => void;
   /** Only applicable in user mode */
   onSeatHover?: (seat: IPopulatedSeat, coords: ICoordinates) => void;
   /** Only applicable in user mode */

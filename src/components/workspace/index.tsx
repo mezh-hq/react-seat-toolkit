@@ -110,6 +110,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
               type={ElementType.Polyline}
               points={e.points}
               sections={sections}
+              categories={categories}
               section={e.section}
               {...elementProps(e)}
             />

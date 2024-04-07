@@ -1,7 +1,7 @@
 import { forwardRef, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, selectors } from "@/constants";
-import { IPolyline, ISTKProps, ISection } from "@/types";
+import { IPolyline, ISTKProps, ISeatCategory, ISection } from "@/types";
 import { d3Extended, getRelativeWorkspaceClickCoords } from "@/utils";
 import { panAndZoomWithTransition } from "../zoom";
 
@@ -9,19 +9,34 @@ export interface IPolylineProps extends IPolyline {
   className?: string;
   consumer: ISTKProps;
   sections?: ISection[];
+  categories?: ISeatCategory[];
   onClick: (e: any) => void;
   isSelected?: boolean;
 }
 
 const Polyline: React.FC<IPolylineProps> = forwardRef(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ({ id, points, color, stroke, sections, section, onClick, consumer, isSelected: _, ...props }, ref: any) => {
+  (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    { id, points, color, stroke, sections, categories, section, onClick, consumer, isSelected: _, ...props },
+    ref: any
+  ) => {
     const sectionObject = useMemo(() => sections?.find?.((s) => s.id === section), [sections, section]);
 
     const localOnClick = (e) => {
       onClick(e);
       if (sectionObject) {
         consumer.events?.onSectionClick?.(sectionObject);
+        if (consumer.events?.onFreeSeatClick && sectionObject.freeSeating) {
+          const category = categories?.find((c: ISeatCategory) => c.section === sectionObject.id);
+          if (category) {
+            consumer.events.onFreeSeatClick({
+              category: {
+                ...category,
+                section: sectionObject
+              }
+            });
+          }
+        }
         if (!sectionObject.freeSeating) {
           const visibilityOffset = +d3Extended.select(selectors.workspaceGroup).attr(dataAttributes.visibilityOffset);
           if (visibilityOffset > 0) {

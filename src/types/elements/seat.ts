@@ -24,6 +24,10 @@ export interface ISeat {
   status?: SeatStatus | string;
 }
 
+export interface IFreeSeat {
+  category: IPopulatedSeatCategory;
+}
+
 export interface IPopulatedSeatCategory extends Omit<ISeatCategory, "section"> {
   section?: ISection;
 }
