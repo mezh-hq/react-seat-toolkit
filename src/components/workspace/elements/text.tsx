@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { dataAttributes, selectors } from "@/constants";
 import { ISTKProps, IText } from "@/types";
 import { d3Extended, getRelativeClickCoordsWithTransform } from "@/utils";
-import { panAndZoomWithTransition } from "../zoom";
+import { panAndZoomToArea } from "../zoom";
 
 export const textFontSize = 35;
 
@@ -40,10 +40,10 @@ const Text: React.FC<ITextProps> = forwardRef(
         const visibilityOffset = +d3Extended.select(selectors.workspaceGroup).attr(dataAttributes.visibilityOffset);
         if (visibilityOffset > 0) {
           const coords = getRelativeClickCoordsWithTransform(e);
-          panAndZoomWithTransition({
+          panAndZoomToArea({
             k: visibilityOffset,
-            x: coords.x - coords.x * visibilityOffset,
-            y: coords.y - coords.y * visibilityOffset
+            x: coords.x,
+            y: coords.y
           });
         }
       }

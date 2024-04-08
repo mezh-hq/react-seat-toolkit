@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { dataAttributes, selectors } from "@/constants";
 import { IPolyline, ISTKProps, ISeatCategory, ISection } from "@/types";
 import { d3Extended, getRelativeWorkspaceClickCoords } from "@/utils";
-import { panAndZoomWithTransition } from "../zoom";
+import { panAndZoomToArea } from "../zoom";
 
 export interface IPolylineProps extends IPolyline {
   className?: string;
@@ -12,12 +12,27 @@ export interface IPolylineProps extends IPolyline {
   categories?: ISeatCategory[];
   onClick: (e: any) => void;
   isSelected?: boolean;
+  element?: any;
 }
 
 const Polyline: React.FC<IPolylineProps> = forwardRef(
   (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    { id, points, color, stroke, sections, categories, section, onClick, consumer, isSelected: _, ...props },
+    {
+      id,
+      points,
+      color,
+      stroke,
+      sections,
+      categories,
+      section,
+      onClick,
+      consumer,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      isSelected: _,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      element: __,
+      ...props
+    },
     ref: any
   ) => {
     const sectionObject = useMemo(() => sections?.find?.((s) => s.id === section), [sections, section]);
@@ -41,10 +56,10 @@ const Polyline: React.FC<IPolylineProps> = forwardRef(
           const visibilityOffset = +d3Extended.select(selectors.workspaceGroup).attr(dataAttributes.visibilityOffset);
           if (visibilityOffset > 0) {
             const coords = getRelativeWorkspaceClickCoords(e);
-            panAndZoomWithTransition({
+            panAndZoomToArea({
               k: visibilityOffset,
-              x: coords.x - coords.x * visibilityOffset,
-              y: coords.y - coords.y * visibilityOffset
+              x: coords.x,
+              y: coords.y
             });
           }
         }

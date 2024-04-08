@@ -68,7 +68,8 @@ export const domPolylineToJSON = () => {
         .map((point) => {
           const [x, y] = point.split(",");
           return { x: +x, y: +y };
-        })
+        }),
+      section: polyline.attr(dataAttributes.section)
     };
   });
 };

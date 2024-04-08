@@ -1,4 +1,4 @@
-import { Trash2 } from "lucide-react";
+import { Percent, Trash2 } from "lucide-react";
 import { useSelector } from "react-redux";
 import { default as debounce } from "lodash/debounce";
 import { twMerge } from "tailwind-merge";
@@ -60,6 +60,18 @@ const SectionSelector = ({ firstElement, selectedElementIds }) => {
                           defaultValue={section.name}
                           className="h-8"
                           onChange={(e) => onUpdateSection({ ...section, name: e.target.value })}
+                        />
+                        <Percent
+                          size={22}
+                          className={twMerge(
+                            "flex-shrink-0 cursor-pointer transition-all duration-medium ",
+                            section?.freeSeating ? "text-blue-600 hover:text-blue-500" : "hover:text-gray-500"
+                          )}
+                          onClick={() =>
+                            section?.freeSeating
+                              ? onUpdateSection({ ...section, freeSeating: false })
+                              : onUpdateSection({ ...section, freeSeating: true })
+                          }
                         />
                         <Trash2
                           size={22}

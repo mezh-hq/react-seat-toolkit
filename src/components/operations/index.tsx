@@ -42,6 +42,7 @@ const Operations: React.FC<ISTKProps> = ({
       events?.onExport(json);
     } else {
       console.log(json);
+      sessionStorage.setItem("stk-data", JSON.stringify(json));
       navigator.clipboard.writeText(JSON.stringify(json));
     }
   };

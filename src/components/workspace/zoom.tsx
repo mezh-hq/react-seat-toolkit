@@ -1,6 +1,7 @@
 import { useLayoutEffect } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Minus, Plus } from "lucide-react";
 import { useSelector } from "react-redux";
+import { default as debounce } from "lodash/debounce";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, ids, selectors } from "@/constants";
 import { useSkipFirstRender } from "@/hooks";
@@ -9,14 +10,18 @@ import { d3Extended } from "@/utils";
 import { Tool } from "../toolbar/data";
 import { showPostOffsetElements, showPreOffsetElements } from "./elements";
 
-function handleZoom(e) {
-  const workspace = d3Extended.select(selectors.workspaceGroup);
+const handleElementVisibility = debounce((workspace, k) => {
   const visibilityOffset = +workspace.attr(dataAttributes.visibilityOffset) || 0;
-  if (e.transform.k * 1.1 < visibilityOffset) {
+  if (k * 1.1 < visibilityOffset) {
     showPreOffsetElements();
   } else {
     showPostOffsetElements();
   }
+}, 25);
+
+function handleZoom(e) {
+  const workspace = d3Extended.select(selectors.workspaceGroup);
+  handleElementVisibility(workspace, e.transform.k);
   workspace.attr("transform", e.transform);
 }
 
@@ -58,12 +63,18 @@ export const panAndZoom = ({ k, x, y }) => {
   d3Extended.selectById(ids.workspace).call(zoom.transform, d3Extended.zoomIdentity.translate(x, y).scale(k));
 };
 
-export const panAndZoomWithTransition = ({ k, x, y }) => {
+export const panAndZoomToArea = ({ k, x, y }) => {
+  const transform = d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup));
+  const { height: workspaceheight, width: workspaceWidth } = d3Extended.selectionBounds(
+    d3Extended.selectById(ids.workspace)
+  );
+  const newX = x * (x > workspaceWidth / 2 ? -1 : 1) * transform.k * 0.75;
+  const newY = (workspaceheight - y) * (y > workspaceheight / 2 ? -1 : 1);
   d3Extended
     .selectById(ids.workspace)
     .transition()
     .duration(1000)
-    .call(zoom.transform, d3Extended.zoomIdentity.translate(x, y).scale(k));
+    .call(zoom.transform, d3Extended.zoomIdentity.translate(newX, newY).scale(k));
 };
 
 const panHandleClasses =
@@ -122,7 +133,7 @@ const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
       <div
         id={ids.panControls}
         className={twMerge(
-          "absolute bottom-[7.5rem] left-10 flex h-20 w-20 bg-white rounded-full border border-black/20 splash after:bg-black/5",
+          "absolute bottom-[7.5rem] left-10 h-20 w-20 bg-white rounded-full border border-black/20 after:bg-black/5",
           props.mode === "user" && "bottom-[5.25rem] left-9 md:bottom-[6rem] md:left-12",
           panStyles?.root?.className
         )}

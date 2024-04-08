@@ -81,17 +81,6 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
           {booths.map((e) => (
             <Element key={e.id} type={ElementType.Booth} {...elementProps(e)} />
           ))}
-          {text.map((e) => (
-            <Element
-              key={e.id}
-              type={ElementType.Text}
-              fontSize={e.fontSize}
-              fontWeight={e.fontWeight}
-              letterSpacing={e.letterSpacing}
-              embraceOffset={e.embraceOffset}
-              {...elementProps(e)}
-            />
-          ))}
           {shapes.map((e) => (
             <Element
               key={e.id}
@@ -101,6 +90,17 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
               rx={e.rx}
               resizable={selectedTool === Tool.Select}
               name={e.name}
+              {...elementProps(e)}
+            />
+          ))}
+          {text.map((e) => (
+            <Element
+              key={e.id}
+              type={ElementType.Text}
+              fontSize={e.fontSize}
+              fontWeight={e.fontWeight}
+              letterSpacing={e.letterSpacing}
+              embraceOffset={e.embraceOffset}
               {...elementProps(e)}
             />
           ))}
