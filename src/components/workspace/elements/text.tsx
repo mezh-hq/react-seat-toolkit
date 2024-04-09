@@ -49,7 +49,7 @@ const Text: React.FC<ITextProps> = forwardRef(
         className={twMerge(
           props.className,
           consumer.styles?.elements?.text?.base?.className,
-          consumer.mode === "user" && "pointer-events-none"
+          consumer.mode === "user" && "!pointer-events-none"
         )}
         style={{ ...consumer.styles?.elements?.text?.base?.properties, stroke: color, color }}
         {...{ [dataAttributes.embraceOffset]: embraceOffset }}
