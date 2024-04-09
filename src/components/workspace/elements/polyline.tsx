@@ -81,6 +81,7 @@ const Polyline: React.FC<IPolylineProps> = forwardRef(
           ...(sectionObject?.freeSeating && consumer.styles?.elements?.section?.freeSeating?.properties)
         }}
         {...{ [dataAttributes.section]: section }}
+        {...{ [dataAttributes.sectionFreeSeating]: sectionObject?.freeSeating }}
         className={twMerge(
           props.className,
           consumer.styles?.elements?.shape?.base?.className,

@@ -8,25 +8,28 @@ export interface IBoothProps extends IBooth {
   className: string;
   consumer: ISTKProps;
   isSelected?: boolean;
+  element?: any;
 }
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Booth: React.FC<IBoothProps> = forwardRef(({ id, x, y, consumer, isSelected: _, ...props }, ref: any) => {
-  return (
-    <rect
-      ref={ref}
-      id={id}
-      x={x}
-      y={y}
-      width={boothSize}
-      height={boothSize}
-      rx={5}
-      ry={5}
-      {...props}
-      className={twMerge(props.className, consumer.styles?.elements?.booth?.base?.className)}
-      style={consumer.styles?.elements?.booth?.base?.properties}
-    />
-  );
-});
+const Booth: React.FC<IBoothProps> = forwardRef(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ({ id, x, y, consumer, isSelected: _, element: __, ...props }, ref: any) => {
+    return (
+      <rect
+        ref={ref}
+        id={id}
+        x={x}
+        y={y}
+        width={boothSize}
+        height={boothSize}
+        rx={5}
+        ry={5}
+        {...props}
+        className={twMerge(props.className, consumer.styles?.elements?.booth?.base?.className)}
+        style={consumer.styles?.elements?.booth?.base?.properties}
+      />
+    );
+  }
+);
 
 Booth.displayName = "Booth";
 

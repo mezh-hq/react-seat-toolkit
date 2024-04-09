@@ -10,6 +10,7 @@ export interface ITextProps extends IText {
   consumer: ISTKProps;
   onClick: (e: any) => void;
   isSelected?: boolean;
+  element?: any;
 }
 
 const Text: React.FC<ITextProps> = forwardRef(
@@ -28,6 +29,8 @@ const Text: React.FC<ITextProps> = forwardRef(
       onClick,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       isSelected: _,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      element: __,
       ...props
     },
     ref: any

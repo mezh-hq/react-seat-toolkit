@@ -106,7 +106,9 @@ export const showPreOffsetElements = () => {
   const seats = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`);
   if (seats.size() && +seats?.style("opacity") !== 0) {
     const booths = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`);
-    const sections = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`);
+    const sections = d3Extended.selectAll(
+      `[${dataAttributes.elementType}="${ElementType.Polyline}"][${dataAttributes.section}]`
+    );
     const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
     seats.forEach(hideSeat);
     booths.forEach((booth) => {
@@ -128,7 +130,9 @@ export const showPostOffsetElements = () => {
   const seats = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`);
   if (seats.size() && +seats.style("opacity") !== 1) {
     const booths = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`);
-    const sections = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`);
+    const sections = d3Extended.selectAll(
+      `[${dataAttributes.elementType}="${ElementType.Polyline}"][${dataAttributes.section}]`
+    );
     const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
     seats.forEach(showSeat);
     booths.forEach((booth) => {
@@ -136,7 +140,7 @@ export const showPostOffsetElements = () => {
       booth.style("pointer-events", "all");
     });
     sections.forEach((section) => {
-      if (section.attr(dataAttributes.section)) {
+      if (section.attr(dataAttributes.sectionFreeSeating) !== "true") {
         section.style("opacity", 0);
         section.style("pointer-events", "none");
       }

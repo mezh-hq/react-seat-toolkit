@@ -17,12 +17,30 @@ export interface IShapeProps extends IShape {
   resizable?: boolean;
   consumer: ISTKProps;
   isSelected?: boolean;
+  element?: any;
 }
 
 const Shape: React.FC<IShapeProps> = forwardRef(
   (
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    { x, y, id, name, width, height, rx, resizable, className, stroke, color, consumer, isSelected: _, ...props },
+    {
+      x,
+      y,
+      id,
+      name,
+      width,
+      height,
+      rx,
+      resizable,
+      className,
+      stroke,
+      color,
+      consumer,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      isSelected: _,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      element: __,
+      ...props
+    },
     ref: any
   ) => {
     if (name === "RectangleHorizontal") {

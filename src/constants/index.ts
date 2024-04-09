@@ -29,6 +29,7 @@ export const dataAttributes = {
   category: "data-category",
   status: "data-status",
   section: "data-section",
+  sectionFreeSeating: "data-section-free-seating",
   visibilityOffset: "data-seat-visibility-offset",
   embraceOffset: "data-embrace-offset"
 };

@@ -6,11 +6,12 @@ export interface IImageProps extends IImage {
   className?: string;
   consumer: ISTKProps;
   isSelected?: boolean;
+  element?: any;
 }
 
 const Image: React.FC<IImageProps> = forwardRef(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ({ x, y, id, href, width, height, consumer, isSelected: _, ...props }, ref: any) => {
+  ({ x, y, id, href, width, height, consumer, isSelected: _, element: __, ...props }, ref: any) => {
     return (
       <image
         ref={ref}
