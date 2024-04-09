@@ -38,7 +38,7 @@ export const domTextToJSON = () => {
       fontWeight: +text.attr("font-weight"),
       letterSpacing: +text.attr("letter-spacing"),
       color: rgbToHex(text.style("stroke")) || text.attr("stroke"),
-      embraceOffset: text.attr(dataAttributes.embraceOffset)
+      embraceOffset: text.attr(dataAttributes.embraceOffset) === "true"
     };
   });
 };
