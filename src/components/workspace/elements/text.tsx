@@ -32,7 +32,6 @@ const Text: React.FC<ITextProps> = forwardRef(
     },
     ref: any
   ) => {
-    console.log(color);
     return (
       <text
         ref={ref}
