@@ -1,9 +1,7 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
-import { dataAttributes, selectors } from "@/constants";
+import { dataAttributes } from "@/constants";
 import { ISTKProps, IText } from "@/types";
-import { d3Extended, getRelativeClickCoordsWithTransform } from "@/utils";
-import { panAndZoomToArea } from "../zoom";
 
 export const textFontSize = 35;
 
@@ -34,21 +32,7 @@ const Text: React.FC<ITextProps> = forwardRef(
     },
     ref: any
   ) => {
-    const localOnClick = (e) => {
-      onClick(e);
-      if (embraceOffset) {
-        const visibilityOffset = +d3Extended.select(selectors.workspaceGroup).attr(dataAttributes.visibilityOffset);
-        if (visibilityOffset > 0) {
-          const coords = getRelativeClickCoordsWithTransform(e);
-          panAndZoomToArea({
-            k: visibilityOffset,
-            x: coords.x,
-            y: coords.y
-          });
-        }
-      }
-    };
-
+    console.log(color);
     return (
       <text
         ref={ref}
@@ -58,12 +42,14 @@ const Text: React.FC<ITextProps> = forwardRef(
         fontSize={fontSize}
         fontWeight={fontWeight}
         letterSpacing={letterSpacing}
-        stroke={color}
-        color={color}
         {...props}
-        onClick={localOnClick}
-        className={twMerge(props.className, consumer.styles?.elements?.text?.base?.className)}
-        style={consumer.styles?.elements?.text?.base?.properties}
+        onClick={onClick}
+        className={twMerge(
+          props.className,
+          consumer.styles?.elements?.text?.base?.className,
+          consumer.mode === "user" && "pointer-events-none"
+        )}
+        style={{ ...consumer.styles?.elements?.text?.base?.properties, stroke: color, color }}
         {...{ [dataAttributes.embraceOffset]: embraceOffset }}
       >
         {label}

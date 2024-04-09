@@ -93,17 +93,6 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
               {...elementProps(e)}
             />
           ))}
-          {text.map((e) => (
-            <Element
-              key={e.id}
-              type={ElementType.Text}
-              fontSize={e.fontSize}
-              fontWeight={e.fontWeight}
-              letterSpacing={e.letterSpacing}
-              embraceOffset={e.embraceOffset}
-              {...elementProps(e)}
-            />
-          ))}
           {polylines.map((e) => (
             <Element
               key={e.id}
@@ -122,6 +111,17 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
               href={e.href}
               width={e.width}
               height={e.height}
+              {...elementProps(e)}
+            />
+          ))}
+          {text.map((e) => (
+            <Element
+              key={e.id}
+              type={ElementType.Text}
+              fontSize={e.fontSize}
+              fontWeight={e.fontWeight}
+              letterSpacing={e.letterSpacing}
+              embraceOffset={e.embraceOffset}
               {...elementProps(e)}
             />
           ))}

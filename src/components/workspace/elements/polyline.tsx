@@ -76,10 +76,18 @@ const Polyline: React.FC<IPolylineProps> = forwardRef(
         style={{
           color: sectionObject?.color ?? color ?? "transparent",
           stroke: sectionObject?.stroke ?? stroke,
-          ...consumer.styles?.elements?.shape?.base?.properties
+          ...consumer.styles?.elements?.shape?.base?.properties,
+          ...(sectionObject && consumer.styles?.elements?.section?.base?.properties),
+          ...(sectionObject?.freeSeating && consumer.styles?.elements?.section?.freeSeating?.properties)
         }}
         {...{ [dataAttributes.section]: section }}
-        className={twMerge(props.className, consumer.styles?.elements?.shape?.base?.className)}
+        className={twMerge(
+          props.className,
+          consumer.styles?.elements?.shape?.base?.className,
+          consumer.mode === "user" && sectionObject && "cursor-pointer filter hover:brightness-[1.05]",
+          sectionObject && consumer.styles?.elements?.section?.base?.className,
+          sectionObject?.freeSeating && consumer.styles?.elements?.section?.freeSeating?.className
+        )}
       />
     );
   }

@@ -71,6 +71,10 @@ export interface IStyles {
       unselected?: IStyle;
       base?: IStyle;
     };
+    section?: {
+      base?: IStyle;
+      freeSeating?: IStyle;
+    };
     image?: {
       selected?: IStyle;
       unselected?: IStyle;
