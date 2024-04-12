@@ -76,7 +76,7 @@ const initialState = {
   polylines: [],
   images: [],
   initialViewBoxScale: null,
-  initialViewBoxScaleForWidth: document.documentElement.clientWidth,
+  initialViewBoxScaleForWidth: null,
   visibilityOffset: 0
 };
 

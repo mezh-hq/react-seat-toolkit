@@ -12,7 +12,7 @@ import { showPostOffsetElements, showPreOffsetElements } from "./elements";
 
 const handleElementVisibility = debounce((workspace, k) => {
   const visibilityOffset = +workspace.attr(dataAttributes.visibilityOffset) || 0;
-  const initialViewBoxScaleForWidth = +workspace.attr(dataAttributes.initialViewBoxScaleForWidth) || 1;
+  const initialViewBoxScaleForWidth = +workspace.attr(dataAttributes.initialViewBoxScaleForWidth);
   if (k * 1.1 < getScaleFactorAccountingForViewBoxWidth(visibilityOffset, initialViewBoxScaleForWidth)) {
     showPreOffsetElements();
   } else {
