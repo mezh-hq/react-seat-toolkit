@@ -1,10 +1,11 @@
 import { Reducer, createSelector, createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
+import { ids } from "@/constants";
 import type { ISTKData } from "@/types";
-import booths from "./booths";
-import seats from "./seats";
-import shapes from "./shapes";
-import text from "./text";
+import { default as booths } from "./booths";
+import { default as seats } from "./seats";
+import { default as shapes } from "./shapes";
+import { default as text } from "./text";
 
 export const locationPlaceholder = "Type your location here";
 
@@ -248,7 +249,7 @@ export const slice = createSlice({
     },
     setInitialViewBoxScale: (state, action) => {
       state.initialViewBoxScale = action.payload;
-      state.initialViewBoxScaleForWidth = document.documentElement.clientWidth;
+      state.initialViewBoxScaleForWidth = document.getElementById(ids.workspace).clientWidth;
     },
     setVisibilityOffset: (state, action) => {
       state.visibilityOffset = action.payload;

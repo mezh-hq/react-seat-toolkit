@@ -24,7 +24,7 @@ export const getWorkspaceCenterY = () => {
 
 export const getScaleFactorAccountingForViewBoxWidth = (scaleFactor: number, initialViewBoxScaleForWidth?: number) => {
   if (initialViewBoxScaleForWidth) {
-    const currentWidth = document.documentElement.clientWidth;
+    const currentWidth = document.getElementById(ids.workspace).clientWidth;
     const ratio = currentWidth / initialViewBoxScaleForWidth;
     scaleFactor *= ratio >= 1 ? ratio : ratio * 1.25;
   }
