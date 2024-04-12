@@ -30,7 +30,7 @@ const SeatSelectControls = () => {
         />
       </div>
       <RadioGroup
-        key={firstElement?.getAttribute(dataAttributes.status)}
+        key={selectedElementIds?.join(",")}
         defaultValue={firstElement?.getAttribute(dataAttributes.status) ?? SeatStatus.Available.toString()}
         onValueChange={(value) => {
           selectedElementIds.forEach((id: string) => {

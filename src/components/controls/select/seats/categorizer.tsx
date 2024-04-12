@@ -114,6 +114,7 @@ const Categorizer = ({ firstElement, selectedElementIds }) => {
         </Popover>
       </div>
       <Select
+        key={selectedElementIds?.join(",")}
         onValueChange={(value) => {
           store.dispatch(updateSeats({ ids: selectedElementIds, data: { category: value } }));
         }}

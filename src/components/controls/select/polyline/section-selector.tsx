@@ -90,6 +90,7 @@ const SectionSelector = ({ firstElement, selectedElementIds }) => {
         </Popover>
       </div>
       <Select
+        key={selectedElementIds?.join(",")}
         onValueChange={(value) => {
           store.dispatch(updatePolylines({ ids: selectedElementIds, data: { section: +value === 0 ? null : value } }));
         }}
