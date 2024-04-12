@@ -2,7 +2,7 @@ import { forwardRef, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, selectors } from "@/constants";
 import { IPolyline, ISTKProps, ISeatCategory, ISection } from "@/types";
-import { d3Extended, getRelativeWorkspaceClickCoords } from "@/utils";
+import { d3Extended, getRelativeWorkspaceClickCoords, getScaleFactorAccountingForViewBoxWidth } from "@/utils";
 import { panAndZoomToArea } from "../zoom";
 
 export interface IPolylineProps extends IPolyline {
@@ -57,7 +57,11 @@ const Polyline: React.FC<IPolylineProps> = forwardRef(
           if (visibilityOffset > 0) {
             const coords = getRelativeWorkspaceClickCoords(e);
             panAndZoomToArea({
-              k: visibilityOffset,
+              k:
+                getScaleFactorAccountingForViewBoxWidth(
+                  visibilityOffset,
+                  consumer.data?.workspace?.initialViewBoxScaleForWidth
+                ) * 1.1,
               x: coords.x,
               y: coords.y
             });

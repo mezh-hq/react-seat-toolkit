@@ -31,6 +31,7 @@ export const dataAttributes = {
   section: "data-section",
   sectionFreeSeating: "data-section-free-seating",
   visibilityOffset: "data-seat-visibility-offset",
+  initialViewBoxScaleForWidth: "data-initial-view-box-scale-for-width",
   embraceOffset: "data-embrace-offset"
 };
 

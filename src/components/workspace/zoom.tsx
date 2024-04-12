@@ -6,13 +6,14 @@ import { twMerge } from "tailwind-merge";
 import { dataAttributes, ids, selectors } from "@/constants";
 import { useSkipFirstRender } from "@/hooks";
 import type { ISTKProps } from "@/types";
-import { d3Extended } from "@/utils";
+import { d3Extended, getScaleFactorAccountingForViewBoxWidth } from "@/utils";
 import { Tool } from "../toolbar/data";
 import { showPostOffsetElements, showPreOffsetElements } from "./elements";
 
 const handleElementVisibility = debounce((workspace, k) => {
   const visibilityOffset = +workspace.attr(dataAttributes.visibilityOffset) || 0;
-  if (k * 1.1 < visibilityOffset) {
+  const initialViewBoxScaleForWidth = +workspace.attr(dataAttributes.initialViewBoxScaleForWidth) || 1;
+  if (k * 1.1 < getScaleFactorAccountingForViewBoxWidth(visibilityOffset, initialViewBoxScaleForWidth)) {
     showPreOffsetElements();
   } else {
     showPostOffsetElements();
@@ -64,17 +65,7 @@ export const panAndZoom = ({ k, x, y }) => {
 };
 
 export const panAndZoomToArea = ({ k, x, y }) => {
-  const transform = d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup));
-  const { height: workspaceheight, width: workspaceWidth } = d3Extended.selectionBounds(
-    d3Extended.selectById(ids.workspace)
-  );
-  const newX = x * (x > workspaceWidth / 2 ? -1 : 1) * transform.k * 0.75;
-  const newY = (workspaceheight - y) * (y > workspaceheight / 2 ? -1 : 1);
-  d3Extended
-    .selectById(ids.workspace)
-    .transition()
-    .duration(1000)
-    .call(zoom.transform, d3Extended.zoomIdentity.translate(newX, newY).scale(k));
+  d3Extended.selectById(ids.workspace).transition().duration(1000).call(zoom.scaleTo, k, [x, y]);
 };
 
 const panHandleClasses =

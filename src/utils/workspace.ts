@@ -21,3 +21,12 @@ export const getWorkspaceCenterY = () => {
   if (typeof window === "undefined") return 0;
   return window.innerHeight / 2 - (workspaceContainer?.offsetTop ?? 0);
 };
+
+export const getScaleFactorAccountingForViewBoxWidth = (scaleFactor: number, initialViewBoxScaleForWidth?: number) => {
+  if (initialViewBoxScaleForWidth) {
+    const currentWidth = document.documentElement.clientWidth;
+    const ratio = currentWidth / initialViewBoxScaleForWidth;
+    scaleFactor *= ratio >= 1 ? ratio : ratio * 1.25;
+  }
+  return scaleFactor;
+};

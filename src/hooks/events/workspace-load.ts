@@ -5,7 +5,7 @@ import { dataAttributes, ids, selectors } from "@/constants";
 import { store } from "@/store";
 import { initializeElements, initializeWorkspace, resetWorkspace, sync } from "@/store/reducers/editor";
 import { ISTKProps } from "@/types";
-import { d3Extended } from "@/utils";
+import { d3Extended, getScaleFactorAccountingForViewBoxWidth } from "@/utils";
 
 const useWorkspaceLoad = (props: ISTKProps) => {
   const dataSynced = useSelector((state: any) => state.editor.dataSynced);
@@ -36,12 +36,14 @@ const useWorkspaceLoad = (props: ISTKProps) => {
       } = d3Extended.selectionBounds(workspaceGroup);
       let scaleFactor = 1;
       if (props.data?.workspace?.initialViewBoxScale) {
-        scaleFactor = props.data?.workspace?.initialViewBoxScale;
-        if (props.data?.workspace?.initialViewBoxScaleForWidth) {
-          const currentWidth = document.documentElement.clientWidth;
-          const ratio = currentWidth / props.data?.workspace?.initialViewBoxScaleForWidth;
-          scaleFactor *= ratio >= 1 ? ratio : ratio * 1.25;
-        }
+        workspaceGroup.attr(
+          dataAttributes.initialViewBoxScaleForWidth,
+          props.data?.workspace.initialViewBoxScaleForWidth
+        );
+        scaleFactor = getScaleFactorAccountingForViewBoxWidth(
+          props.data?.workspace?.initialViewBoxScale,
+          props.data?.workspace?.initialViewBoxScaleForWidth
+        );
       }
       if (props.data?.workspace?.visibilityOffset) {
         workspaceGroup.attr(dataAttributes.visibilityOffset, props.data?.workspace.visibilityOffset);
