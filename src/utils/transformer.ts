@@ -106,6 +106,7 @@ export const stateToJSON = () => {
     images: domImagesToJSON(),
     workspace: {
       initialViewBoxScale: state.initialViewBoxScale,
+      initialViewBoxScaleForWidth: state.initialViewBoxScaleForWidth,
       visibilityOffset: state.visibilityOffset
     }
   };

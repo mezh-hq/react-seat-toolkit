@@ -34,7 +34,15 @@ const useWorkspaceLoad = (props: ISTKProps) => {
         height: workspaceGroupHeight,
         width: workspaceGroupWidth
       } = d3Extended.selectionBounds(workspaceGroup);
-      let scaleFactor = props.data?.workspace?.initialViewBoxScale ?? 1;
+      let scaleFactor = 1;
+      if (props.data?.workspace?.initialViewBoxScale) {
+        scaleFactor = props.data?.workspace?.initialViewBoxScale;
+        if (props.data?.workspace?.initialViewBoxScaleForWidth) {
+          const currentWidth = document.documentElement.clientWidth;
+          const ratio = currentWidth / props.data?.workspace?.initialViewBoxScaleForWidth;
+          scaleFactor *= ratio >= 1 ? ratio : ratio * 1.25;
+        }
+      }
       if (props.data?.workspace?.visibilityOffset) {
         workspaceGroup.attr(dataAttributes.visibilityOffset, props.data?.workspace.visibilityOffset);
       }

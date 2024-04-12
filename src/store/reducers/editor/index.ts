@@ -76,6 +76,7 @@ const initialState = {
   polylines: [],
   images: [],
   initialViewBoxScale: null,
+  initialViewBoxScaleForWidth: document.documentElement.clientWidth,
   visibilityOffset: 0
 };
 
@@ -247,6 +248,7 @@ export const slice = createSlice({
     },
     setInitialViewBoxScale: (state, action) => {
       state.initialViewBoxScale = action.payload;
+      state.initialViewBoxScaleForWidth = document.documentElement.clientWidth;
     },
     setVisibilityOffset: (state, action) => {
       state.visibilityOffset = action.payload;

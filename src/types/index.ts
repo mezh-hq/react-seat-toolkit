@@ -55,6 +55,7 @@ export interface ISTKData {
   images?: IImage[];
   workspace?: {
     initialViewBoxScale?: number;
+    initialViewBoxScaleForWidth?: number;
     visibilityOffset?: number;
   };
 }
