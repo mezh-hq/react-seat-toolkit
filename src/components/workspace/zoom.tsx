@@ -90,22 +90,16 @@ const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
     if (selectedTool == Tool.Pan) {
       selection.call(zoom);
     } else {
-      selection
-        .call(zoom)
-        .on("mousedown.zoom", null)
-        .on("touchstart.zoom", null)
-        .on("touchmove.zoom", null)
-        .on("touchend.zoom", null)
-        .on("wheel.zoom", (e) => {
-          e.preventDefault();
-          const currentZoom = selection.property("__zoom").k || 1;
-          if (e.ctrlKey) {
-            const nextZoom = currentZoom * Math.pow(2, -e.deltaY * 0.01);
-            zoom.scaleTo(selection, nextZoom, d3Extended.pointer(e));
-          } else {
-            zoom.translateBy(selection, -(e.deltaX / currentZoom), -(e.deltaY / currentZoom));
-          }
-        });
+      selection.call(zoom).on("wheel.zoom", (e) => {
+        e.preventDefault();
+        const currentZoom = selection.property("__zoom").k || 1;
+        if (e.ctrlKey) {
+          const nextZoom = currentZoom * Math.pow(2, -e.deltaY * 0.01);
+          zoom.scaleTo(selection, nextZoom, d3Extended.pointer(e));
+        } else {
+          zoom.translateBy(selection, -(e.deltaX / currentZoom), -(e.deltaY / currentZoom));
+        }
+      });
     }
   }, [selectedTool]);
 
