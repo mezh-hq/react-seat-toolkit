@@ -11,7 +11,7 @@ export interface IImageProps extends IImage {
 
 const Image: React.FC<IImageProps> = forwardRef(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ({ x, y, id, href, width, height, consumer, isSelected: _, element: __, ...props }, ref: any) => {
+  ({ x, y, id, href, width, height, consumer, isSelected, element: _, ...props }, ref: any) => {
     return (
       <image
         ref={ref}
@@ -23,8 +23,9 @@ const Image: React.FC<IImageProps> = forwardRef(
         height={height}
         {...props}
         className={twMerge(
-          props.className,
           "resizable fill-transparent object-cover",
+          isSelected && "outline outline-2 outline-blue-500 -outline-offset-2",
+          props.className,
           consumer.styles?.elements?.image?.base?.className
         )}
         preserveAspectRatio="none"

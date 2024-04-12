@@ -241,6 +241,7 @@ export const slice = createSlice({
       state.location = name ?? state.location;
       state.sections = sections ? [noSection, ...sections] : state.sections;
       state.initialViewBoxScale = data.workspace?.initialViewBoxScale;
+      state.initialViewBoxScaleForWidth = data.workspace?.initialViewBoxScaleForWidth;
       state.visibilityOffset = data.workspace?.visibilityOffset ?? state.visibilityOffset;
       Object.keys(data).forEach((key) => {
         state[key] = data[key] ?? state[key];

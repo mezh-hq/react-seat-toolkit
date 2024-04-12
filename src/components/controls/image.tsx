@@ -16,8 +16,8 @@ const ImageControls = () => {
   const onUpload = async (e) => {
     const f = e.target.files[0];
     if (!f) return;
-    if (f.size > 300000) {
-      alert("Image size should be less than 300kb");
+    if (f.size > 1024000) {
+      alert("Image size should be less than 1MB");
       return;
     }
     setFile(await toBase64(f));
