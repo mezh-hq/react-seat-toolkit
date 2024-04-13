@@ -39,7 +39,7 @@ export interface IEvents {
   onMaxSeatSelectionCountReached?: () => void;
   onWorkspaceHover?: () => void;
   onSectionClick?: (section: ISection) => void;
-  onExport?: (data: ISTKData) => void;
+  onExport?: (data: ISTKData) => Promise<void> | void;
   onWorkspaceLoad?: () => void;
   /** Only used when the reload button is enabled */
   onReload?: () => void;

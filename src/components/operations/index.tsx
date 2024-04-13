@@ -1,29 +1,25 @@
-import { Braces, Cog, Eye } from "lucide-react";
+import { Cog } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { ids } from "@/constants";
-import { useBreakpoint } from "@/hooks";
 import { store } from "@/store";
 import { locationPlaceholder, setLocation, toggleControls } from "@/store/reducers/editor";
 import { ISTKProps } from "@/types";
 import { stateToJSON } from "@/utils";
-import { Body, Button, IconButton } from "../core";
+import { Body } from "../core";
+import { default as ExportAction } from "./export";
 import { default as GridSwitch } from "./grid-switch";
 
 const onCogClick = () => store.dispatch(toggleControls());
 
 const Operations: React.FC<ISTKProps> = ({
-  options: { showGridSwitch = true, exportButtonText = "Export JSON", operationTriggerIcon } = {},
+  options: { showGridSwitch = true, exportButtonText, operationTriggerIcon } = {},
   events,
   ...props
 }) => {
-  const { md } = useBreakpoint();
-
   const location = useSelector((state: any) => state.editor.location);
 
   const styles = props.styles?.operations;
-
-  const coreStyles = props.styles?.core;
 
   const OperationTriggerIcon = operationTriggerIcon ?? Cog;
 
@@ -72,39 +68,7 @@ const Operations: React.FC<ISTKProps> = ({
       </Body>
       <div className="flex justify-between items-center gap-5">
         {showGridSwitch && <GridSwitch className="mr-2" />}
-        {md ? (
-          <>
-            <Button
-              className={twMerge("py-[0.35rem]", coreStyles?.button?.className)}
-              style={coreStyles?.button?.properties}
-            >
-              Preview
-            </Button>
-            <Button
-              className={twMerge("py-[0.35rem] text-center", coreStyles?.button?.className)}
-              style={coreStyles?.button?.properties}
-              onClick={onExportJson}
-            >
-              {exportButtonText}
-            </Button>
-          </>
-        ) : (
-          <>
-            <IconButton
-              icon={<Eye />}
-              label="Preview"
-              className={coreStyles?.button?.className}
-              style={coreStyles?.button?.properties}
-            />
-            <IconButton
-              icon={<Braces />}
-              label={exportButtonText}
-              onClick={onExportJson}
-              className={coreStyles?.button?.className}
-              style={coreStyles?.button?.properties}
-            />
-          </>
-        )}
+        <ExportAction text={exportButtonText} onExport={onExportJson} styles={props.styles} />
         <OperationTriggerIcon
           id={ids.operationTrigger}
           size={35}
