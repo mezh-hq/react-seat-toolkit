@@ -20,8 +20,9 @@ const ImageControls = ({ options: { maxImageSize = 1024000 } = {} }: IImageContr
     const f = e.target.files[0];
     if (!f) return;
     if (f.size > maxImageSize) {
-      const kb = maxImageSize / 1024;
-      window.toast.warning(`Image size should be less than ${kb > 1024 ? `${kb / 1024} MB` : `${kb} KB`}`);
+      const kb = +(maxImageSize / 1024).toFixed(0);
+      window.toast.warning(`Image size should be less than ${kb > 1024 ? `${(kb / 1024).toFixed(0)} MB` : `${kb} KB`}`);
+      e.target.value = "";
       return;
     }
     setFile(await toBase64(f));
