@@ -9,6 +9,7 @@
   "private": false,
   "exports": {
     ".": "./dist/index.js",
+    "./slim": "./dist/index.slim.js",
     "./styles": "./dist/index.css",
     "./raw-styles": "./dist/styles/index.css",
     "./types": "./dist/types/index.d.ts"

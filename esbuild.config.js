@@ -17,18 +17,39 @@ const cleaner = {
   }
 };
 
-build({
+/** @type {import('esbuild').BuildOptions} */
+const options = {
   entryPoints: ["./src/index.tsx"],
   bundle: true,
-  outdir: "./dist",
   platform: "browser",
   format: "esm",
-  minify: false,
   sourcemap: true,
   keepNames: true,
   loader: {
     ".png": "file"
   },
   plugins: [cleaner],
+  metafile: true,
   external: ["react", "react-dom", "@dreamworld/addon-redux"]
+};
+
+build({
+  ...options,
+  outfile: "./dist/index.js"
+});
+
+build({
+  ...options,
+  outfile: "./dist/index.slim.js",
+  minify: true,
+  external: [
+    ...options.external,
+    "@radix-ui/react-checkbox",
+    "@radix-ui/react-label",
+    "@radix-ui/react-popover",
+    "@radix-ui/react-radio-group",
+    "@radix-ui/react-select",
+    "lodash",
+    "tailwind-merge"
+  ]
 });
