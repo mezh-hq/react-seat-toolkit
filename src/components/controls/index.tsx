@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, ids } from "@/constants";
+import { ISTKProps } from "@/types";
 import { AnimatedSwitcher } from "../core";
 import { Tool } from "../toolbar/data";
 import { ElementType } from "../workspace/elements";
@@ -16,7 +17,9 @@ const transition = "transition-all duration-500";
 
 const width = "w-[22rem]";
 
-const Controls = () => {
+type IControlProps = Pick<ISTKProps, "options" | "styles">;
+
+const Controls = ({ options, styles }: IControlProps) => {
   const open = useSelector((state: any) => state.editor.showControls);
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
   const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
@@ -55,7 +58,11 @@ const Controls = () => {
           open ? "right-0" : "-right-[22rem]"
         )}
       >
-        <AnimatedSwitcher show customKey={ControlComponent.name} component={<ControlComponent />} />
+        <AnimatedSwitcher
+          show
+          customKey={ControlComponent.name}
+          component={<ControlComponent options={options} styles={styles} />}
+        />
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import { useDesignerEvents, useInteractions, useUserEvents } from "@/hooks";
+import { useDesignerEvents, useInteractions, useToast, useUserEvents } from "@/hooks";
 import { type ISTKProps } from "@/types";
 import { default as Controls } from "./controls";
 import { default as Footer } from "./footer";
@@ -25,7 +25,7 @@ const Designer: React.FC<ISTKProps> = (props) => {
         >
           <Toolbar {...props} />
           <Workspace {...props} />
-          <Controls />
+          <Controls options={props.options} styles={props.styles} />
         </div>
       </div>
       <Footer {...props} />
@@ -47,6 +47,7 @@ const User: React.FC<ISTKProps> = (props) => {
 };
 
 const Core = (props: ISTKProps) => {
+  useToast(props.plugins?.toast);
   if (props.mode === "designer") {
     return <Designer {...props} />;
   }

@@ -4,20 +4,24 @@ import { v4 as uuidV4 } from "uuid";
 import { store } from "@/store";
 import { addImage, hideControls } from "@/store/reducers/editor";
 import { selectTool } from "@/store/reducers/toolbar";
+import { ISTKProps } from "@/types";
 import { getImageDimensions, getWorkspaceCenterX, getWorkspaceCenterY, toBase64 } from "@/utils";
 import { Button } from "../core";
 import { Tool } from "../toolbar/data";
 
 const onUploadClick = () => document.getElementById("image-input").click();
 
-const ImageControls = () => {
+type IImageControlProps = Pick<ISTKProps, "options" | "styles">;
+
+const ImageControls = ({ options: { maxImageSize = 1024000 } = {} }: IImageControlProps) => {
   const [file, setFile] = useState(null);
 
   const onUpload = async (e) => {
     const f = e.target.files[0];
     if (!f) return;
-    if (f.size > 1024000) {
-      alert("Image size should be less than 1MB");
+    if (f.size > maxImageSize) {
+      const kb = maxImageSize / 1024;
+      window.toast.warning(`Image size should be less than ${kb > 1024 ? `${kb / 1024} MB` : `${kb} KB`}`);
       return;
     }
     setFile(await toBase64(f));

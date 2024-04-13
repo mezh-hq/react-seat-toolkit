@@ -10,9 +10,11 @@ import type {
   IShape,
   IText
 } from "./elements";
+import { IPlugins } from "./plugins";
 import type { IStyles } from "./styles";
 
 export * from "./elements";
+export * from "./plugins";
 
 export type STKMode = "designer" | "user";
 
@@ -80,5 +82,8 @@ export interface ISTKProps {
     selectedSeatIcon?: React.FC<any>;
     /** Only applicable in user mode. If provided, will stop the user from selecting more seats than the provided number. */
     maxSeatSelectionCount?: number;
+    /** Maximum size of an image which can be added to the workspace in bytes */
+    maxImageSize?: number;
   };
+  plugins?: IPlugins;
 }
