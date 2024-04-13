@@ -59,8 +59,7 @@ const Controls = ({ options, styles }: IControlProps) => {
         )}
       >
         <AnimatedSwitcher
-          show
-          customKey={ControlComponent.name}
+          key={ControlComponent.name}
           component={<ControlComponent options={options} styles={styles} />}
         />
       </div>

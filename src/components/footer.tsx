@@ -19,15 +19,15 @@ const Footer: React.FC<ISTKProps> = ({ options: { showFooter = true } = {}, ...p
       <span className={twMerge("text-sm", styles?.title?.className)} style={styles?.title?.properties}>
         React Seat Toolkit
       </span>
-      <AnimatedSwitcher
-        show={!!selectedTool}
-        customKey={selectedTool}
-        className={twMerge("absolute top-[0.4rem] left-5 text-xs", styles?.meta?.className)}
-        style={styles?.meta?.properties}
-        component={<span>{tools[selectedTool]?.description}</span>}
-        alternateComponent={null}
-        duration={0.2}
-      />
+      {selectedTool && (
+        <AnimatedSwitcher
+          key={selectedTool}
+          className={twMerge("absolute top-[0.4rem] left-5 text-xs", styles?.meta?.className)}
+          style={styles?.meta?.properties}
+          component={<span>{tools[selectedTool]?.description}</span>}
+          duration={0.2}
+        />
+      )}
     </div>
   );
 };
