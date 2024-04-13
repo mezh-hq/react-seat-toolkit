@@ -1,5 +1,5 @@
 import { memo, useEffect, useMemo, useRef } from "react";
-import * as d3 from "d3";
+import { select } from "d3";
 import { default as isEqual } from "lodash/isEqual";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes } from "@/constants";
@@ -41,7 +41,7 @@ export const Element: React.FC<IElementProps> = ({
 
   useEffect(() => {
     if (!ref.current || consumer.mode !== "designer") return;
-    const node = d3.select(ref.current);
+    const node = select(ref.current);
     if (type === ElementType.Seat) {
       handleSeatDrag(node);
     } else if (type === ElementType.Text) {

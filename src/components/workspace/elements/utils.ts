@@ -1,4 +1,4 @@
-import * as d3 from "d3";
+import { drag, select } from "d3";
 import { dataAttributes } from "@/constants";
 import { resizeCursors } from "@/hooks/interactions";
 import { IPopulatedSeat } from "@/types";
@@ -28,8 +28,8 @@ export const elements = {
   [ElementType.Image]: Image
 };
 
-export const handleDrag = d3.drag().on("drag", function (event) {
-  const me = d3.select(this);
+export const handleDrag = drag().on("drag", function (event) {
+  const me = select(this);
   const controls = d3Extended.selectById(`${me.attr("id")}-controls`);
   const x = +me.attr("x") + event.dx;
   const y = +me.attr("y") + event.dy;
@@ -40,8 +40,8 @@ export const handleDrag = d3.drag().on("drag", function (event) {
   controls.attr("cy", center.y);
 });
 
-export const handleSeatDrag = d3.drag().on("drag", function (event) {
-  const me = d3.select(this);
+export const handleSeatDrag = drag().on("drag", function (event) {
+  const me = select(this);
 
   const x = +me.attr("cx") + event.dx;
   const y = +me.attr("cy") + event.dy;
@@ -58,14 +58,14 @@ export const handleSeatDrag = d3.drag().on("drag", function (event) {
   label.attr("y", +label.attr("y") + event.dy);
 });
 
-export const handleTextDrag = d3.drag().on("drag", function (event) {
-  const me = d3.select(this);
+export const handleTextDrag = drag().on("drag", function (event) {
+  const me = select(this);
   me.attr("x", +me.attr("x") + event.dx);
   me.attr("y", +me.attr("y") + event.dy);
 });
 
-export const handleShapeDrag = d3.drag().on("drag", function (event) {
-  const me = d3.select(this);
+export const handleShapeDrag = drag().on("drag", function (event) {
+  const me = select(this);
   if (resizeCursors.includes(me.style("cursor"))) return;
   const x = +me.attr("x") + event.dx;
   const y = +me.attr("y") + event.dy;
@@ -73,8 +73,8 @@ export const handleShapeDrag = d3.drag().on("drag", function (event) {
   me.attr("y", y);
 });
 
-export const handlePolylineDrag = d3.drag().on("drag", function (event) {
-  const me = d3.select(this);
+export const handlePolylineDrag = drag().on("drag", function (event) {
+  const me = select(this);
   const points = me
     .attr("points")
     .split(" ")

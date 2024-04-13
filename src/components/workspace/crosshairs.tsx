@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import * as d3 from "d3";
+import { pointer } from "d3";
 import { ids } from "@/constants";
 
 export const Crosshairs = ({ render }) => {
@@ -8,9 +8,9 @@ export const Crosshairs = ({ render }) => {
   const [enabled, setEnabled] = useState(false);
 
   const move = (e: Event) => {
-    const pointer = d3.pointer(e);
-    setX(pointer[0]);
-    setY(pointer[1]);
+    const ptr = pointer(e);
+    setX(ptr[0]);
+    setY(ptr[1]);
   };
 
   useEffect(() => {

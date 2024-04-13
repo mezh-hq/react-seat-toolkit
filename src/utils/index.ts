@@ -1,4 +1,4 @@
-import * as d3 from "d3";
+import { zoomTransform } from "d3";
 import { ids, selectors } from "@/constants";
 
 export * from "./d3";
@@ -35,7 +35,7 @@ export const getRelativeWorkspaceClickCoords = (e: any) => {
 
 export const getRelativeClickCoordsWithTransform = (e: any) => {
   const coords = getRelativeWorkspaceClickCoords(e);
-  const transform = d3.zoomTransform(document.querySelector(selectors.workspaceGroup));
+  const transform = zoomTransform(document.querySelector(selectors.workspaceGroup));
   return {
     x: (coords.x - transform.x) / transform.k,
     y: (coords.y - transform.y) / transform.k

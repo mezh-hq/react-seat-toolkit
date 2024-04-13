@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import * as d3 from "d3";
+import { pointer } from "d3";
 import { ids } from "@/constants";
 import { resizeCursors } from "@/hooks/interactions";
 import { isWithinBounds } from "@/utils";
@@ -16,9 +16,9 @@ export const Cursor = () => {
   const Cursor = useSelector((state: any) => state.editor.cursor);
 
   const move = (e) => {
-    const pointer = d3.pointer(e);
-    const x = pointer[0];
-    const y = pointer[1];
+    const ptr = pointer(e);
+    const x = ptr[0];
+    const y = ptr[1];
     const workspace = document.getElementById(ids.workspace)?.getBoundingClientRect();
     const zoomControls = document.getElementById(ids.zoomControls)?.getBoundingClientRect();
     const panControls = document.getElementById(ids.panControls)?.getBoundingClientRect();
