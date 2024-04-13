@@ -23,13 +23,13 @@ const options = {
   bundle: true,
   platform: "browser",
   format: "esm",
+  minify: true,
   sourcemap: true,
   keepNames: true,
   loader: {
     ".png": "file"
   },
   plugins: [cleaner],
-  metafile: true,
   external: ["react", "react-dom", "@dreamworld/addon-redux"]
 };
 
@@ -41,7 +41,6 @@ build({
 build({
   ...options,
   outfile: "./dist/index.slim.js",
-  minify: true,
   external: [
     ...options.external,
     "@radix-ui/react-checkbox",
