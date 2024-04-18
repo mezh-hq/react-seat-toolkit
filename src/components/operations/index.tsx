@@ -7,7 +7,7 @@ import { locationPlaceholder, setLocation, toggleControls } from "@/store/reduce
 import { ISTKProps } from "@/types";
 import { stateToJSON } from "@/utils";
 import { Body } from "../core";
-import { default as ExportAction } from "./export";
+import { default as ExportAction } from "./export-button";
 import { default as GridSwitch } from "./grid-switch";
 
 const onCogClick = () => store.dispatch(toggleControls());
