@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { Label, RadioGroup, RadioGroupItem } from "@/components/core";
+import { Button, Label, RadioGroup, RadioGroupItem } from "@/components/core";
 import { dataAttributes, seatStatusColors } from "@/constants";
 import { store } from "@/store";
-import { updateSeats } from "@/store/reducers/editor";
+import { updateSeatLabels, updateSeats } from "@/store/reducers/editor";
 import { SeatStatus } from "@/types/elements";
 import { d3Extended } from "@/utils";
 import { default as ControlInput } from "../../control-input";
@@ -14,6 +14,17 @@ const SeatSelectControls = () => {
   const firstElement = document.getElementById(selectedElementIds[0]);
 
   const firstElementLabel = document.getElementById(`${selectedElementIds[0]}-label`);
+
+  const setIncrementalLabels = () => {
+    store.dispatch(
+      updateSeatLabels(
+        selectedElementIds.map((id: string, index: number) => ({
+          id,
+          label: `${document.getElementById(`${id}-label`)?.textContent}${index + 1}`
+        }))
+      )
+    );
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -29,6 +40,11 @@ const SeatSelectControls = () => {
           }}
         />
       </div>
+      {selectedElementIds.length > 1 && (
+        <Button className="max-w-56 py-1.5 text-xs self-end" onClick={setIncrementalLabels}>
+          Set Incremental Labels
+        </Button>
+      )}
       <RadioGroup
         key={selectedElementIds?.join(",")}
         defaultValue={firstElement?.getAttribute(dataAttributes.status) ?? SeatStatus.Available.toString()}

@@ -153,6 +153,12 @@ export const slice = createSlice({
         action.payload.ids.includes(seat.id) ? { ...seat, ...action.payload.data } : seat
       );
     },
+    updateSeatLabels(state, action) {
+      action.payload.forEach((seat) => {
+        const index = state.seats.findIndex((s) => s.id === seat.id);
+        state.seats[index] = { ...state.seats[index], label: seat.label };
+      });
+    },
     addBooth(state, action) {
       state.booths.push(action.payload);
     },
@@ -289,6 +295,7 @@ export const {
   deleteSeat,
   updateSeat,
   updateSeats,
+  updateSeatLabels,
   addBooth,
   deleteBooth,
   addText,

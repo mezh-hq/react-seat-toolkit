@@ -9,8 +9,10 @@ const useDelete = () => {
   useEffect(() => {
     const handler = (e) => {
       if (e.key === "Backspace" || e.key === "Delete") {
-        e.preventDefault();
-        store.dispatch(deleteElements(selectedElementIds));
+        if (!document.querySelectorAll("input:focus").length) {
+          e.preventDefault();
+          store.dispatch(deleteElements(selectedElementIds));
+        }
       }
     };
     window.addEventListener("keydown", handler);
