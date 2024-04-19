@@ -2,6 +2,7 @@ import { ISTKProps } from "@/types";
 import { default as useDelete } from "./deletion";
 import { default as useDeselection } from "./deselection";
 import { default as useDuplicate } from "./duplication";
+import { default as useMove } from "./move";
 import { default as usePolyline } from "./polyline";
 import { default as useSeatSelectionChange } from "./seat-selection";
 import { default as useWorkspaceClick } from "./workspace-click";
@@ -11,6 +12,7 @@ export const useDesignerEvents = (props: ISTKProps) => {
   useDelete();
   useDeselection();
   useDuplicate();
+  useMove();
   usePolyline();
   useWorkspaceClick();
   useWorkspaceLoad(props);
