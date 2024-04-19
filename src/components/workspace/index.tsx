@@ -67,6 +67,16 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
     >
       <svg id={ids.workspace} className="w-full h-full flex-1" onMouseOver={onWorkspaceHover}>
         <g {...{ [dataAttributes.visibilityOffset]: "0" }}>
+          {images.map((e) => (
+            <Element
+              key={e.id}
+              type={ElementType.Image}
+              href={e.href}
+              width={e.width}
+              height={e.height}
+              {...elementProps(e)}
+            />
+          ))}
           {seats.map((e) => (
             <Element
               key={e.id}
@@ -101,16 +111,6 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
               sections={sections}
               categories={categories}
               section={e.section}
-              {...elementProps(e)}
-            />
-          ))}
-          {images.map((e) => (
-            <Element
-              key={e.id}
-              type={ElementType.Image}
-              href={e.href}
-              width={e.width}
-              height={e.height}
               {...elementProps(e)}
             />
           ))}
