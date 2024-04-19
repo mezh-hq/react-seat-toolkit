@@ -254,6 +254,18 @@ export const slice = createSlice({
     },
     setVisibilityOffset: (state, action) => {
       state.visibilityOffset = action.payload;
+    },
+    deleteElements: (state, action) => {
+      const ids = action.payload;
+      state.seats = state.seats.filter((seat) => !ids.includes(seat.id));
+      state.booths = state.booths.filter((booth) => !ids.includes(booth.id));
+      state.text = state.text.filter((text) => !ids.includes(text.id));
+      state.shapes = state.shapes.filter((shape) => !ids.includes(shape.id));
+      state.polylines = state.polylines.filter((polyline) => !ids.includes(polyline.id));
+      state.images = state.images.filter((image) => !ids.includes(image.id));
+      state.selectedElementIds = state.selectedElementIds.filter((id) => !ids.includes(id));
+      state.selectedPolylineId =
+        state.selectedPolylineId && !ids.includes(state.selectedPolylineId) ? null : state.selectedPolylineId;
     }
   }
 });
@@ -300,7 +312,8 @@ export const {
   setSelectedPolylineId,
   sync,
   setInitialViewBoxScale,
-  setVisibilityOffset
+  setVisibilityOffset,
+  deleteElements
 } = slice.actions;
 
 export const selectPolylineById = (id: string) =>
