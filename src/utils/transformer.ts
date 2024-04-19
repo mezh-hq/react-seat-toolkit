@@ -70,7 +70,9 @@ export const domPolylineToJSON = () => {
           const [x, y] = point.split(",");
           return { x: +x, y: +y };
         }),
-      section: polyline.attr(dataAttributes.section)
+      section: polyline.attr(dataAttributes.section),
+      color: rgbToHex(polyline.style("color")) || polyline.attr("color"),
+      stroke: rgbToHex(polyline.style("stroke")) || polyline.attr("stroke")
     };
   });
 };
