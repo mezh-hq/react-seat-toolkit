@@ -1,6 +1,7 @@
 import { drag, select } from "d3";
 import { dataAttributes } from "@/constants";
 import { resizeCursors } from "@/hooks/interactions";
+import store from "@/store";
 import { IPopulatedSeat } from "@/types";
 import { d3Extended } from "@/utils";
 import Booth from "./booth";
@@ -28,6 +29,53 @@ export const elements = {
   [ElementType.Image]: Image
 };
 
+const repositionSeat = (seat, dx, dy) => {
+  const x = +seat.attr("cx") + dx;
+  const y = +seat.attr("cy") + dy;
+
+  seat.attr("cx", x);
+  seat.attr("cy", y);
+
+  const label = d3Extended.selectById(`${seat.attr("id")}-label`);
+  label.attr("x", +label.attr("x") + dx);
+  label.attr("y", +label.attr("y") + dy);
+};
+
+const repositionText = (text, dx, dy) => {
+  text.attr("x", +text.attr("x") + dx);
+  text.attr("y", +text.attr("y") + dy);
+};
+
+const repositionShape = (shape, dx, dy) => {
+  if (resizeCursors.includes(shape.style("cursor"))) return;
+  const x = +shape.attr("x") + dx;
+  const y = +shape.attr("y") + dy;
+  shape.attr("x", x);
+  shape.attr("y", y);
+};
+
+const repositionPolyline = (polyline, dx, dy) => {
+  const points = polyline
+    .attr("points")
+    .split(" ")
+    .map((point) => {
+      const [x, y] = point.split(",");
+      return `${+x + dx},${+y + dy}`;
+    })
+    .join(" ");
+  polyline.attr("points", points);
+};
+
+const repositionElements = (currentElem, repositionFn, elementType: string, dx: number, dy: number) => {
+  repositionFn(currentElem, dx, dy);
+  store.getState().editor.selectedElementIds.forEach((id: string) => {
+    if (currentElem.attr("id") !== id) {
+      const element = d3Extended.selectById(id);
+      if (element.attr(dataAttributes.elementType) === elementType) repositionFn(element, dx, dy);
+    }
+  });
+};
+
 export const handleDrag = drag().on("drag", function (event) {
   const me = select(this);
   const controls = d3Extended.selectById(`${me.attr("id")}-controls`);
@@ -41,49 +89,19 @@ export const handleDrag = drag().on("drag", function (event) {
 });
 
 export const handleSeatDrag = drag().on("drag", function (event) {
-  const me = select(this);
-
-  const x = +me.attr("cx") + event.dx;
-  const y = +me.attr("cy") + event.dy;
-
-  me.attr("cx", x);
-  me.attr("cy", y);
-
-  const controls = d3Extended.selectById(`${me.attr("id")}-controls`);
-  controls.attr("cx", x);
-  controls.attr("cy", y);
-
-  const label = d3Extended.selectById(`${me.attr("id")}-label`);
-  label.attr("x", +label.attr("x") + event.dx);
-  label.attr("y", +label.attr("y") + event.dy);
+  repositionElements(select(this), repositionSeat, ElementType.Seat, event.dx, event.dy);
 });
 
 export const handleTextDrag = drag().on("drag", function (event) {
-  const me = select(this);
-  me.attr("x", +me.attr("x") + event.dx);
-  me.attr("y", +me.attr("y") + event.dy);
+  repositionElements(select(this), repositionText, ElementType.Text, event.dx, event.dy);
 });
 
 export const handleShapeDrag = drag().on("drag", function (event) {
-  const me = select(this);
-  if (resizeCursors.includes(me.style("cursor"))) return;
-  const x = +me.attr("x") + event.dx;
-  const y = +me.attr("y") + event.dy;
-  me.attr("x", x);
-  me.attr("y", y);
+  repositionElements(select(this), repositionShape, ElementType.Shape, event.dx, event.dy);
 });
 
 export const handlePolylineDrag = drag().on("drag", function (event) {
-  const me = select(this);
-  const points = me
-    .attr("points")
-    .split(" ")
-    .map((point) => {
-      const [x, y] = point.split(",");
-      return `${+x + event.dx},${+y + event.dy}`;
-    })
-    .join(" ");
-  me.attr("points", points);
+  repositionElements(select(this), repositionPolyline, ElementType.Polyline, event.dx, event.dy);
 });
 
 export const showSeat = (seat: d3.Selection<Element, {}, HTMLElement, any>) => {
