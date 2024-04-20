@@ -1,7 +1,7 @@
 import { drag, select } from "d3";
 import { dataAttributes } from "@/constants";
 import { resizeCursors } from "@/hooks/interactions";
-import store from "@/store";
+import { default as store } from "@/store";
 import { IPopulatedSeat } from "@/types";
 import { d3Extended } from "@/utils";
 import Booth from "./booth";
