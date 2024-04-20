@@ -81,7 +81,7 @@ const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
     if (selectedTool == Tool.Pan) {
       selection.call(zoom);
     } else {
-      selection.call(zoom).on("wheel.zoom", (e) => {
+      const zoomSelection = selection.call(zoom).on("wheel.zoom", (e) => {
         e.preventDefault();
         const currentZoom = selection.property("__zoom").k || 1;
         if (e.ctrlKey) {
@@ -91,6 +91,7 @@ const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
           zoom.translateBy(selection, -(e.deltaX / currentZoom), -(e.deltaY / currentZoom));
         }
       });
+      if (props.mode !== "user") zoomSelection.on("mousedown.zoom", null);
     }
   }, [selectedTool]);
 

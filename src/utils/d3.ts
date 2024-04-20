@@ -1,4 +1,4 @@
-import { pointer, select, selectAll, selection, zoom, zoomIdentity, zoomTransform } from "d3";
+import { drag, pointer, select, selectAll, selection, zoom, zoomIdentity, zoomTransform } from "d3";
 
 declare module "d3" {
   interface Selection<GElement extends d3.BaseType, Datum, PElement extends d3.BaseType, PDatum> {
@@ -39,6 +39,7 @@ selection.prototype.forEach = function (callback) {
 };
 
 export const d3Extended = {
+  drag,
   pointer,
   select,
   selectAll,

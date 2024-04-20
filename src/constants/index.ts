@@ -12,6 +12,7 @@ export const ids = {
   toolbar: "stk-tool-bar",
   workspace: "stk-workspace",
   workspaceContainer: "stk-workspace-container",
+  workspaceSelection: "stk-workspace-selection",
   zoomControls: "stk-zoom-controls",
   panControls: "stk-pan-controls",
   visibilityControls: "stk-visibility-controls",
@@ -24,6 +25,7 @@ export const selectors = {
 };
 
 export const dataAttributes = {
+  element: "data-stk-element",
   elementType: "data-element-type",
   shape: "data-shape",
   category: "data-category",

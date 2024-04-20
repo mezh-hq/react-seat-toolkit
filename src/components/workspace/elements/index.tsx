@@ -131,6 +131,7 @@ export const Element: React.FC<IElementProps> = ({
       consumer={consumer}
       isSelected={isSelected}
       {...{ [dataAttributes.elementType]: type }}
+      {...{ [dataAttributes.element]: "true" }}
     />
   );
 };
