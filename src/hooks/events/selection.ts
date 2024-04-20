@@ -9,8 +9,9 @@ const useSelection = () => {
   useLayoutEffect(() => {
     const svg = d3Extended.selectById(ids.workspace);
     if (svg.node()) {
-      const toolbarWidth = document.getElementById(ids.toolbar)?.clientWidth ?? 0;
-      const operationBarHeight = document.getElementById(ids.operationBar)?.clientHeight ?? 0;
+      const { top: workspaceTop, left: workspaceLeft } = d3Extended.selectionBounds(
+        d3Extended.selectById(ids.workspace)
+      );
       const selectionRect = {
         element: null,
         currentY: 0,
@@ -59,8 +60,8 @@ const useSelection = () => {
           this.update(newX, newY);
         },
         update: function (newX: number, newY: number) {
-          this.currentX = newX - (+this.element?.attr("width") > 2 ? toolbarWidth : 0);
-          this.currentY = newY - (+this.element?.attr("height") > 2 ? operationBarHeight : 0);
+          this.currentX = newX - (+this.element?.attr("width") > 2 ? workspaceLeft : 0);
+          this.currentY = newY - (+this.element?.attr("height") > 2 ? workspaceTop : 0);
           const attributes = this.getNewAttributes();
           Object.keys(attributes).forEach((key) => {
             this.element.attr(key, attributes[key]);

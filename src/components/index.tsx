@@ -15,7 +15,10 @@ const Designer: React.FC<ISTKProps> = (props) => {
   return (
     <>
       <div
-        className={twMerge("bg-white h-full min-h-[85vh] flex flex-col", props.styles?.root?.className)}
+        className={twMerge(
+          "bg-white h-full min-h-[85vh] flex flex-col overflow-x-hidden",
+          props.styles?.root?.className
+        )}
         style={props?.styles?.root?.properties}
       >
         <Operations {...props} />
