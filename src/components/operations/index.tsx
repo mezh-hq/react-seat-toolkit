@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { ChangeEvent, useMemo } from "react";
 import { Cog } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
@@ -7,7 +7,6 @@ import { store } from "@/store";
 import { locationPlaceholder, setLocation, toggleControls } from "@/store/reducers/editor";
 import { ISTKProps } from "@/types";
 import { stateToJSON } from "@/utils";
-import { Body } from "../core";
 import { default as ExportAction } from "./export-button";
 import { default as GridSwitch } from "./grid-switch";
 
@@ -26,14 +25,8 @@ const Operations: React.FC<ISTKProps> = ({
 
   const OperationTriggerIcon = operationTriggerIcon ?? Cog;
 
-  const onLocationChange = (e) => {
-    const location = e.target.innerText;
-    console.log(location);
-    if (!location) {
-      document.getElementById(ids.location).innerText = inputPlaceholder;
-      return store.dispatch(setLocation(inputPlaceholder));
-    }
-    store.dispatch(setLocation(location));
+  const onLocationChange = (e: ChangeEvent<HTMLInputElement>) => {
+    store.dispatch(setLocation(e.target.value));
   };
 
   const onExportJson = () => {
@@ -56,20 +49,18 @@ const Operations: React.FC<ISTKProps> = ({
       )}
       style={styles?.root?.properties}
     >
-      <Body
+      <input
         id={ids.location}
-        contentEditable="true"
-        suppressContentEditableWarning={true}
         className={twMerge(
-          "text-xl font-bold outline-none",
+          "bg-transparent font-bold outline-none text-xl sm:text-[22px] lg:text-[24px]",
           location === inputPlaceholder && "opacity-60",
           styles?.input?.className
         )}
+        value={location}
+        placeholder={inputPlaceholder}
         style={styles?.input?.properties}
-        onInput={onLocationChange}
-      >
-        {inputPlaceholder}
-      </Body>
+        onChange={onLocationChange}
+      />
       <div className="flex justify-between items-center gap-5">
         {showGridSwitch && <GridSwitch className="mr-2" />}
         <ExportAction text={exportButtonText} onExport={onExportJson} styles={props.styles} />
