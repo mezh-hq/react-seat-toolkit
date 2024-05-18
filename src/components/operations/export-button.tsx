@@ -9,7 +9,7 @@ import { Button, IconButton } from "../core";
 
 interface IExportActionProps {
   text?: string;
-  onExport?: (data: ISTKData) => Promise<void> | void;
+  onExport?: (data: ISTKData) => unknown;
   styles?: IStyles;
 }
 
