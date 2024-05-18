@@ -84,6 +84,8 @@ export interface ISTKProps {
     maxSeatSelectionCount?: number;
     /** Maximum size of an image which can be added to the workspace in bytes */
     maxImageSize?: number;
+    /** Overrides the default input placeholder at the top left corner of the screen */
+    locationInputPlaceholder?: string;
   };
   plugins?: IPlugins;
 }

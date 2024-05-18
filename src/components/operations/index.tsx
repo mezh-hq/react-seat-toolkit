@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Cog } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
@@ -13,11 +14,13 @@ import { default as GridSwitch } from "./grid-switch";
 const onCogClick = () => store.dispatch(toggleControls());
 
 const Operations: React.FC<ISTKProps> = ({
-  options: { showGridSwitch = true, exportButtonText, operationTriggerIcon } = {},
+  options: { showGridSwitch = true, exportButtonText, operationTriggerIcon, locationInputPlaceholder } = {},
   events,
   ...props
 }) => {
   const location = useSelector((state: any) => state.editor.location);
+
+  const inputPlaceholder = useMemo(() => locationInputPlaceholder ?? locationPlaceholder, [locationInputPlaceholder]);
 
   const styles = props.styles?.operations;
 
@@ -25,9 +28,10 @@ const Operations: React.FC<ISTKProps> = ({
 
   const onLocationChange = (e) => {
     const location = e.target.innerText;
+    console.log(location);
     if (!location) {
-      document.getElementById("stk-location-name").innerText = locationPlaceholder;
-      return store.dispatch(setLocation(locationPlaceholder));
+      document.getElementById(ids.location).innerText = inputPlaceholder;
+      return store.dispatch(setLocation(inputPlaceholder));
     }
     store.dispatch(setLocation(location));
   };
@@ -58,13 +62,13 @@ const Operations: React.FC<ISTKProps> = ({
         suppressContentEditableWarning={true}
         className={twMerge(
           "text-xl font-bold outline-none",
-          location === locationPlaceholder && "opacity-60",
+          location === inputPlaceholder && "opacity-60",
           styles?.input?.className
         )}
         style={styles?.input?.properties}
         onInput={onLocationChange}
       >
-        {locationPlaceholder}
+        {inputPlaceholder}
       </Body>
       <div className="flex justify-between items-center gap-5">
         {showGridSwitch && <GridSwitch className="mr-2" />}
