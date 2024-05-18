@@ -51,6 +51,7 @@ const ExportAction: React.FC<IExportActionProps> = ({ text = "Export JSON", onEx
       icon={<Braces />}
       label={text}
       onClick={onExportJson}
+      loading={loading}
       className={styles?.core?.button?.className}
       style={styles?.core?.button?.properties}
     />

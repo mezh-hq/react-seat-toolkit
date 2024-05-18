@@ -6,7 +6,6 @@ import { ids } from "@/constants";
 import { store } from "@/store";
 import { locationPlaceholder, setLocation, toggleControls } from "@/store/reducers/editor";
 import { ISTKProps } from "@/types";
-import { stateToJSON } from "@/utils";
 import { default as ExportAction } from "./export-button";
 import { default as GridSwitch } from "./grid-switch";
 
@@ -27,17 +26,6 @@ const Operations: React.FC<ISTKProps> = ({
 
   const onLocationChange = (e: ChangeEvent<HTMLInputElement>) => {
     store.dispatch(setLocation(e.target.value));
-  };
-
-  const onExportJson = () => {
-    const json = stateToJSON();
-    if (events?.onExport) {
-      events?.onExport(json);
-    } else {
-      console.log(json);
-      sessionStorage.setItem("stk-data", JSON.stringify(json));
-      navigator.clipboard.writeText(JSON.stringify(json));
-    }
   };
 
   return (
@@ -63,7 +51,7 @@ const Operations: React.FC<ISTKProps> = ({
       />
       <div className="flex justify-between items-center gap-5">
         {showGridSwitch && <GridSwitch className="mr-2" />}
-        <ExportAction text={exportButtonText} onExport={onExportJson} styles={props.styles} />
+        <ExportAction text={exportButtonText} onExport={events?.onExport} styles={props.styles} />
         <OperationTriggerIcon
           id={ids.operationTrigger}
           size={35}
