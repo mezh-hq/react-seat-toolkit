@@ -86,8 +86,6 @@ export interface ISTKProps {
     maxImageSize?: number;
     /** Overrides the default input placeholder at the top left corner of the screen */
     locationInputPlaceholder?: string;
-    /** Loads a blank workspace */
-    blank?: boolean;
   };
   plugins?: IPlugins;
 }
