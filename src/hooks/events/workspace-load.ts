@@ -14,7 +14,9 @@ const useWorkspaceLoad = (props: ISTKProps) => {
     if (props.data) {
       store.dispatch(sync(props.data));
     } else {
-      store.dispatch(initializeElements());
+      if (!props.options?.blank) {
+        store.dispatch(initializeElements());
+      }
     }
     props.events?.onWorkspaceLoad?.();
   }, [props.data]);

@@ -91,6 +91,9 @@ export const slice = createSlice({
     resetWorkspace: (state) => {
       state.initialized = false;
       state.dataSynced = false;
+      Object.keys(initialState).forEach((key) => {
+        state[key] = initialState[key];
+      });
     },
     setCursor: (state, action) => {
       state.cursor = action.payload;
