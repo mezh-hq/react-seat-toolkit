@@ -8,6 +8,7 @@ import { Input, Popover, PopoverContent, PopoverTrigger } from "@/components/cor
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { addCategory, deleteCategory, updateCategory, updateSeats } from "@/store/reducers/editor";
+import { ISTKProps } from "@/types";
 import { Callout, Caption, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../core";
 
 const onAddCategory = () => store.dispatch(addCategory(undefined));
@@ -23,7 +24,9 @@ const onSectionSelect = (e: MouseEvent<HTMLButtonElement>) => {
   store.dispatch(updateCategory({ id: categoryId, section: +sectionId === 0 ? null : sectionId }));
 };
 
-const Categorizer = ({ firstElement, selectedElementIds }) => {
+type IControlProps = Pick<ISTKProps, "options" | "styles">;
+
+const Categorizer = ({ firstElement, selectedElementIds, options }: IControlProps & Record<string, any>) => {
   const categories = useSelector((state: any) => state.editor.categories);
   const sections = useSelector((state: any) => state.editor.sections);
 
@@ -101,11 +104,13 @@ const Categorizer = ({ firstElement, selectedElementIds }) => {
                         ))}
                       </PopoverContent>
                     </Popover>
-                    <Trash2
-                      size={22}
-                      className="hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium"
-                      onClick={() => onDeleteCategory(category.id)}
-                    />
+                    {!options?.disableCategoryDelete && (
+                      <Trash2
+                        size={22}
+                        className="hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium"
+                        onClick={() => onDeleteCategory(category.id)}
+                      />
+                    )}
                   </div>
                 ))}
               </div>

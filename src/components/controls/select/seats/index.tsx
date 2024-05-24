@@ -3,12 +3,15 @@ import { Button, Label, RadioGroup, RadioGroupItem } from "@/components/core";
 import { dataAttributes, seatStatusColors } from "@/constants";
 import { store } from "@/store";
 import { updateSeatLabels, updateSeats } from "@/store/reducers/editor";
+import { ISTKProps } from "@/types";
 import { SeatStatus } from "@/types/elements";
 import { d3Extended } from "@/utils";
 import { default as ControlInput } from "../../control-input";
 import { default as Categorizer } from "./categorizer";
 
-const SeatSelectControls = () => {
+type IControlProps = Pick<ISTKProps, "options" | "styles">;
+
+const SeatSelectControls = (props: IControlProps) => {
   const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
 
   const firstElement = document.getElementById(selectedElementIds[0]);
@@ -28,7 +31,7 @@ const SeatSelectControls = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <Categorizer firstElement={firstElement} selectedElementIds={selectedElementIds} />
+      <Categorizer firstElement={firstElement} selectedElementIds={selectedElementIds} {...props} />
       <div className="grid grid-cols-3 items-center gap-4">
         <ControlInput
           key={firstElementLabel?.textContent}

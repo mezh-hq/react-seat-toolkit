@@ -6,6 +6,7 @@ import { Input, Popover, PopoverContent, PopoverTrigger } from "@/components/cor
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { addSection, deleteSection, updatePolylines, updateSection } from "@/store/reducers/editor";
+import { ISTKProps } from "@/types";
 import { Callout, Caption, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../core";
 
 const onAddSection = () => store.dispatch(addSection(undefined));
@@ -14,7 +15,9 @@ const onDeleteSection = (id: string) => store.dispatch(deleteSection(id));
 
 const onUpdateSection = debounce((section) => store.dispatch(updateSection(section)), 150);
 
-const SectionSelector = ({ firstElement, selectedElementIds }) => {
+type IControlProps = Pick<ISTKProps, "options" | "styles">;
+
+const SectionSelector = ({ firstElement, selectedElementIds, options }: IControlProps & Record<string, any>) => {
   const sections = useSelector((state: any) => state.editor.sections);
   return (
     <>
@@ -73,14 +76,16 @@ const SectionSelector = ({ firstElement, selectedElementIds }) => {
                               : onUpdateSection({ ...section, freeSeating: true })
                           }
                         />
-                        <Trash2
-                          size={22}
-                          className={twMerge(
-                            "hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium",
-                            index === 0 && "opacity-0 pointer-events-none"
-                          )}
-                          onClick={() => onDeleteSection(section.id)}
-                        />
+                        {!options?.disableSectionDelete && (
+                          <Trash2
+                            size={22}
+                            className={twMerge(
+                              "hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium",
+                              index === 0 && "opacity-0 pointer-events-none"
+                            )}
+                            onClick={() => onDeleteSection(section.id)}
+                          />
+                        )}
                       </div>
                     )
                 )}
