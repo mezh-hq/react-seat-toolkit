@@ -60,21 +60,24 @@ export const domShapesToJSON = () => {
 };
 
 export const domPolylineToJSON = () => {
-  return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`).map((polyline) => {
-    return {
-      id: polyline.attr("id"),
-      points: polyline
-        .attr("points")
-        .split(" ")
-        .map((point) => {
-          const [x, y] = point.split(",");
-          return { x: +x, y: +y };
-        }),
-      section: polyline.attr(dataAttributes.section),
-      color: rgbToHex(polyline.style("color")) || polyline.attr("color"),
-      stroke: rgbToHex(polyline.style("stroke")) || polyline.attr("stroke")
-    };
-  });
+  return d3Extended
+    .selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`)
+    .map((polyline) => {
+      return {
+        id: polyline.attr("id"),
+        points: polyline
+          .attr("points")
+          .split(" ")
+          .map((point) => {
+            const [x, y] = point.split(",");
+            return { x: +x, y: +y };
+          }),
+        section: polyline.attr(dataAttributes.section),
+        color: rgbToHex(polyline.style("color")) || polyline.attr("color"),
+        stroke: rgbToHex(polyline.style("stroke")) || polyline.attr("stroke")
+      };
+    })
+    .filter((polyline) => polyline.points.length > 1);
 };
 
 export const domImagesToJSON = () => {
