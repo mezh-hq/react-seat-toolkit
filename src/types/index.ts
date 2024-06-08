@@ -87,6 +87,8 @@ export interface ISTKProps {
     /** Overrides the default input placeholder at the top left corner of the screen */
     locationInputPlaceholder?: string;
     disableCategoryDelete?: boolean;
+    /** Disables category deletion if there are reserved seats falling under the category */
+    disableCategoryDeleteIfReserved?: boolean;
     disableSectionDelete?: boolean;
   };
   plugins?: IPlugins;
