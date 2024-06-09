@@ -254,10 +254,10 @@ export const slice = createSlice({
       state.selectedPolylineId = action.payload;
     },
     sync: (state, action) => {
-      const { name, sections, ...data } = action.payload as ISTKData;
+      const { name, sections, categories, ...data } = action.payload as ISTKData;
       state.location = name ?? state.location;
       state.sections = sections ? [noSection, ...sections] : state.sections;
-      state.categories = data.categories ? [noCategory, ...data.categories] : state.categories;
+      state.categories = categories ? [noCategory, ...categories] : state.categories;
       state.initialViewBoxScale = data.workspace?.initialViewBoxScale;
       state.initialViewBoxScaleForWidth = data.workspace?.initialViewBoxScaleForWidth;
       state.visibilityOffset = data.workspace?.visibilityOffset ?? state.visibilityOffset;
