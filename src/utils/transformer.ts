@@ -101,7 +101,7 @@ export const stateToJSON = () => {
   const state = store.getState().editor;
   return {
     name: state.location,
-    categories: state.categories,
+    categories: state.categories.slice(1),
     sections: state.sections.slice(1),
     seats: domSeatsToJSON(),
     booths: domBoothsToJSON(),

@@ -59,6 +59,9 @@ const Seat: React.FC<ISeatProps> = forwardRef(
           if (categoryObject) {
             seat.style("color", categoryObject.color);
             seatLabel?.style("stroke", categoryObject.textColor);
+          } else {
+            seat.style("color", seatStatusColors[status].background);
+            seatLabel?.style("stroke", seatStatusColors[status].label);
           }
         }
       }

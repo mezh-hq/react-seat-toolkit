@@ -55,6 +55,7 @@ const Categorizer = ({ firstElement, selectedElementIds, options }: IControlProp
               </div>
               <div className="flex flex-col gap-4">
                 {categories.map((category) => {
+                  if (category.id === "0") return null;
                   const displayDisabledDelete =
                     options?.disableCategoryDeleteIfReserved &&
                     seats?.some(
@@ -133,7 +134,9 @@ const Categorizer = ({ firstElement, selectedElementIds, options }: IControlProp
       <Select
         key={selectedElementIds?.join(",")}
         onValueChange={(value) => {
-          store.dispatch(updateSeats({ ids: selectedElementIds, data: { category: value } }));
+          store.dispatch(
+            updateSeats({ ids: selectedElementIds, data: { category: +value === 0 ? undefined : value } })
+          );
         }}
         defaultValue={firstElement?.getAttribute?.(dataAttributes.category) || undefined}
       >
@@ -144,7 +147,12 @@ const Categorizer = ({ firstElement, selectedElementIds, options }: IControlProp
           {categories.map((category) => (
             <SelectItem key={category.id} value={category.id}>
               <div className="flex gap-3 items-center">
-                <div className="h-4 w-4 rounded-full" style={{ backgroundColor: category.color }} /> {category.name}
+                {category.id === "0" ? (
+                  <div className="w-4 h-0.5 bg-black" />
+                ) : (
+                  <div className="h-4 w-4 rounded-full" style={{ backgroundColor: category.color }} />
+                )}{" "}
+                {category.name}
               </div>
             </SelectItem>
           ))}

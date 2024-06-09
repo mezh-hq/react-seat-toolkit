@@ -16,6 +16,13 @@ const noSection = {
   stroke: "#ffffff"
 };
 
+const noCategory = {
+  id: "0",
+  name: "No Category",
+  color: "#ffffff",
+  textColor: "#ffffff"
+};
+
 const initialState = {
   initialized: false,
   dataSynced: false,
@@ -26,6 +33,7 @@ const initialState = {
   selectedElementIds: [],
   lastDeselectedElementId: null,
   categories: [
+    noCategory,
     {
       id: uuidv4(),
       name: "Standard",
@@ -249,6 +257,7 @@ export const slice = createSlice({
       const { name, sections, ...data } = action.payload as ISTKData;
       state.location = name ?? state.location;
       state.sections = sections ? [noSection, ...sections] : state.sections;
+      state.categories = data.categories ? [noCategory, ...data.categories] : state.categories;
       state.initialViewBoxScale = data.workspace?.initialViewBoxScale;
       state.initialViewBoxScaleForWidth = data.workspace?.initialViewBoxScaleForWidth;
       state.visibilityOffset = data.workspace?.visibilityOffset ?? state.visibilityOffset;
