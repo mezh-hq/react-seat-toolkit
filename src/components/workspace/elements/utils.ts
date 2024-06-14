@@ -97,7 +97,9 @@ export const handleTextDrag = drag().on("drag", function (event) {
 });
 
 export const handleShapeDrag = drag().on("drag", function (event) {
-  repositionElements(select(this), repositionShape, ElementType.Shape, event.dx, event.dy);
+  const me = select(this);
+  if (me.attr(dataAttributes.objectLock) === "true") return;
+  repositionElements(me, repositionShape, ElementType.Shape, event.dx, event.dy);
 });
 
 export const handlePolylineDrag = drag().on("drag", function (event) {

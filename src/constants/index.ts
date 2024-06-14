@@ -34,7 +34,8 @@ export const dataAttributes = {
   sectionFreeSeating: "data-section-free-seating",
   visibilityOffset: "data-seat-visibility-offset",
   initialViewBoxScaleForWidth: "data-initial-view-box-scale-for-width",
-  embraceOffset: "data-embrace-offset"
+  embraceOffset: "data-embrace-offset",
+  objectLock: "data-object-lock"
 };
 
 export const seatStatusColors = {
