@@ -55,7 +55,7 @@
     "@interactjs/actions": "1.10.26",
     "@interactjs/auto-start": "1.10.26",
     "@interactjs/interact": "1.10.26",
-    "@mezh-hq/react-gridlines": "1.0.0",
+    "@mezh-hq/react-gridlines": "1.0.1",
     "@radix-ui/react-checkbox": "1.0.4",
     "@radix-ui/react-label": "2.0.2",
     "@radix-ui/react-popover": "1.0.7",
