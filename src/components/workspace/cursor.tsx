@@ -5,9 +5,7 @@ import { ids } from "@/constants";
 import { resizeCursors } from "@/hooks/interactions";
 import { isWithinBounds } from "@/utils";
 
-const styles = `#stk-workspace {
-  cursor: none;
-}`;
+const styles = `#stk-workspace { cursor: none; }`;
 
 export const Cursor = () => {
   const [cursorX, setCursorX] = useState(0);
