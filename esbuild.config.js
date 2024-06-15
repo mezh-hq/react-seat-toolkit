@@ -30,6 +30,7 @@ const options = {
     ".png": "file"
   },
   plugins: [cleaner],
+  legalComments: "none",
   external: ["react", "react-dom", "@dreamworld/addon-redux"]
 };
 
