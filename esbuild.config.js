@@ -49,6 +49,8 @@ build({
     "@radix-ui/react-popover",
     "@radix-ui/react-radio-group",
     "@radix-ui/react-select",
+    "@radix-ui/react-tooltip",
+    "class-variance-authority",
     "lodash",
     "tailwind-merge"
   ]
