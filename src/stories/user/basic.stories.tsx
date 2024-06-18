@@ -1,16 +1,14 @@
 import SeatToolkit from "@/index";
+import options from "../options";
 
 export default {
-  title: "User Mode",
+  title: "User/Basic",
   component: SeatToolkit,
-  parameters: {
-    layout: "fullscreen"
-  },
-  argTypes: {}
+  ...options
 };
 
-export const Default = {
-  render: () => (
+export const Story = {
+  render: (props) => (
     <SeatToolkit
       mode={"user"}
       data={{
@@ -434,12 +432,13 @@ export const Default = {
         onSeatHover: (seat, coords) => console.log("hovered", seat, coords),
         onSeatLeave: (seat, coords) => console.log("left", seat, coords)
       }}
+      {...props}
     />
   )
 };
 
 export const WithInitialViewBoxTransform = {
-  render: () => (
+  render: (props) => (
     <SeatToolkit
       mode={"user"}
       data={{
@@ -859,6 +858,7 @@ export const WithInitialViewBoxTransform = {
         images: [],
         workspace: { initialViewBoxScale: 0.63822814939213, visibilityOffset: 0 }
       }}
+      {...props}
     />
   )
 };

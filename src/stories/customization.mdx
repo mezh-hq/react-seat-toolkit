@@ -1,0 +1,32 @@
+import { Meta } from "@storybook/blocks";
+import { Button } from "../components";
+
+
+
+<Meta title="Customization" />
+
+<h1>Customization</h1>
+
+<h4>React Seat Toolkit is highly customizable. You can change almost every aspect of it through its `styles` prop</h4>
+
+<h4>Here is an example of how you can override its default styles:</h4>
+
+```jsx
+import { SeatToolkit } from "@mezh-hq/react-seat-toolkit";
+
+return <SeatToolkit 
+  mode="designer"
+  styles={{
+    root: {
+      className: "bg-gray-100",
+      style: {
+        padding: "20px",
+        borderRadius: "10px",
+        boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)"
+      }
+    }
+  }}
+/>
+```
+
+<h4>For a full list of supported styles please have a look at its type definitions</h4>

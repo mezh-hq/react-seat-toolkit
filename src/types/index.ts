@@ -38,9 +38,9 @@ export interface IEvents {
   /** Only applicable in user mode. Fired when the user tries to select more seats than the maxSeatSelectionCount */
   onMaxSeatSelectionCountReached?: () => void;
   onWorkspaceHover?: () => void;
+  onWorkspaceLoad?: () => void;
   onSectionClick?: (section: ISection) => void;
   onExport?: (data: ISTKData) => unknown;
-  onWorkspaceLoad?: () => void;
   /** Only used when the reload button is enabled */
   onReload?: () => void;
 }

@@ -3,11 +3,11 @@ import { Button } from "../components";
 
 export const command = "bun install @mezh-hq/react-seat-toolkit"
 
-export const copy = () => {
+export function copy () {
   navigator.clipboard.writeText(command);
-};
+}
 
-<Meta title="Configure your project" />
+<Meta title="Installation" />
 
 <div className="h-full w-full flex flex-col justify-center items-center gap-12 text-center p-3 md:p-12">
   <span className="w-10/12 !text-[30px] md:!text-[48px] lg:!text-[54px] text-center font-bold tracking-[-2px]"> Complete toolkit for seat design</span>

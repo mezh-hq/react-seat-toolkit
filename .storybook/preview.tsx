@@ -1,6 +1,17 @@
+import React from 'react';
 import type { Preview } from '@storybook/react';
+import { Toaster } from 'sonner';
 import '@/styles/index.css';
 import '@/styles/storybook.css';
+
+const withToaster = (Story, context) => {
+  return (
+    <>
+      <Toaster />
+      <Story {...context} />
+    </>
+  );
+}
 
 const preview: Preview = {
   parameters: {
@@ -11,10 +22,13 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    deepControls: { enabled: true },
     reactRouter: {},
     options: {}
   },
-  decorators: [],
+  decorators: [
+    withToaster
+  ],
 };
 
 export default preview;
