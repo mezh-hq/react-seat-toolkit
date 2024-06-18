@@ -32,3 +32,22 @@ jobs:
         env:
           TAG: latest
           NPM_ACCESS_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+  site-release:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository 🛎️
+        uses: actions/checkout@v4
+
+      - name: Build 🏗️
+        uses: sliit-foss/actions/bun/build@v1.1
+        with:
+          storybooks: true
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./storybook-static
+          branch: main
+          repository-name: mezh-hq.github.io
+          token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
