@@ -49,5 +49,5 @@ jobs:
         with:
           folder: ./storybook-static
           branch: main
-          repository-name: mezh-hq.github.io
+          repository-name: mezh-hq/mezh-hq.github.io
           token: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
