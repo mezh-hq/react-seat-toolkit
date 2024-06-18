@@ -14,9 +14,9 @@
 
 ---
 
-React UI library to design and render seat layouts. The library is still under active development and not yet ready for production use until the next major release (v1.0.0).
+### React UI library to design and render seat layouts.
 
-## Storybook: [https://mezh-hq.github.io](https://mezh-hq.github.io)
+### Storybook: [https://mezh-hq.github.io](https://mezh-hq.github.io)
 
 <br/>
 
@@ -72,13 +72,11 @@ React UI library to design and render seat layouts. The library is still under a
     - Multiple element selection and deselection ✓
     - Bring elements to front or back ✓
 
-- **Responsive**: The layout is responsive and can be viewed on any device 🛠️
-
-- **Preview**: Preview the layout in a separate window 🛠️
+- **Responsive**: The layout is responsive and can be viewed on any device ✓
 
 - **Designer mode and User mode**: Switch between designer and user mode to enable or disable customization ✓
 
-- **Custom styles**: Override the default styles to match your application's theme 🛠️
+- **Custom styles**: Override the default styles to match your application's theme ✓
 
 ## Installation
 
