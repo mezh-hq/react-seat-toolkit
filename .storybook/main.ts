@@ -1,4 +1,5 @@
 import { mergeConfig } from 'vite';
+import { default as commonjs } from 'vite-plugin-commonjs'
 import { default as path } from 'path';
 import type { StorybookConfig } from '@storybook/react-vite';
 
@@ -28,6 +29,9 @@ const config: StorybookConfig = {
           "@/": `${path.resolve(__dirname, "../src")}/`
         }
       },
+      plugins: [
+        commonjs()
+      ]
     });
   },
 };
