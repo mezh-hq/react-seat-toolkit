@@ -39,8 +39,8 @@ jobs:
       - name: Checkout repository 🛎️
         uses: actions/checkout@v4
 
-      - name: Remove patch directory 🧹
-        run: rm -rf ./patches
+      - name: Fix store creation 🚧
+        run: sed -i 's/await import("@dreamworld\/addon-redux").enhancer/null/g' src/store/index.ts
 
       - name: Build 🏗️
         uses: sliit-foss/actions/bun/build@v1.1
