@@ -44,6 +44,12 @@ jobs:
         with:
           storybooks: true
 
+      - name: Create .nojekyll file 🚧
+        run: touch ./storybook-static/.nojekyll
+  
+      - name: Fix 404 on page reload 🚧
+        run: cp storybook-static/index.html storybook-static/404.html
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
