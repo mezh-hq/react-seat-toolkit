@@ -24,7 +24,11 @@ const preview: Preview = {
     },
     deepControls: { enabled: true },
     reactRouter: {},
-    options: {}
+    options: {
+      storySort: {
+        order: ["Installation", "Customization"],
+      },
+    }
   },
   decorators: [
     withToaster
