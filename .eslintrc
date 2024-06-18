@@ -43,6 +43,14 @@
         "no-unused-vars": "off",
         "no-undef": "off"
       }
+    },
+    {
+      "files": [
+        "*.stories.tsx"
+      ],
+      "rules": {
+        "@typescript-eslint/no-loss-of-precision": "off"
+      }
     }
   ]
 }

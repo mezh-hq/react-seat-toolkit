@@ -1,5 +1,6 @@
 import SeatToolkit from "@/index";
-import options from "../options";
+import { STKMode } from "../_utils";
+import { options } from "../options";
 
 export default {
   title: "User/Basic",
@@ -10,9 +11,9 @@ export default {
 export const Story = {
   render: (props) => (
     <SeatToolkit
-      mode={"user"}
+      mode={STKMode.USER}
       data={{
-        name: "Type your location here",
+        name: "Basic Example",
         categories: [
           { id: "b0ae1b89-e4f7-445d-b749-c0caa56f3ee1", name: "Standard", color: "#000000", textColor: "#f7f7f7" },
           { id: "37c68982-e859-4d86-a4aa-e46edf48ba11", name: "Premium", color: "#FF0000", textColor: "#f7f7f7" },

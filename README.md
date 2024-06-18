@@ -16,15 +16,15 @@
 
 React UI library to design and render seat layouts. The library is still under active development and not yet ready for production use until the next major release (v1.0.0).
 
+## Storybook: [https://mezh-hq.github.io](https://mezh-hq.github.io)
+
 <br/>
+
+<img width="1440" alt="image" src="https://github.com/mezh-hq/react-seat-toolkit/assets/73662613/1c0a5c80-e402-46ed-bc17-364730122173">
 
 <p align="center">
   <img width="49.5%" alt="image" src="https://github.com/mezh-hq/react-seat-toolkit/assets/73662613/18a321a0-4ced-49c8-91eb-44605ea2ab9c">
   <img width="49.5%" alt="image" src="https://github.com/mezh-hq/react-seat-toolkit/assets/73662613/e43be42f-40b0-4aaf-8d3a-a538abc8b2c1">
-</p>
-<p align="center">
-  <img width="49.5%" alt="image" src="https://github.com/mezh-hq/react-seat-toolkit/assets/73662613/3478a449-165b-4b23-97d0-1c5a33b81e98">
-  <img width="49.5%" alt="image" src="https://github.com/mezh-hq/react-seat-toolkit/assets/73662613/0e023ffd-b4a2-4724-81f3-3ba74114b9a5">
 </p>
 
 ## Features
