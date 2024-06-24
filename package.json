@@ -98,7 +98,6 @@
     "bun-types": "1.0.21",
     "esbuild": "0.20.1",
     "eslint": "8.49.0",
-    "eslint-plugin-mdx": "2.1.0",
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-storybook": "0.6.13",

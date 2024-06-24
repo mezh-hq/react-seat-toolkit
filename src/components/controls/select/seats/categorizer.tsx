@@ -26,10 +26,100 @@ const onSectionSelect = (e: MouseEvent<HTMLButtonElement>) => {
 
 type IControlProps = Pick<ISTKProps, "options" | "styles">;
 
-const Categorizer = ({ firstElement, selectedElementIds, options }: IControlProps & Record<string, any>) => {
+export const CategoryManager = ({ options }: IControlProps) => {
   const categories = useSelector((state: any) => state.editor.categories);
   const sections = useSelector((state: any) => state.editor.sections);
   const seats = useSelector((state: any) => state.editor.seats);
+  return (
+    <div className="grid gap-4">
+      <div className="flex flex-col gap-2">
+        <h4 className="font-bold leading-none pb-1">Manage Categories</h4>
+        <hr />
+        <span className="hover:text-gray-500 cursor-pointer transition-all duration-medium" onClick={onAddCategory}>
+          + Add Category
+        </span>
+        <hr />
+      </div>
+      <div className="flex flex-col gap-4">
+        {categories.map((category) => {
+          if (category.id === "0") return null;
+          const displayDisabledDelete =
+            options?.disableCategoryDeleteIfReserved &&
+            seats?.some(
+              (seat: any) =>
+                seat.category === category.id &&
+                (seat.status === SeatStatus.Reserved || seat.status === SeatStatus.Locked)
+            );
+          return (
+            <div key={`category-${category.id}`} className="flex justify-start items-center gap-4">
+              <input
+                defaultValue={category.color}
+                type="color"
+                className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
+                onChange={(e) => onUpdateCategory({ ...category, color: e.target.value })}
+              />
+              <input
+                defaultValue={category.textColor}
+                type="color"
+                className="flex-shrink-0 w-6 h-6 p-0  bg-white square-color-input"
+                onChange={(e) => onUpdateCategory({ ...category, textColor: e.target.value })}
+              />
+              <Input
+                defaultValue={category.name}
+                className="h-8"
+                onChange={(e) => onUpdateCategory({ ...category, name: e.target.value })}
+              />
+              <Popover>
+                <PopoverTrigger>
+                  <LayoutTemplate
+                    size={22}
+                    className={twMerge(
+                      "flex-shrink-0 cursor-pointer transition-all duration-medium ",
+                      category.section ? "text-blue-600 hover:text-blue-500" : "hover:text-gray-500"
+                    )}
+                  />
+                </PopoverTrigger>
+                <PopoverContent className="bg-white w-auto p-0 mr-4">
+                  {sections.map((section) => (
+                    <PopoverClose
+                      key={section.id}
+                      className={twMerge(
+                        "w-full flex gap-3 items-center py-2 px-4 text-base cursor-pointer hover:bg-gray-100 transition-all duration-medium",
+                        section.id === "0" && "justify-center border-b pb-2",
+                        section.id === category.section && "bg-blue-50 "
+                      )}
+                      {...{ [dataAttributes.section]: section.id }}
+                      {...{ [dataAttributes.category]: category.id }}
+                      onClick={onSectionSelect}
+                    >
+                      {section.id !== "0" && (
+                        <div className="h-4 w-4 rounded-full" style={{ backgroundColor: section.color }} />
+                      )}
+                      {section.name}
+                    </PopoverClose>
+                  ))}
+                </PopoverContent>
+              </Popover>
+              {!options?.disableCategoryDelete && (
+                <Trash2
+                  size={22}
+                  className={twMerge(
+                    "hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium",
+                    displayDisabledDelete && "opacity-50 pointer-events-none"
+                  )}
+                  onClick={() => onDeleteCategory(category.id)}
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+const Categorizer = ({ firstElement, selectedElementIds, options }: IControlProps & Record<string, any>) => {
+  const categories = useSelector((state: any) => state.editor.categories);
   return (
     <>
       <div className="w-full flex justify-between items-center gap-12">
@@ -41,93 +131,7 @@ const Categorizer = ({ firstElement, selectedElementIds, options }: IControlProp
             </Caption>
           </PopoverTrigger>
           <PopoverContent className="bg-white w-80 py-4 mr-4">
-            <div className="grid gap-4">
-              <div className="flex flex-col gap-2">
-                <h4 className="font-bold leading-none pb-1">Manage Categories</h4>
-                <hr />
-                <span
-                  className="hover:text-gray-500 cursor-pointer transition-all duration-medium"
-                  onClick={onAddCategory}
-                >
-                  + Add Category
-                </span>
-                <hr />
-              </div>
-              <div className="flex flex-col gap-4">
-                {categories.map((category) => {
-                  if (category.id === "0") return null;
-                  const displayDisabledDelete =
-                    options?.disableCategoryDeleteIfReserved &&
-                    seats?.some(
-                      (seat: any) =>
-                        seat.category === category.id &&
-                        (seat.status === SeatStatus.Reserved || seat.status === SeatStatus.Locked)
-                    );
-                  return (
-                    <div key={`category-${category.id}`} className="flex justify-start items-center gap-4">
-                      <input
-                        defaultValue={category.color}
-                        type="color"
-                        className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
-                        onChange={(e) => onUpdateCategory({ ...category, color: e.target.value })}
-                      />
-                      <input
-                        defaultValue={category.textColor}
-                        type="color"
-                        className="flex-shrink-0 w-6 h-6 p-0  bg-white square-color-input"
-                        onChange={(e) => onUpdateCategory({ ...category, textColor: e.target.value })}
-                      />
-                      <Input
-                        defaultValue={category.name}
-                        className="h-8"
-                        onChange={(e) => onUpdateCategory({ ...category, name: e.target.value })}
-                      />
-                      <Popover>
-                        <PopoverTrigger>
-                          <LayoutTemplate
-                            size={22}
-                            className={twMerge(
-                              "flex-shrink-0 cursor-pointer transition-all duration-medium ",
-                              category.section ? "text-blue-600 hover:text-blue-500" : "hover:text-gray-500"
-                            )}
-                          />
-                        </PopoverTrigger>
-                        <PopoverContent className="bg-white w-auto p-0 mr-4">
-                          {sections.map((section) => (
-                            <PopoverClose
-                              key={section.id}
-                              className={twMerge(
-                                "w-full flex gap-3 items-center py-2 px-4 text-base cursor-pointer hover:bg-gray-100 transition-all duration-medium",
-                                section.id === "0" && "justify-center border-b pb-2",
-                                section.id === category.section && "bg-blue-50 "
-                              )}
-                              {...{ [dataAttributes.section]: section.id }}
-                              {...{ [dataAttributes.category]: category.id }}
-                              onClick={onSectionSelect}
-                            >
-                              {section.id !== "0" && (
-                                <div className="h-4 w-4 rounded-full" style={{ backgroundColor: section.color }} />
-                              )}
-                              {section.name}
-                            </PopoverClose>
-                          ))}
-                        </PopoverContent>
-                      </Popover>
-                      {!options?.disableCategoryDelete && (
-                        <Trash2
-                          size={22}
-                          className={twMerge(
-                            "hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium",
-                            displayDisabledDelete && "opacity-50 pointer-events-none"
-                          )}
-                          onClick={() => onDeleteCategory(category.id)}
-                        />
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            <CategoryManager options={options} />
           </PopoverContent>
         </Popover>
       </div>
