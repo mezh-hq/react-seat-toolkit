@@ -90,6 +90,7 @@ const Polyline: React.FC<IPolylineProps> = forwardRef(
           props.className,
           consumer.styles?.elements?.shape?.base?.className,
           consumer.mode === "user" && sectionObject && "cursor-pointer filter hover:brightness-[1.05]",
+          consumer.mode === "user" && !sectionObject && "pointer-events-none",
           sectionObject && consumer.styles?.elements?.section?.base?.className,
           sectionObject?.freeSeating && consumer.styles?.elements?.section?.freeSeating?.className
         )}
