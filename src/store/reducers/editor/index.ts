@@ -268,7 +268,7 @@ export const slice = createSlice({
     },
     setInitialViewBoxScale: (state, action) => {
       state.initialViewBoxScale = action.payload;
-      state.initialViewBoxScaleForWidth = document.getElementById(ids.workspace).clientWidth;
+      state.initialViewBoxScaleForWidth = document.getElementById(ids.workspace)?.clientWidth;
     },
     setVisibilityOffset: (state, action) => {
       state.visibilityOffset = action.payload;
