@@ -40,7 +40,7 @@ const Operations: React.FC<ISTKProps> = ({
       <input
         id={ids.location}
         className={twMerge(
-          "bg-transparent font-bold outline-none text-xl sm:text-[22px] lg:text-[24px]",
+          "w-full bg-transparent font-bold outline-none text-xl sm:text-[22px] lg:text-[24px] text-ellipsis",
           location === inputPlaceholder && "opacity-60",
           styles?.input?.className
         )}
@@ -49,7 +49,7 @@ const Operations: React.FC<ISTKProps> = ({
         style={styles?.input?.properties}
         onChange={onLocationChange}
       />
-      <div className="flex justify-between items-center gap-5">
+      <div className="flex justify-between items-center gap-5 shrink-0">
         {showGridSwitch && <GridSwitch className="mr-2" />}
         <ExportAction text={exportButtonText} onExport={events?.onExport} styles={props.styles} />
         <OperationTriggerIcon
