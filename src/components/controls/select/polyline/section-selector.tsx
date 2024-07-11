@@ -17,6 +17,70 @@ const onUpdateSection = debounce((section) => store.dispatch(updateSection(secti
 
 type IControlProps = Pick<ISTKProps, "options" | "styles">;
 
+export const SectionManager = ({ options }: IControlProps) => {
+  const sections = useSelector((state: any) => state.editor.sections);
+  return (
+    <div className="grid gap-4">
+      <div className="flex flex-col gap-2">
+        <h4 className="font-bold leading-none pb-1">Manage Sections</h4>
+        <hr />
+        <span className="hover:text-gray-500 cursor-pointer transition-all duration-medium" onClick={onAddSection}>
+          + Add Section
+        </span>
+        <hr />
+      </div>
+      <div className="flex flex-col gap-4">
+        {sections.map(
+          (section, index) =>
+            section.id !== "0" && (
+              <div key={`category-${section.id}`} className="flex justify-start items-center gap-4">
+                <input
+                  defaultValue={section.color}
+                  type="color"
+                  className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
+                  onChange={(e) => onUpdateSection({ ...section, color: e.target.value })}
+                />
+                <input
+                  defaultValue={section.stroke}
+                  type="color"
+                  className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
+                  onChange={(e) => onUpdateSection({ ...section, stroke: e.target.value })}
+                />
+                <Input
+                  defaultValue={section.name}
+                  className="h-8"
+                  onChange={(e) => onUpdateSection({ ...section, name: e.target.value })}
+                />
+                <Percent
+                  size={22}
+                  className={twMerge(
+                    "flex-shrink-0 cursor-pointer transition-all duration-medium ",
+                    section?.freeSeating ? "text-blue-600 hover:text-blue-500" : "hover:text-gray-500"
+                  )}
+                  onClick={() =>
+                    section?.freeSeating
+                      ? onUpdateSection({ ...section, freeSeating: false })
+                      : onUpdateSection({ ...section, freeSeating: true })
+                  }
+                />
+                {!options?.disableSectionDelete && (
+                  <Trash2
+                    size={22}
+                    className={twMerge(
+                      "hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium",
+                      index === 0 && "opacity-0 pointer-events-none"
+                    )}
+                    onClick={() => onDeleteSection(section.id)}
+                  />
+                )}
+              </div>
+            )
+        )}
+      </div>
+    </div>
+  );
+};
+
 const SectionSelector = ({ firstElement, selectedElementIds, options }: IControlProps & Record<string, any>) => {
   const sections = useSelector((state: any) => state.editor.sections);
   return (
@@ -30,67 +94,7 @@ const SectionSelector = ({ firstElement, selectedElementIds, options }: IControl
             </Caption>
           </PopoverTrigger>
           <PopoverContent className="bg-white w-80 py-4 mr-4">
-            <div className="grid gap-4">
-              <div className="flex flex-col gap-2">
-                <h4 className="font-bold leading-none pb-1">Manage Sections</h4>
-                <hr />
-                <span
-                  className="hover:text-gray-500 cursor-pointer transition-all duration-medium"
-                  onClick={onAddSection}
-                >
-                  + Add Section
-                </span>
-                <hr />
-              </div>
-              <div className="flex flex-col gap-4">
-                {sections.map(
-                  (section, index) =>
-                    section.id !== "0" && (
-                      <div key={`category-${section.id}`} className="flex justify-start items-center gap-4">
-                        <input
-                          defaultValue={section.color}
-                          type="color"
-                          className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
-                          onChange={(e) => onUpdateSection({ ...section, color: e.target.value })}
-                        />
-                        <input
-                          defaultValue={section.stroke}
-                          type="color"
-                          className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
-                          onChange={(e) => onUpdateSection({ ...section, stroke: e.target.value })}
-                        />
-                        <Input
-                          defaultValue={section.name}
-                          className="h-8"
-                          onChange={(e) => onUpdateSection({ ...section, name: e.target.value })}
-                        />
-                        <Percent
-                          size={22}
-                          className={twMerge(
-                            "flex-shrink-0 cursor-pointer transition-all duration-medium ",
-                            section?.freeSeating ? "text-blue-600 hover:text-blue-500" : "hover:text-gray-500"
-                          )}
-                          onClick={() =>
-                            section?.freeSeating
-                              ? onUpdateSection({ ...section, freeSeating: false })
-                              : onUpdateSection({ ...section, freeSeating: true })
-                          }
-                        />
-                        {!options?.disableSectionDelete && (
-                          <Trash2
-                            size={22}
-                            className={twMerge(
-                              "hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium",
-                              index === 0 && "opacity-0 pointer-events-none"
-                            )}
-                            onClick={() => onDeleteSection(section.id)}
-                          />
-                        )}
-                      </div>
-                    )
-                )}
-              </div>
-            </div>
+            <SectionManager options={options} />
           </PopoverContent>
         </Popover>
       </div>

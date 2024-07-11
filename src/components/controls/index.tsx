@@ -10,6 +10,7 @@ import { default as ImageControls } from "./image";
 import { default as NoControls } from "./no-controls";
 import { default as NoSelectedElement } from "./no-selection";
 import { default as NoSelectionControls } from "./no-selection-controls";
+import { default as PolylineControls } from "./polyline";
 import { default as SeatControls } from "./seat";
 import { default as SelectControls } from "./select";
 import { default as ShapeControls } from "./shapes";
@@ -43,6 +44,7 @@ const Controls = ({ options, styles }: IControlProps) => {
       return NoSelectedElement;
     }
     if (selectedTool === Tool.Seat) return SeatControls;
+    if (selectedTool === Tool.Pen) return PolylineControls;
     if (selectedTool === Tool.Shape) return ShapeControls;
     if (selectedTool === Tool.Image) return ImageControls;
     return NoControls;
