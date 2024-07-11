@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 import { Tool } from "@/components/toolbar/data";
 import { ElementType } from "@/components/workspace/elements";
@@ -7,7 +7,7 @@ import { default as store } from "@/store";
 import { clearAndSelectElements } from "@/store/reducers/editor";
 import { coordsWithTransform, d3Extended } from "@/utils";
 
-const useSelection = () => {
+export const useSelection = () => {
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
   useLayoutEffect(() => {
     const svg = d3Extended.selectById(ids.workspace);
@@ -117,4 +117,36 @@ const useSelection = () => {
   }, [selectedTool]);
 };
 
-export default useSelection;
+export const useSelectAll = () => {
+  useEffect(() => {
+    const handler = (e) => {
+      const ctrlPressed = e.ctrlKey || e.metaKey;
+      if (ctrlPressed && e.key === "a") {
+        e.preventDefault();
+        const seats = d3Extended
+          .selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`)
+          .map((seat) => seat.attr("id"));
+        const booths = d3Extended
+          .selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`)
+          .map((booth) => booth.attr("id"));
+        const shapes = d3Extended
+          .selectAll(`[${dataAttributes.elementType}="${ElementType.Shape}"]`)
+          .map((shape) => shape.attr("id"));
+        const text = d3Extended
+          .selectAll(`[${dataAttributes.elementType}="${ElementType.Text}"]`)
+          .map((text) => text.attr("id"));
+        const polylines = d3Extended
+          .selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`)
+          .map((polyline) => polyline.attr("id"));
+        const images = d3Extended
+          .selectAll(`[${dataAttributes.elementType}="${ElementType.Image}"]`)
+          .map((image) => image.attr("id"));
+        store.dispatch(clearAndSelectElements([...seats, ...booths, ...shapes, ...text, ...polylines, ...images]));
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => {
+      window.removeEventListener("keydown", handler);
+    };
+  }, []);
+};
