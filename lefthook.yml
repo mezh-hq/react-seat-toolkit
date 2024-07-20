@@ -2,7 +2,7 @@ pre-commit:
   parallel: true
   commands:
     format:
-      glob: "*.{js,ts,jsx,tsx}"
+      glob: "*.{js,ts,jsx,tsx,css,yml}"
       run: bunx prettier --write --cache {staged_files} && git add {staged_files}
     lint:
       glob: "*.{js,ts,jsx,tsx}"
