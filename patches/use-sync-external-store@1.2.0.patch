@@ -1,7 +1,7 @@
-diff --git a/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js b/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
+diff --git a/cjs/use-sync-external-store-shim.development.js b/cjs/use-sync-external-store-shim.development.js
 index c849ab8..348baaa 100644
---- a/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
-+++ b/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
+--- a/cjs/use-sync-external-store-shim.development.js
++++ b/cjs/use-sync-external-store-shim.development.js
 @@ -10,6 +10,8 @@
  
  'use strict';
@@ -19,10 +19,10 @@ index c849ab8..348baaa 100644
  
  var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
  
-diff --git a/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.native.development.js b/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.native.development.js
+diff --git a/cjs/use-sync-external-store-shim.native.development.js b/cjs/use-sync-external-store-shim.native.development.js
 index 5e2bebc..ae1e46d 100644
---- a/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.native.development.js
-+++ b/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.native.development.js
+--- a/cjs/use-sync-external-store-shim.native.development.js
++++ b/cjs/use-sync-external-store-shim.native.development.js
 @@ -10,6 +10,8 @@
  
  'use strict';
@@ -40,10 +40,10 @@ index 5e2bebc..ae1e46d 100644
  
  var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
  
-diff --git a/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.native.production.min.js b/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.native.production.min.js
+diff --git a/cjs/use-sync-external-store-shim.native.production.min.js b/cjs/use-sync-external-store-shim.native.production.min.js
 index 0e7f3dc..ac8e426 100644
---- a/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.native.production.min.js
-+++ b/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.native.production.min.js
+--- a/cjs/use-sync-external-store-shim.native.production.min.js
++++ b/cjs/use-sync-external-store-shim.native.production.min.js
 @@ -7,5 +7,7 @@
   * This source code is licensed under the MIT license found in the
   * LICENSE file in the root directory of this source tree.
@@ -53,10 +53,10 @@ index 0e7f3dc..ac8e426 100644
 +import e from "react";
 +function h(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var k="function"===typeof Object.is?Object.is:h,l=e.useState,m=e.useEffect,n=e.useLayoutEffect,p=e.useDebugValue;function q(a,b){var d=b(),f=l({inst:{value:d,getSnapshot:b}}),c=f[0].inst,g=f[1];n(function(){c.value=d;c.getSnapshot=b;r(c)&&g({inst:c})},[a,d,b]);m(function(){r(c)&&g({inst:c});return a(function(){r(c)&&g({inst:c})})},[a]);p(d);return d}
  function r(a){var b=a.getSnapshot;a=a.value;try{var d=b();return!k(a,d)}catch(f){return!0}}exports.useSyncExternalStore=void 0!==e.useSyncExternalStore?e.useSyncExternalStore:q;
-diff --git a/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.production.min.js b/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.production.min.js
+diff --git a/cjs/use-sync-external-store-shim.production.min.js b/cjs/use-sync-external-store-shim.production.min.js
 index 0ca00c7..e457d83 100644
---- a/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.production.min.js
-+++ b/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.production.min.js
+--- a/cjs/use-sync-external-store-shim.production.min.js
++++ b/cjs/use-sync-external-store-shim.production.min.js
 @@ -7,5 +7,7 @@
   * This source code is licensed under the MIT license found in the
   * LICENSE file in the root directory of this source tree.
@@ -66,10 +66,10 @@ index 0ca00c7..e457d83 100644
 +import e from "react";
 +function h(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var k="function"===typeof Object.is?Object.is:h,l=e.useState,m=e.useEffect,n=e.useLayoutEffect,p=e.useDebugValue;function q(a,b){var d=b(),f=l({inst:{value:d,getSnapshot:b}}),c=f[0].inst,g=f[1];n(function(){c.value=d;c.getSnapshot=b;r(c)&&g({inst:c})},[a,d,b]);m(function(){r(c)&&g({inst:c});return a(function(){r(c)&&g({inst:c})})},[a]);p(d);return d}
  function r(a){var b=a.getSnapshot;a=a.value;try{var d=b();return!k(a,d)}catch(f){return!0}}function t(a,b){return b()}var u="undefined"===typeof window||"undefined"===typeof window.document||"undefined"===typeof window.document.createElement?t:q;exports.useSyncExternalStore=void 0!==e.useSyncExternalStore?e.useSyncExternalStore:u;
-diff --git a/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js b/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js
+diff --git a/cjs/use-sync-external-store-shim/with-selector.development.js b/cjs/use-sync-external-store-shim/with-selector.development.js
 index 3c875ea..e7ec965 100644
---- a/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js
-+++ b/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js
+--- a/cjs/use-sync-external-store-shim/with-selector.development.js
++++ b/cjs/use-sync-external-store-shim/with-selector.development.js
 @@ -10,6 +10,9 @@
  
  'use strict';
@@ -89,10 +89,10 @@ index 3c875ea..e7ec965 100644
  
  /**
   * inlined Object.is polyfill to avoid requiring consumers ship their own
-diff --git a/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.production.min.js b/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.production.min.js
+diff --git a/cjs/use-sync-external-store-shim/with-selector.production.min.js b/cjs/use-sync-external-store-shim/with-selector.production.min.js
 index 84485da..201748b 100644
---- a/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.production.min.js
-+++ b/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.production.min.js
+--- a/cjs/use-sync-external-store-shim/with-selector.production.min.js
++++ b/cjs/use-sync-external-store-shim/with-selector.production.min.js
 @@ -7,6 +7,9 @@
   * This source code is licensed under the MIT license found in the
   * LICENSE file in the root directory of this source tree.
@@ -104,10 +104,10 @@ index 84485da..201748b 100644
 +function p(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var q="function"===typeof Object.is?Object.is:p,r=n.useSyncExternalStore,t=h.useRef,u=h.useEffect,v=h.useMemo,w=h.useDebugValue;
  exports.useSyncExternalStoreWithSelector=function(a,b,e,l,g){var c=t(null);if(null===c.current){var f={hasValue:!1,value:null};c.current=f}else f=c.current;c=v(function(){function a(a){if(!c){c=!0;d=a;a=l(a);if(void 0!==g&&f.hasValue){var b=f.value;if(g(b,a))return k=b}return k=a}b=k;if(q(d,a))return b;var e=l(a);if(void 0!==g&&g(b,e))return b;d=a;return k=e}var c=!1,d,k,m=void 0===e?null:e;return[function(){return a(b())},null===m?void 0:function(){return a(m())}]},[b,e,l,g]);var d=r(a,c[0],c[1]);
  u(function(){f.hasValue=!0;f.value=d},[d]);w(d);return d};
-diff --git a/node_modules/use-sync-external-store/cjs/use-sync-external-store-with-selector.development.js b/node_modules/use-sync-external-store/cjs/use-sync-external-store-with-selector.development.js
+diff --git a/cjs/use-sync-external-store-with-selector.development.js b/cjs/use-sync-external-store-with-selector.development.js
 index eacc4be..d99209e 100644
---- a/node_modules/use-sync-external-store/cjs/use-sync-external-store-with-selector.development.js
-+++ b/node_modules/use-sync-external-store/cjs/use-sync-external-store-with-selector.development.js
+--- a/cjs/use-sync-external-store-with-selector.development.js
++++ b/cjs/use-sync-external-store-with-selector.development.js
 @@ -10,6 +10,8 @@
  
  'use strict';
@@ -125,10 +125,10 @@ index eacc4be..d99209e 100644
  
  /**
   * inlined Object.is polyfill to avoid requiring consumers ship their own
-diff --git a/node_modules/use-sync-external-store/cjs/use-sync-external-store-with-selector.production.min.js b/node_modules/use-sync-external-store/cjs/use-sync-external-store-with-selector.production.min.js
+diff --git a/cjs/use-sync-external-store-with-selector.production.min.js b/cjs/use-sync-external-store-with-selector.production.min.js
 index 06bad1a..7ea7656 100644
---- a/node_modules/use-sync-external-store/cjs/use-sync-external-store-with-selector.production.min.js
-+++ b/node_modules/use-sync-external-store/cjs/use-sync-external-store-with-selector.production.min.js
+--- a/cjs/use-sync-external-store-with-selector.production.min.js
++++ b/cjs/use-sync-external-store-with-selector.production.min.js
 @@ -7,6 +7,10 @@
   * This source code is licensed under the MIT license found in the
   * LICENSE file in the root directory of this source tree.
@@ -143,10 +143,10 @@ index 06bad1a..7ea7656 100644
 +    var c = r(null); if (null === c.current) { var f = { hasValue: !1, value: null }; c.current = f } else f = c.current; c = u(function () { function a(a) { if (!c) { c = !0; d = a; a = l(a); if (void 0 !== h && f.hasValue) { var b = f.value; if (h(b, a)) return k = b } return k = a } b = k; if (p(d, a)) return b; var e = l(a); if (void 0 !== h && h(b, e)) return b; d = a; return k = e } var c = !1, d, k, m = void 0 === e ? null : e; return [function () { return a(b()) }, null === m ? void 0 : function () { return a(m()) }] }, [b, e, l, h]); var d = q(a, c[0], c[1]);
 +    t(function () { f.hasValue = !0; f.value = d }, [d]); v(d); return d
 +};
-diff --git a/node_modules/use-sync-external-store/cjs/use-sync-external-store.development.js b/node_modules/use-sync-external-store/cjs/use-sync-external-store.development.js
+diff --git a/cjs/use-sync-external-store.development.js b/cjs/use-sync-external-store.development.js
 index 82368bc..7d6ddb3 100644
---- a/node_modules/use-sync-external-store/cjs/use-sync-external-store.development.js
-+++ b/node_modules/use-sync-external-store/cjs/use-sync-external-store.development.js
+--- a/cjs/use-sync-external-store.development.js
++++ b/cjs/use-sync-external-store.development.js
 @@ -10,6 +10,8 @@
  
  'use strict';
@@ -164,10 +164,10 @@ index 82368bc..7d6ddb3 100644
  
  var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
  
-diff --git a/node_modules/use-sync-external-store/cjs/use-sync-external-store.production.min.js b/node_modules/use-sync-external-store/cjs/use-sync-external-store.production.min.js
+diff --git a/cjs/use-sync-external-store.production.min.js b/cjs/use-sync-external-store.production.min.js
 index 8d684a6..927067e 100644
---- a/node_modules/use-sync-external-store/cjs/use-sync-external-store.production.min.js
-+++ b/node_modules/use-sync-external-store/cjs/use-sync-external-store.production.min.js
+--- a/cjs/use-sync-external-store.production.min.js
++++ b/cjs/use-sync-external-store.production.min.js
 @@ -7,4 +7,8 @@
   * This source code is licensed under the MIT license found in the
   * LICENSE file in the root directory of this source tree.

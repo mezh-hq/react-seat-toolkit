@@ -2,13 +2,21 @@
   "name": "@mezh-hq/react-seat-toolkit",
   "version": "1.3.1",
   "description": "React UI library to design and render seat layouts",
-  "browser": "dist/index.js",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "private": false,
   "exports": {
-    ".": "./dist/index.js",
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "require": "./dist/index.cjs"
+      }
+    },
     "./slim": "./dist/index.slim.js",
     "./styles": "./dist/index.css",
     "./raw-styles": "./dist/styles/index.css",
@@ -24,7 +32,6 @@
     "storybook": "NODE_ENV=storybook storybook dev -p 6006",
     "build-storybook": "storybook build",
     "postbuild": "bun build:types && bun build:css",
-    "postinstall": "patch-package",
     "prepare": "lefthook install",
     "release": "bunx github:akalanka47000/bunpublish --tag=${TAG:=latest} --provenance",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -104,7 +111,6 @@
     "install": "0.13.0",
     "lefthook": "1.4.3",
     "npm": "10.8.1",
-    "patch-package": "8.0.0",
     "postcss": "8.4.31",
     "prettier": "2.8.8",
     "sonner": "1.5.0",
@@ -118,5 +124,8 @@
   "overrides": {
     "jsondiffpatch": "^0.5.0",
     "use-sync-external-store": "1.2.0"
+  },
+  "patchedDependencies": {
+    "use-sync-external-store@1.2.0": "patches/use-sync-external-store@1.2.0.patch"
   }
 }

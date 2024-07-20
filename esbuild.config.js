@@ -36,7 +36,13 @@ const options = {
 
 build({
   ...options,
-  outfile: "./dist/index.js"
+  outfile: "./dist/index.mjs"
+});
+
+build({
+  ...options,
+  format: "cjs",
+  outfile: "./dist/index.cjs"
 });
 
 build({

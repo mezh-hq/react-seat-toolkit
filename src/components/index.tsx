@@ -16,7 +16,7 @@ const Designer: React.FC<ISTKProps> = (props) => {
     <>
       <div
         className={twMerge(
-          "bg-white h-full min-h-[85vh] flex flex-col overflow-x-hidden",
+          "bg-white text-black h-full min-h-[calc(100vh-32px)] flex flex-col overflow-x-hidden",
           props.styles?.root?.className
         )}
         style={props?.styles?.root?.properties}
@@ -41,7 +41,10 @@ const User: React.FC<ISTKProps> = (props) => {
   useUserEvents(props);
   return (
     <div
-      className={twMerge("bg-white h-full min-h-[85vh] flex flex-col relative", props.styles?.root?.className)}
+      className={twMerge(
+        "bg-white text-black h-full min-h-screen flex flex-col relative",
+        props.styles?.root?.className
+      )}
       style={props?.styles?.root?.properties}
     >
       <Workspace {...props} />
