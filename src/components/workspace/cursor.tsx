@@ -56,7 +56,7 @@ export const Cursor = () => {
     <div id={ids.cursor}>
       <style>{styles}</style>
       <Cursor
-        className="absolute pointer-events-none transform translate-x-[-50%] translate-y-[-50%] fill-white"
+        className="absolute pointer-events-none transform translate-x-[-50%] translate-y-[-50%] fill-white text-black"
         style={{
           left: `${cursorX}px`,
           top: `${cursorY}px`,
