@@ -41,6 +41,7 @@ jobs:
 
       - name: Cleanups 🧹
         run: |
+          jq 'del(.patchedDependencies)' "package.json" > temp.json && mv temp.json "package.json"
           echo $(sed '/if (storybook) {/,/}/d' src/store/index.ts) > src/store/index.ts
           echo $(sed '/@dreamworld\/addon-redux/d' .storybook/main.ts) > .storybook/main.ts
 

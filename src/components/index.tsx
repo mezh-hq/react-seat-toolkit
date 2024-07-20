@@ -23,7 +23,7 @@ const Designer: React.FC<ISTKProps> = (props) => {
       >
         <Operations {...props} />
         <div
-          className={twMerge("h-full flex relative", props.styles?.workspace?.container?.className)}
+          className={twMerge("h-full flex flex-1 relative", props.styles?.workspace?.container?.className)}
           style={props.styles?.workspace?.container?.properties}
         >
           <Toolbar {...props} />

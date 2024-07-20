@@ -62,7 +62,7 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
     <div
       id={ids.toolbar}
       className={twMerge(
-        "h-full flex flex-col gap-5 border-t pt-5 border-black [&>*:last-child]:[&>*:last-child]:hidden bg-black/5",
+        "flex flex-col gap-5 border-t pt-5 border-black [&>*:last-child]:[&>*:last-child]:hidden bg-black/5",
         styles?.root?.className
       )}
       style={styles?.root?.properties}
