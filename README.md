@@ -145,6 +145,8 @@ const App = () => {
 export default App;
 ```
 
+#### Note: If you're using the toolkit in a Next.js project, you probably will need to dynamically import the toolkit to avoid SSR issues.
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://github.com/mezh-hq/react-seat-toolkit/blob/main/CONTRIBUTING.md) for details on setting up your development environment and the process of submitting pull requests to us.
