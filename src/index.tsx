@@ -13,7 +13,7 @@ export const SeatToolkit = (props: ISTKProps) => {
     <Provider store={store}>
       <TooltipProvider>
         <div
-          className={twMerge("stk-core", props.styles?.core?.container?.className)}
+          className={twMerge("stk-core h-full w-full", props.styles?.core?.container?.className)}
           style={props.styles?.core?.container?.properties}
         >
           <Core {...props} />
