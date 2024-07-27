@@ -1,4 +1,5 @@
 import animate from "tailwindcss-animate";
+import { isolateInsideOfContainer, scopedPreflightStyles } from "tailwindcss-scoped-preflight";
 
 export const screens = {
   xs: "400px",
@@ -26,5 +27,10 @@ export default {
       }
     }
   },
-  plugins: [animate]
+  plugins: [
+    animate,
+    scopedPreflightStyles({
+      isolationStrategy: isolateInsideOfContainer(".stk-core")
+    })
+  ]
 };
