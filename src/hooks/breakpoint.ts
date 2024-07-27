@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { screens } from "../../tailwind.config";
+import { screens } from "../utils/tailwind";
 
 const calculateBreakpoints = () =>
   Object.entries(screens).reduce((acc, [key, value]) => {

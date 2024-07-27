@@ -31,7 +31,7 @@ const options = {
   },
   plugins: [cleaner],
   legalComments: "none",
-  external: ["react", "react-dom", "@dreamworld/addon-redux", "tailwindcss-scoped-preflight"]
+  external: ["react", "react-dom", "@dreamworld/addon-redux"]
 };
 
 build({

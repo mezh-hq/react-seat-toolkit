@@ -1,15 +1,6 @@
 import animate from "tailwindcss-animate";
 import { isolateInsideOfContainer, scopedPreflightStyles } from "tailwindcss-scoped-preflight";
-
-export const screens = {
-  xs: "400px",
-  xsm: "450px",
-  sm: "640px",
-  md: "768px",
-  lg: "1024px",
-  xl: "1280px",
-  xxl: "1536px"
-};
+import { screens } from "./src/utils/tailwind";
 
 /** @type {import('tailwindcss').Config} */
 export default {
