@@ -16,17 +16,17 @@ const Designer: React.FC<ISTKProps> = (props) => {
     <>
       <div
         className={twMerge(
-          "bg-white text-black h-full min-h-[calc(100vh-32px)] flex flex-col overflow-x-hidden",
+          "bg-white text-black h-full min-h-[calc(100vh-32px)] flex overflow-x-hidden",
           props.styles?.root?.className
         )}
         style={props?.styles?.root?.properties}
       >
-        <Operations {...props} />
+        <Toolbar {...props} />
         <div
-          className={twMerge("h-full flex flex-1 relative", props.styles?.workspace?.container?.className)}
+          className={twMerge("h-full flex flex-col flex-1 relative", props.styles?.workspace?.container?.className)}
           style={props.styles?.workspace?.container?.properties}
         >
-          <Toolbar {...props} />
+          <Operations {...props} />
           <Workspace {...props} />
           <Controls options={props.options} styles={props.styles} />
         </div>

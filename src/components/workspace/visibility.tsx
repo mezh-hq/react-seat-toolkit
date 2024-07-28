@@ -35,7 +35,7 @@ const VisibilityControls = (props: Pick<ISTKProps, "mode" | "styles" | "options"
     <div
       id={ids.visibilityControls}
       className={twMerge(
-        "absolute top-7 sm:top-[calc(100%-6rem)] right-7 pl-7 flex flex-wrap flex-row-reverse sm:flex-row items-center gap-4",
+        "absolute top-7 sm:top-[calc(100%-6rem)] right-5 pl-7 flex flex-wrap flex-row-reverse sm:flex-row items-center gap-2",
         props.mode === "user" && "bottom-5 left-6 sm:bottom-6 sm:left-8 md:bottom-8 md:left-10",
         styles?.root?.className
       )}
@@ -45,6 +45,7 @@ const VisibilityControls = (props: Pick<ISTKProps, "mode" | "styles" | "options"
         className={styles?.buttons?.className}
         style={styles?.buttons?.properties}
         onClick={initialViewBoxScale ? unfreeze : freeze}
+        variant="secondary"
       >
         {initialViewBoxScale ? "Unfreeze" : "Freeze"} Initial Scale
       </Button>
@@ -52,6 +53,7 @@ const VisibilityControls = (props: Pick<ISTKProps, "mode" | "styles" | "options"
         className={styles?.buttons?.className}
         style={styles?.buttons?.properties}
         onClick={visibilityOffset === 0 ? setVisibility : unsetVisibility}
+        variant="secondary"
       >
         {visibilityOffset === 0 ? "Set" : "Unset"} Visibility Offset
       </Button>

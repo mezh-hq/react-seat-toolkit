@@ -56,7 +56,7 @@ const Controls = ({ options, styles }: IControlProps) => {
       <div
         id={ids.controls}
         className={twMerge(
-          "py-5 px-6 h-[calc(100%-32px)] absolute top-0 border-t border-black overflow-y-auto",
+          "py-5 px-6 h-[calc(100%-32px)] bg-white border-l border-border absolute top-0 overflow-y-auto",
           transition,
           width,
           open ? "right-0" : "-right-[22rem]"

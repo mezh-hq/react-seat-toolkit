@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import { DraftingCompass } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components";
@@ -61,54 +62,44 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
   return (
     <div
       id={ids.toolbar}
-      className={twMerge(
-        "flex flex-col gap-5 border-t pt-5 border-black [&>*:last-child]:[&>*:last-child]:hidden bg-black/5",
-        styles?.root?.className
-      )}
+      className={twMerge("border-r border-border bg-white", styles?.root?.className)}
       style={styles?.root?.properties}
     >
+      <div className="mx-3 my-3 p-1">
+        <DraftingCompass className="text-slate-800" />
+      </div>
+      <hr />
       {Object.entries(tools).map(([key, value]) => {
         const Icon = value.icon;
         return (
           <div
             key={key}
             className={twMerge(
-              "relative hover:bg-white transition-all duration-300 !cursor-pointer",
-              selectedTool === key && "bg-white/80",
+              "rounded-md relative bg-transparent text-slate-400 hover:bg-slate-50 transition-all duration-300 !cursor-pointer mx-3 my-4",
+              selectedTool === key && "bg-slate-100 text-blue-500",
               styles?.tool?.root?.className
             )}
             style={styles?.tool?.root?.properties}
             onClick={() => onToolClick(key)}
           >
             <Tooltip>
-              <TooltipTrigger className="p-3.5 px-[1rem] rounded-md">
+              <TooltipTrigger className="rounded-md w-8 h-8 flex justify-center items-center">
                 <Icon
-                  size={20}
-                  className={twMerge(
-                    "pointer-events-none",
-                    selectedTool === key && "text-blue-600 transition-all duration-300",
-                    styles?.tool?.icon?.className
-                  )}
+                  size={18}
+                  className={twMerge("pointer-events-none transition-all duration-300", styles?.tool?.icon?.className)}
                   style={styles?.tool?.icon?.properties}
                 />
               </TooltipTrigger>
               <TooltipContent
                 align="start"
-                alignOffset={30}
-                sideOffset={-39}
+                alignOffset={25}
+                sideOffset={-30}
                 className={twMerge("flex gap-3 ml-8", styles?.tool?.label?.className)}
                 style={styles?.tool?.label?.properties}
               >
                 {key}
               </TooltipContent>
             </Tooltip>
-            <div
-              className={twMerge(
-                "bg-black h-1 w-1 mx-auto left-[45%] opacity-10 absolute bottom-0 transform translate-y-[0.75rem] rotate-[-25deg]",
-                styles?.divider?.className
-              )}
-              style={styles?.divider?.properties}
-            />
           </div>
         );
       })}

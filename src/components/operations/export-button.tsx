@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Braces } from "lucide-react";
+import { Copy } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { useBreakpoint } from "@/hooks";
 import { ISTKData } from "@/types";
@@ -38,9 +38,10 @@ const ExportAction: React.FC<IExportActionProps> = ({ text = "Export JSON", onEx
     return (
       <Button
         loading={loading}
-        className={twMerge("py-[0.35rem] text-center", styles?.core?.button?.className)}
+        className={twMerge(styles?.core?.button?.className)}
         style={styles?.core?.button?.properties}
         onClick={onExportJson}
+        variant="secondary"
       >
         {text}
       </Button>
@@ -48,12 +49,13 @@ const ExportAction: React.FC<IExportActionProps> = ({ text = "Export JSON", onEx
 
   return (
     <IconButton
-      icon={<Braces />}
+      icon={<Copy className="w-5 h-5" />}
       label={text}
       onClick={onExportJson}
       loading={loading}
-      className={styles?.core?.button?.className}
+      className={twMerge("w-10", styles?.core?.button?.className)}
       style={styles?.core?.button?.properties}
+      variant="secondary"
     />
   );
 };

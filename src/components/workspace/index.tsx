@@ -59,7 +59,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
     <div
       id={ids.workspaceContainer}
       className={twMerge(
-        "w-full flex flex-col flex-1 relative border border-b-0 border-black transition-all",
+        "w-full flex flex-col flex-1 relative transition-all",
         initialized ? "opacity-100" : "opacity-0",
         props.styles?.workspace?.root?.className
       )}

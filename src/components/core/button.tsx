@@ -2,16 +2,23 @@ import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
 const buttonVariants = cva(
-  "group flex justify-center items-center cursor-pointer rounded-md px-[1.15rem] py-[0.4rem] font-semibold outline-none transition-all duration-medium gap-2 splash",
+  "group flex justify-center items-center cursor-pointer rounded-md font-medium outline-none transition-all duration-medium gap-2 splash",
   {
     variants: {
       variant: {
         primary: "bg-black text-white",
-        secondary: "text-black bg-white border border-black/20 after:bg-black/[0.15]"
+        secondary: "text-black bg-slate-100 after:bg-black/[0.15]"
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10"
       }
     },
     defaultVariants: {
-      variant: "primary"
+      variant: "primary",
+      size: "default"
     }
   }
 );

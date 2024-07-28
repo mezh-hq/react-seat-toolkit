@@ -11,18 +11,18 @@ const Footer: React.FC<ISTKProps> = ({ options: { showFooter = true } = {}, ...p
   return (
     <div
       className={twMerge(
-        "w-full absolute bottom-0 h-8 flex justify-center items-center bg-black text-white",
+        "w-full absolute bottom-0 left-0 right-0 h-16 pointer-events-none flex justify-center items-center text-slate-800",
         styles?.root?.className
       )}
       style={styles?.root?.properties}
     >
-      <span className={twMerge("text-sm", styles?.title?.className)} style={styles?.title?.properties}>
-        React Seat Toolkit
-      </span>
       {selectedTool && (
         <AnimatedSwitcher
           key={selectedTool}
-          className={twMerge("absolute top-[0.4rem] left-5 text-xs", styles?.meta?.className)}
+          className={twMerge(
+            "text-xs w-fit px-2 py-1 rounded-md backdrop-blur-md bg-white/60 border border-border h-fit",
+            styles?.meta?.className
+          )}
           style={styles?.meta?.properties}
           component={<span>{tools[selectedTool]?.description}</span>}
           duration={0.2}
