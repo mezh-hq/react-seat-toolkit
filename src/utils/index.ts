@@ -4,6 +4,7 @@ import { ids, selectors } from "@/constants";
 export * from "./d3";
 export * from "./transformer";
 export * from "./workspace";
+export * from "./tailwind";
 
 export const fallible = (fn: Function) => {
   try {
