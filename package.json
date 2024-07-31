@@ -28,7 +28,7 @@
     "build:types": "bunx tsc --project ./tsconfig.declaration.json && tsc-alias --project ./tsconfig.declaration.json && cd dist && ls -d */ | grep -Ev 'actions|types' | xargs rm -rf && cp ./index.d.ts ./index.slim.d.ts",
     "bump-version": "bunx --bun automatic-versioning --disable-auto-sync --recursive $(if [ \"$TAG\" != \"latest\" ]; then echo --prerelease; fi) --prerelease-branch=development --prerelease-tag=$TAG --name=@mezh-hq/react-seat-toolkit --ignore-prefixes=ci",
     "format": "bunx prettier --write --cache \"**/*.{js,jsx,ts,tsx,md,css,yml}\"",
-    "lint": "bun run --bun eslint . --ext js,jsx,ts,tsx,mdx --ignore-path .gitignore --fix --cache --report-unused-disable-directives",
+    "lint": "bun run --bun eslint . --ext js,jsx,ts,tsx --ignore-path .gitignore --fix --cache --report-unused-disable-directives",
     "storybook": "NODE_ENV=storybook storybook dev -p 6006",
     "build-storybook": "storybook build",
     "postbuild": "bun build:types && bun build:css",
@@ -128,6 +128,5 @@
   },
   "patchedDependencies": {
     "use-sync-external-store@1.2.0": "patches/use-sync-external-store@1.2.0.patch"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  }
 }
