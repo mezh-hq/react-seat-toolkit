@@ -25,6 +25,7 @@ export const selectors = {
 };
 
 export const dataAttributes = {
+  subtool: "data-subtool",
   element: "data-stk-element",
   elementType: "data-element-type",
   shape: "data-shape",
