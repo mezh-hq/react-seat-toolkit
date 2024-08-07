@@ -7,6 +7,8 @@ Changelog
 ### Fixes
 - Fixes an issue where the styles of the category and section selector were not being applied correctly.
 
+---
+
 # v2.1.0 [2024-08-07]
 
 ## Minor Release
@@ -14,6 +16,8 @@ Changelog
 ### Features
 - Adds 2 new actions, `actions.selectElement` and `actions.getState` to select an element and retrieve the updated state respectively.
 - Exposes the `store` object which is the Redux store used by the toolkit to manage its state.
+
+---
 
 # v2.0.0 [2024-07-31]
 
