@@ -4,6 +4,7 @@ body,
 #storybook-root {
   min-height: 100% !important;
   height: 100% !important;
+  font-family: "Inter", sans-serif !important;
 }
 body {
   margin-right: 0px !important;

@@ -87,6 +87,7 @@ export interface IStyles {
     };
   };
   core?: {
+    container?: IStyle;
     button?: IStyle;
   };
 }
