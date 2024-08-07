@@ -2,7 +2,7 @@ import {
   CaseSensitive,
   Circle,
   Codesandbox,
-  GripHorizontal,
+  Grip,
   Highlighter,
   ImagePlus,
   MousePointer2,
@@ -87,7 +87,7 @@ export const tools = {
     description: "Upload an image to the workspace"
   },
   [Tool.Pan]: {
-    icon: GripHorizontal,
+    icon: Grip,
     shortcut: "P",
     description: "Click and drag to pan the workspace"
   }

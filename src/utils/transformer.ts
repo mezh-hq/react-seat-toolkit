@@ -1,6 +1,7 @@
 import { ElementType } from "@/components/workspace/elements";
 import { dataAttributes, selectors } from "@/constants";
 import { store } from "@/store";
+import { ISTKData } from "@/types";
 import { rgbToHex } from ".";
 import { default as d3Extended } from "./d3";
 
@@ -99,7 +100,7 @@ export const domTransform = () => {
   return d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup));
 };
 
-export const stateToJSON = () => {
+export const stateToJSON = (): ISTKData => {
   const state = store.getState().editor;
   return {
     name: state.location,

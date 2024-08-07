@@ -68,6 +68,9 @@ export const panAndZoomToArea = ({ k, x, y }) => {
   d3Extended.selectById(ids.workspace).transition().duration(1000).call(zoom.scaleTo, k, [x, y]);
 };
 
+const panHandleClasses =
+  "absolute z-10 text-black/40 cursor-pointer hover:text-black/80 transition-all duration-medium";
+
 const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
   const showControls = useSelector((state: any) => state.editor.showControls);
@@ -116,61 +119,47 @@ const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
       <div
         id={ids.panControls}
         className={twMerge(
-          "absolute bottom-[6.5rem] left-5 h-20 w-20 grid grid-cols-2",
-          props.mode === "user" && "bottom-[5.25rem] left-9 md:bottom-[6rem] md:left-12",
+          "absolute bottom-[6.75rem] left-[1.5rem] h-[4.5rem] w-[4.5rem] bg-white/80 backdrop-blur-sm rounded-full border after:bg-black/5",
+          props.mode === "user" && "bottom-[4.5rem] md:bottom-[5.25rem] md:left-[2.25rem]",
           panStyles?.root?.className
         )}
         style={panStyles?.root?.properties}
       >
-        <div
-          className={twMerge(
-            "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-            panStyles?.handles?.left?.className
-          )}
-          onClick={() => panLeft()}
-          role="button"
-          style={panStyles?.handles?.left?.properties}
-        >
-          <ChevronLeft size={16} />
+        <div className="absolute top-0 left-0 h-full w-full p-[1.125rem] z-20 pointer-events-none">
+          <div
+            className={twMerge("h-full w-full rounded-full bg-slate-100 border-2 ", panStyles?.innerRing?.className)}
+            style={panStyles?.innerRing?.properties}
+          />
         </div>
-        <div
-          className={twMerge(
-            "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-            panStyles?.handles?.right?.className
-          )}
-          role="button"
+        <ChevronLeft
+          size={17}
+          className={twMerge(panHandleClasses, "left-0 top-[40%]", panStyles?.handles?.left?.className)}
+          onClick={() => panLeft()}
+          style={panStyles?.handles?.left?.properties}
+        />
+        <ChevronRight
+          size={17}
+          className={twMerge(panHandleClasses, "right-0 top-[40%]", panStyles?.handles?.right?.className)}
           onClick={() => panRight()}
           style={panStyles?.handles?.right?.properties}
-        >
-          <ChevronRight size={16} />
-        </div>
-        <div
-          className={twMerge(
-            "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-            panStyles?.handles?.up?.className
-          )}
-          role="button"
+        />
+        <ChevronUp
+          size={17}
+          className={twMerge(panHandleClasses, "top-0 left-[40%]", panStyles?.handles?.up?.className)}
           onClick={() => panUp()}
           style={panStyles?.handles?.up?.properties}
-        >
-          <ChevronUp size={16} />
-        </div>
-        <div
-          className={twMerge(
-            "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-            panStyles?.handles?.down?.className
-          )}
-          role="button"
+        />
+        <ChevronDown
+          size={17}
+          className={twMerge(panHandleClasses, "bottom-0 left-[40%]", panStyles?.handles?.down?.className)}
           onClick={() => panDown()}
           style={panStyles?.handles?.down?.properties}
-        >
-          <ChevronDown size={16} />
-        </div>
+        />
       </div>
       <div
         id={ids.zoomControls}
         className={twMerge(
-          "absolute bottom-14 left-5 flex gap-2 items-center",
+          "absolute bottom-14 left-6 flex gap-2 items-center",
           props.mode === "user" && "bottom-5 left-6 md:bottom-8 md:left-9",
           zoomStyles?.root?.className
         )}
