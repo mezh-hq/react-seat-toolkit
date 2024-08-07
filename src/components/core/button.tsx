@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
 const buttonVariants = cva(
-  "group flex justify-center items-center cursor-pointer rounded-md font-medium outline-none transition-all duration-medium gap-2 splash",
+  "group flex justify-center items-center cursor-pointer rounded-md font-medium outline-none transition-all duration-medium splash",
   {
     variants: {
       variant: {
@@ -29,6 +29,7 @@ const Core = ({ variant = "primary", children, loading, className, ...props }: a
       role="button"
       className={twMerge(
         buttonVariants({ variant }),
+        loading ? "gap-2" : "gap-0",
         className,
         loading || props.disabled ? "opacity-80 pointer-events-none" : ""
       )}
@@ -38,7 +39,7 @@ const Core = ({ variant = "primary", children, loading, className, ...props }: a
       {loading !== undefined && (
         <div
           className={`${
-            loading ? "opacity-100 ml-0" : "opacity-0 pointer-events-none -mr-7"
+            loading ? "opacity-100 ml-0" : "opacity-0 pointer-events-none -mr-4"
           } transition-all duration-150`}
         >
           <svg
@@ -77,7 +78,7 @@ const Button = ({ to, wrapperClassName, target, ariaLabel, ...props }: ButtonPro
   if (to) {
     return (
       <a href={to} target={target ?? "_self"} className={wrapperClassName} aria-label={ariaLabel}>
-        <Button {...props} />
+        <Core {...props} />
       </a>
     );
   }
