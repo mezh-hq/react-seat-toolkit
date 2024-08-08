@@ -2,8 +2,8 @@ import {
   CaseSensitive,
   Circle,
   Codesandbox,
+  Eraser,
   Grip,
-  Highlighter,
   ImagePlus,
   MousePointer2,
   PenTool,
@@ -39,7 +39,7 @@ export const tools = {
     description: "Select and move objects"
   },
   [Tool.Eraser]: {
-    icon: Highlighter,
+    icon: Eraser,
     shortcut: "E",
     description: "Click on an element to delete it"
   },
