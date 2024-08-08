@@ -133,25 +133,25 @@ const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
         </div>
         <ChevronLeft
           size={17}
-          className={twMerge(panHandleClasses, "left-0 top-[40%]", panStyles?.handles?.left?.className)}
+          className={twMerge(panHandleClasses, "left-0 top-[39%]", panStyles?.handles?.left?.className)}
           onClick={() => panLeft()}
           style={panStyles?.handles?.left?.properties}
         />
         <ChevronRight
           size={17}
-          className={twMerge(panHandleClasses, "right-0 top-[40%]", panStyles?.handles?.right?.className)}
+          className={twMerge(panHandleClasses, "right-0 top-[39%]", panStyles?.handles?.right?.className)}
           onClick={() => panRight()}
           style={panStyles?.handles?.right?.properties}
         />
         <ChevronUp
           size={17}
-          className={twMerge(panHandleClasses, "top-0 left-[40%]", panStyles?.handles?.up?.className)}
+          className={twMerge(panHandleClasses, "top-0 left-[38%]", panStyles?.handles?.up?.className)}
           onClick={() => panUp()}
           style={panStyles?.handles?.up?.properties}
         />
         <ChevronDown
           size={17}
-          className={twMerge(panHandleClasses, "bottom-0 left-[40%]", panStyles?.handles?.down?.className)}
+          className={twMerge(panHandleClasses, "bottom-0 left-[38%]", panStyles?.handles?.down?.className)}
           onClick={() => panDown()}
           style={panStyles?.handles?.down?.properties}
         />
