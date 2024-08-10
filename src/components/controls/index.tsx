@@ -1,9 +1,12 @@
 import { useMemo } from "react";
+import { X } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, ids } from "@/constants";
+import { store } from "@/store";
+import { toggleControls } from "@/store/reducers/editor";
 import { ISTKProps } from "@/types";
-import { AnimatedSwitcher } from "../core";
+import { AnimatedSwitcher, IconButton } from "../core";
 import { Tool } from "../toolbar/data";
 import { ElementType } from "../workspace/elements";
 import { default as ImageControls } from "./image";
@@ -14,6 +17,8 @@ import { default as PolylineControls } from "./polyline";
 import { default as SeatControls } from "./seat";
 import { default as SelectControls } from "./select";
 import { default as ShapeControls } from "./shapes";
+
+const onCogClick = () => store.dispatch(toggleControls());
 
 const transition = "transition-all duration-500";
 
@@ -56,15 +61,25 @@ const Controls = ({ options, styles }: IControlProps) => {
       <div
         id={ids.controls}
         className={twMerge(
-          "py-5 px-6 h-[calc(100%-32px)] bg-white border-l border-border absolute top-0 overflow-y-auto",
+          "h-full bg-white border-l shadow-lg border-border absolute top-0 overflow-y-auto z-10",
           transition,
           width,
           open ? "right-0" : "-right-[22rem]"
         )}
       >
+        <div className="flex justify-between items-center gap-4 h-14 border-b border-border box-content px-5">
+          <h5>Settings</h5>
+          <IconButton
+            className="w-6 h-6 p-0 shrink-0"
+            variant="secondary"
+            icon={<X className="w-4 h-4" />}
+            onClick={onCogClick}
+          />
+        </div>
         <AnimatedSwitcher
           key={ControlComponent.name}
           component={<ControlComponent options={options} styles={styles} />}
+          className="py-4 px-5"
         />
       </div>
     </>

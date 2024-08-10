@@ -1,8 +1,8 @@
-import { Percent, Trash2 } from "lucide-react";
+import { DollarSign, Plus, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import { default as debounce } from "lodash/debounce";
 import { twMerge } from "tailwind-merge";
-import { Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
+import { IconButton, Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { addSection, deleteSection, updatePolylines, updateSection } from "@/store/reducers/editor";
@@ -21,29 +21,30 @@ export const SectionManager = ({ options }: IControlProps) => {
   const sections = useSelector((state: any) => state.editor.sections);
   return (
     <div className="grid gap-4">
-      <div className="flex flex-col gap-2">
-        <h4 className="font-bold leading-none pb-1">Manage Sections</h4>
-        <hr />
-        <span className="hover:text-gray-500 cursor-pointer transition-all duration-medium" onClick={onAddSection}>
-          + Add Section
-        </span>
-        <hr />
+      <div className="flex gap-2 justify-between items-center">
+        <h6 className="font-medium text-sm">Sections</h6>
+        <IconButton
+          className="w-6 h-6 p-0"
+          variant="secondary"
+          icon={<Plus className="w-4 h-4" />}
+          onClick={onAddSection}
+        />
       </div>
       <div className="flex flex-col gap-4">
         {sections.map(
           (section, index) =>
             section.id !== "0" && (
-              <div key={`category-${section.id}`} className="flex justify-start items-center gap-4">
+              <div key={`category-${section.id}`} className="flex justify-start items-center gap-2">
                 <input
                   defaultValue={section.color}
                   type="color"
-                  className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
+                  className="flex-shrink-0 w-6 h-6 p-0 bg-white square-color-input"
                   onChange={(e) => onUpdateSection({ ...section, color: e.target.value })}
                 />
                 <input
                   defaultValue={section.stroke}
                   type="color"
-                  className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
+                  className="flex-shrink-0 w-6 h-6 p-0 bg-white square-color-input"
                   onChange={(e) => onUpdateSection({ ...section, stroke: e.target.value })}
                 />
                 <Input
@@ -51,12 +52,10 @@ export const SectionManager = ({ options }: IControlProps) => {
                   className="h-8"
                   onChange={(e) => onUpdateSection({ ...section, name: e.target.value })}
                 />
-                <Percent
-                  size={22}
-                  className={twMerge(
-                    "flex-shrink-0 cursor-pointer transition-all duration-medium ",
-                    section?.freeSeating ? "text-blue-600 hover:text-blue-500" : "hover:text-gray-500"
-                  )}
+                <IconButton
+                  className={twMerge("w-6 h-6 p-0 shrink-0", section?.freeSeating && "text-gray-400")}
+                  variant="secondary"
+                  icon={<DollarSign className="w-4 h-4" />}
                   onClick={() =>
                     section?.freeSeating
                       ? onUpdateSection({ ...section, freeSeating: false })
@@ -64,13 +63,12 @@ export const SectionManager = ({ options }: IControlProps) => {
                   }
                 />
                 {!options?.disableSectionDelete && (
-                  <Trash2
-                    size={22}
-                    className={twMerge(
-                      "hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium",
-                      index === 0 && "opacity-0 pointer-events-none"
-                    )}
+                  <IconButton
+                    className="w-6 h-6 p-0 shrink-0"
+                    variant="secondary"
+                    icon={<X className="w-4 h-4" />}
                     onClick={() => onDeleteSection(section.id)}
+                    disabled={index === 0}
                   />
                 )}
               </div>

@@ -1,5 +1,14 @@
-import { useLayoutEffect } from "react";
-import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Minus, Plus } from "lucide-react";
+import { useLayoutEffect, useState } from "react";
+import {
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  Minus,
+  PanelBottomClose,
+  PanelBottomOpen,
+  Plus
+} from "lucide-react";
 import { useSelector } from "react-redux";
 import { default as debounce } from "lodash/debounce";
 import { twMerge } from "tailwind-merge";
@@ -69,6 +78,7 @@ export const panAndZoomToArea = ({ k, x, y }) => {
 };
 
 const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
+  const [open, setOpen] = useState(true);
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
   const showControls = useSelector((state: any) => state.editor.showControls);
 
@@ -112,13 +122,13 @@ const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
   const panStyles = props.styles?.panControls;
 
   return (
-    <>
+    <div className="fixed bottom-4 left-0 right-0 flex justify-center items-center">
       <div
         id={ids.panControls}
         className={twMerge(
-          "absolute bottom-[6.5rem] left-5 h-20 w-20 grid grid-cols-2",
-          props.mode === "user" && "bottom-[5.25rem] left-9 md:bottom-[6rem] md:left-12",
-          panStyles?.root?.className
+          "border border-border bg-white/80 backdrop-blur-md p-2 rounded-lg flex gap-2 transition-all",
+          panStyles?.root?.className,
+          !open && "translate-y-20"
         )}
         style={panStyles?.root?.properties}
       >
@@ -145,6 +155,29 @@ const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
           <ChevronRight size={16} />
         </div>
         <div
+          className={twMerge("w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash", zoomStyles?.out?.className)}
+          onClick={zoomOut}
+          role="button"
+          style={zoomStyles?.out?.properties}
+        >
+          <Minus size={16} />
+        </div>
+        <div
+          className={twMerge("w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash")}
+          role="button"
+          onClick={() => setOpen((prev) => !prev)}
+        >
+          <PanelBottomClose size={16} />
+        </div>
+        <div
+          className={twMerge("w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash", zoomStyles?.in?.className)}
+          onClick={zoomIn}
+          role="button"
+          style={zoomStyles?.in?.properties}
+        >
+          <Plus size={16} />
+        </div>
+        <div
           className={twMerge(
             "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
             panStyles?.handles?.up?.className
@@ -167,33 +200,16 @@ const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
           <ChevronDown size={16} />
         </div>
       </div>
-      <div
-        id={ids.zoomControls}
-        className={twMerge(
-          "absolute bottom-14 left-5 flex gap-2 items-center",
-          props.mode === "user" && "bottom-5 left-6 md:bottom-8 md:left-9",
-          zoomStyles?.root?.className
-        )}
-        style={zoomStyles?.root?.properties}
-      >
+      <div className={twMerge("absolute translate-y-20 transition-all", !open && "translate-y-0")}>
         <div
-          className={twMerge("w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash", zoomStyles?.out?.className)}
-          onClick={zoomOut}
+          className={twMerge("w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash")}
           role="button"
-          style={zoomStyles?.out?.properties}
+          onClick={() => setOpen((prev) => !prev)}
         >
-          <Minus size={16} />
-        </div>
-        <div
-          className={twMerge("w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash", zoomStyles?.in?.className)}
-          onClick={zoomIn}
-          role="button"
-          style={zoomStyles?.in?.properties}
-        >
-          <Plus size={16} />
+          <PanelBottomOpen size={16} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

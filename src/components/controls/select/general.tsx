@@ -6,7 +6,7 @@ const GeneralSelectControls = () => {
   const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
 
   return (
-    <div className="flex flex-col gap-4 py-1 mt-1">
+    <div className="flex flex-col gap-3">
       <Button
         className="py-[0.35rem]"
         variant="secondary"
@@ -20,6 +20,7 @@ const GeneralSelectControls = () => {
       </Button>
       <Button
         className="py-[0.35rem]"
+        variant="secondary"
         onClick={() => {
           selectedElementIds.forEach((id) => {
             d3Extended.selectById(id).moveToBack();

@@ -2,12 +2,12 @@ import {
   CaseSensitive,
   Circle,
   Codesandbox,
-  GripHorizontal,
-  Highlighter,
   ImagePlus,
   MousePointer2,
+  Move,
   PenTool,
-  Pentagon
+  Pentagon,
+  Sparkles
 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
@@ -38,7 +38,7 @@ export const tools = {
     description: "Select and move objects"
   },
   [Tool.Eraser]: {
-    icon: Highlighter,
+    icon: Sparkles,
     shortcut: "E",
     description: "Click on an element to delete it"
   },
@@ -79,7 +79,7 @@ export const tools = {
     description: "Upload an image to the workspace"
   },
   [Tool.Pan]: {
-    icon: GripHorizontal,
+    icon: Move,
     shortcut: "P",
     description: "Click and drag to pan the workspace"
   }

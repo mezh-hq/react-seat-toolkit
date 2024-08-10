@@ -1,3 +1,4 @@
+import { Focus, Lock, Scan, Unlock } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, ids, selectors } from "@/constants";
@@ -5,7 +6,6 @@ import { store } from "@/store";
 import { setInitialViewBoxScale, setVisibilityOffset } from "@/store/reducers/editor";
 import type { ISTKProps } from "@/types";
 import { d3Extended } from "@/utils";
-import { Button } from "../core";
 import { showAllElements } from "./elements";
 
 const freeze = () =>
@@ -32,31 +32,32 @@ const VisibilityControls = (props: Pick<ISTKProps, "mode" | "styles" | "options"
   const styles = props.styles?.visibilityControls;
 
   return (
-    <div
-      id={ids.visibilityControls}
-      className={twMerge(
-        "absolute top-7 sm:top-[calc(100%-6rem)] right-5 pl-7 flex flex-wrap flex-row-reverse sm:flex-row items-center gap-2",
-        props.mode === "user" && "bottom-5 left-6 sm:bottom-6 sm:left-8 md:bottom-8 md:left-10",
-        styles?.root?.className
-      )}
-      style={styles?.root?.properties}
-    >
-      <Button
-        className={styles?.buttons?.className}
-        style={styles?.buttons?.properties}
-        onClick={initialViewBoxScale ? unfreeze : freeze}
-        variant="secondary"
+    <div className="fixed top-[4.5rem] left-0 right-4 flex justify-center items-center">
+      <div
+        id={ids.visibilityControls}
+        className={twMerge(
+          "border border-border bg-white/80 backdrop-blur-md p-2 rounded-lg flex gap-2 transition-all",
+          styles?.root?.className
+        )}
+        style={styles?.root?.properties}
       >
-        {initialViewBoxScale ? "Unfreeze" : "Freeze"} Initial Scale
-      </Button>
-      <Button
-        className={styles?.buttons?.className}
-        style={styles?.buttons?.properties}
-        onClick={visibilityOffset === 0 ? setVisibility : unsetVisibility}
-        variant="secondary"
-      >
-        {visibilityOffset === 0 ? "Set" : "Unset"} Visibility Offset
-      </Button>
+        <div
+          className={twMerge("w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash", styles?.buttons?.className)}
+          onClick={initialViewBoxScale ? unfreeze : freeze}
+          role="button"
+          style={styles?.buttons?.properties}
+        >
+          {initialViewBoxScale ? <Lock size={16} /> : <Unlock size={16} />}
+        </div>
+        <div
+          className={twMerge("w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash", styles?.buttons?.className)}
+          onClick={visibilityOffset === 0 ? setVisibility : unsetVisibility}
+          role="button"
+          style={styles?.buttons?.properties}
+        >
+          {visibilityOffset === 0 ? <Scan size={16} /> : <Focus size={16} />}
+        </div>
+      </div>
     </div>
   );
 };

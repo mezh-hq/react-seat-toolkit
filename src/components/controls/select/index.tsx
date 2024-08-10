@@ -25,7 +25,7 @@ const SelectControls = ({ options, styles }: IControlProps) => {
   }, [selectedElementIds]);
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-5">
       <ControlComponent options={options} styles={styles} />
       <GeneralSelectControls />
     </div>
