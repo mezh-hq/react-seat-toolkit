@@ -51,7 +51,6 @@ const SeatSelectControls = (props: IControlProps) => {
           onChange={(e) => {
             store.dispatch(updateSeats({ ids: selectedElementIds, data: { label: e.target.value } }));
           }}
-          className="h-9"
         />
       </div>
       {selectedElementIds.length > 1 && (

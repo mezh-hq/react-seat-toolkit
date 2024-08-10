@@ -2,7 +2,7 @@ import {
   CaseSensitive,
   Circle,
   Codesandbox,
-  ImagePlus,
+  Image,
   MousePointer2,
   Move,
   PenTool,
@@ -74,7 +74,7 @@ export const tools = {
     description: "Click anywhere to place a chosen shape from the library"
   },
   [Tool.Image]: {
-    icon: ImagePlus,
+    icon: Image,
     shortcut: "I",
     description: "Upload an image to the workspace"
   },

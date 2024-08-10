@@ -65,7 +65,7 @@ const Controls = ({ options, styles }: IControlProps) => {
         open ? "right-0" : "-right-[22rem]"
       )}
     >
-      <div className="flex justify-between items-center gap-4 h-14 border-b border-border box-content px-5">
+      <div className="flex justify-between items-center gap-4 h-14 border-b border-border box-content px-5 sticky top-0 bg-white">
         <h5>Settings</h5>
         <IconButton
           className="w-6 h-6 p-0 shrink-0"
