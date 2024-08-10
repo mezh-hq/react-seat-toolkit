@@ -122,9 +122,8 @@ const Zoom = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
   const panStyles = props.styles?.panControls;
 
   return (
-    <div className="fixed bottom-4 left-0 right-0 flex justify-center items-center">
+    <div id={ids.zoomControls} className="fixed bottom-4 left-0 right-0 flex justify-center items-center">
       <div
-        id={ids.panControls}
         className={twMerge(
           "border border-border bg-white/80 backdrop-blur-md p-2 rounded-lg flex gap-2 transition-all",
           panStyles?.root?.className,

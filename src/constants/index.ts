@@ -14,7 +14,6 @@ export const ids = {
   workspaceContainer: "stk-workspace-container",
   workspaceSelection: "stk-workspace-selection",
   zoomControls: "stk-zoom-controls",
-  panControls: "stk-pan-controls",
   visibilityControls: "stk-visibility-controls",
   reloader: "stk-reloader"
 };
