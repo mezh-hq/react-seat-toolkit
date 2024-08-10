@@ -20,7 +20,7 @@ import { default as ShapeControls } from "./shapes";
 
 const onCogClick = () => store.dispatch(toggleControls());
 
-const transition = "transition-all duration-500";
+const transition = "transition-all duration-500 ease-in-out";
 
 const width = "w-[22rem]";
 
@@ -56,33 +56,30 @@ const Controls = ({ options, styles }: IControlProps) => {
   }, [selectedTool, selectedElementIds]);
 
   return (
-    <>
-      <div className={twMerge("pointer-events-none grow-0 shrink-0", transition, open ? width : "w-0")} />
-      <div
-        id={ids.controls}
-        className={twMerge(
-          "h-full bg-white border-l shadow-lg border-border absolute top-0 overflow-y-auto z-10",
-          transition,
-          width,
-          open ? "right-0" : "-right-[22rem]"
-        )}
-      >
-        <div className="flex justify-between items-center gap-4 h-14 border-b border-border box-content px-5">
-          <h5>Settings</h5>
-          <IconButton
-            className="w-6 h-6 p-0 shrink-0"
-            variant="secondary"
-            icon={<X className="w-4 h-4" />}
-            onClick={onCogClick}
-          />
-        </div>
-        <AnimatedSwitcher
-          key={ControlComponent.name}
-          component={<ControlComponent options={options} styles={styles} />}
-          className="py-4 px-5"
+    <div
+      id={ids.controls}
+      className={twMerge(
+        "h-full bg-white border-l shadow-lg border-border absolute top-0 overflow-y-auto z-10",
+        transition,
+        width,
+        open ? "right-0" : "-right-[22rem]"
+      )}
+    >
+      <div className="flex justify-between items-center gap-4 h-14 border-b border-border box-content px-5">
+        <h5>Settings</h5>
+        <IconButton
+          className="w-6 h-6 p-0 shrink-0"
+          variant="secondary"
+          icon={<X className="w-4 h-4" />}
+          onClick={onCogClick}
         />
       </div>
-    </>
+      <AnimatedSwitcher
+        key={ControlComponent.name}
+        component={<ControlComponent options={options} styles={styles} />}
+        className="py-4 px-5"
+      />
+    </div>
   );
 };
 

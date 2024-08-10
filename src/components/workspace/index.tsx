@@ -4,12 +4,11 @@ import { twMerge } from "tailwind-merge";
 import { dataAttributes, ids } from "@/constants";
 import { type ISTKProps, SeatStatus } from "@/types";
 import { Tool, tools } from "../toolbar/data";
+import { default as Actions } from "./actions";
 import { default as Crosshairs } from "./crosshairs";
 import { default as Element, ElementType } from "./elements";
 import { default as Grid } from "./grid";
 import { default as Reload } from "./reload";
-import { default as VisibilityControls } from "./visibility";
-import { default as Zoom } from "./zoom";
 
 export { default as Cursor } from "./cursor";
 
@@ -44,10 +43,6 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
 
   const showReloadButton = props.options?.showReloadButton ?? false;
 
-  const showZoomControls = props.options?.showZoomControls ?? true;
-
-  const showVisibilityControls = props.mode === "designer" && (props.options?.showVisibilityControls ?? true);
-
   const onWorkspaceHover = useCallback(
     (e: any) => {
       if (props.events?.onWorkspaceHover && e.target.id === ids.workspace) props.events.onWorkspaceHover();
@@ -59,7 +54,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
     <div
       id={ids.workspaceContainer}
       className={twMerge(
-        "w-full flex flex-col flex-1 relative transition-all",
+        "w-full flex flex-col flex-1 relative transition-all duration-500",
         initialized ? "opacity-100" : "opacity-0",
         props.styles?.workspace?.root?.className
       )}
@@ -134,8 +129,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
           <Grid />
         </>
       )}
-      {showZoomControls && <Zoom mode={props.mode} options={props.options} styles={props.styles} />}
-      {showVisibilityControls && <VisibilityControls mode={props.mode} options={props.options} styles={props.styles} />}
+      <Actions mode={props.mode} options={props.options} styles={props.styles} />
       {showReloadButton && (
         <Reload mode={props.mode} options={props.options} styles={props.styles} onReload={props.events?.onReload} />
       )}

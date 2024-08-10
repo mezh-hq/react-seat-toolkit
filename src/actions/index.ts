@@ -1,4 +1,4 @@
-import { panDown, panLeft, panRight, panUp } from "@/components/workspace/zoom";
+import { panDown, panLeft, panRight, panUp } from "@/components/workspace/actions";
 import { store } from "@/store";
 import { clearElements, deselectElement } from "@/store/reducers/editor";
 

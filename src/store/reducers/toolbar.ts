@@ -2,7 +2,8 @@ import { Reducer, createSlice } from "@reduxjs/toolkit";
 import { Tool } from "@/components/toolbar/data";
 
 const initialState = {
-  selectedTool: Tool.Select
+  selectedTool: Tool.Select,
+  dock: true
 };
 
 export const slice = createSlice({
@@ -14,10 +15,13 @@ export const slice = createSlice({
     },
     clearTool: (state) => {
       state.selectedTool = null;
+    },
+    toggleDock: (state, action) => {
+      state.dock = action.payload ?? !state.dock;
     }
   }
 });
 
-export const { clearTool, selectTool } = slice.actions;
+export const { clearTool, selectTool, toggleDock } = slice.actions;
 
 export default slice.reducer as Reducer<typeof initialState>;
