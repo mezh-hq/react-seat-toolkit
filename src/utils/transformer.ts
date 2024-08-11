@@ -15,7 +15,8 @@ export const domSeatsToJSON = () => {
       label: document.getElementById(`${seat.attr("id")}-label`)?.textContent,
       status: seat.attr(dataAttributes.status),
       category: seat.attr(dataAttributes.category),
-      square
+      square,
+      rotation: seat.rotation()
     };
   });
 };
@@ -25,7 +26,8 @@ export const domBoothsToJSON = () => {
     return {
       id: booth.attr("id"),
       x: +booth.attr("x"),
-      y: +booth.attr("y")
+      y: +booth.attr("y"),
+      rotation: booth.rotation()
     };
   });
 };
@@ -41,7 +43,8 @@ export const domTextToJSON = () => {
       fontWeight: +text.attr("font-weight"),
       letterSpacing: +text.attr("letter-spacing"),
       color: rgbToHex(text.style("stroke")) || text.attr("stroke"),
-      embraceOffset: text.attr(dataAttributes.embraceOffset) === "true"
+      embraceOffset: text.attr(dataAttributes.embraceOffset) === "true",
+      rotation: text.rotation()
     };
   });
 };
@@ -57,7 +60,8 @@ export const domShapesToJSON = () => {
       height: +shape.attr("height"),
       rx: shape.attr("rx") ? +shape.attr("rx") : undefined,
       color: rgbToHex(shape.style("color")) || shape.attr("color"),
-      stroke: rgbToHex(shape.style("stroke")) || shape.attr("stroke")
+      stroke: rgbToHex(shape.style("stroke")) || shape.attr("stroke"),
+      rotation: shape.rotation()
     };
   });
 };
@@ -77,7 +81,8 @@ export const domPolylineToJSON = () => {
           }),
         section: polyline.attr(dataAttributes.section),
         color: rgbToHex(polyline.style("color")) || polyline.attr("color"),
-        stroke: rgbToHex(polyline.style("stroke")) || polyline.attr("stroke")
+        stroke: rgbToHex(polyline.style("stroke")) || polyline.attr("stroke"),
+        rotation: polyline.rotation()
       };
     })
     .filter((polyline) => polyline.points.length > 1);
@@ -91,7 +96,8 @@ export const domImagesToJSON = () => {
       y: +image.attr("y"),
       width: +image.attr("width"),
       height: +image.attr("height"),
-      href: image.attr("href")
+      href: image.attr("href"),
+      rotation: image.rotation()
     };
   });
 };

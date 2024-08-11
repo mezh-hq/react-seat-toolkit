@@ -11,7 +11,7 @@ export interface IImageProps extends IImage {
 
 const Image: React.FC<IImageProps> = forwardRef(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ({ x, y, id, href, width, height, consumer, isSelected, element: _, ...props }, ref: any) => {
+  ({ x, y, id, href, width, height, rotation, consumer, isSelected, element: _, ...props }, ref: any) => {
     return (
       <image
         ref={ref}
@@ -29,7 +29,11 @@ const Image: React.FC<IImageProps> = forwardRef(
           consumer.styles?.elements?.image?.base?.className
         )}
         preserveAspectRatio="none"
-        style={consumer.styles?.elements?.image?.base?.properties}
+        style={{
+          transform: `rotate(${rotation ?? 0}deg)`,
+          transformOrigin: `${x + width / 2}px ${y + height / 2}px`,
+          ...consumer.styles?.elements?.image?.base?.properties
+        }}
       />
     );
   }

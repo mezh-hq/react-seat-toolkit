@@ -35,6 +35,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
       label: elem.label,
       color: elem.color,
       stroke: elem.stroke,
+      rotation: elem.rotation,
       consumer: props,
       element: elem
     }),

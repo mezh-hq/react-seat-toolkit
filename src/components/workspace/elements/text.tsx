@@ -24,6 +24,7 @@ const Text: React.FC<ITextProps> = forwardRef(
       fontWeight = 200,
       letterSpacing = 3,
       color,
+      rotation,
       consumer,
       embraceOffset,
       onClick,
@@ -51,7 +52,13 @@ const Text: React.FC<ITextProps> = forwardRef(
           consumer.styles?.elements?.text?.base?.className,
           consumer.mode === "user" && "!pointer-events-none"
         )}
-        style={{ ...consumer.styles?.elements?.text?.base?.properties, stroke: color, color }}
+        style={{
+          transform: `rotate(${rotation ?? 0}deg)`,
+          transformOrigin: `${x}px ${y}px`,
+          ...consumer.styles?.elements?.text?.base?.properties,
+          stroke: color,
+          color
+        }}
         {...{ [dataAttributes.embraceOffset]: embraceOffset }}
       >
         {label}

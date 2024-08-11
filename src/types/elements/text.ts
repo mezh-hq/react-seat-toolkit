@@ -8,4 +8,5 @@ export interface IText {
   letterSpacing?: number;
   color?: string;
   embraceOffset?: boolean;
+  rotation?: number;
 }

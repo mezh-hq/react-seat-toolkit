@@ -26,6 +26,7 @@ const Polyline: React.FC<IPolylineProps> = forwardRef(
       categories,
       section,
       onClick,
+      rotation,
       consumer,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       isSelected: _,
@@ -80,6 +81,8 @@ const Polyline: React.FC<IPolylineProps> = forwardRef(
         style={{
           color: sectionObject?.color ?? color ?? "transparent",
           stroke: sectionObject?.stroke ?? stroke,
+          transform: `rotate(${rotation ?? 0}deg)`,
+          transformOrigin: `${points[0].x}px ${points[0].y}px`,
           ...consumer.styles?.elements?.shape?.base?.properties,
           ...(sectionObject && consumer.styles?.elements?.section?.base?.properties),
           ...(sectionObject?.freeSeating && consumer.styles?.elements?.section?.freeSeating?.properties)

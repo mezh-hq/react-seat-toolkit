@@ -23,6 +23,7 @@ export interface ISeat {
   category?: string | null;
   status?: SeatStatus | string;
   square?: boolean;
+  rotation?: number;
 }
 
 export interface IFreeSeat {

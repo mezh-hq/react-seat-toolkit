@@ -5,4 +5,5 @@ export interface IImage {
   href: string;
   width?: number;
   height?: number;
+  rotation?: number;
 }

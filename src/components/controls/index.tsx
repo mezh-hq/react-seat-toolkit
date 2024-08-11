@@ -37,7 +37,7 @@ const Controls = ({ options, styles }: IControlProps) => {
         const firstElementType = document
           .getElementById(selectedElementIds[0])
           ?.getAttribute?.(dataAttributes.elementType);
-        if (firstElementType === ElementType.Booth) return NoSelectionControls;
+        if (firstElementType === ElementType.Booth) return SelectControls;
         if (selectedElementIds.length > 1) {
           const same = selectedElementIds.every((id) => {
             return document.getElementById(id)?.getAttribute?.(dataAttributes.elementType) === firstElementType;

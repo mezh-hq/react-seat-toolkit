@@ -22,7 +22,22 @@ export interface ISeatProps extends ISeat {
 
 const Seat: React.FC<ISeatProps> = forwardRef(
   (
-    { x, y, id, label, categories, category, sections, status, onClick, consumer, element, isSelected, ...props },
+    {
+      x,
+      y,
+      id,
+      label,
+      categories,
+      category,
+      sections,
+      status,
+      onClick,
+      consumer,
+      rotation,
+      element,
+      isSelected,
+      ...props
+    },
     ref: any
   ) => {
     const categoryObject = useMemo(() => categories?.find?.((c) => c.id === category), [categories, category]);
@@ -106,7 +121,11 @@ const Seat: React.FC<ISeatProps> = forwardRef(
         consumer.mode === "user" && status === SeatStatus.Available && "cursor-pointer filter hover:brightness-[1.05]",
         consumer.styles?.elements?.seat?.base?.className
       ),
-      style: consumer.styles?.elements?.seat?.base?.properties,
+      style: {
+        transform: `rotate(${rotation ?? 0}deg)`,
+        transformOrigin: `${x}px ${y}px`,
+        ...consumer.styles?.elements?.seat?.base?.properties
+      },
       onMouseOver: onMouseOver,
       onMouseOut: onMouseOut
     };
