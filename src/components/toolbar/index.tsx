@@ -171,7 +171,7 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
             );
           })}
         </div>
-        <div className="mx-3 my-6 sticky bottom-0">
+        <div className="px-3 py-6 sticky bottom-0 bg-white">
           <DockHandler />
         </div>
       </div>
