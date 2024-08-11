@@ -13,9 +13,9 @@ const PolylineSelectControls = (props: IControlProps) => {
   const firstElement = document.getElementById(selectedElementIds[0]);
 
   return (
-    <div className="flex flex-col gap-4 py-1">
+    <div className="flex flex-col gap-5">
       <SectionSelector firstElement={firstElement} selectedElementIds={selectedElementIds} {...props} />
-      <div className="grid grid-cols-3 items-center gap-4">
+      <div className="flex flex-col gap-3">
         <ControlInput
           id="polyline-stroke-input"
           label="Stroke"
@@ -27,7 +27,10 @@ const PolylineSelectControls = (props: IControlProps) => {
               d3Extended.selectById(id).style("stroke", e.target.value);
             });
           }}
+          className="p-0 px-[.125rem]"
         />
+      </div>
+      <div className="flex flex-col gap-3">
         <ControlInput
           id="polyline-fill-input"
           label="Fill"
@@ -39,6 +42,7 @@ const PolylineSelectControls = (props: IControlProps) => {
               d3Extended.selectById(id).style("color", e.target.value);
             });
           }}
+          className="p-0 px-[.125rem]"
         />
       </div>
     </div>

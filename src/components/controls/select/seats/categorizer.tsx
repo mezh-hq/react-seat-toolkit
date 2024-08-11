@@ -84,7 +84,7 @@ export const CategoryManager = ({ options }: IControlProps) => {
                       key={section.id}
                       className={twMerge(
                         "w-full flex gap-3 items-center py-2 px-4 text-base cursor-pointer hover:bg-gray-100 transition-all duration-medium",
-                        section.id === "0" && "justify-center border-b pb-2",
+                        section.id === "0" && "justify-center border-b border-gray-200 pb-2",
                         section.id === category.section && "bg-blue-50 "
                       )}
                       {...{ [dataAttributes.section]: section.id }}

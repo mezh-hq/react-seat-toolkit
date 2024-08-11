@@ -33,7 +33,7 @@ const Operations: React.FC<ISTKProps> = ({
     <div
       id={ids.operationBar}
       className={twMerge(
-        "w-full flex justify-between items-center gap-6 bg-white px-5 py-2 border-b border-border z-10",
+        "w-full flex justify-between items-center gap-6 bg-white px-5 py-2 border-b border-gray-200 z-10",
         styles?.root?.className
       )}
       style={styles?.root?.properties}

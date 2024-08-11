@@ -1,4 +1,4 @@
-import { DollarSign, Plus, X } from "lucide-react";
+import { DollarSign, Plus, Settings2, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import { default as debounce } from "lodash/debounce";
 import { twMerge } from "tailwind-merge";
@@ -7,7 +7,7 @@ import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { addSection, deleteSection, updatePolylines, updateSection } from "@/store/reducers/editor";
 import { ISTKProps } from "@/types";
-import { Callout, Caption, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../core";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../core";
 
 const onAddSection = () => store.dispatch(addSection(undefined));
 
@@ -20,8 +20,8 @@ type IControlProps = Pick<ISTKProps, "options" | "styles">;
 export const SectionManager = ({ options }: IControlProps) => {
   const sections = useSelector((state: any) => state.editor.sections);
   return (
-    <div className="grid gap-4">
-      <div className="flex gap-2 justify-between items-center">
+    <div className="flex flex-col gap-3">
+      <div className="w-full flex justify-between items-center gap-4">
         <h6 className="font-medium text-sm">Sections</h6>
         <IconButton
           className="w-6 h-6 p-0"
@@ -83,18 +83,22 @@ const SectionSelector = ({ firstElement, selectedElementIds, options }: IControl
   const sections = useSelector((state: any) => state.editor.sections);
   return (
     <>
-      <div className="w-full flex justify-between items-center gap-12">
-        <Callout className="font-semibold">Sections</Callout>
-        <Popover>
-          <PopoverTrigger>
-            <Caption className="text-blue-500 hover:text-blue-600 transform translate-y-0.5 cursor-pointer transition-all duration-medium">
-              Manage
-            </Caption>
-          </PopoverTrigger>
-          <PopoverContent className="bg-white w-80 py-4 mr-4">
-            <SectionManager options={options} />
-          </PopoverContent>
-        </Popover>
+      <div className="flex flex-col gap-3">
+        <div className="w-full flex justify-between items-center gap-4">
+          <h6 className="font-medium text-sm">Sections</h6>
+          <Popover>
+            <PopoverTrigger>
+              <IconButton
+                className="w-6 h-6 p-0 shrink-0"
+                variant="secondary"
+                icon={<Settings2 className="w-4 h-4" />}
+              />
+            </PopoverTrigger>
+            <PopoverContent className="bg-white w-80 py-4 mr-4">
+              <SectionManager options={options} />
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
       <Select
         key={selectedElementIds?.join(",")}

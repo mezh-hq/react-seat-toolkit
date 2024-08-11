@@ -59,13 +59,13 @@ const Controls = ({ options, styles }: IControlProps) => {
     <div
       id={ids.controls}
       className={twMerge(
-        "h-full bg-white border-l shadow-lg border-border absolute top-0 overflow-y-auto z-10",
+        "h-full bg-white border-l shadow-lg border-gray-200 absolute top-0 overflow-y-auto z-10",
         transition,
         width,
         open ? "right-0" : "-right-[22rem]"
       )}
     >
-      <div className="flex justify-between items-center gap-4 h-14 border-b border-border box-content px-5 sticky top-0 bg-white">
+      <div className="flex justify-between items-center gap-4 h-14 border-b border-gray-200 box-content px-5 sticky top-0 bg-white">
         <h5>Settings</h5>
         <IconButton
           className="w-6 h-6 p-0 shrink-0"

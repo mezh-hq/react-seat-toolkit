@@ -80,13 +80,13 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
   return (
     <div
       id={ids.toolbar}
-      className={twMerge("border-r border-border bg-white", styles?.root?.className)}
+      className={twMerge("border-r border-gray-200 bg-white", styles?.root?.className)}
       style={styles?.root?.properties}
     >
       <div className="m-[.875rem] p-1">
         <DraftingCompass className="w-5 h-5" />
       </div>
-      <hr />
+      <hr className="!border-gray-200" />
       <div className="overflow-y-auto h-[calc(100%-3.5rem)] flex flex-col">
         <div className="grow">
           {Object.entries(tools).map(([key, value]) => {
