@@ -7,7 +7,9 @@ import { dataAttributes, ids, selectors } from "@/constants";
 import type { ISTKProps } from "@/types";
 import { d3Extended, getScaleFactorAccountingForViewBoxWidth } from "@/utils";
 import { Tool } from "../toolbar/data";
+import { default as DockHandler } from "./dock-handler";
 import { showPostOffsetElements, showPreOffsetElements } from "./elements";
+import { default as Reload } from "./reload";
 import { VisibilityFreezeScale, VisibilityOffset } from "./visibility";
 
 const handleElementVisibility = debounce((workspace, k) => {
@@ -68,7 +70,7 @@ export const panAndZoomToArea = ({ k, x, y }) => {
   d3Extended.selectById(ids.workspace).transition().duration(1000).call(zoom.scaleTo, k, [x, y]);
 };
 
-const Actions = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
+const Actions = (props: Pick<ISTKProps, "mode" | "styles" | "options" | "events">) => {
   const dock = useSelector((state: any) => state.toolbar.dock);
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
 
@@ -97,96 +99,108 @@ const Actions = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
 
   const showZoomControls = props.options?.showZoomControls ?? true;
   const showVisibilityControls = props.mode === "designer" && (props.options?.showVisibilityControls ?? true);
-
-  if (!(showZoomControls && showVisibilityControls)) return;
+  const showReloadButton = props.options?.showReloadButton ?? false;
+  const isUser = props.mode === "user";
 
   return (
-    <div
-      id={ids.zoomControls}
-      className="absolute overflow-clip bottom-0 sm:pb-4 left-0 right-0 flex justify-center items-center"
-    >
-      <div
-        className={twMerge(
-          "border-t sm:border border-border w-full sm:w-fit bg-white/80 backdrop-blur-md p-3 sm:p-2 overflow-x-auto sm:rounded-lg flex justify-center [&>div]:shrink-0 gap-2 transition-all duration-500 ease-in-out opacity-100",
-          panStyles?.root?.className,
-          !dock && "translate-y-20 opacity-0"
-        )}
-        style={panStyles?.root?.properties}
-      >
-        {showVisibilityControls && <VisibilityFreezeScale {...props} />}
-        {showZoomControls && (
-          <>
-            <div
-              className={twMerge(
-                "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-                panStyles?.handles?.left?.className
-              )}
-              onClick={() => panLeft()}
-              role="button"
-              style={panStyles?.handles?.left?.properties}
-            >
-              <ChevronLeft size={16} />
-            </div>
-            <div
-              className={twMerge(
-                "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-                panStyles?.handles?.right?.className
-              )}
-              role="button"
-              onClick={() => panRight()}
-              style={panStyles?.handles?.right?.properties}
-            >
-              <ChevronRight size={16} />
-            </div>
-            <div
-              className={twMerge(
-                "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-                zoomStyles?.out?.className
-              )}
-              onClick={zoomOut}
-              role="button"
-              style={zoomStyles?.out?.properties}
-            >
-              <Minus size={16} />
-            </div>
-            <div
-              className={twMerge(
-                "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-                zoomStyles?.in?.className
-              )}
-              onClick={zoomIn}
-              role="button"
-              style={zoomStyles?.in?.properties}
-            >
-              <Plus size={16} />
-            </div>
-            <div
-              className={twMerge(
-                "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-                panStyles?.handles?.up?.className
-              )}
-              role="button"
-              onClick={() => panUp()}
-              style={panStyles?.handles?.up?.properties}
-            >
-              <ChevronUp size={16} />
-            </div>
-            <div
-              className={twMerge(
-                "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-                panStyles?.handles?.down?.className
-              )}
-              role="button"
-              onClick={() => panDown()}
-              style={panStyles?.handles?.down?.properties}
-            >
-              <ChevronDown size={16} />
-            </div>
-          </>
-        )}
-        {showVisibilityControls && <VisibilityOffset {...props} />}
-      </div>
-    </div>
+    <>
+      {isUser && (
+        <div id={ids.reloader} className="absolute top-4 right-4 flex flex-col gap-2">
+          {showReloadButton && (
+            <Reload mode={props.mode} options={props.options} styles={props.styles} onReload={props.events?.onReload} />
+          )}
+          <DockHandler />
+        </div>
+      )}
+      {(showZoomControls || showVisibilityControls) && (
+        <div
+          id={ids.zoomControls}
+          className="absolute overflow-clip bottom-0 sm:pb-4 left-0 right-0 flex justify-center items-center"
+        >
+          <div
+            className={twMerge(
+              "border-t sm:border border-border w-full sm:w-fit bg-white/80 backdrop-blur-md p-3 sm:p-2 overflow-x-auto sm:rounded-lg flex justify-center [&>div]:shrink-0 gap-2 transition-all duration-500 ease-in-out opacity-100",
+              panStyles?.root?.className,
+              !dock && "translate-y-20 opacity-0"
+            )}
+            style={panStyles?.root?.properties}
+          >
+            {showVisibilityControls && <VisibilityFreezeScale {...props} />}
+            {showZoomControls && (
+              <>
+                <div
+                  className={twMerge(
+                    "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
+                    panStyles?.handles?.left?.className
+                  )}
+                  onClick={() => panLeft()}
+                  role="button"
+                  style={panStyles?.handles?.left?.properties}
+                >
+                  <ChevronLeft size={16} />
+                </div>
+                <div
+                  className={twMerge(
+                    "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
+                    panStyles?.handles?.right?.className
+                  )}
+                  role="button"
+                  onClick={() => panRight()}
+                  style={panStyles?.handles?.right?.properties}
+                >
+                  <ChevronRight size={16} />
+                </div>
+                <div
+                  className={twMerge(
+                    "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
+                    zoomStyles?.out?.className
+                  )}
+                  onClick={zoomOut}
+                  role="button"
+                  style={zoomStyles?.out?.properties}
+                >
+                  <Minus size={16} />
+                </div>
+                <div
+                  className={twMerge(
+                    "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
+                    zoomStyles?.in?.className
+                  )}
+                  onClick={zoomIn}
+                  role="button"
+                  style={zoomStyles?.in?.properties}
+                >
+                  <Plus size={16} />
+                </div>
+                <div
+                  className={twMerge(
+                    "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
+                    panStyles?.handles?.up?.className
+                  )}
+                  role="button"
+                  onClick={() => panUp()}
+                  style={panStyles?.handles?.up?.properties}
+                >
+                  <ChevronUp size={16} />
+                </div>
+                <div
+                  className={twMerge(
+                    "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
+                    panStyles?.handles?.down?.className
+                  )}
+                  role="button"
+                  onClick={() => panDown()}
+                  style={panStyles?.handles?.down?.properties}
+                >
+                  <ChevronDown size={16} />
+                </div>
+              </>
+            )}
+            {showVisibilityControls && <VisibilityOffset {...props} />}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

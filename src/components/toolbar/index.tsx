@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import { DraftingCompass, PanelBottomClose, PanelBottomOpen } from "lucide-react";
+import { DraftingCompass } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import {
@@ -11,10 +11,11 @@ import {
   TooltipContent,
   TooltipTrigger
 } from "@/components";
+import DockHandler from "@/components/workspace/dock-handler";
 import { dataAttributes, ids } from "@/constants";
 import { store } from "@/store";
 import { clearCursor, setCursor, setSelectedPolylineId, showControls } from "@/store/reducers/editor";
-import { clearTool, selectSubTool, selectTool, toggleDock } from "@/store/reducers/toolbar";
+import { clearTool, selectSubTool, selectTool } from "@/store/reducers/toolbar";
 import { ISTKProps } from "@/types";
 import { fallible } from "@/utils";
 import { selectFirstShape } from "../controls/shapes";
@@ -170,26 +171,12 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
             );
           })}
         </div>
-        <DockTrigger />
+        <div className="mx-3 my-6 sticky bottom-0">
+          <DockHandler />
+        </div>
       </div>
     </div>
   );
 };
-
-function DockTrigger(): JSX.Element {
-  const dock = useSelector((state: any) => state.toolbar.dock);
-
-  return (
-    <div className="mx-3 my-6 sticky bottom-0">
-      <div
-        className={twMerge("w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash")}
-        role="button"
-        onClick={() => store.dispatch(toggleDock(undefined))}
-      >
-        {dock ? <PanelBottomClose size={16} /> : <PanelBottomOpen size={16} />}
-      </div>
-    </div>
-  );
-}
 
 export default ToolBar;
