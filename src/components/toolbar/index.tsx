@@ -126,8 +126,23 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
                 </Tooltip>
                 {(value as any).subTools?.length && (
                   <Popover>
-                    <PopoverTrigger className="w-1.5 h-1.5 bg-black rounded-full absolute bottom-0 right-0" />
-                    <PopoverContent className="bg-white w-auto p-0 ml-8 items-center justify-center flex flex-col">
+                    <PopoverTrigger className="rounded-md absolute inset-0" />
+                    <PopoverContent
+                      align="start"
+                      alignOffset={25}
+                      sideOffset={-34}
+                      className="bg-white w-auto p-0 ml-8 items-center justify-center flex flex-col shadow-none"
+                    >
+                      <PopoverClose className="hover:bg-gray-100 rounded-md p-2 focus:outline-none cursor-pointer">
+                        <Icon
+                          size={18}
+                          className={twMerge(
+                            "pointer-events-none transition-all duration-300",
+                            styles?.tool?.icon?.className
+                          )}
+                          style={styles?.tool?.icon?.properties}
+                        />
+                      </PopoverClose>
                       {(value as any).subTools?.map((tool) => {
                         const SubIcon = tool.icon;
                         return (
