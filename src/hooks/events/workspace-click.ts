@@ -96,6 +96,8 @@ const useWorkspaceClick = () => {
         } else if (e.target.nodeName === "rect") {
           if (e.target.getAttribute(dataAttributes.elementType) === ElementType.Shape) {
             store.dispatch(deleteShape(e.target.id));
+          } else if (e.target.getAttribute(dataAttributes.elementType) === ElementType.Seat) {
+            store.dispatch(deleteSeat(e.target.id));
           } else {
             store.dispatch(deleteBooth(e.target.id));
           }
