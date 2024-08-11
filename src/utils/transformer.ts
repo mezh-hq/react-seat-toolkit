@@ -1,18 +1,21 @@
 import { ElementType } from "@/components/workspace/elements";
 import { dataAttributes, selectors } from "@/constants";
 import { store } from "@/store";
+import { ISTKData } from "@/types";
 import { rgbToHex } from ".";
 import { default as d3Extended } from "./d3";
 
 export const domSeatsToJSON = () => {
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`).map((seat) => {
+    const square = (seat.node() as any)?.nodeName === "rect";
     return {
       id: seat.attr("id"),
-      x: +seat.attr("cx"),
-      y: +seat.attr("cy"),
+      x: +seat.attr(square ? "x" : "cx"),
+      y: +seat.attr(square ? "y" : "cy"),
       label: document.getElementById(`${seat.attr("id")}-label`)?.textContent,
       status: seat.attr(dataAttributes.status),
-      category: seat.attr(dataAttributes.category)
+      category: seat.attr(dataAttributes.category),
+      square
     };
   });
 };
@@ -97,7 +100,7 @@ export const domTransform = () => {
   return d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup));
 };
 
-export const stateToJSON = () => {
+export const stateToJSON = (): ISTKData => {
   const state = store.getState().editor;
   return {
     name: state.location,

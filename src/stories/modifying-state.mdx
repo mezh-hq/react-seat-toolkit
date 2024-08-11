@@ -1,0 +1,31 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Modifying State" />
+
+<h1>Modifying State</h1>
+
+<h4>React Seat Toolkit uses Redux to manage its state. You can modify its state using the underlying `store` itself or a couple of abstracted `actions` which are available to you.</h4>
+
+<h4>Here is an example of how you can deselect a seat manually and retrieve the updated state:</h4>
+
+```tsx
+import { actions } from "@mezh-hq/react-seat-toolkit";
+
+actions.deselectElement("<seat-id>");
+
+const state = actions.getState();
+
+console.log(state); // Updated workspace state of type STKData
+```
+
+<h4>Here is an example of how you can import and use the `store` to retrieve the current Redux state:</h4>
+
+```tsx
+import { store } from "@mezh-hq/react-seat-toolkit";
+
+const state = store.getState();
+
+console.log(state); // Current redux state (Not of type STKData)
+```
+
+<h4>For a full list of supported actions please have a look at its type definitions</h4>

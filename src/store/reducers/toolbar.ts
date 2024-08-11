@@ -3,7 +3,8 @@ import { Tool } from "@/components/toolbar/data";
 
 const initialState = {
   selectedTool: Tool.Select,
-  dock: true
+  dock: true,
+  selectedSubTool: null
 };
 
 export const slice = createSlice({
@@ -12,6 +13,10 @@ export const slice = createSlice({
   reducers: {
     selectTool: (state, action) => {
       state.selectedTool = action.payload;
+      state.selectedSubTool = null;
+    },
+    selectSubTool: (state, action) => {
+      state.selectedSubTool = action.payload;
     },
     clearTool: (state) => {
       state.selectedTool = null;
@@ -22,6 +27,6 @@ export const slice = createSlice({
   }
 });
 
-export const { clearTool, selectTool, toggleDock } = slice.actions;
+export const { clearTool, selectTool, selectSubTool, toggleDock } = slice.actions;
 
 export default slice.reducer as Reducer<typeof initialState>;

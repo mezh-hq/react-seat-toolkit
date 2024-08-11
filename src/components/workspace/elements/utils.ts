@@ -30,12 +30,13 @@ export const elements = {
 };
 
 const repositionSeat = (seat, dx, dy) => {
-  const x = +seat.attr("cx") + dx;
-  const y = +seat.attr("cy") + dy;
-
-  seat.attr("cx", x);
-  seat.attr("cy", y);
-
+  if (seat.attr("cx")) {
+    seat.attr("cx", +seat.attr("cx") + dx);
+    seat.attr("cy", +seat.attr("cy") + dy);
+  } else {
+    seat.attr("x", +seat.attr("x") + dx);
+    seat.attr("y", +seat.attr("y") + dy);
+  }
   const label = d3Extended.selectById(`${seat.attr("id")}-label`);
   label.attr("x", +label.attr("x") + dx);
   label.attr("y", +label.attr("y") + dy);
@@ -78,14 +79,10 @@ const repositionElements = (currentElem, repositionFn, elementType: string, dx: 
 
 export const handleDrag = drag().on("drag", function (event) {
   const me = select(this);
-  const controls = d3Extended.selectById(`${me.attr("id")}-controls`);
   const x = +me.attr("x") + event.dx;
   const y = +me.attr("y") + event.dy;
   me.attr("x", x);
   me.attr("y", y);
-  const center = d3Extended.getNodeCenter(me);
-  controls.attr("cx", center.x);
-  controls.attr("cy", center.y);
 });
 
 export const handleSeatDrag = drag().on("drag", function (event) {

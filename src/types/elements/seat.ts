@@ -22,6 +22,7 @@ export interface ISeat {
   label?: string;
   category?: string | null;
   status?: SeatStatus | string;
+  square?: boolean;
 }
 
 export interface IFreeSeat {

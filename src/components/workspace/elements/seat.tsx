@@ -92,31 +92,40 @@ const Seat: React.FC<ISeatProps> = forwardRef(
 
     status ??= SeatStatus.Available;
 
+    const seatProps = {
+      ref,
+      id,
+      onClick: localOnClick,
+      [dataAttributes.category]: category,
+      [dataAttributes.section]: categoryObject?.section,
+      [dataAttributes.status]: status,
+      ...props,
+      className: twMerge(
+        props.className,
+        consumer.mode === "designer" && "filter hover:brightness-[1.05]",
+        consumer.mode === "user" && status === SeatStatus.Available && "cursor-pointer filter hover:brightness-[1.05]",
+        consumer.styles?.elements?.seat?.base?.className
+      ),
+      style: consumer.styles?.elements?.seat?.base?.properties,
+      onMouseOver: onMouseOver,
+      onMouseOut: onMouseOut
+    };
+
     return (
       <>
-        <circle
-          ref={ref}
-          id={id}
-          cx={x}
-          cy={y}
-          r={seatSize / 2}
-          onClick={localOnClick}
-          {...{ [dataAttributes.category]: category }}
-          {...{ [dataAttributes.section]: categoryObject?.section }}
-          {...{ [dataAttributes.status]: status }}
-          {...props}
-          className={twMerge(
-            props.className,
-            consumer.mode === "designer" && "filter hover:brightness-[1.05]",
-            consumer.mode === "user" &&
-              status === SeatStatus.Available &&
-              "cursor-pointer filter hover:brightness-[1.05]",
-            consumer.styles?.elements?.seat?.base?.className
-          )}
-          style={consumer.styles?.elements?.seat?.base?.properties}
-          onMouseOver={onMouseOver}
-          onMouseOut={onMouseOut}
-        />
+        {element.square ? (
+          <rect
+            x={x - seatSize / 2}
+            y={y - seatSize / 2}
+            height={seatSize}
+            width={seatSize}
+            rx={3}
+            ry={3}
+            {...seatProps}
+          />
+        ) : (
+          <circle cx={x} cy={y} r={seatSize / 2} {...seatProps} />
+        )}
         {SeatIcon && (
           <SeatIcon
             x={x - seatSize / 2.73}

@@ -7,7 +7,8 @@ import {
   Move,
   PenTool,
   Pentagon,
-  Sparkles
+  Sparkles,
+  Square
 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
@@ -47,7 +48,14 @@ export const tools = {
     iconCursor: (props: any) => <Circle {...props} size={35} strokeWidth={1.5} />,
     shortcut: "S",
     crosshairs: true,
-    description: "Click anywhere to place a seat"
+    description: "Click anywhere to place a seat",
+    subTools: [
+      {
+        name: "Square",
+        icon: Square,
+        iconCursor: (props: any) => <Square {...props} size={38} strokeWidth={1.5} />
+      }
+    ]
   },
   [Tool.Booth]: {
     icon: Codesandbox,

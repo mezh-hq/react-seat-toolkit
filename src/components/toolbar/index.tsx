@@ -2,11 +2,19 @@ import { useCallback, useEffect } from "react";
 import { DraftingCompass, PanelBottomClose, PanelBottomOpen } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components";
-import { ids } from "@/constants";
+import {
+  Popover,
+  PopoverClose,
+  PopoverContent,
+  PopoverTrigger,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger
+} from "@/components";
+import { dataAttributes, ids } from "@/constants";
 import { store } from "@/store";
 import { clearCursor, setCursor, setSelectedPolylineId, showControls } from "@/store/reducers/editor";
-import { clearTool, selectTool, toggleDock } from "@/store/reducers/toolbar";
+import { clearTool, selectSubTool, selectTool, toggleDock } from "@/store/reducers/toolbar";
 import { ISTKProps } from "@/types";
 import { fallible } from "@/utils";
 import { selectFirstShape } from "../controls/shapes";
@@ -14,6 +22,7 @@ import { Tool, tools } from "./data";
 
 const ToolBar: React.FC<ISTKProps> = (props) => {
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
+  const selectedSubTool = useSelector((state: any) => state.toolbar.selectedSubTool);
   const selectedPolylineId = store.getState().editor.selectedPolylineId;
 
   const styles = props.styles?.toolbar;
@@ -42,13 +51,17 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
 
   useEffect(() => {
     fallible(() => {
-      if (selectedTool && selectedTool !== Tool.Shape) {
+      if (selectedSubTool) {
+        const subTool = tools[selectedTool].subTools?.find((tool) => tool.name === selectedSubTool);
+        store.dispatch(setCursor(subTool.iconCursor ?? subTool.icon));
+      } else if (selectedTool && selectedTool !== Tool.Shape) {
         store.dispatch(setCursor(tools[selectedTool].iconCursor ?? tools[selectedTool].icon));
       }
     });
-  }, [selectedTool]);
+  }, [selectedTool, selectedSubTool]);
 
-  const onToolClick = (tool) => {
+  const onToolClick = (tool, isSubtoolClick: boolean) => {
+    if (isSubtoolClick) return;
     store.dispatch(selectTool(tool));
     if ([Tool.Image, Tool.Shape].includes(tool)) {
       store.dispatch(showControls());
@@ -57,6 +70,10 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
     if (tool !== Tool.Pen && selectedPolylineId) {
       store.dispatch(setSelectedPolylineId(null));
     }
+  };
+
+  const onSubToolClick = (tool) => {
+    store.dispatch(selectSubTool(tool.name));
   };
 
   return (
@@ -82,7 +99,9 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
                   styles?.tool?.root?.className
                 )}
                 style={styles?.tool?.root?.properties}
-                onClick={() => onToolClick(key)}
+                onClick={(e) =>
+                  onToolClick(key, (e.target as HTMLElement)?.getAttribute(dataAttributes.subtool) === "true")
+                }
               >
                 <Tooltip>
                   <TooltipTrigger className="rounded-md w-8 h-8 flex justify-center items-center">
@@ -105,6 +124,33 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
                     {key}
                   </TooltipContent>
                 </Tooltip>
+                {(value as any).subTools?.length && (
+                  <Popover>
+                    <PopoverTrigger className="w-1.5 h-1.5 bg-black rounded-full absolute bottom-0 right-0" />
+                    <PopoverContent className="bg-white w-auto p-0 ml-8 items-center justify-center flex flex-col">
+                      {(value as any).subTools?.map((tool) => {
+                        const SubIcon = tool.icon;
+                        return (
+                          <PopoverClose
+                            key={tool.name}
+                            onClick={() => onSubToolClick(tool)}
+                            className="hover:bg-gray-100 rounded-md p-2 focus:outline-none cursor-pointer"
+                            {...{ [dataAttributes.subtool]: true }}
+                          >
+                            <SubIcon
+                              size={18}
+                              className={twMerge(
+                                "pointer-events-none transition-all duration-300 ",
+                                styles?.tool?.icon?.className
+                              )}
+                              style={styles?.tool?.icon?.properties}
+                            />
+                          </PopoverClose>
+                        );
+                      })}
+                    </PopoverContent>
+                  </Popover>
+                )}
               </div>
             );
           })}
