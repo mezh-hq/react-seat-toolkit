@@ -6,6 +6,7 @@ import { twMerge } from "tailwind-merge";
 import { dataAttributes, ids, selectors } from "@/constants";
 import type { ISTKProps } from "@/types";
 import { d3Extended, getScaleFactorAccountingForViewBoxWidth } from "@/utils";
+import { Button } from "../core";
 import { Tool } from "../toolbar/data";
 import { default as DockHandler } from "./dock-handler";
 import { showPostOffsetElements, showPreOffsetElements } from "./elements";
@@ -128,72 +129,54 @@ const Actions = (props: Pick<ISTKProps, "mode" | "styles" | "options" | "events"
             {showVisibilityControls && <VisibilityFreezeScale {...props} />}
             {showZoomControls && (
               <>
-                <div
-                  className={twMerge(
-                    "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-                    panStyles?.handles?.left?.className
-                  )}
+                <Button
+                  variant="secondary"
+                  className={twMerge("w-8 h-8 p-2", panStyles?.handles?.left?.className)}
                   onClick={() => panLeft()}
-                  role="button"
                   style={panStyles?.handles?.left?.properties}
                 >
                   <ChevronLeft size={16} />
-                </div>
-                <div
-                  className={twMerge(
-                    "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-                    panStyles?.handles?.right?.className
-                  )}
-                  role="button"
+                </Button>
+                <Button
+                  variant="secondary"
+                  className={twMerge("w-8 h-8 p-2", panStyles?.handles?.right?.className)}
                   onClick={() => panRight()}
                   style={panStyles?.handles?.right?.properties}
                 >
                   <ChevronRight size={16} />
-                </div>
-                <div
-                  className={twMerge(
-                    "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-                    zoomStyles?.out?.className
-                  )}
+                </Button>
+                <Button
+                  variant="secondary"
+                  className={twMerge("w-8 h-8 p-2", zoomStyles?.out?.className)}
                   onClick={zoomOut}
-                  role="button"
                   style={zoomStyles?.out?.properties}
                 >
                   <Minus size={16} />
-                </div>
-                <div
-                  className={twMerge(
-                    "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-                    zoomStyles?.in?.className
-                  )}
+                </Button>
+                <Button
+                  variant="secondary"
+                  className={twMerge("w-8 h-8 p-2", zoomStyles?.in?.className)}
                   onClick={zoomIn}
-                  role="button"
                   style={zoomStyles?.in?.properties}
                 >
                   <Plus size={16} />
-                </div>
-                <div
-                  className={twMerge(
-                    "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-                    panStyles?.handles?.up?.className
-                  )}
-                  role="button"
+                </Button>
+                <Button
+                  variant="secondary"
+                  className={twMerge("w-8 h-8 p-2", panStyles?.handles?.up?.className)}
                   onClick={() => panUp()}
                   style={panStyles?.handles?.up?.properties}
                 >
                   <ChevronUp size={16} />
-                </div>
-                <div
-                  className={twMerge(
-                    "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
-                    panStyles?.handles?.down?.className
-                  )}
-                  role="button"
+                </Button>
+                <Button
+                  variant="secondary"
+                  className={twMerge("w-8 h-8 p-2", panStyles?.handles?.down?.className)}
                   onClick={() => panDown()}
                   style={panStyles?.handles?.down?.properties}
                 >
                   <ChevronDown size={16} />
-                </div>
+                </Button>
               </>
             )}
             {showVisibilityControls && <VisibilityOffset {...props} />}

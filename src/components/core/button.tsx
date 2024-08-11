@@ -7,7 +7,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: "bg-black text-white",
-        secondary: "text-black bg-slate-100 after:bg-black/[0.15]"
+        secondary: "text-black bg-slate-100 hover:bg-slate-200/75 after:bg-black/[0.15]"
       },
       size: {
         default: "h-10 px-4 py-2",

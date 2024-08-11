@@ -6,6 +6,7 @@ import { store } from "@/store";
 import { setInitialViewBoxScale, setVisibilityOffset } from "@/store/reducers/editor";
 import type { ISTKProps } from "@/types";
 import { d3Extended } from "@/utils";
+import { Button } from "../core";
 import { showAllElements } from "./elements";
 
 const freeze = () =>
@@ -31,14 +32,14 @@ export const VisibilityFreezeScale = (props: Pick<ISTKProps, "mode" | "styles" |
   const styles = props.styles?.visibilityControls;
 
   return (
-    <div
-      className={twMerge("w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash", styles?.buttons?.className)}
+    <Button
+      variant="secondary"
+      className={twMerge("w-8 h-8 p-2", styles?.buttons?.className)}
       onClick={initialViewBoxScale ? unfreeze : freeze}
-      role="button"
       style={styles?.buttons?.properties}
     >
       {initialViewBoxScale ? <Lock size={16} /> : <Unlock size={16} />}
-    </div>
+    </Button>
   );
 };
 
@@ -48,13 +49,13 @@ export const VisibilityOffset = (props: Pick<ISTKProps, "mode" | "styles" | "opt
   const styles = props.styles?.visibilityControls;
 
   return (
-    <div
-      className={twMerge("w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash", styles?.buttons?.className)}
+    <Button
+      variant="secondary"
+      className={twMerge("w-8 h-8 p-2", styles?.buttons?.className)}
       onClick={visibilityOffset === 0 ? setVisibility : unsetVisibility}
-      role="button"
       style={styles?.buttons?.properties}
     >
       {visibilityOffset === 0 ? <Scan size={16} /> : <Focus size={16} />}
-    </div>
+    </Button>
   );
 };
