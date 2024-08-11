@@ -11,7 +11,7 @@ import {
   TooltipContent,
   TooltipTrigger
 } from "@/components";
-import DockHandler from "@/components/workspace/dock-handler";
+import { default as DockHandler } from "@/components/workspace/dock/handler";
 import { dataAttributes, ids } from "@/constants";
 import { store } from "@/store";
 import { clearCursor, setCursor, setSelectedPolylineId, showControls } from "@/store/reducers/editor";

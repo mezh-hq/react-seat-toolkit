@@ -6,8 +6,8 @@ import { store } from "@/store";
 import { setInitialViewBoxScale, setVisibilityOffset } from "@/store/reducers/editor";
 import type { ISTKProps } from "@/types";
 import { d3Extended } from "@/utils";
-import { Button } from "../core";
-import { showAllElements } from "./elements";
+import { Button } from "../../core";
+import { showAllElements } from "../elements";
 
 const freeze = () =>
   store.dispatch(setInitialViewBoxScale(d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup)).k));

@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { dataAttributes, selectors } from "@/constants";
 import { IPolyline, ISTKProps, ISeatCategory, ISection } from "@/types";
 import { d3Extended, getRelativeWorkspaceClickCoords, getScaleFactorAccountingForViewBoxWidth } from "@/utils";
-import { panAndZoomToArea } from "../actions";
+import { panAndZoomToArea } from "../dock";
 
 export interface IPolylineProps extends IPolyline {
   className?: string;

@@ -1,4 +1,4 @@
-import { panDown, panLeft, panRight, panUp } from "@/components/workspace/actions";
+import { panDown, panLeft, panRight, panUp } from "@/components/workspace/dock";
 import { store } from "@/store";
 import { clearElements, deselectElement, selectElement } from "@/store/reducers/editor";
 import { stateToJSON } from "@/utils";

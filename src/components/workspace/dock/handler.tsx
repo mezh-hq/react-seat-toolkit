@@ -7,7 +7,6 @@ import { toggleDock } from "@/store/reducers/toolbar";
 
 function DockHandler(): JSX.Element {
   const dock = useSelector((state: any) => state.toolbar.dock);
-
   return (
     <div
       className={twMerge(

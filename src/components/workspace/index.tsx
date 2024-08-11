@@ -4,8 +4,8 @@ import { twMerge } from "tailwind-merge";
 import { dataAttributes, ids } from "@/constants";
 import { type ISTKProps, SeatStatus } from "@/types";
 import { Tool, tools } from "../toolbar/data";
-import { default as Actions } from "./actions";
 import { default as Crosshairs } from "./crosshairs";
+import { default as Dock } from "./dock";
 import { default as Element, ElementType } from "./elements";
 import { default as Grid } from "./grid";
 
@@ -127,7 +127,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
           <Grid />
         </>
       )}
-      <Actions mode={props.mode} options={props.options} styles={props.styles} events={props.events} />
+      <Dock mode={props.mode} options={props.options} styles={props.styles} events={props.events} />
     </div>
   );
 };

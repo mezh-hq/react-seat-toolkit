@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
-import { panAndZoom } from "@/components/workspace/actions";
+import { panAndZoom } from "@/components/workspace/dock";
 import { dataAttributes, ids, selectors } from "@/constants";
 import { store } from "@/store";
 import { initializeElements, initializeWorkspace, resetWorkspace, sync } from "@/store/reducers/editor";
