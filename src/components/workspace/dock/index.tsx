@@ -120,7 +120,7 @@ const Dock = (props: Pick<ISTKProps, "mode" | "styles" | "options" | "events">) 
         >
           <div
             className={twMerge(
-              "border-t sm:border border-border w-full sm:w-fit bg-white p-3 sm:p-2 overflow-x-auto sm:rounded-lg flex justify-center [&>div]:shrink-0 gap-2 transition-all duration-500 ease-in-out opacity-100",
+              "border-t sm:border border-gray-200 w-full sm:w-fit bg-white p-3 sm:p-2 overflow-x-auto sm:rounded-lg flex justify-center [&>div]:shrink-0 gap-2 transition-all duration-500 ease-in-out opacity-100",
               panStyles?.root?.className,
               !dock && "translate-y-20 opacity-0"
             )}

@@ -15,7 +15,7 @@ const Designer: React.FC<ISTKProps> = (props) => {
     <>
       <div
         className={twMerge(
-          "bg-white text-black h-full min-h-[calc(100vh-32px)] flex overflow-x-hidden",
+          "bg-white text-black h-full min-h-dvh flex overflow-x-hidden",
           props.styles?.root?.className
         )}
         style={props?.styles?.root?.properties}

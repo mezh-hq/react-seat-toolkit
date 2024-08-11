@@ -51,7 +51,7 @@ const ImageControls = ({ options: { maxImageSize = 1024000 } = {} }: IImageContr
   return (
     <div className="w-full flex flex-col gap-5">
       <div
-        className="w-full aspect-square flex justify-center items-center rounded-md overflow-clip cursor-pointer bg-slate-100 border border-border"
+        className="w-full aspect-square flex justify-center items-center rounded-md overflow-clip cursor-pointer bg-slate-100 border border-gray-200"
         onClick={onUploadClick}
       >
         {file ? (
