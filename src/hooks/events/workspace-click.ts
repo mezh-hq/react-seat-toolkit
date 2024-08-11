@@ -34,8 +34,15 @@ const useWorkspaceClick = () => {
   useLayoutEffect(() => {
     const handler = (e) => {
       if (selectedTool == Tool.Seat) {
+        const square = store.getState().toolbar.selectedSubTool === "Square";
         store.dispatch(
-          addSeat({ id: uuidV4(), ...getRelativeClickCoordsWithTransform(e), label: "?", status: SeatStatus.Available })
+          addSeat({
+            id: uuidV4(),
+            ...getRelativeClickCoordsWithTransform(e),
+            label: "?",
+            status: SeatStatus.Available,
+            square
+          })
         );
       } else if (selectedTool == Tool.Booth) {
         const coords = getRelativeClickCoordsWithTransform(e);
@@ -89,6 +96,8 @@ const useWorkspaceClick = () => {
         } else if (e.target.nodeName === "rect") {
           if (e.target.getAttribute(dataAttributes.elementType) === ElementType.Shape) {
             store.dispatch(deleteShape(e.target.id));
+          } else if (e.target.getAttribute(dataAttributes.elementType) === ElementType.Seat) {
+            store.dispatch(deleteSeat(e.target.id));
           } else {
             store.dispatch(deleteBooth(e.target.id));
           }

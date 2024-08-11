@@ -1,9 +1,12 @@
 import { useMemo } from "react";
+import { X } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes, ids } from "@/constants";
+import { store } from "@/store";
+import { toggleControls } from "@/store/reducers/editor";
 import { ISTKProps } from "@/types";
-import { AnimatedSwitcher } from "../core";
+import { AnimatedSwitcher, IconButton } from "../core";
 import { Tool } from "../toolbar/data";
 import { ElementType } from "../workspace/elements";
 import { default as ImageControls } from "./image";
@@ -15,7 +18,9 @@ import { default as SeatControls } from "./seat";
 import { default as SelectControls } from "./select";
 import { default as ShapeControls } from "./shapes";
 
-const transition = "transition-all duration-500";
+const onCogClick = () => store.dispatch(toggleControls());
+
+const transition = "transition-all duration-500 ease-in-out";
 
 const width = "w-[22rem]";
 
@@ -32,7 +37,7 @@ const Controls = ({ options, styles }: IControlProps) => {
         const firstElementType = document
           .getElementById(selectedElementIds[0])
           ?.getAttribute?.(dataAttributes.elementType);
-        if (firstElementType === ElementType.Booth) return NoSelectionControls;
+        if (firstElementType === ElementType.Booth) return SelectControls;
         if (selectedElementIds.length > 1) {
           const same = selectedElementIds.every((id) => {
             return document.getElementById(id)?.getAttribute?.(dataAttributes.elementType) === firstElementType;
@@ -51,23 +56,30 @@ const Controls = ({ options, styles }: IControlProps) => {
   }, [selectedTool, selectedElementIds]);
 
   return (
-    <>
-      <div className={twMerge("pointer-events-none grow-0 shrink-0", transition, open ? width : "w-0")} />
-      <div
-        id={ids.controls}
-        className={twMerge(
-          "py-5 px-6 h-[calc(100%-32px)] absolute top-0 border-t border-black overflow-y-auto",
-          transition,
-          width,
-          open ? "right-0" : "-right-[22rem]"
-        )}
-      >
-        <AnimatedSwitcher
-          key={ControlComponent.name}
-          component={<ControlComponent options={options} styles={styles} />}
+    <div
+      id={ids.controls}
+      className={twMerge(
+        "h-full bg-white border-l shadow-lg border-border absolute top-0 overflow-y-auto z-10",
+        transition,
+        width,
+        open ? "right-0" : "-right-[22rem]"
+      )}
+    >
+      <div className="flex justify-between items-center gap-4 h-14 border-b border-border box-content px-5 sticky top-0 bg-white">
+        <h5>Settings</h5>
+        <IconButton
+          className="w-6 h-6 p-0 shrink-0"
+          variant="secondary"
+          icon={<X className="w-4 h-4" />}
+          onClick={onCogClick}
         />
       </div>
-    </>
+      <AnimatedSwitcher
+        key={ControlComponent.name}
+        component={<ControlComponent options={options} styles={styles} />}
+        className="py-4 px-5"
+      />
+    </div>
   );
 };
 

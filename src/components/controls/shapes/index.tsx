@@ -32,17 +32,17 @@ const ShapeControls = () => {
   }, []);
 
   return (
-    <div className="w-full grid grid-cols-3 gap-2">
+    <div className="w-full grid grid-cols-5 gap-4">
       {shapeList.map((Shape, i) => (
         <div
           key={i}
           className={twMerge(
-            "cursor-pointer p-5 rounded-md flex justify-center items-center bg-gray-100 hover:bg-gray-200 transition-all duration-medium",
-            selectedIndex == i && "bg-black/90 text-white hover:text-black"
+            "cursor-pointer aspect-square w-full rounded-lg flex justify-center items-center text-slate-500 bg-gray-100 transition-all duration-medium",
+            selectedIndex == i && "bg-black/90 text-white"
           )}
           onClick={() => onShapeClick(CursorShape(Shape), i)}
         >
-          <Shape size={45} strokeWidth={1} />
+          <Shape size={20} />
         </div>
       ))}
     </div>

@@ -13,13 +13,14 @@ const Reloader = (props: IProps) => {
     <div
       id={ids.reloader}
       className={twMerge(
-        "absolute top-4 right-4 pl-7 flex justify-center items-center cursor-pointer border bg-gray-50 hover:bg-gray-100 [&>svg]:hover:-rotate-45 [&>svg]:transition-all [&>svg]:transition-medium rounded-md p-2 transition-all duration-medium",
+        "w-8 h-8 p-2 rounded-md bg-slate-100 cursor-pointer splash",
         props.styles?.reloadButton?.className
       )}
-      style={props.styles?.reloadButton?.properties}
       onClick={props?.onReload}
+      role="button"
+      style={props.styles?.reloadButton?.properties}
     >
-      <RotateCcw size={20.5} />
+      <RotateCcw size={16} />
     </div>
   );
 };

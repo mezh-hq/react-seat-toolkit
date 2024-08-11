@@ -95,8 +95,8 @@ export const useSelection = () => {
 
           elements.forEach((element) => {
             const isSeat = element.attr(dataAttributes.elementType) === ElementType.Seat;
-            const x = isSeat ? +element.attr("cx") : +element.attr("x");
-            const y = isSeat ? +element.attr("cy") : +element.attr("y");
+            const x = isSeat && (element.node() as any)?.nodeName !== "rect" ? +element.attr("cx") : +element.attr("x");
+            const y = isSeat && (element.node() as any)?.nodeName !== "rect" ? +element.attr("cy") : +element.attr("y");
             if (
               x >= finalAttributes.x1 &&
               x <= finalAttributes.x2 &&

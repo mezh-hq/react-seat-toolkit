@@ -19,13 +19,13 @@ export const Cursor = () => {
     const y = ptr[1];
     const workspace = document.getElementById(ids.workspace)?.getBoundingClientRect();
     const zoomControls = document.getElementById(ids.zoomControls)?.getBoundingClientRect();
-    const panControls = document.getElementById(ids.panControls)?.getBoundingClientRect();
+    const mainControls = document.getElementById(ids.controls)?.getBoundingClientRect();
     if (workspace) {
       const customCursor = document.getElementById(ids.cursor);
       if (
         isWithinBounds(x, y, workspace) &&
         !isWithinBounds(x, y, zoomControls) &&
-        !isWithinBounds(x, y, panControls) &&
+        !isWithinBounds(x, y, mainControls) &&
         !resizeCursors.includes(e.target?.style?.cursor) &&
         !e.target.id.includes("radix:") &&
         e.target.getAttribute("role") !== "dialog"

@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
-import { Checkbox } from "@/components/core";
+import { Label, Switch } from "@/components/core";
 import { store } from "@/store";
 import { selectTextById, updateText } from "@/store/reducers/editor";
 import { d3Extended, rgbToHex } from "@/utils";
@@ -19,8 +19,8 @@ const TextSelectControls = () => {
   );
 
   return (
-    <div className="flex flex-col gap-4 py-1">
-      <div className="grid grid-cols-3 items-center gap-4">
+    <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-3">
         <ControlInput
           id="text-label-input"
           label="Label"
@@ -32,6 +32,8 @@ const TextSelectControls = () => {
             });
           }}
         />
+      </div>
+      <div className="flex flex-col gap-3">
         <ControlInput
           id="text-font-size-input"
           label="Font Size"
@@ -43,6 +45,8 @@ const TextSelectControls = () => {
             });
           }}
         />
+      </div>
+      <div className="flex flex-col gap-3">
         <ControlInput
           id="text-font-weight-input"
           label="Font Weight"
@@ -57,6 +61,8 @@ const TextSelectControls = () => {
             });
           }}
         />
+      </div>
+      <div className="flex flex-col gap-3">
         <ControlInput
           id="text-letter-spacing-input"
           label="Letter Spacing"
@@ -70,6 +76,8 @@ const TextSelectControls = () => {
             });
           }}
         />
+      </div>
+      <div className="flex flex-col gap-3">
         <ControlInput
           id="text-color-input"
           label="Color"
@@ -82,20 +90,16 @@ const TextSelectControls = () => {
               element.style("color", e.target.value);
             });
           }}
+          className="p-0 px-[.125rem]"
         />
-        <div className="col-span-3 w-full flex justify-end items-center gap-[2.3rem]">
-          <Checkbox
-            id="stk-embrace-offset-marker"
-            checked={firstTextElement.embraceOffset}
-            onCheckedChange={onCheckedChange}
-          />
-          <label
-            htmlFor="stk-embrace-offset-marker"
-            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          >
-            Embrace Visibility Offset
-          </label>
-        </div>
+      </div>
+      <div className="flex justify-between items-center gap-2">
+        <Label htmlFor="stk-embrace-offset-marker">Embrace Visibility Offset</Label>
+        <Switch
+          id="stk-embrace-offset-marker"
+          checked={firstTextElement.embraceOffset}
+          onCheckedChange={onCheckedChange}
+        />
       </div>
     </div>
   );

@@ -13,8 +13,8 @@ const useMove = () => {
         const element = d3Extended.selectById(id);
         const isSeat = element.attr(dataAttributes.elementType) === ElementType.Seat;
         const label = isSeat ? d3Extended.selectById(`${id}-label`) : null;
-        const x = isSeat ? "cx" : "x";
-        const y = isSeat ? "cy" : "y";
+        const x = isSeat && element.node().nodeName !== "rect" ? "cx" : "x";
+        const y = isSeat && element.node().nodeName !== "rect" ? "cy" : "y";
         switch (e.key) {
           case "ArrowLeft":
             label?.attr("x", +label.attr("x") - 1);

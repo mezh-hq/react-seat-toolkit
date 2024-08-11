@@ -8,4 +8,5 @@ export interface IShape {
   rx?: number;
   stroke?: string;
   color?: string;
+  rotation?: number;
 }

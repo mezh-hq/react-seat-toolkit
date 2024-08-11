@@ -34,6 +34,7 @@ const Shape: React.FC<IShapeProps> = forwardRef(
       className,
       stroke,
       color,
+      rotation,
       consumer,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       isSelected: _,
@@ -44,17 +45,25 @@ const Shape: React.FC<IShapeProps> = forwardRef(
     ref: any
   ) => {
     if (name === "RectangleHorizontal") {
+      width ??= resizableRectangle.width;
+      height ??= resizableRectangle.height;
       return (
         <rect
           ref={ref}
           id={id}
           x={x}
           y={y}
-          width={width ?? resizableRectangle.width}
-          height={height ?? resizableRectangle.height}
+          width={width}
+          height={height}
           rx={rx ?? 15}
           className={twMerge(className, resizable && "resizable", consumer.styles?.elements?.shape?.base?.className)}
-          style={{ color: color ?? "transparent", stroke, ...consumer.styles?.elements?.shape?.base?.properties }}
+          style={{
+            color: color ?? "transparent",
+            stroke,
+            transform: `rotate(${rotation ?? 0}deg)`,
+            transformOrigin: `${x + width / 2}px ${y + height / 2}px`,
+            ...consumer.styles?.elements?.shape?.base?.properties
+          }}
           {...{ [dataAttributes.shape]: "RectangleHorizontal" }}
           {...props}
         />
