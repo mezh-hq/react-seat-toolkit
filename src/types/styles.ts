@@ -90,4 +90,8 @@ export interface IStyles {
     container?: IStyle;
     button?: IStyle;
   };
+  dock?: {
+    container?: IStyle;
+    root?: IStyle;
+  };
 }

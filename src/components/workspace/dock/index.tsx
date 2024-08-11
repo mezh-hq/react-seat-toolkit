@@ -97,9 +97,11 @@ const Dock = (props: Pick<ISTKProps, "mode" | "styles" | "options" | "events">) 
 
   const zoomStyles = props.styles?.zoomControls;
   const panStyles = props.styles?.panControls;
+  const dockStyles = props.styles?.dock;
 
+  const isDesigner = props.mode === "designer";
   const showZoomControls = props.options?.showZoomControls ?? true;
-  const showVisibilityControls = props.mode === "designer" && (props.options?.showVisibilityControls ?? true);
+  const showVisibilityControls = isDesigner && (props.options?.showVisibilityControls ?? true);
   const showReloadButton = props.options?.showReloadButton ?? false;
   const isUser = props.mode === "user";
 
@@ -110,21 +112,24 @@ const Dock = (props: Pick<ISTKProps, "mode" | "styles" | "options" | "events">) 
           {showReloadButton && (
             <Reload mode={props.mode} options={props.options} styles={props.styles} onReload={props.events?.onReload} />
           )}
-          <DockHandler />
+          {(showZoomControls || showVisibilityControls) && <DockHandler />}
         </div>
       )}
       {(showZoomControls || showVisibilityControls) && (
         <div
-          id={ids.zoomControls}
-          className="absolute overflow-clip bottom-0 sm:pb-4 left-0 right-0 flex justify-center items-center"
+          className={twMerge(
+            "absolute overflow-clip bottom-0 pb-4 left-0 right-0 flex justify-center items-center pointer-events-none",
+            dockStyles?.root?.className
+          )}
         >
           <div
+            id={ids.zoomControls}
             className={twMerge(
-              "border-t sm:border border-gray-200 w-full sm:w-fit bg-white p-3 sm:p-2 overflow-x-auto sm:rounded-lg flex justify-center [&>div]:shrink-0 gap-2 transition-all duration-500 ease-in-out opacity-100",
-              panStyles?.root?.className,
+              "border border-gray-200 w-fit bg-white p-2 overflow-x-auto rounded-lg flex justify-center [&>div]:shrink-0 gap-2 transition-all duration-500 ease-in-out opacity-100 pointer-events-auto",
+              dockStyles?.container?.className,
               !dock && "translate-y-20 opacity-0"
             )}
-            style={panStyles?.root?.properties}
+            style={dockStyles?.container?.properties}
           >
             {showVisibilityControls && <VisibilityFreezeScale {...props} />}
             {showZoomControls && (
