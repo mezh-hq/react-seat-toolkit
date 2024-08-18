@@ -31,7 +31,7 @@ const Image: React.FC<IImageProps> = forwardRef(
         preserveAspectRatio="none"
         style={{
           transform: `rotate(${rotation ?? 0}deg)`,
-          transformOrigin: `${x + width / 2}px ${y + height / 2}px`,
+          transformOrigin: `center`,
           ...consumer.styles?.elements?.image?.base?.properties
         }}
       />

@@ -40,7 +40,13 @@ selection.prototype.forEach = function (callback) {
 };
 
 selection.prototype.rotation = function () {
-  const transform = this.attr("transform");
+  if (!this.node()) return 0;
+  let transform: string;
+  if (this.node()?.tagName === "svg") {
+    transform = this.node().parentElement.style.transform;
+  } else {
+    transform = this.style("transform");
+  }
   if (!transform) {
     return 0;
   }
@@ -48,7 +54,7 @@ selection.prototype.rotation = function () {
   if (!match) {
     return 0;
   }
-  return +match[1];
+  return Number(match[1].replace("deg", ""));
 };
 
 export const d3Extended = {

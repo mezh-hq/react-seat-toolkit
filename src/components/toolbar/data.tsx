@@ -1,22 +1,10 @@
-import {
-  CaseSensitive,
-  Circle,
-  Codesandbox,
-  Image,
-  MousePointer2,
-  Move,
-  PenTool,
-  Pentagon,
-  Sparkles,
-  Square
-} from "lucide-react";
+import { CaseSensitive, Circle, Image, MousePointer2, Move, PenTool, Pentagon, Sparkles, Square } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
 export enum Tool {
   Select = "Select",
   Eraser = "Eraser",
   Seat = "Seat",
-  Booth = "Booth",
   Pen = "Pen",
   Text = "Text",
   Shape = "Shapes",
@@ -56,12 +44,6 @@ export const tools = {
         iconCursor: (props: any) => <Square {...props} size={38} strokeWidth={1.5} />
       }
     ]
-  },
-  [Tool.Booth]: {
-    icon: Codesandbox,
-    iconCursor: (props: any) => <Codesandbox {...props} size={52} strokeWidth={1} />,
-    shortcut: "B",
-    description: "Click anywhere to place a booth"
   },
   [Tool.Pen]: {
     icon: PenTool,

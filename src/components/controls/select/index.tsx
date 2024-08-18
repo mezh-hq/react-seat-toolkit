@@ -1,4 +1,4 @@
-import { Fragment, useMemo } from "react";
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { ElementType } from "@/components/workspace/elements";
 import { dataAttributes } from "@/constants";
@@ -21,7 +21,6 @@ const SelectControls = ({ options, styles }: IControlProps) => {
     if (firstElementType === ElementType.Shape) return ShapeSelectControls;
     if (firstElementType === ElementType.Polyline) return PolylineSelectControls;
     if (firstElementType === ElementType.Image) return ImageSelectControls;
-    if (firstElementType === ElementType.Booth) return Fragment;
     return SeatSelectControls;
   }, [selectedElementIds]);
 

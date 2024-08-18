@@ -4,15 +4,7 @@ import { v4 as uuidV4 } from "uuid";
 import { ElementType } from "@/components/workspace/elements";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
-import {
-  addBooth,
-  addImage,
-  addPolyline,
-  addSeat,
-  addShape,
-  addText,
-  clearAndSelectElements
-} from "@/store/reducers/editor";
+import { addImage, addPolyline, addSeat, addShape, addText, clearAndSelectElements } from "@/store/reducers/editor";
 
 const offset = 5;
 
@@ -38,13 +30,6 @@ const useDuplicate = () => {
               status: element.getAttribute(dataAttributes.status)
             };
             store.dispatch(addSeat(copy));
-          } else if (elementType === ElementType.Booth) {
-            copy = {
-              id: uuidV4(),
-              x: Number(element.getAttribute("x")) + offset,
-              y: Number(element.getAttribute("y")) + offset
-            };
-            store.dispatch(addBooth(copy));
           } else if (elementType === ElementType.Text) {
             copy = {
               id: uuidV4(),

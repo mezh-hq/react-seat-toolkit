@@ -68,7 +68,6 @@
 
   - **Miscallaneous**
     - Add, move around and scale background images ✓
-    - Add and move around booths ✓
     - Multiple element selection and deselection ✓
     - Bring elements to front or back ✓
 

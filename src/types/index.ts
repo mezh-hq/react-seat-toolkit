@@ -1,5 +1,4 @@
 import type {
-  IBooth,
   IFreeSeat,
   IImage,
   IPolyline,
@@ -50,7 +49,6 @@ export interface ISTKData {
   categories?: ISeatCategory[];
   sections?: ISection[];
   seats?: ISeat[];
-  booths?: IBooth[];
   text?: IText[];
   shapes?: IShape[];
   polylines?: IPolyline[];

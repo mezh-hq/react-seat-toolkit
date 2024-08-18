@@ -21,17 +21,6 @@ export const domSeatsToJSON = () => {
   });
 };
 
-export const domBoothsToJSON = () => {
-  return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`).map((booth) => {
-    return {
-      id: booth.attr("id"),
-      x: +booth.attr("x"),
-      y: +booth.attr("y"),
-      rotation: booth.rotation()
-    };
-  });
-};
-
 export const domTextToJSON = () => {
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Text}"]`).map((text) => {
     return {
@@ -113,7 +102,6 @@ export const stateToJSON = (): ISTKData => {
     categories: state.categories.slice(1),
     sections: state.sections.slice(1),
     seats: domSeatsToJSON(),
-    booths: domBoothsToJSON(),
     text: domTextToJSON(),
     shapes: domShapesToJSON(),
     polylines: domPolylineToJSON(),

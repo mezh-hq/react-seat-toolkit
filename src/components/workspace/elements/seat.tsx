@@ -123,7 +123,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       ),
       style: {
         transform: `rotate(${rotation ?? 0}deg)`,
-        transformOrigin: `${x}px ${y}px`,
+        transformOrigin: "center",
         ...consumer.styles?.elements?.seat?.base?.properties
       },
       onMouseOver: onMouseOver,

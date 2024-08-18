@@ -13,7 +13,7 @@ const onUploadClick = () => document.getElementById("image-input").click();
 
 type IImageControlProps = Pick<ISTKProps, "options" | "styles">;
 
-const ImageControls = ({ options: { maxImageSize = 1024000 } = {} }: IImageControlProps) => {
+const Controls = ({ options: { maxImageSize = 1024000 } = {} }: IImageControlProps) => {
   const [file, setFile] = useState(null);
 
   const onUpload = async (e) => {
@@ -68,4 +68,8 @@ const ImageControls = ({ options: { maxImageSize = 1024000 } = {} }: IImageContr
   );
 };
 
-export default memo(ImageControls);
+const ImageControls = memo(Controls);
+
+(ImageControls as any).name = "ImageControls";
+
+export default ImageControls;

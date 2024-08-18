@@ -8,7 +8,6 @@ import { toggleControls } from "@/store/reducers/editor";
 import { ISTKProps } from "@/types";
 import { AnimatedSwitcher, IconButton } from "../core";
 import { Tool } from "../toolbar/data";
-import { ElementType } from "../workspace/elements";
 import { default as ImageControls } from "./image";
 import { default as NoControls } from "./no-controls";
 import { default as NoSelectedElement } from "./no-selection";
@@ -37,7 +36,6 @@ const Controls = ({ options, styles }: IControlProps) => {
         const firstElementType = document
           .getElementById(selectedElementIds[0])
           ?.getAttribute?.(dataAttributes.elementType);
-        if (firstElementType === ElementType.Booth) return SelectControls;
         if (selectedElementIds.length > 1) {
           const same = selectedElementIds.every((id) => {
             return document.getElementById(id)?.getAttribute?.(dataAttributes.elementType) === firstElementType;

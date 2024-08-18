@@ -12,7 +12,11 @@ const CursorShape = (Shape) => {
   const icon = (props) => (
     <Shape
       {...props}
-      className={twMerge(props.className, "fill-transparent")}
+      className={twMerge(
+        props.className,
+        "fill-transparent",
+        Shape.displayName !== RectangleHorizontal.displayName && "stroke-[0.9]"
+      )}
       size={Shape.displayName === RectangleHorizontal.displayName ? resizableRectangle.width : shapeSize}
       strokeWidth={Shape.displayName === RectangleHorizontal.displayName ? 0.25 : shapeStrokeWidth}
     />
@@ -21,7 +25,7 @@ const CursorShape = (Shape) => {
   return icon;
 };
 
-const ShapeControls = () => {
+const Controls = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const onShapeClick = useCallback((shape, i) => {
@@ -54,4 +58,8 @@ export const selectFirstShape = () =>
     store.dispatch(setCursor(CursorShape(shapeList[0])));
   });
 
-export default memo(ShapeControls, isEqual);
+const ShapeControls = memo(Controls, isEqual);
+
+(ShapeControls as any).name = "ShapeControls";
+
+export default ShapeControls;

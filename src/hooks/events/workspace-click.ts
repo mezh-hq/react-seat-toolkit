@@ -4,18 +4,15 @@ import { useSelector } from "react-redux";
 import { v4 as uuidV4 } from "uuid";
 import { Tool } from "@/components/toolbar/data";
 import { ElementType } from "@/components/workspace/elements";
-import { boothSize } from "@/components/workspace/elements/booth";
 import { resizableRectangle, shapeSize } from "@/components/workspace/elements/shape";
 import { dataAttributes, ids } from "@/constants";
 import { store } from "@/store";
 import {
-  addBooth,
   addPolyline,
   addPolylinePoint,
   addSeat,
   addShape,
   addText,
-  deleteBooth,
   deleteImage,
   deletePolyline,
   deleteSeat,
@@ -44,9 +41,6 @@ const useWorkspaceClick = () => {
             square
           })
         );
-      } else if (selectedTool == Tool.Booth) {
-        const coords = getRelativeClickCoordsWithTransform(e);
-        store.dispatch(addBooth({ id: uuidV4(), x: coords.x - boothSize / 2, y: coords.y - boothSize / 2 }));
       } else if (selectedTool == Tool.Text) {
         const id = uuidV4();
         const coords = getRelativeClickCoordsWithTransform(e);
@@ -98,8 +92,6 @@ const useWorkspaceClick = () => {
             store.dispatch(deleteShape(e.target.id));
           } else if (e.target.getAttribute(dataAttributes.elementType) === ElementType.Seat) {
             store.dispatch(deleteSeat(e.target.id));
-          } else {
-            store.dispatch(deleteBooth(e.target.id));
           }
         } else if (e.target.nodeName === "text") {
           store.dispatch(deleteText(e.target.id));

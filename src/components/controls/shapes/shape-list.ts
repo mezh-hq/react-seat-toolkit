@@ -3,27 +3,31 @@ import {
   ArrowBigLeft,
   ArrowBigRight,
   ArrowBigUp,
+  Codesandbox,
   Diamond,
   Hexagon,
   Octagon,
   Pentagon,
   Play,
+  RectangleHorizontal,
   Square,
   Squircle
 } from "lucide-react";
 
 export const shapes = {
-  ArrowBigLeft: ArrowBigLeft,
-  ArrowBigRight: ArrowBigRight,
-  ArrowBigDown: ArrowBigDown,
-  ArrowBigUp: ArrowBigUp,
-  Play: Play,
-  Squircle: Squircle,
-  Pentagon: Pentagon,
-  Square: Square,
-  Hexagon: Hexagon,
-  Octagon: Octagon,
-  Diamond: Diamond
+  RectangleHorizontal,
+  Codesandbox,
+  ArrowBigLeft,
+  ArrowBigRight,
+  ArrowBigDown,
+  ArrowBigUp,
+  Play,
+  Squircle,
+  Pentagon,
+  Square,
+  Hexagon,
+  Octagon,
+  Diamond
 };
 
 export const shapeList = Object.values(shapes);

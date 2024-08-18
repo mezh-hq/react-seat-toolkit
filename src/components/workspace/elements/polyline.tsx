@@ -82,7 +82,7 @@ const Polyline: React.FC<IPolylineProps> = forwardRef(
           color: sectionObject?.color ?? color ?? "transparent",
           stroke: sectionObject?.stroke ?? stroke,
           transform: `rotate(${rotation ?? 0}deg)`,
-          transformOrigin: `${points[0].x}px ${points[0].y}px`,
+          transformOrigin: "center",
           ...consumer.styles?.elements?.shape?.base?.properties,
           ...(sectionObject && consumer.styles?.elements?.section?.base?.properties),
           ...(sectionObject?.freeSeating && consumer.styles?.elements?.section?.freeSeating?.properties)

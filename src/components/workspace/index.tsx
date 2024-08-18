@@ -13,7 +13,6 @@ export { default as Cursor } from "./cursor";
 
 export const Workspace: React.FC<ISTKProps> = (props) => {
   const initialized = useSelector((state: any) => state.editor.initialized);
-  const booths = useSelector((state: any) => state.editor.booths);
   const seats = useSelector((state: any) => state.editor.seats);
   const text = useSelector((state: any) => state.editor.text);
   const shapes = useSelector((state: any) => state.editor.shapes);
@@ -80,9 +79,6 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
               status={e.status ?? SeatStatus.Available}
               {...elementProps(e)}
             />
-          ))}
-          {booths.map((e) => (
-            <Element key={e.id} type={ElementType.Booth} {...elementProps(e)} />
           ))}
           {shapes.map((e) => (
             <Element

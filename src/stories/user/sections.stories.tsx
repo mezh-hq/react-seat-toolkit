@@ -755,7 +755,6 @@ export const Story = {
             category: "b26fffc7-1e54-43b8-8e29-5077541ee637"
           }
         ],
-        booths: [],
         text: [
           {
             id: "116a57ac-9bc2-4f0c-a9fc-e1a57448bda7",

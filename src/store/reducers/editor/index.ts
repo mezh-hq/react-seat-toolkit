@@ -2,7 +2,6 @@ import { Reducer, createSelector, createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import { ids } from "@/constants";
 import type { ISTKData } from "@/types";
-import { default as booths } from "./booths";
 import { default as seats } from "./seats";
 import { default as shapes } from "./shapes";
 import { default as text } from "./text";
@@ -79,7 +78,6 @@ const initialState = {
   ],
   selectedPolylineId: null,
   seats: [],
-  booths: [],
   text: [],
   shapes: [],
   polylines: [],
@@ -144,7 +142,6 @@ export const slice = createSlice({
     },
     initializeElements: (state) => {
       state.seats = seats();
-      state.booths = booths();
       state.text = text();
       state.shapes = shapes();
       state.initialized = true;
@@ -169,12 +166,6 @@ export const slice = createSlice({
         const index = state.seats.findIndex((s) => s.id === seat.id);
         state.seats[index] = { ...state.seats[index], label: seat.label };
       });
-    },
-    addBooth(state, action) {
-      state.booths.push(action.payload);
-    },
-    deleteBooth(state, action) {
-      state.booths = state.booths.filter((booth) => booth.id !== action.payload);
     },
     addText(state, action) {
       state.text.push(action.payload);
@@ -276,7 +267,6 @@ export const slice = createSlice({
     deleteElements: (state, action) => {
       const ids = action.payload;
       state.seats = state.seats.filter((seat) => !ids.includes(seat.id));
-      state.booths = state.booths.filter((booth) => !ids.includes(booth.id));
       state.text = state.text.filter((text) => !ids.includes(text.id));
       state.shapes = state.shapes.filter((shape) => !ids.includes(shape.id));
       state.polylines = state.polylines.filter((polyline) => !ids.includes(polyline.id));
@@ -308,8 +298,6 @@ export const {
   updateSeat,
   updateSeats,
   updateSeatLabels,
-  addBooth,
-  deleteBooth,
   addText,
   deleteText,
   updateText,

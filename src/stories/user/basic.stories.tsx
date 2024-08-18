@@ -396,10 +396,6 @@ export const Story = {
             category: null
           }
         ],
-        booths: [
-          { id: "85fb6458-d65e-410b-9c73-cb37e4f83276", x: 582, y: 562.48 },
-          { id: "c4cc8522-ba04-49b2-b9ab-c2ecb46494b8", x: 708, y: 562.48 }
-        ],
         text: [
           {
             id: "a2a867e1-db33-4254-8a9a-b59bc65c9660",
@@ -825,10 +821,6 @@ export const WithInitialViewBoxTransform = {
             status: "Available",
             category: null
           }
-        ],
-        booths: [
-          { id: "92d30d1f-aa2a-4de0-a2ff-4b0a6433bdbf", x: 582, y: 562.48 },
-          { id: "3a825886-1737-49cb-b1f0-3bebd54acaa0", x: 708, y: 562.48 }
         ],
         text: [
           {

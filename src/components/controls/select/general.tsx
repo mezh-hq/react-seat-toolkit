@@ -18,7 +18,12 @@ const GeneralSelectControls = () => {
           max={360}
           onChange={(e) => {
             selectedElementIds.forEach((id) => {
-              d3Extended.selectById(id).style("transform", `rotate(${e.target.value}deg)`);
+              const element = d3Extended.selectById(id);
+              if (element?.node()?.tagName === "svg") {
+                element.node().parentElement.style.transform = `rotate(${e.target.value}deg)`;
+              } else {
+                element.style("transform", `rotate(${e.target.value}deg)`);
+              }
             });
           }}
         />

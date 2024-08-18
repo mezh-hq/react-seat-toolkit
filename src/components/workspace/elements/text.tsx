@@ -54,7 +54,7 @@ const Text: React.FC<ITextProps> = forwardRef(
         )}
         style={{
           transform: `rotate(${rotation ?? 0}deg)`,
-          transformOrigin: `${x}px ${y}px`,
+          transformOrigin: "center",
           ...consumer.styles?.elements?.text?.base?.properties,
           stroke: color,
           color
