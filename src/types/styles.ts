@@ -84,6 +84,10 @@ export interface IStyles {
   core?: {
     container?: IStyle;
     button?: IStyle;
+    tooltip?: {
+      trigger?: IStyle;
+      content?: IStyle;
+    };
   };
   dock?: {
     container?: IStyle;

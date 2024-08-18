@@ -105,7 +105,13 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
                 }
               >
                 <Tooltip>
-                  <TooltipTrigger className="rounded-md w-8 h-8 flex justify-center items-center">
+                  <TooltipTrigger
+                    className={twMerge(
+                      "rounded-md w-8 h-8 flex justify-center items-center",
+                      props?.styles?.core?.tooltip?.trigger?.className
+                    )}
+                    style={props?.styles?.core?.tooltip?.trigger?.properties}
+                  >
                     <Icon
                       size={18}
                       className={twMerge(
@@ -119,8 +125,12 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
                     align="start"
                     alignOffset={25}
                     sideOffset={-30}
-                    className={twMerge("flex gap-3 ml-8", styles?.tool?.label?.className)}
-                    style={styles?.tool?.label?.properties}
+                    className={twMerge(
+                      "flex gap-3 ml-8",
+                      props?.styles?.core?.tooltip?.content?.className,
+                      styles?.tool?.label?.className
+                    )}
+                    style={{ ...props?.styles?.core?.tooltip?.content?.properties, ...styles?.tool?.label?.properties }}
                   >
                     {key}
                   </TooltipContent>

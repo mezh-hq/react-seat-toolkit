@@ -75,7 +75,7 @@ const Controls = ({ options, styles }: IControlProps) => {
       <AnimatedSwitcher
         key={ControlComponent.name}
         component={<ControlComponent options={options} styles={styles} />}
-        className="py-4 px-5"
+        className="py-4 px-5 h-[calc(100%-3.5rem)]"
       />
     </div>
   );
