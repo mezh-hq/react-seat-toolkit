@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
-import { shapes } from "@/components/controls/shapes/shape-list";
 import { dataAttributes } from "@/constants";
+import { useShapeMap } from "@/hooks";
 import { ISTKProps, IShape } from "@/types";
 
 export const shapeSize = 50;
@@ -44,6 +44,7 @@ const Shape: React.FC<IShapeProps> = forwardRef(
     },
     ref: any
   ) => {
+    const shapes = useShapeMap({ options: consumer.options });
     if (name === "RectangleHorizontal") {
       width ??= resizableRectangle.width;
       height ??= resizableRectangle.height;

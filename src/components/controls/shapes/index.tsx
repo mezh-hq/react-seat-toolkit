@@ -2,11 +2,13 @@ import { memo, useCallback, useState } from "react";
 import { RectangleHorizontal } from "lucide-react";
 import { default as isEqual } from "lodash/isEqual";
 import { twMerge } from "tailwind-merge";
+import { useShapes } from "@/hooks";
+import { getMergedShapes } from "@/hooks/shapes";
 import { store } from "@/store";
 import { setCursor } from "@/store/reducers/editor";
+import { ISTKProps } from "@/types";
 import { fallible } from "@/utils";
 import { resizableRectangle, shapeSize, shapeStrokeWidth } from "../../workspace/elements/shape";
-import { shapeList } from "./shape-list";
 
 const CursorShape = (Shape) => {
   const icon = (props) => (
@@ -25,7 +27,7 @@ const CursorShape = (Shape) => {
   return icon;
 };
 
-const Controls = () => {
+const Controls = ({ options }: Pick<ISTKProps, "options">) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const onShapeClick = useCallback((shape, i) => {
@@ -35,9 +37,11 @@ const Controls = () => {
     });
   }, []);
 
+  const shapes = useShapes({ options });
+
   return (
     <div className="w-full grid grid-cols-5 gap-4">
-      {shapeList.map((Shape, i) => (
+      {shapes.map((Shape, i) => (
         <div
           key={i}
           className={twMerge(
@@ -53,9 +57,9 @@ const Controls = () => {
   );
 };
 
-export const selectFirstShape = () =>
+export const selectFirstShape = ({ options }: Pick<ISTKProps, "options">) =>
   fallible(() => {
-    store.dispatch(setCursor(CursorShape(shapeList[0])));
+    store.dispatch(setCursor(CursorShape(getMergedShapes(options)[0])));
   });
 
 const ShapeControls = memo(Controls, isEqual);

@@ -5,3 +5,4 @@ export { default as useSkipFirstRender } from "./skip-first-render";
 export { default as useToast } from "./toast";
 
 export * from "./events";
+export * from "./shapes";

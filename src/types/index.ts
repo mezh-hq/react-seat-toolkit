@@ -88,6 +88,10 @@ export interface ISTKProps {
     /** Disables category deletion if there are reserved seats falling under the category */
     disableCategoryDeleteIfReserved?: boolean;
     disableSectionDelete?: boolean;
+    shapes?: {
+      icons: React.FC<any>[];
+      overrideDefaultIconset?: boolean;
+    };
   };
   plugins?: IPlugins;
 }

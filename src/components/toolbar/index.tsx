@@ -66,7 +66,7 @@ const ToolBar: React.FC<ISTKProps> = (props) => {
     store.dispatch(selectTool(tool));
     if ([Tool.Image, Tool.Shape].includes(tool)) {
       store.dispatch(showControls());
-      if (tool === Tool.Shape) selectFirstShape();
+      if (tool === Tool.Shape) selectFirstShape({ options: props.options });
     }
     if (tool !== Tool.Pen && selectedPolylineId) {
       store.dispatch(setSelectedPolylineId(null));
