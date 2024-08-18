@@ -18,3 +18,7 @@ rect.workspace-selection {
   fill: white;
   fill-opacity: 0.5;
 }
+
+.stk-core svg * {
+  transform-box: fill-box;
+}
