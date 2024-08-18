@@ -58,6 +58,7 @@ build({
     "@radix-ui/react-tooltip",
     "class-variance-authority",
     "lodash",
+    "lucide-react",
     "tailwind-merge"
   ]
 });
