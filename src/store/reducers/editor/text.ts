@@ -4,7 +4,7 @@ import { getWorkspaceCenterX, getWorkspaceHeight } from "@/utils";
 export default () => [
   {
     id: uuidV4(),
-    x: getWorkspaceCenterX() - 58,
+    x: getWorkspaceCenterX() - 78,
     y: getWorkspaceHeight() * 0.27,
     label: "STAGE",
     fontSize: 35,

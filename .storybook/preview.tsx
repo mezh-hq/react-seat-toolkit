@@ -26,7 +26,7 @@ const preview: Preview = {
     reactRouter: {},
     options: {
       storySort: {
-        order: ["Introduction", "Installation", "Customization"],
+        order: ["Introduction", "Installation", "Customization", "Modifying State", "External Shapes"]
       },
     }
   },

@@ -1,5 +1,16 @@
 Changelog
 
+# v3.0.0 [2024-08-27]
+
+## Major Release
+
+### Features 
+- Complete UI overhaul with a new design system
+- Adds support for element rotation
+- Adds support for passing external shapes into the toolkit
+
+---
+
 # v2.1.1 [2024-08-07]
 
 ## Patch Release
