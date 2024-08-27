@@ -50,10 +50,8 @@ build({
   outfile: "./dist/index.slim.js",
   external: [
     ...options.external,
-    "@radix-ui/react-checkbox",
     "@radix-ui/react-label",
     "@radix-ui/react-popover",
-    "@radix-ui/react-radio-group",
     "@radix-ui/react-select",
     "@radix-ui/react-tooltip",
     "class-variance-authority",
