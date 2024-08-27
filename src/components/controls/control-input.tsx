@@ -9,7 +9,7 @@ const ControlInput = ({ id, label, ...props }: ControlInputProps) => {
   return (
     <>
       <Label htmlFor={id}>{label}</Label>
-      <Input id={id} className="col-span-2 h-8" {...props} />
+      <Input id={id} className="col-span-2" {...props} />
     </>
   );
 };

@@ -22,6 +22,8 @@ export interface ISeat {
   label?: string;
   category?: string | null;
   status?: SeatStatus | string;
+  square?: boolean;
+  rotation?: number;
 }
 
 export interface IFreeSeat {

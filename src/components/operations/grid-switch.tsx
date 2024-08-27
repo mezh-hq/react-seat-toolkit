@@ -1,18 +1,15 @@
 import { useSelector } from "react-redux";
-import { twMerge } from "tailwind-merge";
 import { store } from "@/store";
 import { toggleGrid } from "@/store/reducers/editor";
-import { TwinSwitch } from "../core";
+import { Label, Switch } from "../core";
 
-const GridSwitch = ({ className }) => {
+const GridSwitch = () => {
   const grid = useSelector((state: any) => state.editor.grid);
   return (
-    <TwinSwitch
-      values={["Whitespace", "Grid"]}
-      selectedValue={grid ? "Grid" : "Whitespace"}
-      className={twMerge("", className)}
-      onChange={(value) => store.dispatch(toggleGrid(value == "Grid"))}
-    />
+    <div className="flex items-center space-x-2">
+      <Label htmlFor="grid">Grid</Label>
+      <Switch id="grid" checked={grid} onCheckedChange={(checked) => store.dispatch(toggleGrid(checked))} />
+    </div>
   );
 };
 

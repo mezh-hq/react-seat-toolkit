@@ -6,38 +6,38 @@ const gap = 50;
 export default () => [
   ...[...Array(10).keys()].map((p) => ({
     id: uuidV4(),
-    x: getWorkspaceCenterX() - gap * (p + 1),
-    y: getWorkspaceHeight() * 0.42,
+    x: getWorkspaceCenterX() - gap * (p + 1.5),
+    y: getWorkspaceHeight() * 0.48,
     label: p + 1
   })),
   ...[...Array(10).keys()].map((p) => ({
     id: uuidV4(),
-    x: getWorkspaceCenterX() + gap * (p + 1),
-    y: getWorkspaceHeight() * 0.42,
+    x: getWorkspaceCenterX() + gap * (p + 0.5),
+    y: getWorkspaceHeight() * 0.48,
     label: p + 1
   })),
   ...[...Array(7).keys()].map((p) => ({
     id: uuidV4(),
-    x: getWorkspaceCenterX() - gap * (p + 1),
-    y: getWorkspaceHeight() * 0.52,
+    x: getWorkspaceCenterX() - gap * (p + 1.5),
+    y: getWorkspaceHeight() * 0.58,
     label: p + 1
   })),
   ...[...Array(7).keys()].map((p) => ({
     id: uuidV4(),
-    x: getWorkspaceCenterX() + gap * (p + 1),
-    y: getWorkspaceHeight() * 0.52,
+    x: getWorkspaceCenterX() + gap * (p + 0.5),
+    y: getWorkspaceHeight() * 0.58,
     label: p + 1
   })),
   ...[...Array(5).keys()].map((p) => ({
     id: uuidV4(),
-    x: getWorkspaceCenterX() - gap * (p + 1),
-    y: getWorkspaceHeight() * 0.62,
+    x: getWorkspaceCenterX() - gap * (p + 1.5),
+    y: getWorkspaceHeight() * 0.68,
     label: p + 1
   })),
   ...[...Array(5).keys()].map((p) => ({
     id: uuidV4(),
-    x: getWorkspaceCenterX() + gap * (p + 1),
-    y: getWorkspaceHeight() * 0.62,
+    x: getWorkspaceCenterX() + gap * (p + 0.5),
+    y: getWorkspaceHeight() * 0.68,
     label: p + 1
   }))
 ];

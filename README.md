@@ -20,11 +20,11 @@
 
 <br/>
 
-<img width="1440" alt="image" src="https://github.com/mezh-hq/react-seat-toolkit/assets/73662613/1c0a5c80-e402-46ed-bc17-364730122173">
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/a34e5eb6-73e6-437a-8712-8aaefed26483">
 
 <p align="center">
-  <img width="49.5%" alt="image" src="https://github.com/mezh-hq/react-seat-toolkit/assets/73662613/18a321a0-4ced-49c8-91eb-44605ea2ab9c">
-  <img width="49.5%" alt="image" src="https://github.com/mezh-hq/react-seat-toolkit/assets/73662613/e43be42f-40b0-4aaf-8d3a-a538abc8b2c1">
+  <img width="49.5%" alt="image" src="https://github.com/user-attachments/assets/e6b08c94-fa08-4fd0-ad1d-9454f9511c0c">
+  <img width="49.5%" alt="image" src="https://github.com/user-attachments/assets/63405b00-b821-4a3a-9c16-66a1f05bd114">
 </p>
 
 ## Features
@@ -40,7 +40,7 @@
     - Change seat colors ✓
     - Change seat labels ✓
     - Change seat status ✓
-    - Group seats together into categories ✓
+    - Group seats into categories ✓
     - Categorizer (Manage seat categories) ✓
 
   - **Pen**
@@ -68,8 +68,8 @@
 
   - **Miscallaneous**
     - Add, move around and scale background images ✓
-    - Add and move around booths ✓
     - Multiple element selection and deselection ✓
+    - Rotate elements ✓
     - Bring elements to front or back ✓
 
 - **Responsive**: The layout is responsive and can be viewed on any device ✓

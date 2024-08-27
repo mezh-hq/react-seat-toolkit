@@ -3,7 +3,7 @@ import { STKMode } from "../_utils";
 import { options } from "../options";
 
 export default {
-  title: "User/Sections",
+  title: "Designer/Categorized",
   component: SeatToolkit,
   ...options
 };
@@ -11,7 +11,7 @@ export default {
 export const Story = {
   render: (props) => (
     <SeatToolkit
-      mode={STKMode.USER}
+      mode={STKMode.DESIGNER}
       data={{
         name: "Categorized Example",
         categories: [
@@ -39,13 +39,6 @@ export const Story = {
             name: "Section 3",
             color: "#0000FF",
             stroke: "#0000FF",
-            freeSeating: false
-          },
-          {
-            id: "9d91b7b3-f396-4eca-b1df-6548070c2426",
-            name: "Section 4",
-            color: "#00ff04",
-            stroke: "#00ff04",
             freeSeating: false
           }
         ],
@@ -766,61 +759,6 @@ export const Story = {
             letterSpacing: 5,
             color: "#ffffff",
             embraceOffset: false
-          },
-          {
-            id: "a42da1c3-8ce6-41c5-9279-8fd51cf2b2a4",
-            x: 403.81084301137696,
-            y: 380.55608698305764,
-            label: "S3",
-            fontSize: 35,
-            fontWeight: 200,
-            letterSpacing: 3,
-            color: "#ffffff",
-            embraceOffset: true
-          },
-          {
-            id: "48697ee7-4e82-485c-ab5b-38e868bd6479",
-            x: 888.8150849547363,
-            y: 382.32662531313576,
-            label: "S4",
-            fontSize: 35,
-            fontWeight: 200,
-            letterSpacing: 3,
-            color: "#000000",
-            embraceOffset: true
-          },
-          {
-            id: "67dee618-20ab-4252-9e7f-5f5bdf587639",
-            x: 896.3438935484863,
-            y: -38.84817555966697,
-            label: "S2",
-            fontSize: 35,
-            fontWeight: 200,
-            letterSpacing: 3,
-            color: "#ffffff",
-            embraceOffset: true
-          },
-          {
-            id: "c5daafc3-ba67-4795-8cfe-92568a165197",
-            x: 411.08754589223634,
-            y: -38.96483281674705,
-            label: "S1",
-            fontSize: 35,
-            fontWeight: 200,
-            letterSpacing: 3,
-            color: "#ffffff",
-            embraceOffset: true
-          },
-          {
-            id: "e87aad25-bda8-4bf8-bc5c-c369c1f10569",
-            x: 262.5717640247362,
-            y: -283.7810282983929,
-            label: "Ignore the crooked lines, not much of an artist",
-            fontSize: 35,
-            fontWeight: 200,
-            letterSpacing: 3,
-            color: "#000000",
-            embraceOffset: false
           }
         ],
         shapes: [
@@ -836,70 +774,9 @@ export const Story = {
             stroke: "#000000"
           }
         ],
-        polylines: [
-          {
-            id: "f004bb3f-a91b-4fa6-ac0d-dda4f87c5c3a",
-            points: [
-              { x: 120.28901713672305, y: 241.89740055943957 },
-              { x: 645.0299248665784, y: 245.04899760286213 },
-              { x: 646.6057233882897, y: 481.41877585955376 },
-              { x: 251.08029443875904, y: 479.84297733784246 },
-              { x: 120.28901713672305, y: 334.8695133404049 },
-              { x: 120.28901713672305, y: 241.89740055943957 }
-            ],
-            section: "6975d973-5a37-4490-bf13-85c156cbb6b3",
-            color: "#0000ff",
-            stroke: "#0000ff"
-          },
-          {
-            id: "d37565b7-da75-417f-9a6d-d5103560f3ae",
-            points: [
-              { x: 110.8342208122774, y: 59.104793467985104 },
-              { x: 641.8783226289778, y: 60.68059198969638 },
-              { x: 641.8783226289778, y: -166.23439513672753 },
-              { x: 246.35289367944722, y: -166.23439513672753 },
-              { x: 110.8342208122774, y: -38.594714878114075 },
-              { x: 112.41001933398867, y: 57.528994946273826 }
-            ],
-            section: "1636dd75-ea0a-48d6-b14c-05ac9db08f5c",
-            color: "#000000",
-            stroke: "#000000"
-          },
-          {
-            id: "80986ef5-446d-416e-98c6-a2fa6a4be83a",
-            points: [
-              { x: 668.6668974980696, y: 243.4732133658533 },
-              { x: 668.6668974980696, y: 482.99458866596746 },
-              { x: 1089.4051027949806, y: 479.8429916225449 },
-              { x: 1212.31738748846, y: 320.6873409297059 },
-              { x: 1212.31738748846, y: 241.89741484414202 },
-              { x: 667.0910989763582, y: 245.04901188756457 }
-            ],
-            section: "9d91b7b3-f396-4eca-b1df-6548070c2426",
-            color: "#00ff04",
-            stroke: "#00ff04"
-          },
-          {
-            id: "ad2af6ff-5814-488c-bc40-06629d57684d",
-            points: [
-              { x: 663.9395019329357, y: -170.96179021481805 },
-              { x: 665.515300454647, y: 63.832189520162245 },
-              { x: 1204.4383948799039, y: 63.832189520162245 },
-              { x: 1204.4383948799039, y: -35.44311734764821 },
-              { x: 1068.919722012734, y: -172.53758873652933 },
-              { x: 662.3637034112245, y: -170.96179021481805 }
-            ],
-            section: "65dfc91f-f7aa-407a-ae55-b31f1ee3a41c",
-            color: "#ff0000",
-            stroke: "#ff0000"
-          }
-        ],
+        polylines: [],
         images: [],
-        workspace: {
-          initialViewBoxScale: 0.6697401320579711,
-          initialViewBoxScaleForWidth: 1386,
-          visibilityOffset: 1.25325170483818114
-        }
+        workspace: { initialViewBoxScale: 0.605909115101895, initialViewBoxScaleForWidth: 1386, visibilityOffset: 0 }
       }}
       {...props}
     />

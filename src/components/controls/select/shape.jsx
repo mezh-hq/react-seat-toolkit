@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Checkbox } from "@/components/core";
+import { Label, Switch } from "@/components/core";
 import { dataAttributes } from "@/constants";
 import { d3Extended, rgbToHex } from "@/utils";
 import { default as ControlInput } from "../control-input";
@@ -13,8 +13,8 @@ const ShapeSelectControls = () => {
   const firstElement = document.getElementById(selectedElementIds[0]);
 
   return (
-    <div className="flex flex-col gap-4 py-1">
-      <div className="grid grid-cols-3 items-center gap-4">
+    <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-3">
         <ControlInput
           id="shape-width-input"
           label="Width"
@@ -32,6 +32,8 @@ const ShapeSelectControls = () => {
             });
           }}
         />
+      </div>
+      <div className="flex flex-col gap-3">
         <ControlInput
           id="shape-height-input"
           label="Height"
@@ -49,18 +51,13 @@ const ShapeSelectControls = () => {
             });
           }}
         />
-
-        <div className="col-span-3 w-full flex justify-end items-center gap-[2.3rem]">
-          <Checkbox id="stk-aspect-ratio" checked={maintainAspectRatio} onCheckedChange={setMaintainAspectRatio} />
-          <label
-            htmlFor="stk-aspect-ratio"
-            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          >
-            Maintain Aspect Ratio
-          </label>
-        </div>
-
-        {firstElement?.getAttribute?.(dataAttributes.shape) === "RectangleHorizontal" && (
+      </div>
+      <div className="flex justify-between items-center gap-2">
+        <Label htmlFor="stk-aspect-ratio">Maintain Aspect Ratio</Label>
+        <Switch id="stk-aspect-ratio" checked={maintainAspectRatio} onCheckedChange={setMaintainAspectRatio} />
+      </div>
+      {firstElement?.getAttribute?.(dataAttributes.shape) === "RectangleHorizontal" && (
+        <div className="flex flex-col gap-3">
           <ControlInput
             id="shape-border-radius-input"
             label="Border Radius"
@@ -72,7 +69,9 @@ const ShapeSelectControls = () => {
               });
             }}
           />
-        )}
+        </div>
+      )}
+      <div className="flex flex-col gap-3">
         <ControlInput
           id="shape-stroke-input"
           label="Stroke"
@@ -83,7 +82,10 @@ const ShapeSelectControls = () => {
               d3Extended.selectById(id).style("stroke", e.target.value);
             });
           }}
+          className="p-0 px-[.125rem]"
         />
+      </div>
+      <div className="flex flex-col gap-3">
         <ControlInput
           id="shape-fill-input"
           label="Fill"
@@ -94,6 +96,7 @@ const ShapeSelectControls = () => {
               d3Extended.selectById(id).style("color", e.target.value);
             });
           }}
+          className="p-0 px-[.125rem]"
         />
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Checkbox } from "@/components/core";
+import { Label, Switch } from "@/components/core";
 import { dataAttributes } from "@/constants";
 
 const ImageSelectControls = () => {
@@ -18,14 +18,11 @@ const ImageSelectControls = () => {
   };
 
   return (
-    <div className="flex justify-end gap-4 py-1">
-      <Checkbox id="stk-lock-position" checked={locked} onCheckedChange={onCheckedChange} />
-      <label
-        htmlFor="stk-lock-position"
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-      >
-        Object Lock
-      </label>
+    <div className="flex flex-col gap-5">
+      <div className="flex justify-between items-center gap-2">
+        <Label htmlFor="stk-lock-position">Object Lock</Label>
+        <Switch id="stk-lock-position" checked={locked} onCheckedChange={onCheckedChange} />
+      </div>
     </div>
   );
 };

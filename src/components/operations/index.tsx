@@ -1,11 +1,12 @@
 import { ChangeEvent, useMemo } from "react";
-import { Cog } from "lucide-react";
+import { Settings } from "lucide-react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
 import { ids } from "@/constants";
 import { store } from "@/store";
 import { locationPlaceholder, setLocation, toggleControls } from "@/store/reducers/editor";
 import { ISTKProps } from "@/types";
+import { IconButton } from "../core";
 import { default as ExportAction } from "./export-button";
 import { default as GridSwitch } from "./grid-switch";
 
@@ -22,7 +23,7 @@ const Operations: React.FC<ISTKProps> = ({
 
   const styles = props.styles?.operations;
 
-  const OperationTriggerIcon = operationTriggerIcon ?? Cog;
+  const OperationTriggerIcon = operationTriggerIcon ?? Settings;
 
   const onLocationChange = (e: ChangeEvent<HTMLInputElement>) => {
     store.dispatch(setLocation(e.target.value));
@@ -32,7 +33,7 @@ const Operations: React.FC<ISTKProps> = ({
     <div
       id={ids.operationBar}
       className={twMerge(
-        "w-full flex justify-between items-center gap-6 bg-black/5 pl-5 md:pl-[3.25rem] pr-5 p-2",
+        "w-full flex justify-between items-center gap-6 bg-white px-5 py-2 border-b border-gray-200 z-10",
         styles?.root?.className
       )}
       style={styles?.root?.properties}
@@ -40,7 +41,7 @@ const Operations: React.FC<ISTKProps> = ({
       <input
         id={ids.location}
         className={twMerge(
-          "w-full bg-transparent font-bold outline-none text-xl sm:text-[22px] lg:text-[24px] text-ellipsis",
+          "w-full bg-transparent font-medium outline-none text-ellipsis",
           location === inputPlaceholder && "opacity-60",
           styles?.input?.className
         )}
@@ -49,17 +50,15 @@ const Operations: React.FC<ISTKProps> = ({
         style={styles?.input?.properties}
         onChange={onLocationChange}
       />
-      <div className="flex justify-between items-center gap-5 shrink-0">
-        {showGridSwitch && <GridSwitch className="mr-2" />}
+      <div className="flex justify-between items-center gap-2 shrink-0">
+        {showGridSwitch && <GridSwitch />}
         <ExportAction text={exportButtonText} onExport={events?.onExport} styles={props.styles} />
-        <OperationTriggerIcon
+        <IconButton
           id={ids.operationTrigger}
-          size={35}
-          className={twMerge(
-            "cursor-pointer transform hover:rotate-90 transition-all duration-300",
-            styles?.trigger?.className
-          )}
+          className={twMerge("w-10", styles?.trigger?.className)}
           style={styles?.trigger?.properties}
+          icon={<OperationTriggerIcon className="w-5 h-5" />}
+          variant="secondary"
           onClick={onCogClick}
         />
       </div>

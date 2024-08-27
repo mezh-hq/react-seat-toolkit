@@ -5,17 +5,14 @@ import { dataAttributes, ids } from "@/constants";
 import { type ISTKProps, SeatStatus } from "@/types";
 import { Tool, tools } from "../toolbar/data";
 import { default as Crosshairs } from "./crosshairs";
+import { default as Dock } from "./dock";
 import { default as Element, ElementType } from "./elements";
 import { default as Grid } from "./grid";
-import { default as Reload } from "./reload";
-import { default as VisibilityControls } from "./visibility";
-import { default as Zoom } from "./zoom";
 
 export { default as Cursor } from "./cursor";
 
 export const Workspace: React.FC<ISTKProps> = (props) => {
   const initialized = useSelector((state: any) => state.editor.initialized);
-  const booths = useSelector((state: any) => state.editor.booths);
   const seats = useSelector((state: any) => state.editor.seats);
   const text = useSelector((state: any) => state.editor.text);
   const shapes = useSelector((state: any) => state.editor.shapes);
@@ -36,17 +33,12 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
       label: elem.label,
       color: elem.color,
       stroke: elem.stroke,
+      rotation: elem.rotation,
       consumer: props,
       element: elem
     }),
     [selectedElementIds]
   );
-
-  const showReloadButton = props.options?.showReloadButton ?? false;
-
-  const showZoomControls = props.options?.showZoomControls ?? true;
-
-  const showVisibilityControls = props.mode === "designer" && (props.options?.showVisibilityControls ?? true);
 
   const onWorkspaceHover = useCallback(
     (e: any) => {
@@ -59,14 +51,14 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
     <div
       id={ids.workspaceContainer}
       className={twMerge(
-        "w-full flex flex-col flex-1 relative border border-b-0 border-black transition-all",
+        "w-full flex flex-col flex-1 relative transition-all duration-500",
         initialized ? "opacity-100" : "opacity-0",
         props.styles?.workspace?.root?.className
       )}
       style={props.styles?.workspace?.root?.properties}
     >
       <svg id={ids.workspace} className="w-full h-full flex-1" onMouseOver={onWorkspaceHover}>
-        <g {...{ [dataAttributes.visibilityOffset]: "0" }}>
+        <g {...{ [dataAttributes.visibilityOffset]: "0" }} style={{ transformBox: "unset" }}>
           {images.map((e) => (
             <Element
               key={e.id}
@@ -87,9 +79,6 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
               status={e.status ?? SeatStatus.Available}
               {...elementProps(e)}
             />
-          ))}
-          {booths.map((e) => (
-            <Element key={e.id} type={ElementType.Booth} {...elementProps(e)} />
           ))}
           {shapes.map((e) => (
             <Element
@@ -134,11 +123,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
           <Grid />
         </>
       )}
-      {showZoomControls && <Zoom mode={props.mode} options={props.options} styles={props.styles} />}
-      {showVisibilityControls && <VisibilityControls mode={props.mode} options={props.options} styles={props.styles} />}
-      {showReloadButton && (
-        <Reload mode={props.mode} options={props.options} styles={props.styles} onReload={props.events?.onReload} />
-      )}
+      <Dock mode={props.mode} options={props.options} styles={props.styles} events={props.events} />
     </div>
   );
 };

@@ -1,15 +1,15 @@
 import { MouseEvent } from "react";
 import { PopoverClose } from "@radix-ui/react-popover";
-import { LayoutTemplate, Trash2 } from "lucide-react";
+import { LayoutGrid, Plus, Settings2, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import { default as debounce } from "lodash/debounce";
 import { twMerge } from "tailwind-merge";
-import { Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
+import { IconButton, Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { addCategory, deleteCategory, updateCategory, updateSeats } from "@/store/reducers/editor";
 import { ISTKProps, SeatStatus } from "@/types";
-import { Callout, Caption, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../core";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../core";
 
 const onAddCategory = () => store.dispatch(addCategory(undefined));
 
@@ -32,13 +32,14 @@ export const CategoryManager = ({ options }: IControlProps) => {
   const seats = useSelector((state: any) => state.editor.seats);
   return (
     <div className="grid gap-4">
-      <div className="flex flex-col gap-2">
-        <h4 className="font-bold leading-none pb-1">Manage Categories</h4>
-        <hr />
-        <span className="hover:text-gray-500 cursor-pointer transition-all duration-medium" onClick={onAddCategory}>
-          + Add Category
-        </span>
-        <hr />
+      <div className="flex gap-2 justify-between items-center">
+        <h6 className="font-medium text-sm">Options</h6>
+        <IconButton
+          className="w-6 h-6 p-0"
+          variant="secondary"
+          icon={<Plus className="w-4 h-4" />}
+          onClick={onAddCategory}
+        />
       </div>
       <div className="flex flex-col gap-4">
         {categories.map((category) => {
@@ -51,17 +52,17 @@ export const CategoryManager = ({ options }: IControlProps) => {
                 (seat.status === SeatStatus.Reserved || seat.status === SeatStatus.Locked)
             );
           return (
-            <div key={`category-${category.id}`} className="flex justify-start items-center gap-4">
+            <div key={`category-${category.id}`} className="flex justify-start items-center gap-2">
               <input
                 defaultValue={category.color}
                 type="color"
-                className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
+                className="flex-shrink-0 w-6 h-6 p-0 bg-white square-color-input"
                 onChange={(e) => onUpdateCategory({ ...category, color: e.target.value })}
               />
               <input
                 defaultValue={category.textColor}
                 type="color"
-                className="flex-shrink-0 w-6 h-6 p-0  bg-white square-color-input"
+                className="flex-shrink-0 w-6 h-6 p-0 bg-white square-color-input"
                 onChange={(e) => onUpdateCategory({ ...category, textColor: e.target.value })}
               />
               <Input
@@ -71,12 +72,10 @@ export const CategoryManager = ({ options }: IControlProps) => {
               />
               <Popover>
                 <PopoverTrigger>
-                  <LayoutTemplate
-                    size={22}
-                    className={twMerge(
-                      "flex-shrink-0 cursor-pointer transition-all duration-medium ",
-                      category.section ? "text-blue-600 hover:text-blue-500" : "hover:text-gray-500"
-                    )}
+                  <IconButton
+                    className={twMerge("w-6 h-6 p-0 shrink-0", !category.section && "text-gray-400")}
+                    variant="secondary"
+                    icon={<LayoutGrid className="w-4 h-4" />}
                   />
                 </PopoverTrigger>
                 <PopoverContent className="bg-white w-auto p-0 mr-4">
@@ -85,7 +84,7 @@ export const CategoryManager = ({ options }: IControlProps) => {
                       key={section.id}
                       className={twMerge(
                         "w-full flex gap-3 items-center py-2 px-4 text-base cursor-pointer hover:bg-gray-100 transition-all duration-medium",
-                        section.id === "0" && "justify-center border-b pb-2",
+                        section.id === "0" && "justify-center border-b border-gray-200 pb-2",
                         section.id === category.section && "bg-blue-50 "
                       )}
                       {...{ [dataAttributes.section]: section.id }}
@@ -101,13 +100,12 @@ export const CategoryManager = ({ options }: IControlProps) => {
                 </PopoverContent>
               </Popover>
               {!options?.disableCategoryDelete && (
-                <Trash2
-                  size={22}
-                  className={twMerge(
-                    "hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium",
-                    displayDisabledDelete && "opacity-50 pointer-events-none"
-                  )}
+                <IconButton
+                  className="w-6 h-6 p-0 shrink-0"
+                  variant="secondary"
+                  icon={<X className="w-4 h-4" />}
                   onClick={() => onDeleteCategory(category.id)}
+                  disabled={displayDisabledDelete}
                 />
               )}
             </div>
@@ -121,14 +119,12 @@ export const CategoryManager = ({ options }: IControlProps) => {
 const Categorizer = ({ firstElement, selectedElementIds, options }: IControlProps & Record<string, any>) => {
   const categories = useSelector((state: any) => state.editor.categories);
   return (
-    <>
-      <div className="w-full flex justify-between items-center gap-12">
-        <Callout className="font-semibold">Categories</Callout>
+    <div className="flex flex-col gap-3">
+      <div className="w-full flex justify-between items-center gap-4">
+        <h6 className="font-medium text-sm">Categories</h6>
         <Popover>
           <PopoverTrigger>
-            <Caption className="text-blue-500 hover:text-blue-600 transform translate-y-0.5 cursor-pointer transition-all duration-medium">
-              Manage
-            </Caption>
+            <IconButton className="w-6 h-6 p-0 shrink-0" variant="secondary" icon={<Settings2 className="w-4 h-4" />} />
           </PopoverTrigger>
           <PopoverContent className="bg-white w-80 py-4 mr-4">
             <CategoryManager options={options} />
@@ -162,7 +158,7 @@ const Categorizer = ({ firstElement, selectedElementIds, options }: IControlProp
           ))}
         </SelectContent>
       </Select>
-    </>
+    </div>
   );
 };
 

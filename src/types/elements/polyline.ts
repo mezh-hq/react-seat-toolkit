@@ -17,4 +17,5 @@ export interface IPolyline {
   color?: string;
   stroke?: string;
   section?: string;
+  rotation?: number;
 }

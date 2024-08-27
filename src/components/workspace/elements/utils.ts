@@ -4,7 +4,6 @@ import { resizeCursors } from "@/hooks/interactions";
 import { default as store } from "@/store";
 import { IPopulatedSeat } from "@/types";
 import { d3Extended } from "@/utils";
-import Booth from "./booth";
 import Image from "./image";
 import Polyline from "./polyline";
 import Seat from "./seat";
@@ -12,7 +11,6 @@ import Shape from "./shape";
 import Text from "./text";
 
 export const ElementType = {
-  Booth: "booth",
   Seat: "seat",
   Text: "text",
   Shape: "shape",
@@ -21,7 +19,6 @@ export const ElementType = {
 };
 
 export const elements = {
-  [ElementType.Booth]: Booth,
   [ElementType.Seat]: Seat,
   [ElementType.Text]: Text,
   [ElementType.Shape]: Shape,
@@ -30,12 +27,13 @@ export const elements = {
 };
 
 const repositionSeat = (seat, dx, dy) => {
-  const x = +seat.attr("cx") + dx;
-  const y = +seat.attr("cy") + dy;
-
-  seat.attr("cx", x);
-  seat.attr("cy", y);
-
+  if (seat.attr("cx")) {
+    seat.attr("cx", +seat.attr("cx") + dx);
+    seat.attr("cy", +seat.attr("cy") + dy);
+  } else {
+    seat.attr("x", +seat.attr("x") + dx);
+    seat.attr("y", +seat.attr("y") + dy);
+  }
   const label = d3Extended.selectById(`${seat.attr("id")}-label`);
   label.attr("x", +label.attr("x") + dx);
   label.attr("y", +label.attr("y") + dy);
@@ -78,14 +76,10 @@ const repositionElements = (currentElem, repositionFn, elementType: string, dx: 
 
 export const handleDrag = drag().on("drag", function (event) {
   const me = select(this);
-  const controls = d3Extended.selectById(`${me.attr("id")}-controls`);
   const x = +me.attr("x") + event.dx;
   const y = +me.attr("y") + event.dy;
   me.attr("x", x);
   me.attr("y", y);
-  const center = d3Extended.getNodeCenter(me);
-  controls.attr("cx", center.x);
-  controls.attr("cy", center.y);
 });
 
 export const handleSeatDrag = drag().on("drag", function (event) {
@@ -125,16 +119,11 @@ export const hideSeat = (seat: d3.Selection<Element, {}, HTMLElement, any>) => {
 export const showPreOffsetElements = () => {
   const seats = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`);
   if (seats.size() && +seats?.style("opacity") !== 0) {
-    const booths = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`);
     const sections = d3Extended.selectAll(
       `[${dataAttributes.elementType}="${ElementType.Polyline}"][${dataAttributes.section}]`
     );
     const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
     seats.forEach(hideSeat);
-    booths.forEach((booth) => {
-      booth.style("opacity", 0);
-      booth.style("pointer-events", "none");
-    });
     sections.forEach((section) => {
       section.style("opacity", 1);
       section.style("pointer-events", "all");
@@ -149,16 +138,11 @@ export const showPreOffsetElements = () => {
 export const showPostOffsetElements = () => {
   const seats = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`);
   if (seats.size() && +seats.style("opacity") !== 1) {
-    const booths = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`);
     const sections = d3Extended.selectAll(
       `[${dataAttributes.elementType}="${ElementType.Polyline}"][${dataAttributes.section}]`
     );
     const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
     seats.forEach(showSeat);
-    booths.forEach((booth) => {
-      booth.style("opacity", 1);
-      booth.style("pointer-events", "all");
-    });
     sections.forEach((section) => {
       if (section.attr(dataAttributes.sectionFreeSeating) !== "true") {
         section.style("opacity", 0);
@@ -174,14 +158,9 @@ export const showPostOffsetElements = () => {
 
 export const showAllElements = () => {
   const seats = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`);
-  const booths = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`);
   const sections = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`);
   const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
   seats.forEach(showSeat);
-  booths.forEach((booth) => {
-    booth.style("opacity", 1);
-    booth.style("pointer-events", "all");
-  });
   sections.forEach((section) => {
     section.style("opacity", 1);
     section.style("pointer-events", "all");

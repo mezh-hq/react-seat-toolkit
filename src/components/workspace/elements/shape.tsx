@@ -1,15 +1,15 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
-import { shapes } from "@/components/controls/shapes/shape-list";
 import { dataAttributes } from "@/constants";
+import { useShapeMap } from "@/hooks";
 import { ISTKProps, IShape } from "@/types";
 
-export const shapeSize = 65;
+export const shapeSize = 50;
 export const shapeStrokeWidth = 0.65;
 
 export const resizableRectangle = {
-  width: 200,
-  height: 100
+  width: 150,
+  height: 75
 };
 
 export interface IShapeProps extends IShape {
@@ -34,6 +34,7 @@ const Shape: React.FC<IShapeProps> = forwardRef(
       className,
       stroke,
       color,
+      rotation,
       consumer,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       isSelected: _,
@@ -43,37 +44,61 @@ const Shape: React.FC<IShapeProps> = forwardRef(
     },
     ref: any
   ) => {
+    const shapes = useShapeMap({ options: consumer.options });
     if (name === "RectangleHorizontal") {
+      width ??= resizableRectangle.width;
+      height ??= resizableRectangle.height;
       return (
         <rect
           ref={ref}
           id={id}
           x={x}
           y={y}
-          width={width ?? resizableRectangle.width}
-          height={height ?? resizableRectangle.height}
+          width={width}
+          height={height}
           rx={rx ?? 15}
           className={twMerge(className, resizable && "resizable", consumer.styles?.elements?.shape?.base?.className)}
-          style={{ color: color ?? "transparent", stroke, ...consumer.styles?.elements?.shape?.base?.properties }}
+          style={{
+            color: color ?? "transparent",
+            stroke,
+            transform: `rotate(${rotation ?? 0}deg)`,
+            transformOrigin: `center`,
+            ...consumer.styles?.elements?.shape?.base?.properties
+          }}
           {...{ [dataAttributes.shape]: "RectangleHorizontal" }}
           {...props}
         />
       );
     }
+    width ??= shapeSize;
+    height ??= shapeSize;
     const Icon = shapes[name];
     return (
-      <Icon
-        id={id}
-        ref={ref}
+      <g
         x={x}
         y={y}
-        width={width ?? shapeSize}
-        height={height ?? shapeSize}
-        className={twMerge(className, "stroke-[0.75]")}
-        style={{ color: color ?? "transparent", stroke }}
-        {...{ [dataAttributes.shape]: name }}
-        {...props}
-      />
+        style={{
+          transform: `rotate(${rotation ?? 0}deg)`,
+          transformOrigin: "center"
+        }}
+      >
+        <Icon
+          id={id}
+          ref={ref}
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          className={twMerge(className, "stroke-[0.9]", consumer.styles?.elements?.shape?.base?.className)}
+          style={{
+            color: color ?? "transparent",
+            stroke,
+            ...consumer.styles?.elements?.shape?.base?.properties
+          }}
+          {...{ [dataAttributes.shape]: name }}
+          {...props}
+        />
+      </g>
     );
   }
 );

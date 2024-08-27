@@ -95,8 +95,8 @@ export const useSelection = () => {
 
           elements.forEach((element) => {
             const isSeat = element.attr(dataAttributes.elementType) === ElementType.Seat;
-            const x = isSeat ? +element.attr("cx") : +element.attr("x");
-            const y = isSeat ? +element.attr("cy") : +element.attr("y");
+            const x = isSeat && (element.node() as any)?.nodeName !== "rect" ? +element.attr("cx") : +element.attr("x");
+            const y = isSeat && (element.node() as any)?.nodeName !== "rect" ? +element.attr("cy") : +element.attr("y");
             if (
               x >= finalAttributes.x1 &&
               x <= finalAttributes.x2 &&
@@ -126,9 +126,6 @@ export const useSelectAll = () => {
         const seats = d3Extended
           .selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`)
           .map((seat) => seat.attr("id"));
-        const booths = d3Extended
-          .selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`)
-          .map((booth) => booth.attr("id"));
         const shapes = d3Extended
           .selectAll(`[${dataAttributes.elementType}="${ElementType.Shape}"]`)
           .map((shape) => shape.attr("id"));
@@ -141,7 +138,7 @@ export const useSelectAll = () => {
         const images = d3Extended
           .selectAll(`[${dataAttributes.elementType}="${ElementType.Image}"]`)
           .map((image) => image.attr("id"));
-        store.dispatch(clearAndSelectElements([...seats, ...booths, ...shapes, ...text, ...polylines, ...images]));
+        store.dispatch(clearAndSelectElements([...seats, ...shapes, ...text, ...polylines, ...images]));
       }
     };
     window.addEventListener("keydown", handler);

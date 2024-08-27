@@ -1,28 +1,22 @@
 import { ElementType } from "@/components/workspace/elements";
 import { dataAttributes, selectors } from "@/constants";
 import { store } from "@/store";
+import { ISTKData } from "@/types";
 import { rgbToHex } from ".";
 import { default as d3Extended } from "./d3";
 
 export const domSeatsToJSON = () => {
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`).map((seat) => {
+    const square = (seat.node() as any)?.nodeName === "rect";
     return {
       id: seat.attr("id"),
-      x: +seat.attr("cx"),
-      y: +seat.attr("cy"),
+      x: +seat.attr(square ? "x" : "cx"),
+      y: +seat.attr(square ? "y" : "cy"),
       label: document.getElementById(`${seat.attr("id")}-label`)?.textContent,
       status: seat.attr(dataAttributes.status),
-      category: seat.attr(dataAttributes.category)
-    };
-  });
-};
-
-export const domBoothsToJSON = () => {
-  return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Booth}"]`).map((booth) => {
-    return {
-      id: booth.attr("id"),
-      x: +booth.attr("x"),
-      y: +booth.attr("y")
+      category: seat.attr(dataAttributes.category),
+      square,
+      rotation: seat.rotation()
     };
   });
 };
@@ -38,7 +32,8 @@ export const domTextToJSON = () => {
       fontWeight: +text.attr("font-weight"),
       letterSpacing: +text.attr("letter-spacing"),
       color: rgbToHex(text.style("stroke")) || text.attr("stroke"),
-      embraceOffset: text.attr(dataAttributes.embraceOffset) === "true"
+      embraceOffset: text.attr(dataAttributes.embraceOffset) === "true",
+      rotation: text.rotation()
     };
   });
 };
@@ -54,7 +49,8 @@ export const domShapesToJSON = () => {
       height: +shape.attr("height"),
       rx: shape.attr("rx") ? +shape.attr("rx") : undefined,
       color: rgbToHex(shape.style("color")) || shape.attr("color"),
-      stroke: rgbToHex(shape.style("stroke")) || shape.attr("stroke")
+      stroke: rgbToHex(shape.style("stroke")) || shape.attr("stroke"),
+      rotation: shape.rotation()
     };
   });
 };
@@ -74,7 +70,8 @@ export const domPolylineToJSON = () => {
           }),
         section: polyline.attr(dataAttributes.section),
         color: rgbToHex(polyline.style("color")) || polyline.attr("color"),
-        stroke: rgbToHex(polyline.style("stroke")) || polyline.attr("stroke")
+        stroke: rgbToHex(polyline.style("stroke")) || polyline.attr("stroke"),
+        rotation: polyline.rotation()
       };
     })
     .filter((polyline) => polyline.points.length > 1);
@@ -88,7 +85,8 @@ export const domImagesToJSON = () => {
       y: +image.attr("y"),
       width: +image.attr("width"),
       height: +image.attr("height"),
-      href: image.attr("href")
+      href: image.attr("href"),
+      rotation: image.rotation()
     };
   });
 };
@@ -97,14 +95,13 @@ export const domTransform = () => {
   return d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup));
 };
 
-export const stateToJSON = () => {
+export const stateToJSON = (): ISTKData => {
   const state = store.getState().editor;
   return {
     name: state.location,
     categories: state.categories.slice(1),
     sections: state.sections.slice(1),
     seats: domSeatsToJSON(),
-    booths: domBoothsToJSON(),
     text: domTextToJSON(),
     shapes: domShapesToJSON(),
     polylines: domPolylineToJSON(),

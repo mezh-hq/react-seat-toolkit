@@ -13,7 +13,7 @@ const onUploadClick = () => document.getElementById("image-input").click();
 
 type IImageControlProps = Pick<ISTKProps, "options" | "styles">;
 
-const ImageControls = ({ options: { maxImageSize = 1024000 } = {} }: IImageControlProps) => {
+const Controls = ({ options: { maxImageSize = 1024000 } = {} }: IImageControlProps) => {
   const [file, setFile] = useState(null);
 
   const onUpload = async (e) => {
@@ -49,14 +49,18 @@ const ImageControls = ({ options: { maxImageSize = 1024000 } = {} }: IImageContr
   }, [file]);
 
   return (
-    <div className="w-full h-full flex flex-col justify-between gap-5">
+    <div className="w-full flex flex-col gap-5">
       <div
-        className="h-full w-full flex justify-center items-center rounded-md cursor-pointer bg-gray-100 hover:bg-gray-200 transition-all duration-medium"
+        className="w-full aspect-square flex justify-center items-center rounded-md overflow-clip cursor-pointer bg-slate-100 border border-gray-200"
         onClick={onUploadClick}
       >
-        {file ? <img src={file} alt="uploaded image" className="h-full w-full" /> : <Image size={30} />}
+        {file ? (
+          <img src={file} alt="uploaded image" className="h-full w-full object-cover" />
+        ) : (
+          <Image size={24} className="text-slate-500" />
+        )}
       </div>
-      <Button className="py-2.5" onClick={onAddToWorkspace} disabled={!file}>
+      <Button className="py-2.5" variant="secondary" onClick={onAddToWorkspace} disabled={!file}>
         Add to Workspace
       </Button>
       <input id="image-input" type="file" accept="image/*" className="hidden" onInput={onUpload} />
@@ -64,4 +68,8 @@ const ImageControls = ({ options: { maxImageSize = 1024000 } = {} }: IImageContr
   );
 };
 
-export default memo(ImageControls);
+const ImageControls = memo(Controls);
+
+(ImageControls as any).name = "ImageControls";
+
+export default ImageControls;

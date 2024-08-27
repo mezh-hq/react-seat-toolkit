@@ -6,6 +6,7 @@ declare module "d3" {
     moveToFront(): Selection<GElement, Datum, PElement, PDatum>;
     map<T>(callback: (d: Selection<GElement, Datum, PElement, PDatum>, i: number) => T): T[];
     forEach<T>(callback: (d: Selection<GElement, Datum, PElement, PDatum>, i: number) => T): T[];
+    rotation(): number;
   }
 }
 
@@ -36,6 +37,24 @@ selection.prototype.forEach = function (callback) {
   this.each(function (_, i) {
     callback(select(this), i);
   });
+};
+
+selection.prototype.rotation = function () {
+  if (!this.node()) return 0;
+  let transform: string;
+  if (this.node()?.tagName === "svg") {
+    transform = this.node().parentElement.style.transform;
+  } else {
+    transform = this.style("transform");
+  }
+  if (!transform) {
+    return 0;
+  }
+  const match = transform.match(/rotate\(([^)]+)\)/);
+  if (!match) {
+    return 0;
+  }
+  return Number(match[1].replace("deg", ""));
 };
 
 export const d3Extended = {

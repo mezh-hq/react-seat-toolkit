@@ -1,0 +1,36 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="External Shapes" />
+
+<h1>External Shapes</h1>
+
+<h4>You can control the shapes available to you within the toolkit by passing in an array of shapes in options as follows:</h4>
+
+```tsx
+import { SeatToolkit } from "@mezh-hq/react-seat-toolkit";
+import { FireExtinguisher } from "lucide-react";
+
+return <SeatToolkit 
+  mode="designer"
+  options={{
+    shapes: {
+        icons: [
+            FireExtinguisher
+        ],
+        overrideDefaultIconset: false
+    }
+  }}
+/>
+```
+
+<h4>Here, we are passing in an array of shapes with a single shape, FireExtinguisher, which will be added to the default shapes available in the toolkit.</h4>
+
+<h4>If you need to completely override the default shapes available in the toolkit, you can set the overrideDefaultIconset property to true. This will remove all default shapes and keep only the shapes you pass </h4>
+
+<br/>
+
+---
+
+<br/>
+
+<h5> NOTE: The shapes you pass in should be React components that render an SVG and must contain a `displayName` property. If the `displayName` property is not present, the toolkit will not be able to render the shape. </h5>

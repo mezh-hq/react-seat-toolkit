@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Button, Label, RadioGroup, RadioGroupItem } from "@/components/core";
+import { Button, Label, Switch } from "@/components/core";
 import { dataAttributes, seatStatusColors } from "@/constants";
 import { store } from "@/store";
 import { updateSeatLabels, updateSeats } from "@/store/reducers/editor";
@@ -12,6 +13,7 @@ import { default as Categorizer } from "./categorizer";
 type IControlProps = Pick<ISTKProps, "options" | "styles">;
 
 const SeatSelectControls = (props: IControlProps) => {
+  const [state, setState] = useState<undefined | SeatStatus>();
   const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
 
   const firstElement = document.getElementById(selectedElementIds[0]);
@@ -29,10 +31,18 @@ const SeatSelectControls = (props: IControlProps) => {
     );
   };
 
+  useEffect(() => {
+    if (selectedElementIds?.length) {
+      setState((firstElement?.getAttribute(dataAttributes.status) as SeatStatus) || undefined);
+    } else {
+      setState(undefined);
+    }
+  }, [selectedElementIds, firstElement]);
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-5">
       <Categorizer firstElement={firstElement} selectedElementIds={selectedElementIds} {...props} />
-      <div className="grid grid-cols-3 items-center gap-4">
+      <div className="flex flex-col gap-3">
         <ControlInput
           key={firstElementLabel?.textContent}
           id="seat-label-input"
@@ -44,45 +54,45 @@ const SeatSelectControls = (props: IControlProps) => {
         />
       </div>
       {selectedElementIds.length > 1 && (
-        <Button className="max-w-56 py-1.5 text-xs self-end" onClick={setIncrementalLabels}>
+        <Button className="py-[0.35rem]" variant="secondary" onClick={setIncrementalLabels}>
           Set Incremental Labels
         </Button>
       )}
-      <RadioGroup
-        key={selectedElementIds?.join(",")}
-        defaultValue={firstElement?.getAttribute(dataAttributes.status) ?? SeatStatus.Available.toString()}
-        onValueChange={(value) => {
-          selectedElementIds.forEach((id: string) => {
-            const seat = d3Extended.selectById(id);
-            const seatLabel = d3Extended.selectById(`${id}-label`);
-            seat.attr(dataAttributes.status, value);
-            let color = seatStatusColors[value].background;
-            let textColor = seatStatusColors[value].label;
-            if (value === SeatStatus.Available) {
-              const category = store
-                .getState()
-                .editor.categories.find((c) => c.id === seat.attr(dataAttributes.category));
-              if (category) {
-                color = category.color;
-                textColor = category.textColor;
-              }
-            }
-            seat.style("color", color);
-            seatLabel?.style("stroke", textColor);
-          });
-        }}
-        className="w-full flex flex-wrap flex-row-reverse items-end gap-2 gap-y-4 my-1"
-      >
+      <div className="w-full flex flex-col gap-3">
         {Object.values(SeatStatus).map((status) => {
           const id = `stk-seat-status-rg-${status}`;
           return (
-            <div key={id} className="flex items-center gap-x-2">
-              <RadioGroupItem value={status.toString()} id={id} />
+            <div key={id} className="flex items-center gap-2 justify-between">
               <Label htmlFor={id}>{status}</Label>
+              <Switch
+                id={id}
+                checked={status === state}
+                onCheckedChange={() => {
+                  selectedElementIds.forEach((id: string) => {
+                    const seat = d3Extended.selectById(id);
+                    const seatLabel = d3Extended.selectById(`${id}-label`);
+                    seat.attr(dataAttributes.status, status);
+                    setState(status);
+                    let color = seatStatusColors[status].background;
+                    let textColor = seatStatusColors[status].label;
+                    if (status === SeatStatus.Available) {
+                      const category = store
+                        .getState()
+                        .editor.categories.find((c) => c.id === seat.attr(dataAttributes.category));
+                      if (category) {
+                        color = category.color;
+                        textColor = category.textColor;
+                      }
+                    }
+                    seat.style("color", color);
+                    seatLabel?.style("stroke", textColor);
+                  });
+                }}
+              />
             </div>
           );
         })}
-      </RadioGroup>
+      </div>
     </div>
   );
 };

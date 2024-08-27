@@ -2,16 +2,23 @@ import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
 const buttonVariants = cva(
-  "group flex justify-center items-center cursor-pointer rounded-md px-[1.15rem] py-[0.4rem] font-semibold outline-none transition-all duration-medium gap-2 splash",
+  "group flex justify-center items-center cursor-pointer rounded-md font-medium outline-none transition-all duration-medium splash",
   {
     variants: {
       variant: {
         primary: "bg-black text-white",
-        secondary: "text-black bg-white border border-black/20 after:bg-black/[0.15]"
+        secondary: "text-black bg-slate-100 hover:bg-slate-200/75 after:bg-black/[0.15]"
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10"
       }
     },
     defaultVariants: {
-      variant: "primary"
+      variant: "primary",
+      size: "default"
     }
   }
 );
@@ -22,6 +29,7 @@ const Core = ({ variant = "primary", children, loading, className, ...props }: a
       role="button"
       className={twMerge(
         buttonVariants({ variant }),
+        loading ? "gap-2" : "gap-0",
         className,
         loading || props.disabled ? "opacity-80 pointer-events-none" : ""
       )}
@@ -31,7 +39,7 @@ const Core = ({ variant = "primary", children, loading, className, ...props }: a
       {loading !== undefined && (
         <div
           className={`${
-            loading ? "opacity-100 ml-0" : "opacity-0 pointer-events-none -mr-7"
+            loading ? "opacity-100 ml-0" : "opacity-0 pointer-events-none -mr-4"
           } transition-all duration-150`}
         >
           <svg
@@ -70,7 +78,7 @@ const Button = ({ to, wrapperClassName, target, ariaLabel, ...props }: ButtonPro
   if (to) {
     return (
       <a href={to} target={target ?? "_self"} className={wrapperClassName} aria-label={ariaLabel}>
-        <Button {...props} />
+        <Core {...props} />
       </a>
     );
   }

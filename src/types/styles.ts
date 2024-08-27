@@ -49,11 +49,6 @@ export interface IStyles {
   };
   reloadButton?: IStyle;
   elements?: {
-    booth?: {
-      selected?: IStyle;
-      unselected?: IStyle;
-      base?: IStyle;
-    };
     seat?: {
       selected?: IStyle;
       unselected?: IStyle;
@@ -89,5 +84,13 @@ export interface IStyles {
   core?: {
     container?: IStyle;
     button?: IStyle;
+    tooltip?: {
+      trigger?: IStyle;
+      content?: IStyle;
+    };
+  };
+  dock?: {
+    container?: IStyle;
+    root?: IStyle;
   };
 }

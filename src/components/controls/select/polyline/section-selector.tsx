@@ -1,13 +1,13 @@
-import { Percent, Trash2 } from "lucide-react";
+import { DollarSign, Plus, Settings2, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import { default as debounce } from "lodash/debounce";
 import { twMerge } from "tailwind-merge";
-import { Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
+import { IconButton, Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { addSection, deleteSection, updatePolylines, updateSection } from "@/store/reducers/editor";
 import { ISTKProps } from "@/types";
-import { Callout, Caption, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../core";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../core";
 
 const onAddSection = () => store.dispatch(addSection(undefined));
 
@@ -20,30 +20,31 @@ type IControlProps = Pick<ISTKProps, "options" | "styles">;
 export const SectionManager = ({ options }: IControlProps) => {
   const sections = useSelector((state: any) => state.editor.sections);
   return (
-    <div className="grid gap-4">
-      <div className="flex flex-col gap-2">
-        <h4 className="font-bold leading-none pb-1">Manage Sections</h4>
-        <hr />
-        <span className="hover:text-gray-500 cursor-pointer transition-all duration-medium" onClick={onAddSection}>
-          + Add Section
-        </span>
-        <hr />
+    <div className="flex flex-col gap-3">
+      <div className="w-full flex justify-between items-center gap-4">
+        <h6 className="font-medium text-sm">Sections</h6>
+        <IconButton
+          className="w-6 h-6 p-0"
+          variant="secondary"
+          icon={<Plus className="w-4 h-4" />}
+          onClick={onAddSection}
+        />
       </div>
       <div className="flex flex-col gap-4">
         {sections.map(
           (section, index) =>
             section.id !== "0" && (
-              <div key={`category-${section.id}`} className="flex justify-start items-center gap-4">
+              <div key={`category-${section.id}`} className="flex justify-start items-center gap-2">
                 <input
                   defaultValue={section.color}
                   type="color"
-                  className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
+                  className="flex-shrink-0 w-6 h-6 p-0 bg-white square-color-input"
                   onChange={(e) => onUpdateSection({ ...section, color: e.target.value })}
                 />
                 <input
                   defaultValue={section.stroke}
                   type="color"
-                  className="flex-shrink-0 w-6 h-6 p-0 bg-white rounded-color-input"
+                  className="flex-shrink-0 w-6 h-6 p-0 bg-white square-color-input"
                   onChange={(e) => onUpdateSection({ ...section, stroke: e.target.value })}
                 />
                 <Input
@@ -51,12 +52,10 @@ export const SectionManager = ({ options }: IControlProps) => {
                   className="h-8"
                   onChange={(e) => onUpdateSection({ ...section, name: e.target.value })}
                 />
-                <Percent
-                  size={22}
-                  className={twMerge(
-                    "flex-shrink-0 cursor-pointer transition-all duration-medium ",
-                    section?.freeSeating ? "text-blue-600 hover:text-blue-500" : "hover:text-gray-500"
-                  )}
+                <IconButton
+                  className={twMerge("w-6 h-6 p-0 shrink-0", section?.freeSeating && "text-gray-400")}
+                  variant="secondary"
+                  icon={<DollarSign className="w-4 h-4" />}
                   onClick={() =>
                     section?.freeSeating
                       ? onUpdateSection({ ...section, freeSeating: false })
@@ -64,13 +63,12 @@ export const SectionManager = ({ options }: IControlProps) => {
                   }
                 />
                 {!options?.disableSectionDelete && (
-                  <Trash2
-                    size={22}
-                    className={twMerge(
-                      "hover:text-gray-500 flex-shrink-0 cursor-pointer transition-all duration-medium",
-                      index === 0 && "opacity-0 pointer-events-none"
-                    )}
+                  <IconButton
+                    className="w-6 h-6 p-0 shrink-0"
+                    variant="secondary"
+                    icon={<X className="w-4 h-4" />}
                     onClick={() => onDeleteSection(section.id)}
+                    disabled={index === 0}
                   />
                 )}
               </div>
@@ -85,18 +83,22 @@ const SectionSelector = ({ firstElement, selectedElementIds, options }: IControl
   const sections = useSelector((state: any) => state.editor.sections);
   return (
     <>
-      <div className="w-full flex justify-between items-center gap-12">
-        <Callout className="font-semibold">Sections</Callout>
-        <Popover>
-          <PopoverTrigger>
-            <Caption className="text-blue-500 hover:text-blue-600 transform translate-y-0.5 cursor-pointer transition-all duration-medium">
-              Manage
-            </Caption>
-          </PopoverTrigger>
-          <PopoverContent className="bg-white w-80 py-4 mr-4">
-            <SectionManager options={options} />
-          </PopoverContent>
-        </Popover>
+      <div className="flex flex-col gap-3">
+        <div className="w-full flex justify-between items-center gap-4">
+          <h6 className="font-medium text-sm">Sections</h6>
+          <Popover>
+            <PopoverTrigger>
+              <IconButton
+                className="w-6 h-6 p-0 shrink-0"
+                variant="secondary"
+                icon={<Settings2 className="w-4 h-4" />}
+              />
+            </PopoverTrigger>
+            <PopoverContent className="bg-white w-80 py-4 mr-4">
+              <SectionManager options={options} />
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
       <Select
         key={selectedElementIds?.join(",")}
