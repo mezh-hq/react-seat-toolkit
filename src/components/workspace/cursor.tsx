@@ -13,27 +13,26 @@ export const Cursor = () => {
 
   const Cursor = useSelector((state: any) => state.editor.cursor);
 
+  const workspace = document.getElementById(ids.workspace)?.getBoundingClientRect();
+  const zoomControls = document.getElementById(ids.zoomControls)?.getBoundingClientRect();
+  const mainControls = document.getElementById(ids.controls)?.getBoundingClientRect();
+
   const move = (e) => {
     const ptr = pointer(e);
     const x = ptr[0];
     const y = ptr[1];
-    const workspace = document.getElementById(ids.workspace)?.getBoundingClientRect();
-    const zoomControls = document.getElementById(ids.zoomControls)?.getBoundingClientRect();
-    const mainControls = document.getElementById(ids.controls)?.getBoundingClientRect();
-    if (workspace) {
-      const customCursor = document.getElementById(ids.cursor);
-      if (
-        isWithinBounds(x, y, workspace) &&
-        !isWithinBounds(x, y, zoomControls) &&
-        !isWithinBounds(x, y, mainControls) &&
-        !resizeCursors.includes(e.target?.style?.cursor) &&
-        !e.target.id.includes("radix:") &&
-        e.target.getAttribute("role") !== "dialog"
-      ) {
-        customCursor.style.display = "block";
-      } else {
-        customCursor.style.display = "none";
-      }
+    const customCursor = document.getElementById(ids.cursor);
+    if (
+      isWithinBounds(x, y, workspace) &&
+      !isWithinBounds(x, y, zoomControls) &&
+      !isWithinBounds(x, y, mainControls) &&
+      !resizeCursors.includes(e.target?.style?.cursor) &&
+      !e.target.id.includes("radix:") &&
+      e.target.getAttribute("role") !== "dialog"
+    ) {
+      customCursor.classList.remove("hidden");
+    } else {
+      customCursor.classList.add("hidden");
     }
     setCursorX(x);
     setCursorY(y);
