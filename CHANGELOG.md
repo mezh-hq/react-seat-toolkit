@@ -1,5 +1,15 @@
 Changelog
 
+# v3.0.1 [2024-12-05]
+
+## Patch Release
+
+### Fixes 
+- Fixed an issue where the custom selected seat icon is not visible
+- Removed a few unused types from custom styles
+
+---
+
 # v3.0.0 [2024-08-27]
 
 ## Major Release
