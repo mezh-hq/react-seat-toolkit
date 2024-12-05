@@ -152,7 +152,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
             width={seatSize * 0.75}
             height={seatSize * 0.75}
             size={seatSize * 0.75}
-            className={consumer.styles?.elements?.seat?.icon?.className}
+            className={twMerge(consumer.styles?.elements?.seat?.icon?.className, "stk-seat-icon")}
             style={consumer.styles?.elements?.seat?.icon?.properties}
           />
         )}

@@ -9,11 +9,6 @@ export const options = {
     ...disableArgTypes(["options"]),
     ...prefixKeys(
       {
-        showFooter: {
-          control: "boolean",
-          description: "Show or hide the footer",
-          defaultValue: { summary: true }
-        },
         showGridSwitch: {
           control: "boolean",
           description: "Show or hide the grid switch",

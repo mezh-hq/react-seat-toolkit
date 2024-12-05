@@ -13,19 +13,6 @@ export const Story = {
   render: (props) => <SeatToolkit mode={STKMode.DESIGNER} {...props} />
 };
 
-export const WithoutFooter = {
-  render: (props) => (
-    <SeatToolkit
-      mode={STKMode.DESIGNER}
-      {...props}
-      options={{
-        showFooter: false,
-        ...props.options
-      }}
-    />
-  )
-};
-
 export const WithReloadButton = {
   render: (props) => (
     <SeatToolkit

@@ -19,6 +19,6 @@ rect.workspace-selection {
   fill-opacity: 0.5;
 }
 
-.stk-core svg * {
+.stk-core svg *:not(.stk-seat-icon *) {
   transform-box: fill-box;
 }
