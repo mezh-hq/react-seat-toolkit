@@ -70,7 +70,6 @@ export interface ISTKProps {
   options?: {
     showGridSwitch?: boolean;
     showSeatLabels?: boolean;
-    showFooter?: boolean;
     showZoomControls?: boolean;
     showVisibilityControls?: boolean;
     showReloadButton?: boolean;

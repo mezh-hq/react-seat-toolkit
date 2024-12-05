@@ -23,19 +23,11 @@ export interface IStyles {
     input?: IStyle;
     trigger?: IStyle;
   };
-  footer?: {
-    root?: IStyle;
-    title?: IStyle;
-    meta?: IStyle;
-  };
   zoomControls?: {
     in?: IStyle;
     out?: IStyle;
-    root?: IStyle;
   };
   panControls?: {
-    root?: IStyle;
-    innerRing?: IStyle;
     handles?: {
       up?: IStyle;
       right?: IStyle;
@@ -44,7 +36,6 @@ export interface IStyles {
     };
   };
   visibilityControls?: {
-    root?: IStyle;
     buttons?: IStyle;
   };
   reloadButton?: IStyle;
