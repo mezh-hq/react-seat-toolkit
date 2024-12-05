@@ -78,6 +78,7 @@ export interface ISTKProps {
     exportButtonText?: string;
     operationTriggerIcon?: React.FC;
     seatIcon?: React.FC<any>;
+    seatSize?: number;
     selectedSeatIcon?: React.FC<any>;
     /** Only applicable in user mode. If provided, will stop the user from selecting more seats than the provided number. */
     maxSeatSelectionCount?: number;

@@ -6,10 +6,6 @@ import { ISeat, ISeatCategory, ISection, SeatStatus } from "@/types/elements";
 import { d3Extended } from "@/utils";
 import { getDetailedSeat } from "./utils";
 
-export const seatSize = 28;
-
-export const seatLabelFontSize = seatSize / 3;
-
 export interface ISeatProps extends ISeat {
   className?: string;
   consumer: ISTKProps;
@@ -45,6 +41,10 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       () => sections?.find?.((s) => s.id === categoryObject?.section),
       [sections, categoryObject]
     );
+
+    const seatSize = consumer.options?.seatSize ?? 28;
+
+    const seatLabelFontSize = seatSize / 3;
 
     const showLabel = consumer.options?.showSeatLabels ?? true;
 
