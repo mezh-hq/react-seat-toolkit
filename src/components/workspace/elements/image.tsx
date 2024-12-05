@@ -10,8 +10,16 @@ export interface IImageProps extends IImage {
 }
 
 const Image: React.FC<IImageProps> = forwardRef(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ({ x, y, id, href, width, height, rotation, consumer, isSelected, element: _, ...props }, ref: any) => {
+   
+  ({ x, y, id, href, width, height, rotation, consumer, isSelected, element, ...props }, ref: any) => {
+    const onMouseOver = (e: React.MouseEvent<SVGElement>) => {
+      if (consumer.mode === "user") {
+        consumer.events?.onImageHover?.(element, {
+          x: e.clientX,
+          y: e.clientY
+        });
+      }
+    };
     return (
       <image
         ref={ref}
@@ -34,6 +42,7 @@ const Image: React.FC<IImageProps> = forwardRef(
           transformOrigin: `center`,
           ...consumer.styles?.elements?.image?.base?.properties
         }}
+        onMouseOver={onMouseOver}
       />
     );
   }

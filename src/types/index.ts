@@ -36,6 +36,8 @@ export interface IEvents {
   onSeatSelectionChange?: (seats: IPopulatedSeat[]) => void;
   /** Only applicable in user mode. Fired when the user tries to select more seats than the maxSeatSelectionCount */
   onMaxSeatSelectionCountReached?: () => void;
+  /** Only applicable in user mode */
+  onImageHover?: (seat: IImage, coords: ICoordinates) => void;
   onWorkspaceHover?: () => void;
   onWorkspaceLoad?: () => void;
   onSectionClick?: (section: ISection) => void;

@@ -1,5 +1,13 @@
 Changelog
 
+# v3.1.0 [2024-12-05]
+
+## Minor Release
+
+### Features 
+- Adds a new event handler named `onImageHover` which is applicable in User mode
+---
+
 # v3.0.1 [2024-12-05]
 
 ## Patch Release
