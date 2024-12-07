@@ -13,15 +13,14 @@ export const Cursor = () => {
 
   const Cursor = useSelector((state: any) => state.editor.cursor);
 
-  const workspace = document.getElementById(ids.workspace)?.getBoundingClientRect();
-  const zoomControls = document.getElementById(ids.zoomControls)?.getBoundingClientRect();
-  const mainControls = document.getElementById(ids.controls)?.getBoundingClientRect();
-
   const move = (e) => {
     const ptr = pointer(e);
     const x = ptr[0];
     const y = ptr[1];
     const customCursor = document.getElementById(ids.cursor);
+    const workspace = document.getElementById(ids.workspace)?.getBoundingClientRect();
+    const mainControls = document.getElementById(ids.controls)?.getBoundingClientRect();
+    const zoomControls = document.getElementById(ids.zoomControls)?.getBoundingClientRect();
     if (
       isWithinBounds(x, y, workspace) &&
       !isWithinBounds(x, y, zoomControls) &&
