@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
+import { dataAttributes } from "@/constants";
 import { IImage, ISTKProps } from "@/types";
 
 export interface IImageProps extends IImage {
@@ -10,8 +11,7 @@ export interface IImageProps extends IImage {
 }
 
 const Image: React.FC<IImageProps> = forwardRef(
-   
-  ({ x, y, id, href, width, height, rotation, consumer, isSelected, element, ...props }, ref: any) => {
+  ({ x, y, id, href, width, height, rotation, locked, consumer, isSelected, element, ...props }, ref: any) => {
     const onMouseOver = (e: React.MouseEvent<SVGElement>) => {
       if (consumer.mode === "user") {
         consumer.events?.onImageHover?.(element, {
@@ -30,6 +30,7 @@ const Image: React.FC<IImageProps> = forwardRef(
         width={width}
         height={height}
         {...props}
+        {...{ [dataAttributes.objectLock]: locked }}
         className={twMerge(
           "resizable fill-transparent object-cover",
           isSelected && "outline outline-2 outline-blue-500 -outline-offset-2",

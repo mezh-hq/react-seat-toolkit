@@ -6,4 +6,5 @@ export interface IImage {
   width?: number;
   height?: number;
   rotation?: number;
+  locked?: boolean;
 }

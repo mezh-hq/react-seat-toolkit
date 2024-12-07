@@ -86,7 +86,8 @@ export const domImagesToJSON = () => {
       width: +image.attr("width"),
       height: +image.attr("height"),
       href: image.attr("href"),
-      rotation: image.rotation()
+      rotation: image.rotation(),
+      locked: image.attr(dataAttributes.objectLock) === "true"
     };
   });
 };
