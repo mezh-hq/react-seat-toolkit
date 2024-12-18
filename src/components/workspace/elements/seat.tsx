@@ -6,9 +6,17 @@ import { ISeat, ISeatCategory, ISection, SeatStatus } from "@/types/elements";
 import { d3Extended } from "@/utils";
 import { getDetailedSeat } from "./utils";
 
-export const seatSize = 28;
+const seatSize = 28;
 
-export const seatLabelFontSize = seatSize / 3;
+const seatSizeHalf = seatSize / 2;
+
+const seatLabelFontSize = seatSize / 3;
+
+const seatIconXSubtract = seatSize / 2.73;
+
+const seatIconYSubtract = seatSize / 2.65;
+
+const seatIconSize = seatSize * 0.75;
 
 export interface ISeatProps extends ISeat {
   className?: string;
@@ -134,8 +142,8 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       <>
         {element.square ? (
           <rect
-            x={x - seatSize / 2}
-            y={y - seatSize / 2}
+            x={x - seatSizeHalf}
+            y={y - seatSizeHalf}
             height={seatSize}
             width={seatSize}
             rx={3}
@@ -143,15 +151,15 @@ const Seat: React.FC<ISeatProps> = forwardRef(
             {...seatProps}
           />
         ) : (
-          <circle cx={x} cy={y} r={seatSize / 2} {...seatProps} />
+          <circle cx={x} cy={y} r={seatSizeHalf} {...seatProps} />
         )}
         {SeatIcon && (
           <SeatIcon
-            x={x - seatSize / 2.73}
-            y={y - seatSize / 2.65}
-            width={seatSize * 0.75}
-            height={seatSize * 0.75}
-            size={seatSize * 0.75}
+            x={x - seatIconXSubtract}
+            y={y - seatIconYSubtract}
+            width={seatIconSize}
+            height={seatIconSize}
+            size={seatIconSize}
             className={twMerge(consumer.styles?.elements?.seat?.icon?.className, "stk-seat-icon")}
             style={consumer.styles?.elements?.seat?.icon?.properties}
           />
