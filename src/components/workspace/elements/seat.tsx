@@ -38,7 +38,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       categories,
       category,
       sections,
-      status,
+      status = SeatStatus.Available,
       onClick,
       consumer,
       rotation,
@@ -113,8 +113,6 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       }
     };
 
-    status ??= SeatStatus.Available;
-
     const seatProps = {
       ref,
       id,
@@ -177,7 +175,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
             {...{ [dataAttributes.elementType]: undefined }}
             className={twMerge(props.className, "unselectable !stroke-1")}
           >
-            {label ?? "A"}
+            {label}
           </text>
         )}
       </>

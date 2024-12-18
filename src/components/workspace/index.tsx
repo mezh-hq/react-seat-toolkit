@@ -58,7 +58,11 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
       style={props.styles?.workspace?.root?.properties}
     >
       <svg id={ids.workspace} className="w-full h-full flex-1" onMouseOver={onWorkspaceHover}>
-        <g {...{ [dataAttributes.visibilityOffset]: "0" }} style={{ transformBox: "unset" }}>
+        <g
+          {...{ [dataAttributes.visibilityOffset]: "0" }}
+          className="will-change-transform"
+          style={{ transformBox: "unset" }}
+        >
           {images.map((e) => (
             <Element
               key={e.id}
