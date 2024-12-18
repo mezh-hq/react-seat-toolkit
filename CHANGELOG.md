@@ -1,5 +1,14 @@
 Changelog
 
+# v3.2.1 [2024-12-18]
+
+## Patch Release
+
+### Fixes 
+- Updated performance when rendering large layouts
+
+---
+
 # v3.2.0 [2024-12-07]
 
 ## Minor Release

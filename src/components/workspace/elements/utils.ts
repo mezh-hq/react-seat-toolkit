@@ -48,8 +48,7 @@ const repositionShape = (shape, dx, dy) => {
   if (resizeCursors.includes(shape.style("cursor"))) return;
   const x = +shape.attr("x") + dx;
   const y = +shape.attr("y") + dy;
-  shape.attr("x", x);
-  shape.attr("y", y);
+  shape.attr("x", x).attr("y", y);
 };
 
 const repositionPolyline = (polyline, dx, dy) => {
@@ -101,43 +100,35 @@ export const handlePolylineDrag = drag().on("drag", function (event) {
 });
 
 export const showSeat = (seat: d3.Selection<Element, {}, HTMLElement, any>) => {
-  seat.style("opacity", "1");
-  seat.style("pointer-events", "all");
-  const label = d3Extended.selectById(`${seat.attr("id")}-label`);
-  label?.style("opacity", "1");
-  label?.style("pointer-events", "all");
+  seat.style("display", "block");
+  d3Extended.selectById(`${seat.attr("id")}-label`)?.style("display", "block");
 };
 
 export const hideSeat = (seat: d3.Selection<Element, {}, HTMLElement, any>) => {
-  seat.style("opacity", "0");
-  seat.style("pointer-events", "none");
-  const label = d3Extended.selectById(`${seat.attr("id")}-label`);
-  label?.style("opacity", "0");
-  label?.style("pointer-events", "none");
+  seat.style("display", "none");
+  d3Extended.selectById(`${seat.attr("id")}-label`)?.style("display", "none");
 };
 
 export const showPreOffsetElements = () => {
   const seats = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`);
-  if (seats.size() && +seats?.style("opacity") !== 0) {
+  if (seats.size() && seats?.style("display") !== "none") {
     const sections = d3Extended.selectAll(
       `[${dataAttributes.elementType}="${ElementType.Polyline}"][${dataAttributes.section}]`
     );
     const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
-    seats.forEach(hideSeat);
+    setTimeout(() => seats.forEach(hideSeat), 100);
     sections.forEach((section) => {
-      section.style("opacity", 1);
-      section.style("pointer-events", "all");
+      section.style("opacity", 1).style("pointer-events", "all");
     });
     elementsEmbracingOffset.forEach((element) => {
-      element.style("opacity", 1);
-      element.style("pointer-events", "all");
+      element.style("opacity", 1).style("pointer-events", "all");
     });
   }
 };
 
 export const showPostOffsetElements = () => {
   const seats = d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`);
-  if (seats.size() && +seats.style("opacity") !== 1) {
+  if (seats.size() && seats.style("display") !== "block") {
     const sections = d3Extended.selectAll(
       `[${dataAttributes.elementType}="${ElementType.Polyline}"][${dataAttributes.section}]`
     );
@@ -145,13 +136,11 @@ export const showPostOffsetElements = () => {
     seats.forEach(showSeat);
     sections.forEach((section) => {
       if (section.attr(dataAttributes.sectionFreeSeating) !== "true") {
-        section.style("opacity", 0);
-        section.style("pointer-events", "none");
+        section.style("opacity", 0).style("pointer-events", "none");
       }
     });
     elementsEmbracingOffset.forEach((element) => {
-      element.style("opacity", 0);
-      element.style("pointer-events", "none");
+      element.style("opacity", 0).style("pointer-events", "none");
     });
   }
 };
@@ -162,12 +151,10 @@ export const showAllElements = () => {
   const elementsEmbracingOffset = d3Extended.selectAll(`[${dataAttributes.embraceOffset}="true"]`);
   seats.forEach(showSeat);
   sections.forEach((section) => {
-    section.style("opacity", 1);
-    section.style("pointer-events", "all");
+    section.style("opacity", 1).style("pointer-events", "all");
   });
   elementsEmbracingOffset.forEach((element) => {
-    element.style("opacity", 1);
-    element.style("pointer-events", "all");
+    element.style("opacity", 1).style("pointer-events", "all");
   });
 };
 
