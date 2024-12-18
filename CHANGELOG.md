@@ -1,5 +1,14 @@
 Changelog
 
+# v3.2.0 [2024-12-07]
+
+## Minor Release
+
+### Features 
+- Added shift key support to maintain aspect ratio during resize
+
+---
+
 # v3.1.1 [2024-12-07]
 
 ## Patch Release
