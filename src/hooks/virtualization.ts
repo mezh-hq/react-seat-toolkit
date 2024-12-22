@@ -1,11 +1,13 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { ElementType } from "@/components/workspace/elements";
 import { dataAttributes, ids } from "@/constants";
 import { d3Extended } from "@/utils";
-import { default as useSkipFirstRender } from "./skip-first-render";
 
 export const useVirtualization = (virtualize?: boolean) => {
-  useSkipFirstRender(() => {
-    if (virtualize) {
+  const dataSynced = useSelector((state: any) => state.editor.dataSynced);
+  useEffect(() => {
+    if (dataSynced && virtualize) {
       requestIdleCallback(() => {
         const observer = new IntersectionObserver(
           (entries) => {
@@ -28,7 +30,7 @@ export const useVirtualization = (virtualize?: boolean) => {
           .forEach((element) => observer.observe(element));
       });
     }
-  }, [virtualize]);
+  }, [dataSynced, virtualize]);
 };
 
 export default useVirtualization;
