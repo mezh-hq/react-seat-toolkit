@@ -8,18 +8,20 @@ const useSeatSelectionChange = (props: ISTKProps) => {
   const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
 
   useEffect(() => {
-    if (props.events?.onSeatSelectionChange) {
-      const { seats, categories, sections } = store.getState().editor;
-      const selectedSeats = [];
-      seats.forEach((seat) => {
-        if (selectedElementIds.includes(seat.id)) {
-          const category = categories?.find?.((c) => c.id === seat.category);
-          const section = sections?.find?.((s) => s.id === category?.section);
-          selectedSeats.push(getDetailedSeat(seat, category, section));
-        }
-      });
-      props.events.onSeatSelectionChange(selectedSeats);
-    }
+    requestIdleCallback(() => {
+      if (props.events?.onSeatSelectionChange) {
+        const { seats, categories, sections } = store.getState().editor;
+        const selectedSeats = [];
+        seats.forEach((seat) => {
+          if (selectedElementIds.includes(seat.id)) {
+            const category = categories?.find?.((c) => c.id === seat.category);
+            const section = sections?.find?.((s) => s.id === category?.section);
+            selectedSeats.push(getDetailedSeat(seat, category, section));
+          }
+        });
+        props.events.onSeatSelectionChange(selectedSeats);
+      }
+    });
   }, [selectedElementIds]);
 };
 

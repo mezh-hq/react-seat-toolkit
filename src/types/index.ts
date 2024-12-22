@@ -93,6 +93,8 @@ export interface ISTKProps {
       icons: React.FC<any>[];
       overrideDefaultIconset?: boolean;
     };
+    /** Experimental flag to enable virtualization of rendered elements */
+    virtualize?: boolean;
   };
   plugins?: IPlugins;
 }

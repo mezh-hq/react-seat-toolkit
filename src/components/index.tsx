@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import { useDesignerEvents, useInteractions, useToast, useUserEvents } from "@/hooks";
+import { useDesignerEvents, useInteractions, useToast, useUserEvents, useVirtualization } from "@/hooks";
 import { type ISTKProps } from "@/types";
 import { default as Controls } from "./controls";
 import { default as Operations } from "./operations";
@@ -11,6 +11,7 @@ export * from "./core";
 const Designer: React.FC<ISTKProps> = (props) => {
   useDesignerEvents(props);
   useInteractions();
+  useVirtualization(props.options?.virtualize);
   return (
     <>
       <div

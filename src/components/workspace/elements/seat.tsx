@@ -90,11 +90,6 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       }
     }, [ref, categoryObject, status]);
 
-    const localOnClick = (e) => {
-      onClick(e);
-      consumer.events?.onSeatClick?.(getDetailedSeat(element, categoryObject, sectionObject));
-    };
-
     const onMouseOver = (e: React.MouseEvent<SVGElement>) => {
       if (consumer.mode === "user") {
         consumer.events?.onSeatHover?.(getDetailedSeat(element, categoryObject, sectionObject), {
@@ -116,7 +111,10 @@ const Seat: React.FC<ISeatProps> = forwardRef(
     const seatProps = {
       ref,
       id,
-      onClick: localOnClick,
+      onClick: (e) => {
+        onClick(e);
+        consumer.events?.onSeatClick?.(getDetailedSeat(element, categoryObject, sectionObject));
+      },
       [dataAttributes.category]: category,
       [dataAttributes.section]: categoryObject?.section,
       [dataAttributes.status]: status,
@@ -170,7 +168,6 @@ const Seat: React.FC<ISeatProps> = forwardRef(
             fontSize={seatLabelFontSize}
             fontWeight={200}
             letterSpacing={1}
-            onClick={localOnClick}
             {...props}
             {...{ [dataAttributes.elementType]: undefined }}
             className={twMerge(props.className, "unselectable !stroke-1")}
