@@ -1,5 +1,12 @@
 Changelog
 
+# v3.2.3 [2024-12-25]
+
+## Patch Release
+
+### Fixes 
+- Fixed free seating section selector color
+
 # v3.2.2 [2024-12-25]
 
 ## Patch Release
