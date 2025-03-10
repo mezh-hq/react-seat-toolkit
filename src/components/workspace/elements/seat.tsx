@@ -64,11 +64,14 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       let value = (+ref.current?.getAttribute("cx") || x) - seatLabelFontSize / 3.5;
       const labelLength = label?.toString()?.length ?? 0;
       if (labelLength >= 2) value -= (seatLabelFontSize / 2.75) * (labelLength - 1);
+      if (element.square) value += seatSizeHalf;
       return value;
     }, [ref, label, x]);
 
     const textY = useMemo(() => {
-      return (+ref.current?.getAttribute("cy") || y) + seatLabelFontSize / 2.75;
+      let value = (+ref.current?.getAttribute("cy") || y) + seatLabelFontSize / 2.75;
+      if (element.square) value += seatSizeHalf;
+      return value;
     }, [ref, label, y]);
 
     useEffect(() => {
@@ -137,15 +140,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
     return (
       <>
         {element.square ? (
-          <rect
-            x={x - seatSizeHalf}
-            y={y - seatSizeHalf}
-            height={seatSize}
-            width={seatSize}
-            rx={3}
-            ry={3}
-            {...seatProps}
-          />
+          <rect x={x} y={y} height={seatSize} width={seatSize} rx={3} ry={3} {...seatProps} />
         ) : (
           <circle cx={x} cy={y} r={seatSizeHalf} {...seatProps} />
         )}

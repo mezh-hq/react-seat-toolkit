@@ -53,7 +53,7 @@ export const SectionManager = ({ options }: IControlProps) => {
                   onChange={(e) => onUpdateSection({ ...section, name: e.target.value })}
                 />
                 <IconButton
-                  className={twMerge("w-6 h-6 p-0 shrink-0", section?.freeSeating && "text-gray-400")}
+                  className={twMerge("w-6 h-6 p-0 shrink-0", !section?.freeSeating && "text-gray-400")}
                   variant="secondary"
                   icon={<DollarSign className="w-4 h-4" />}
                   onClick={() =>

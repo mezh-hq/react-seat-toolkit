@@ -15,11 +15,13 @@ import { VisibilityFreezeScale, VisibilityOffset } from "./visibility";
 
 const handleElementVisibility = debounce((workspace, k) => {
   const visibilityOffset = +workspace.attr(dataAttributes.visibilityOffset) || 0;
-  const initialViewBoxScaleForWidth = +workspace.attr(dataAttributes.initialViewBoxScaleForWidth);
-  if (k * 1.1 < getScaleFactorAccountingForViewBoxWidth(visibilityOffset, initialViewBoxScaleForWidth)) {
-    showPreOffsetElements();
-  } else {
-    showPostOffsetElements();
+  if (visibilityOffset) {
+    const initialViewBoxScaleForWidth = +workspace.attr(dataAttributes.initialViewBoxScaleForWidth);
+    if (k * 1.1 < getScaleFactorAccountingForViewBoxWidth(visibilityOffset, initialViewBoxScaleForWidth)) {
+      showPreOffsetElements();
+    } else {
+      showPostOffsetElements();
+    }
   }
 }, 25);
 

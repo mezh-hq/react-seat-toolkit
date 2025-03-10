@@ -1,5 +1,27 @@
 Changelog
 
+# v3.2.4 [2024-12-26]
+
+## Patch Release
+
+### Fixes 
+- Fixed square seat placement issue
+
+
+# v3.2.3 [2024-12-25]
+
+## Patch Release
+
+### Fixes 
+- Fixed free seating section selector color
+
+# v3.2.2 [2024-12-25]
+
+## Patch Release
+
+### Fixes 
+- Fixed an issue when there is no visibility offset
+
 # v3.2.1 [2024-12-18]
 
 ## Patch Release
