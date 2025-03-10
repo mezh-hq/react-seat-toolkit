@@ -2,9 +2,9 @@ import { useLayoutEffect } from "react";
 import { RectangleHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
 import { v4 as uuidV4 } from "uuid";
-import { Tool } from "@/components/toolbar/data";
 import { ElementType } from "@/components/workspace/elements";
 import { resizableRectangle, shapeSize } from "@/components/workspace/elements/shape";
+import { Tool } from "@/constants";
 import { dataAttributes, ids } from "@/constants";
 import { store } from "@/store";
 import {

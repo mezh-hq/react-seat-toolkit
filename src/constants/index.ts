@@ -56,3 +56,14 @@ export const seatStatusColors = {
     label: "#ffffff"
   }
 };
+
+export enum Tool {
+  Select = "Select",
+  Eraser = "Eraser",
+  Seat = "Seat",
+  Pen = "Pen",
+  Text = "Text",
+  Shape = "Shapes",
+  Image = "Image",
+  Pan = "Pan"
+}

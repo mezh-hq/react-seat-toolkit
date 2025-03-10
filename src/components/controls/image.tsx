@@ -1,13 +1,13 @@
 import { memo, useCallback, useState } from "react";
 import { Image } from "lucide-react";
 import { v4 as uuidV4 } from "uuid";
+import { Tool } from "@/constants";
 import { store } from "@/store";
 import { addImage, hideControls } from "@/store/reducers/editor";
 import { selectTool } from "@/store/reducers/toolbar";
 import { ISTKProps } from "@/types";
 import { getImageDimensions, getWorkspaceCenterX, getWorkspaceCenterY, toBase64 } from "@/utils";
 import { Button } from "../core";
-import { Tool } from "../toolbar/data";
 
 const onUploadClick = () => document.getElementById("image-input").click();
 

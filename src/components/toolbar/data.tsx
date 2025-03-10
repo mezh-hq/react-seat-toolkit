@@ -1,16 +1,6 @@
 import { CaseSensitive, Circle, Image, MousePointer2, Move, PenTool, Pentagon, Sparkles, Square } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-
-export enum Tool {
-  Select = "Select",
-  Eraser = "Eraser",
-  Seat = "Seat",
-  Pen = "Pen",
-  Text = "Text",
-  Shape = "Shapes",
-  Image = "Image",
-  Pan = "Pan"
-}
+import { Tool } from "@/constants";
 
 export const tools = {
   [Tool.Select]: {

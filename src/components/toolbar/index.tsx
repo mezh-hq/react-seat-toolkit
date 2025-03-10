@@ -12,14 +12,14 @@ import {
   TooltipTrigger
 } from "@/components";
 import { default as DockHandler } from "@/components/workspace/dock/handler";
-import { dataAttributes, ids } from "@/constants";
+import { Tool, dataAttributes, ids } from "@/constants";
 import { store } from "@/store";
 import { clearCursor, setCursor, setSelectedPolylineId, showControls } from "@/store/reducers/editor";
 import { clearTool, selectSubTool, selectTool } from "@/store/reducers/toolbar";
 import { ISTKProps } from "@/types";
 import { fallible } from "@/utils";
 import { selectFirstShape } from "../controls/shapes";
-import { Tool, tools } from "./data";
+import { tools } from "./data";
 
 const ToolBar: React.FC<ISTKProps> = (props) => {
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);

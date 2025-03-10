@@ -6,6 +6,8 @@ import { type ISTKProps } from "./types";
 
 export { actions } from "@/actions";
 
+export { store } from "@/store";
+
 export { SeatStatus } from "@/types/elements";
 
 export const SeatToolkit = (props: ISTKProps) => {

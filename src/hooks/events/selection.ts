@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
-import { Tool } from "@/components/toolbar/data";
 import { ElementType } from "@/components/workspace/elements";
+import { Tool } from "@/constants";
 import { dataAttributes, ids, selectors } from "@/constants";
 import { default as store } from "@/store";
 import { clearAndSelectElements } from "@/store/reducers/editor";
