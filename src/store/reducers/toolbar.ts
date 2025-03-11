@@ -1,5 +1,5 @@
 import { Reducer, createSlice } from "@reduxjs/toolkit";
-import { Tool } from "@/constants";
+import { Tool } from "@/components/toolbar/data";
 
 const initialState = {
   selectedTool: Tool.Select,

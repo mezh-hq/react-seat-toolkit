@@ -3,10 +3,10 @@ import { select } from "d3";
 import { default as isEqual } from "lodash/isEqual";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes } from "@/constants";
-import { Tool } from "@/constants";
 import { store } from "@/store";
 import { clearAndSelectElements, deselectElement, selectElement } from "@/store/reducers/editor";
 import { ISTKProps, SeatStatus } from "@/types";
+import { Tool } from "../../toolbar/data";
 import {
   ElementType,
   elements,

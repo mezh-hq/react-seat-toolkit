@@ -25,7 +25,7 @@
   "scripts": {
     "build": "bun run ./esbuild.config.js",
     "build:css": "bunx tailwindcss -i src/styles/index.css -o ./dist/index.css --minify && cp -r src/styles dist/styles && rm dist/styles/storybook.css",
-    "build:types": "bunx tsc --project ./tsconfig.declaration.json && tsc-alias --project ./tsconfig.declaration.json && cd dist && ls -d */ | grep -Ev 'actions|constants|store|types' | xargs rm -rf && cp ./index.d.ts ./index.slim.d.ts",
+    "build:types": "bunx tsc --project ./tsconfig.declaration.json && tsc-alias --project ./tsconfig.declaration.json && cd dist && ls -d */ | grep -Ev 'actions|types' | xargs rm -rf && cp ./index.d.ts ./index.slim.d.ts",
     "bump-version": "bunx --bun automatic-versioning --disable-auto-sync --recursive $(if [ \"$TAG\" != \"latest\" ]; then echo --prerelease; fi) --prerelease-branch=development --prerelease-tag=$TAG --name=@mezh-hq/react-seat-toolkit --ignore-prefixes=ci",
     "format": "bunx prettier --write --cache \"**/*.{js,jsx,ts,tsx,md,css,yml}\"",
     "lint": "bun run --bun eslint . --ext js,jsx,ts,tsx --ignore-path .gitignore --fix --cache --report-unused-disable-directives",

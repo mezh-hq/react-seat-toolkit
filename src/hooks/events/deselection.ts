@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Tool } from "@/components/toolbar/data";
 import { ElementType } from "@/components/workspace/elements";
-import { Tool } from "@/constants";
 import { dataAttributes, ids } from "@/constants";
 import { store } from "@/store";
 import { clearElements } from "@/store/reducers/editor";

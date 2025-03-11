@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
-import { Tool, dataAttributes, ids } from "@/constants";
+import { dataAttributes, ids } from "@/constants";
 import { type ISTKProps, SeatStatus } from "@/types";
-import { tools } from "../toolbar/data";
+import { Tool, tools } from "../toolbar/data";
 import { default as Crosshairs } from "./crosshairs";
 import { default as Dock } from "./dock";
 import { default as Element, ElementType } from "./elements";
