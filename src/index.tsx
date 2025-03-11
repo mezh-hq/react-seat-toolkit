@@ -4,7 +4,7 @@ import { default as Core, TooltipProvider } from "@/components";
 import { store } from "@/store";
 import { type ISTKProps } from "./types";
 
-export { actions } from "@/actions";
+export { store, actions } from "@/actions";
 
 export { SeatStatus } from "@/types/elements";
 
