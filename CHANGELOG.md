@@ -1,5 +1,12 @@
 Changelog
 
+# v3.2.5 [2025-03-11]
+
+## Patch Release
+
+### Fixes 
+- Fixed store export and issue in docs
+
 # v3.2.4 [2024-12-26]
 
 ## Patch Release
