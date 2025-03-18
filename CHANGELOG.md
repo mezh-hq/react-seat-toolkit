@@ -1,5 +1,12 @@
 Changelog
 
+# v3.2.6 [2025-03-18]
+
+## Patch Release
+
+### Fixes 
+- Fixed usage with React 19
+
 # v3.2.5 [2025-03-11]
 
 ## Patch Release
