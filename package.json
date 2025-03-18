@@ -1,6 +1,6 @@
 {
   "name": "@mezh-hq/react-seat-toolkit",
-  "version": "3.3.0-blizzard.3",
+  "version": "3.2.5",
   "description": "React UI library to design and render seat layouts",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -78,8 +78,8 @@
     "uuid": "9.0.0"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "17.4.2",
