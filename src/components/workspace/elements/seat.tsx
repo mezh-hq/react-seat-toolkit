@@ -26,6 +26,7 @@ export interface ISeatProps extends ISeat {
   sections: ISection[];
   onClick: (e: any) => void;
   isSelected?: boolean;
+  airplaneMode?: boolean;
 }
 
 const Seat: React.FC<ISeatProps> = forwardRef(
@@ -44,6 +45,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       rotation,
       element,
       isSelected,
+      airplaneMode,
       ...props
     },
     ref: any
@@ -54,7 +56,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       [sections, categoryObject]
     );
 
-    const showLabel = consumer.options?.showSeatLabels ?? true;
+    const showLabel = !airplaneMode && (consumer.options?.showSeatLabels ?? true);
 
     const consumerSeatStatusColors = consumer.styles?.elements?.seat?.statusColors;
 

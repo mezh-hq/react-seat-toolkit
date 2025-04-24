@@ -10,6 +10,7 @@ import { Button } from "../../core";
 import { Tool } from "../../toolbar/data";
 import { showPostOffsetElements, showPreOffsetElements } from "../elements";
 import { default as Reload } from "../reload";
+import { AirplaneMode } from "./airplane-mode";
 import { default as DockHandler } from "./handler";
 import { VisibilityFreezeScale, VisibilityOffset } from "./visibility";
 
@@ -104,6 +105,7 @@ const Dock = (props: Pick<ISTKProps, "mode" | "styles" | "options" | "events">) 
   const isDesigner = props.mode === "designer";
   const showZoomControls = props.options?.showZoomControls ?? true;
   const showVisibilityControls = isDesigner && (props.options?.showVisibilityControls ?? true);
+  const showAirplaneControl = isDesigner && props.options?.showAirplaneControl;
   const showReloadButton = props.options?.showReloadButton ?? false;
   const isUser = props.mode === "user";
 
@@ -187,6 +189,7 @@ const Dock = (props: Pick<ISTKProps, "mode" | "styles" | "options" | "events">) 
               </>
             )}
             {showVisibilityControls && <VisibilityOffset {...props} />}
+            {showAirplaneControl && <AirplaneMode />}
           </div>
         </div>
       )}

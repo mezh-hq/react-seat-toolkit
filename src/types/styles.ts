@@ -38,6 +38,9 @@ export interface IStyles {
   visibilityControls?: {
     buttons?: IStyle;
   };
+  airplaneControl?: {
+    button?: IStyle;
+  };
   reloadButton?: IStyle;
   elements?: {
     seat?: {

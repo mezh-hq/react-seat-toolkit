@@ -84,7 +84,8 @@ const initialState = {
   images: [],
   initialViewBoxScale: null,
   initialViewBoxScaleForWidth: null,
-  visibilityOffset: 0
+  visibilityOffset: 0,
+  airplaneMode: false
 };
 
 export const slice = createSlice({
@@ -252,6 +253,7 @@ export const slice = createSlice({
       state.initialViewBoxScale = data.workspace?.initialViewBoxScale;
       state.initialViewBoxScaleForWidth = data.workspace?.initialViewBoxScaleForWidth;
       state.visibilityOffset = data.workspace?.visibilityOffset ?? state.visibilityOffset;
+      state.airplaneMode = data.workspace?.airplaneMode ?? state.airplaneMode;
       Object.keys(data).forEach((key) => {
         state[key] = data[key] ?? state[key];
       });
@@ -274,6 +276,9 @@ export const slice = createSlice({
       state.selectedElementIds = state.selectedElementIds.filter((id) => !ids.includes(id));
       state.selectedPolylineId =
         state.selectedPolylineId && !ids.includes(state.selectedPolylineId) ? null : state.selectedPolylineId;
+    },
+    toggleAirplaneMode: (state) => {
+      state.airplaneMode = !state.airplaneMode;
     }
   }
 });
@@ -320,7 +325,8 @@ export const {
   sync,
   setInitialViewBoxScale,
   setVisibilityOffset,
-  deleteElements
+  deleteElements,
+  toggleAirplaneMode
 } = slice.actions;
 
 export const selectPolylineById = (id: string) =>

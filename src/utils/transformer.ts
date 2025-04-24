@@ -110,7 +110,8 @@ export const stateToJSON = (): ISTKData => {
     workspace: {
       initialViewBoxScale: state.initialViewBoxScale,
       initialViewBoxScaleForWidth: state.initialViewBoxScaleForWidth,
-      visibilityOffset: state.visibilityOffset
+      visibilityOffset: state.visibilityOffset,
+      airplaneMode: state.airplaneMode
     }
   };
 };

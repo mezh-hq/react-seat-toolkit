@@ -19,7 +19,8 @@ export const Story = {
         mode={STKMode.DESIGNER}
         data={data}
         options={{
-          exportButtonText: "Save to Session Storage"
+          exportButtonText: "Save to Session Storage",
+          showAirplaneControl: true
         }}
         events={{
           onExport: (data) => {
