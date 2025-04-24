@@ -23,6 +23,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
   const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
   const selectedPolylineId = useSelector((state: any) => state.editor.selectedPolylineId);
   const selectedTool = useSelector((state: any) => state.toolbar.selectedTool);
+  const airplaneMode = useSelector((state: any) => state.editor.airplaneMode);
 
   const elementProps = useCallback(
     (elem) => ({
@@ -30,6 +31,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
       x: elem.x,
       y: elem.y,
       isSelected: selectedElementIds.includes(elem.id),
+      airplaneMode,
       label: elem.label,
       color: elem.color,
       stroke: elem.stroke,
@@ -37,7 +39,7 @@ export const Workspace: React.FC<ISTKProps> = (props) => {
       consumer: props,
       element: elem
     }),
-    [selectedElementIds]
+    [selectedElementIds, airplaneMode]
   );
 
   const onWorkspaceHover = useCallback(

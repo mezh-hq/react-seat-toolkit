@@ -12,6 +12,9 @@ export const Story = {
   render: (props) => (
     <SeatToolkit
       mode={STKMode.DESIGNER}
+      options={{
+        showAirplaneControl: true
+      }}
       data={{
         name: "Categorized Example",
         categories: [

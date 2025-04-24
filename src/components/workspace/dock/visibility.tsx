@@ -29,8 +29,6 @@ const unsetVisibility = () => {
 export const VisibilityFreezeScale = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
   const initialViewBoxScale = useSelector((state: any) => state.editor.initialViewBoxScale);
 
-  const styles = props.styles?.visibilityControls;
-
   return (
     <Tooltip>
       <TooltipTrigger
@@ -39,9 +37,9 @@ export const VisibilityFreezeScale = (props: Pick<ISTKProps, "mode" | "styles" |
       >
         <Button
           variant={initialViewBoxScale ? "primary" : "secondary"}
-          className={twMerge("w-8 h-8 p-2", styles?.buttons?.className)}
+          className={twMerge("w-8 h-8 p-2", props.styles?.visibilityControls?.buttons?.className)}
           onClick={initialViewBoxScale ? unfreeze : freeze}
-          style={styles?.buttons?.properties}
+          style={props.styles?.visibilityControls?.buttons?.properties}
         >
           {initialViewBoxScale ? <Lock size={16} /> : <Unlock size={16} />}
         </Button>
@@ -60,8 +58,6 @@ export const VisibilityFreezeScale = (props: Pick<ISTKProps, "mode" | "styles" |
 export const VisibilityOffset = (props: Pick<ISTKProps, "mode" | "styles" | "options">) => {
   const visibilityOffset = useSelector((state: any) => state.editor.visibilityOffset);
 
-  const styles = props.styles?.visibilityControls;
-
   return (
     <Tooltip>
       <TooltipTrigger
@@ -70,9 +66,9 @@ export const VisibilityOffset = (props: Pick<ISTKProps, "mode" | "styles" | "opt
       >
         <Button
           variant={visibilityOffset === 0 ? "secondary" : "primary"}
-          className={twMerge("w-8 h-8 p-2", styles?.buttons?.className)}
+          className={twMerge("w-8 h-8 p-2", props.styles?.visibilityControls?.buttons?.className)}
           onClick={visibilityOffset === 0 ? setVisibility : unsetVisibility}
-          style={styles?.buttons?.properties}
+          style={props.styles?.visibilityControls?.buttons?.properties}
         >
           {visibilityOffset === 0 ? <Scan size={16} /> : <Focus size={16} />}
         </Button>

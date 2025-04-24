@@ -59,6 +59,7 @@ export interface ISTKData {
     initialViewBoxScale?: number;
     initialViewBoxScaleForWidth?: number;
     visibilityOffset?: number;
+    airplaneMode?: boolean;
   };
 }
 
@@ -74,6 +75,7 @@ export interface ISTKProps {
     showSeatLabels?: boolean;
     showZoomControls?: boolean;
     showVisibilityControls?: boolean;
+    showAirplaneControl?: boolean;
     showReloadButton?: boolean;
     exportButtonText?: string;
     operationTriggerIcon?: React.FC;
