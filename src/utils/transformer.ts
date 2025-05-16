@@ -1,11 +1,11 @@
 import { ElementType } from "@/components/workspace/elements";
-import { dataAttributes, selectors } from "@/constants";
+import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { ISTKData, ISeat } from "@/types";
 import { rgbToHex } from ".";
 import { default as d3Extended } from "./d3";
 
-export const domSeatsToJSON = (seats: ISeat[]) => {
+const domSeatsToJSON = (seats: ISeat[]) => {
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`).map((seat) => {
     const id = seat.attr("id");
     const square = (seat.node() as any)?.nodeName === "rect";
@@ -23,7 +23,7 @@ export const domSeatsToJSON = (seats: ISeat[]) => {
   });
 };
 
-export const domTextToJSON = () => {
+const domTextToJSON = () => {
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Text}"]`).map((text) => {
     return {
       id: text.attr("id"),
@@ -40,7 +40,7 @@ export const domTextToJSON = () => {
   });
 };
 
-export const domShapesToJSON = () => {
+const domShapesToJSON = () => {
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Shape}"]`).map((shape) => {
     return {
       id: shape.attr("id"),
@@ -57,7 +57,7 @@ export const domShapesToJSON = () => {
   });
 };
 
-export const domPolylineToJSON = () => {
+const domPolylineToJSON = () => {
   return d3Extended
     .selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`)
     .map((polyline) => {
@@ -79,7 +79,7 @@ export const domPolylineToJSON = () => {
     .filter((polyline) => polyline.points.length > 1);
 };
 
-export const domImagesToJSON = () => {
+const domImagesToJSON = () => {
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Image}"]`).map((image) => {
     return {
       id: image.attr("id"),
@@ -92,10 +92,6 @@ export const domImagesToJSON = () => {
       locked: image.attr(dataAttributes.objectLock) === "true"
     };
   });
-};
-
-export const domTransform = () => {
-  return d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup));
 };
 
 export const stateToJSON = (): ISTKData => {
