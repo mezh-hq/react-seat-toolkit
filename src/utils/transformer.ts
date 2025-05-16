@@ -18,7 +18,8 @@ const domSeatsToJSON = (seatsFromStore: ISeat[] | Record<string, ISeat>) => {
       x: +seat.attr(square ? "x" : "cx"),
       y: +seat.attr(square ? "y" : "cy"),
       label:
-        document.getElementById(`${seat.attr("id")}-label`)?.textContent?.trim() ?? seatsFromStore[id]?.label?.trim(),
+        document.getElementById(`${seat.attr("id")}-label`)?.textContent?.trim() ??
+        seatsFromStore[id]?.label?.toString()?.trim(),
       status: seat.attr(dataAttributes.status),
       category: seat.attr(dataAttributes.category),
       square,
