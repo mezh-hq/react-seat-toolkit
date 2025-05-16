@@ -6,15 +6,18 @@ import { rgbToHex } from ".";
 import { default as d3Extended } from "./d3";
 
 const domSeatsToJSON = (seats: ISeat[]) => {
+  const seatsFromStore: Record<string, ISeat> = seats.reduce((acc, seat) => {
+    acc[seat.id] = seat;
+    return acc;
+  }, {});
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`).map((seat) => {
     const id = seat.attr("id");
     const square = (seat.node() as any)?.nodeName === "rect";
-    const seatFromStore = seats.find((s) => s.id === id);
     return {
       id,
       x: +seat.attr(square ? "x" : "cx"),
       y: +seat.attr(square ? "y" : "cy"),
-      label: document.getElementById(`${seat.attr("id")}-label`)?.textContent ?? seatFromStore?.label,
+      label: document.getElementById(`${seat.attr("id")}-label`)?.textContent?.trim() || seatsFromStore[id]?.label,
       status: seat.attr(dataAttributes.status),
       category: seat.attr(dataAttributes.category),
       square,
