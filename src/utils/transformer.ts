@@ -1,18 +1,20 @@
 import { ElementType } from "@/components/workspace/elements";
 import { dataAttributes, selectors } from "@/constants";
 import { store } from "@/store";
-import { ISTKData } from "@/types";
+import { ISTKData, ISeat } from "@/types";
 import { rgbToHex } from ".";
 import { default as d3Extended } from "./d3";
 
-export const domSeatsToJSON = () => {
+export const domSeatsToJSON = (seats: ISeat[]) => {
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`).map((seat) => {
+    const id = seat.attr("id");
     const square = (seat.node() as any)?.nodeName === "rect";
+    const seatFromStore = seats.find((s) => s.id === id);
     return {
-      id: seat.attr("id"),
+      id,
       x: +seat.attr(square ? "x" : "cx"),
       y: +seat.attr(square ? "y" : "cy"),
-      label: document.getElementById(`${seat.attr("id")}-label`)?.textContent,
+      label: document.getElementById(`${seat.attr("id")}-label`)?.textContent ?? seatFromStore?.label,
       status: seat.attr(dataAttributes.status),
       category: seat.attr(dataAttributes.category),
       square,
@@ -102,7 +104,7 @@ export const stateToJSON = (): ISTKData => {
     name: state.location,
     categories: state.categories.slice(1),
     sections: state.sections.slice(1),
-    seats: domSeatsToJSON(),
+    seats: domSeatsToJSON(state.seats),
     text: domTextToJSON(),
     shapes: domShapesToJSON(),
     polylines: domPolylineToJSON(),
