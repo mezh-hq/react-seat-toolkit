@@ -5,8 +5,8 @@ import { ISTKData, ISeat } from "@/types";
 import { rgbToHex } from ".";
 import { default as d3Extended } from "./d3";
 
-const domSeatsToJSON = (seats: ISeat[]) => {
-  const seatsFromStore: Record<string, ISeat> = seats.reduce((acc, seat) => {
+const domSeatsToJSON = (seatsFromStore: ISeat[] | Record<string, ISeat>) => {
+  seatsFromStore = (seatsFromStore as ISeat[]).reduce((acc, seat) => {
     acc[seat.id] = seat;
     return acc;
   }, {});
@@ -17,7 +17,8 @@ const domSeatsToJSON = (seats: ISeat[]) => {
       id,
       x: +seat.attr(square ? "x" : "cx"),
       y: +seat.attr(square ? "y" : "cy"),
-      label: document.getElementById(`${seat.attr("id")}-label`)?.textContent?.trim() ?? seatsFromStore[id]?.label,
+      label:
+        document.getElementById(`${seat.attr("id")}-label`)?.textContent?.trim() ?? seatsFromStore[id]?.label?.trim(),
       status: seat.attr(dataAttributes.status),
       category: seat.attr(dataAttributes.category),
       square,
