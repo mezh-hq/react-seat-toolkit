@@ -1,18 +1,24 @@
 import { ElementType } from "@/components/workspace/elements";
-import { dataAttributes, selectors } from "@/constants";
+import { dataAttributes } from "@/constants";
 import { store } from "@/store";
-import { ISTKData } from "@/types";
+import { ISTKData, ISeat } from "@/types";
 import { rgbToHex } from ".";
 import { default as d3Extended } from "./d3";
 
-export const domSeatsToJSON = () => {
+const domSeatsToJSON = (seatsFromStore: ISeat[] | Record<string, ISeat>) => {
+  seatsFromStore = (seatsFromStore as ISeat[]).reduce((acc, seat) => {
+    acc[seat.id] = seat;
+    return acc;
+  }, {});
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Seat}"]`).map((seat) => {
+    const id = seat.attr("id");
     const square = (seat.node() as any)?.nodeName === "rect";
     return {
-      id: seat.attr("id"),
+      id,
       x: +seat.attr(square ? "x" : "cx"),
       y: +seat.attr(square ? "y" : "cy"),
-      label: document.getElementById(`${seat.attr("id")}-label`)?.textContent,
+      label:
+        document.getElementById(`${seat.attr("id")}-label`)?.textContent?.trim() ?? seatsFromStore[id]?.label?.trim(),
       status: seat.attr(dataAttributes.status),
       category: seat.attr(dataAttributes.category),
       square,
@@ -21,7 +27,7 @@ export const domSeatsToJSON = () => {
   });
 };
 
-export const domTextToJSON = () => {
+const domTextToJSON = () => {
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Text}"]`).map((text) => {
     return {
       id: text.attr("id"),
@@ -38,7 +44,7 @@ export const domTextToJSON = () => {
   });
 };
 
-export const domShapesToJSON = () => {
+const domShapesToJSON = () => {
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Shape}"]`).map((shape) => {
     return {
       id: shape.attr("id"),
@@ -55,7 +61,7 @@ export const domShapesToJSON = () => {
   });
 };
 
-export const domPolylineToJSON = () => {
+const domPolylineToJSON = () => {
   return d3Extended
     .selectAll(`[${dataAttributes.elementType}="${ElementType.Polyline}"]`)
     .map((polyline) => {
@@ -77,7 +83,7 @@ export const domPolylineToJSON = () => {
     .filter((polyline) => polyline.points.length > 1);
 };
 
-export const domImagesToJSON = () => {
+const domImagesToJSON = () => {
   return d3Extended.selectAll(`[${dataAttributes.elementType}="${ElementType.Image}"]`).map((image) => {
     return {
       id: image.attr("id"),
@@ -92,17 +98,13 @@ export const domImagesToJSON = () => {
   });
 };
 
-export const domTransform = () => {
-  return d3Extended.zoomTransform(document.querySelector(selectors.workspaceGroup));
-};
-
 export const stateToJSON = (): ISTKData => {
   const state = store.getState().editor;
   return {
     name: state.location,
     categories: state.categories.slice(1),
     sections: state.sections.slice(1),
-    seats: domSeatsToJSON(),
+    seats: domSeatsToJSON(state.seats),
     text: domTextToJSON(),
     shapes: domShapesToJSON(),
     polylines: domPolylineToJSON(),
