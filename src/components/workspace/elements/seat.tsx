@@ -56,7 +56,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
       [sections, categoryObject]
     );
 
-    const showLabel = !airplaneMode && (consumer.options?.showSeatLabels ?? true);
+    const showLabel = consumer.options?.showSeatLabels ?? true;
 
     const consumerSeatStatusColors = consumer.styles?.elements?.seat?.statusColors;
 
@@ -170,7 +170,7 @@ const Seat: React.FC<ISeatProps> = forwardRef(
             onClick={localOnClick}
             {...props}
             {...{ [dataAttributes.elementType]: undefined }}
-            className={twMerge(props.className, "unselectable !stroke-1")}
+            className={twMerge(props.className, "unselectable !stroke-1", airplaneMode && "hidden")}
           >
             {label}
           </text>
