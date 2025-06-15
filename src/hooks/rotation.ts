@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { isMobileSafari, isSafari } from "@/constants/user-agent";
 
 /** Constructs dynamic svg rotation attributes to overcome partial CSS support in Safari */
-export const useRotationAttributes = (ref: React.RefObject<any>, rotation?: number) => {
+export const useRotationAttributes = (ref: React.RefObject<SVGGraphicsElement>, rotation?: number) => {
   const [center, setCenter] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (ref.current) {
       const bbox = ref.current.getBBox();
       setCenter({
