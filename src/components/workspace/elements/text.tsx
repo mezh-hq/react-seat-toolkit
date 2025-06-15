@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { dataAttributes } from "@/constants";
+import { useRotationAttributes } from "@/hooks/rotation";
 import { ISTKProps, IText } from "@/types";
 
 export const textFontSize = 35;
@@ -36,6 +37,7 @@ const Text: React.FC<ITextProps> = forwardRef(
     },
     ref: any
   ) => {
+    const rotationAttrs = useRotationAttributes(ref, rotation);
     return (
       <text
         ref={ref}
@@ -52,9 +54,9 @@ const Text: React.FC<ITextProps> = forwardRef(
           consumer.styles?.elements?.text?.base?.className,
           consumer.mode === "user" && "!pointer-events-none"
         )}
+        {...rotationAttrs.svg}
         style={{
-          transform: `rotate(${rotation ?? 0}deg)`,
-          transformOrigin: "center",
+          ...rotationAttrs.css,
           ...consumer.styles?.elements?.text?.base?.properties,
           stroke: color,
           color
