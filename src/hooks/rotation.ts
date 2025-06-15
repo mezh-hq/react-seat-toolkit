@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { isMobileSafari, isSafari } from "react-device-detect";
+import { isMobileSafari, isSafari } from "@/constants/user-agent";
 
 /** Constructs dynamic svg rotation attributes to overcome partial CSS support in Safari */
 export const useRotationAttributes = (ref: React.RefObject<any>, rotation?: number) => {
@@ -20,7 +20,7 @@ export const useRotationAttributes = (ref: React.RefObject<any>, rotation?: numb
       transform: isSafari ? `rotate(${rotation ?? 0}, ${center.x}, ${center.y})` : undefined
     },
     css: {
-      transform: !isSafari ? `rotate(${rotation ?? 0}deg)` : undefined,
+      transform: isSafari ? undefined : `rotate(${rotation ?? 0}deg)`,
       transformOrigin: "center"
     }
   };
