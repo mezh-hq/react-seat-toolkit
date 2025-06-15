@@ -57,6 +57,7 @@ build({
     "class-variance-authority",
     "lodash",
     "lucide-react",
+    "react-device-detect",
     "tailwind-merge"
   ]
 });
