@@ -2,6 +2,7 @@
     "extends": "./tsconfig.json",
     "exclude": [
       "src/stories/**/*.ts",
+      "examples"
     ],
     "compilerOptions": {
       "declaration": true,
