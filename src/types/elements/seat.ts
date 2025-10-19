@@ -6,6 +6,7 @@ export interface ISeatCategory {
   color: string;
   textColor: string;
   section?: string;
+  customFields?: Record<string, any>;
 }
 
 export enum SeatStatus {
@@ -24,6 +25,7 @@ export interface ISeat {
   status?: SeatStatus | string;
   square?: boolean;
   rotation?: number;
+  customFields?: Record<string, any>;
 }
 
 export interface IFreeSeat {

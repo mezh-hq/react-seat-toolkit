@@ -19,6 +19,18 @@ export type STKMode = "designer" | "user";
 
 export type SeatSelectionMode = "default" | "chain";
 
+export type CustomFieldType = "text" | "number" | "select" | "checkbox";
+
+export interface ICustomFieldDefinition {
+  name: string;
+  label: string;
+  type: CustomFieldType;
+  options?: string[]; // For select type
+  required?: boolean;
+  placeholder?: string;
+  defaultValue?: any;
+}
+
 export interface ICoordinates {
   x: number;
   y: number;
@@ -94,6 +106,12 @@ export interface ISTKProps {
     shapes?: {
       icons: React.FC<any>[];
       overrideDefaultIconset?: boolean;
+    };
+    /** Custom fields definitions for seats, categories, and sections */
+    customFields?: {
+      seat?: ICustomFieldDefinition[];
+      category?: ICustomFieldDefinition[];
+      section?: ICustomFieldDefinition[];
     };
   };
   plugins?: IPlugins;

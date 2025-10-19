@@ -23,7 +23,8 @@ const domSeatsToJSON = (seatsFromStore: ISeat[] | Record<string, ISeat>) => {
       status: seat.attr(dataAttributes.status),
       category: seat.attr(dataAttributes.category),
       square,
-      rotation: seat.rotation()
+      rotation: seat.rotation(),
+      customFields: seatsFromStore[id]?.customFields
     };
   });
 };
