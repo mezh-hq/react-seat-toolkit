@@ -24,16 +24,16 @@ const onSectionSelect = (e: MouseEvent<HTMLButtonElement>) => {
   store.dispatch(updateCategory({ id: categoryId, section: +sectionId === 0 ? null : sectionId }));
 };
 
-type IControlProps = Pick<ISTKProps, "options" | "styles">;
+type IControlProps = Pick<ISTKProps, "options" | "styles"> & { title?: string };
 
-export const CategoryManager = ({ options }: IControlProps) => {
+export const CategoryManager = ({ options, title = "Categories" }: IControlProps) => {
   const categories = useSelector((state: any) => state.editor.categories);
   const sections = useSelector((state: any) => state.editor.sections);
   const seats = useSelector((state: any) => state.editor.seats);
   return (
     <div className="grid gap-4">
       <div className="flex gap-2 justify-between items-center">
-        <h6 className="font-medium text-sm">Options</h6>
+        <h6 className="font-medium text-sm">{title}</h6>
         <IconButton
           className="w-6 h-6 p-0"
           variant="secondary"
@@ -127,7 +127,7 @@ const Categorizer = ({ firstElement, selectedElementIds, options }: IControlProp
             <IconButton className="w-6 h-6 p-0 shrink-0" variant="secondary" icon={<Settings2 className="w-4 h-4" />} />
           </PopoverTrigger>
           <PopoverContent className="bg-white w-80 py-4 mr-4">
-            <CategoryManager options={options} />
+            <CategoryManager options={options} title="Options" />
           </PopoverContent>
         </Popover>
       </div>

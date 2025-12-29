@@ -15,14 +15,14 @@ const onDeleteSection = (id: string) => store.dispatch(deleteSection(id));
 
 const onUpdateSection = debounce((section) => store.dispatch(updateSection(section)), 150);
 
-type IControlProps = Pick<ISTKProps, "options" | "styles">;
+type IControlProps = Pick<ISTKProps, "options" | "styles"> & { title?: string };
 
-export const SectionManager = ({ options }: IControlProps) => {
+export const SectionManager = ({ options, title = "Sections" }: IControlProps) => {
   const sections = useSelector((state: any) => state.editor.sections);
   return (
     <div className="flex flex-col gap-3">
       <div className="w-full flex justify-between items-center gap-4">
-        <h6 className="font-medium text-sm">Sections</h6>
+        <h6 className="font-medium text-sm">{title}</h6>
         <IconButton
           className="w-6 h-6 p-0"
           variant="secondary"
@@ -95,7 +95,7 @@ const SectionSelector = ({ firstElement, selectedElementIds, options }: IControl
               />
             </PopoverTrigger>
             <PopoverContent className="bg-white w-80 py-4 mr-4">
-              <SectionManager options={options} />
+              <SectionManager options={options} title="Options" />
             </PopoverContent>
           </Popover>
         </div>
