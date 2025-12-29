@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { v4 as uuidV4 } from "uuid";
 import { Tool } from "@/components/toolbar/data";
 import { ElementType } from "@/components/workspace/elements";
+import { seatSizeHalf } from "@/components/workspace/elements/seat";
 import { resizableRectangle, shapeSize } from "@/components/workspace/elements/shape";
 import { dataAttributes, ids } from "@/constants";
 import { store } from "@/store";
@@ -32,10 +33,13 @@ const useWorkspaceClick = () => {
     const handler = (e) => {
       if (selectedTool == Tool.Seat) {
         const square = store.getState().toolbar.selectedSubTool === "Square";
+        const coords = getRelativeClickCoordsWithTransform(e);
+        const offset = square ? seatSizeHalf : 0;
         store.dispatch(
           addSeat({
             id: uuidV4(),
-            ...getRelativeClickCoordsWithTransform(e),
+            x: coords.x - offset,
+            y: coords.y - offset,
             label: "?",
             status: SeatStatus.Available,
             square
