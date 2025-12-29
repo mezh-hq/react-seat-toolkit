@@ -6,9 +6,9 @@ import { ISeat, ISeatCategory, ISection, SeatStatus } from "@/types/elements";
 import { d3Extended } from "@/utils";
 import { getDetailedSeat } from "./utils";
 
-const seatSize = 28;
+export const seatSize = 28;
 
-const seatSizeHalf = seatSize / 2;
+export const seatSizeHalf = seatSize / 2;
 
 const seatLabelFontSize = seatSize / 3;
 
