@@ -4,6 +4,7 @@ export interface ISection {
   color: string;
   stroke: string;
   freeSeating?: boolean;
+  customFields?: Record<string, any>;
 }
 
 export interface IPolylinepoint {

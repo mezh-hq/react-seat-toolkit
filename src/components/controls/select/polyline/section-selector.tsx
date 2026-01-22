@@ -1,8 +1,9 @@
-import { DollarSign, Plus, Settings2, X } from "lucide-react";
+import { useState } from "react";
+import { DollarSign, FileEdit, Plus, Settings2, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import { default as debounce } from "lodash/debounce";
 import { twMerge } from "tailwind-merge";
-import { IconButton, Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
+import { CustomFields, IconButton, Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { addSection, deleteSection, updatePolylines, updateSection } from "@/store/reducers/editor";
@@ -19,6 +20,11 @@ type IControlProps = Pick<ISTKProps, "options" | "styles"> & { title?: string };
 
 export const SectionManager = ({ options, title = "Sections" }: IControlProps) => {
   const sections = useSelector((state: any) => state.editor.sections);
+  const [editingSectionId, setEditingSectionId] = useState<string | null>(null);
+
+  const customFieldDefinitions = options?.customFields?.section;
+  const hasCustomFields = customFieldDefinitions && customFieldDefinitions.length > 0;
+
   return (
     <div className="flex flex-col gap-3">
       <div className="w-full flex justify-between items-center gap-4">
@@ -62,6 +68,30 @@ export const SectionManager = ({ options, title = "Sections" }: IControlProps) =
                       : onUpdateSection({ ...section, freeSeating: true })
                   }
                 />
+                {hasCustomFields && (
+                  <Popover open={editingSectionId === section.id} onOpenChange={(open) => setEditingSectionId(open ? section.id : null)}>
+                    <PopoverTrigger>
+                      <IconButton
+                        className={twMerge("w-6 h-6 p-0 shrink-0", !section.customFields && "text-gray-400")}
+                        variant="secondary"
+                        icon={<FileEdit className="w-4 h-4" />}
+                      />
+                    </PopoverTrigger>
+                    <PopoverContent className="bg-white w-80 py-4 px-4 mr-4">
+                      <div className="flex flex-col gap-3">
+                        <h6 className="font-medium text-sm">Custom Fields</h6>
+                        <CustomFields
+                          definitions={customFieldDefinitions}
+                          values={section.customFields || {}}
+                          onChange={(fieldName, value) => {
+                            const updatedCustomFields = { ...(section.customFields || {}), [fieldName]: value };
+                            onUpdateSection({ ...section, customFields: updatedCustomFields });
+                          }}
+                        />
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                )}
                 {!options?.disableSectionDelete && (
                   <IconButton
                     className="w-6 h-6 p-0 shrink-0"

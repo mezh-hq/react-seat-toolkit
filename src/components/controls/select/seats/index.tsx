@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Button, Label, Switch } from "@/components/core";
+import { Button, CustomFields, Label, Switch } from "@/components/core";
 import { dataAttributes, seatStatusColors } from "@/constants";
 import { store } from "@/store";
 import { updateSeatLabels, updateSeats } from "@/store/reducers/editor";
@@ -15,10 +15,13 @@ type IControlProps = Pick<ISTKProps, "options" | "styles">;
 const SeatSelectControls = (props: IControlProps) => {
   const [state, setState] = useState<undefined | SeatStatus>();
   const selectedElementIds = useSelector((state: any) => state.editor.selectedElementIds);
+  const seats = useSelector((state: any) => state.editor.seats);
 
   const firstElement = document.getElementById(selectedElementIds[0]);
 
   const firstElementLabel = document.getElementById(`${selectedElementIds[0]}-label`);
+
+  const firstSeat = seats.find((seat: any) => seat.id === selectedElementIds[0]);
 
   const setIncrementalLabels = () => {
     store.dispatch(
@@ -39,6 +42,9 @@ const SeatSelectControls = (props: IControlProps) => {
     }
   }, [selectedElementIds, firstElement]);
 
+  const customFieldDefinitions = props.options?.customFields?.seat;
+  const hasCustomFields = customFieldDefinitions && customFieldDefinitions.length > 0;
+
   return (
     <div className="flex flex-col gap-5">
       <Categorizer firstElement={firstElement} selectedElementIds={selectedElementIds} {...props} />
@@ -57,6 +63,20 @@ const SeatSelectControls = (props: IControlProps) => {
         <Button className="py-[0.35rem]" variant="secondary" onClick={setIncrementalLabels}>
           Set Incremental Labels
         </Button>
+      )}
+      {hasCustomFields && selectedElementIds.length === 1 && (
+        <div className="flex flex-col gap-3">
+          <h6 className="font-medium text-sm">Custom Fields</h6>
+          <CustomFields
+            key={selectedElementIds[0]}
+            definitions={customFieldDefinitions}
+            values={firstSeat?.customFields || {}}
+            onChange={(fieldName, value) => {
+              const updatedCustomFields = { ...(firstSeat?.customFields || {}), [fieldName]: value };
+              store.dispatch(updateSeats({ ids: selectedElementIds, data: { customFields: updatedCustomFields } }));
+            }}
+          />
+        </div>
       )}
       <div className="w-full flex flex-col gap-3">
         {Object.values(SeatStatus).map((status) => {

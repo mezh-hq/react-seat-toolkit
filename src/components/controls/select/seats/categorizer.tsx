@@ -1,10 +1,10 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 import { PopoverClose } from "@radix-ui/react-popover";
-import { LayoutGrid, Plus, Settings2, X } from "lucide-react";
+import { FileEdit, LayoutGrid, Plus, Settings2, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import { default as debounce } from "lodash/debounce";
 import { twMerge } from "tailwind-merge";
-import { IconButton, Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
+import { CustomFields, IconButton, Input, Popover, PopoverContent, PopoverTrigger } from "@/components/core";
 import { dataAttributes } from "@/constants";
 import { store } from "@/store";
 import { addCategory, deleteCategory, updateCategory, updateSeats } from "@/store/reducers/editor";
@@ -30,6 +30,11 @@ export const CategoryManager = ({ options, title = "Categories" }: IControlProps
   const categories = useSelector((state: any) => state.editor.categories);
   const sections = useSelector((state: any) => state.editor.sections);
   const seats = useSelector((state: any) => state.editor.seats);
+  const [editingCategoryId, setEditingCategoryId] = useState<string | null>(null);
+
+  const customFieldDefinitions = options?.customFields?.category;
+  const hasCustomFields = customFieldDefinitions && customFieldDefinitions.length > 0;
+
   return (
     <div className="grid gap-4">
       <div className="flex gap-2 justify-between items-center">
@@ -99,6 +104,30 @@ export const CategoryManager = ({ options, title = "Categories" }: IControlProps
                   ))}
                 </PopoverContent>
               </Popover>
+              {hasCustomFields && (
+                <Popover open={editingCategoryId === category.id} onOpenChange={(open) => setEditingCategoryId(open ? category.id : null)}>
+                  <PopoverTrigger>
+                    <IconButton
+                      className={twMerge("w-6 h-6 p-0 shrink-0", !category.customFields && "text-gray-400")}
+                      variant="secondary"
+                      icon={<FileEdit className="w-4 h-4" />}
+                    />
+                  </PopoverTrigger>
+                  <PopoverContent className="bg-white w-80 py-4 px-4 mr-4">
+                    <div className="flex flex-col gap-3">
+                      <h6 className="font-medium text-sm">Custom Fields</h6>
+                      <CustomFields
+                        definitions={customFieldDefinitions}
+                        values={category.customFields || {}}
+                        onChange={(fieldName, value) => {
+                          const updatedCustomFields = { ...(category.customFields || {}), [fieldName]: value };
+                          onUpdateCategory({ ...category, customFields: updatedCustomFields });
+                        }}
+                      />
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              )}
               {!options?.disableCategoryDelete && (
                 <IconButton
                   className="w-6 h-6 p-0 shrink-0"
